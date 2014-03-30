@@ -629,7 +629,55 @@ namespace OpenCVDemo1
                 Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
                 Console.WriteLine();
                 Console.WriteLine(rowSeparator);
+
             }
         }
+
+        public static string PrepareFenString()
+        {
+            StringBuilder fenString = new StringBuilder(string.Empty);
+            //Prepare string part for "Piece Placement"
+            for (int rowCounter = 1; rowCounter <= Constants.GRID_SIZE; rowCounter++)
+            {
+                StringBuilder rowFenString = new StringBuilder(string.Empty);
+                var rowTemplate = currentChessBoardPosition.Where(c => c.RowPosition == rowCounter && c.PieceInfo != null && c.IsAlive);
+                if (rowTemplate == null || rowTemplate.Count() == 0)
+                    rowFenString.Append("8");
+                else
+                {
+                    int previousPieceColumnPosition = 0;
+                    foreach (var piece in rowTemplate)
+                    {
+                        if (piece.IsAlive)
+                        {
+                            if (piece.ColumnPosition > 1 && piece.ColumnPosition - previousPieceColumnPosition > 1)
+                                rowFenString.Append((piece.ColumnPosition - previousPieceColumnPosition - 1).ToString()).Append(piece.PieceInfo.Name);
+                            else
+                                rowFenString.Append(piece.PieceInfo.Name);
+
+                            previousPieceColumnPosition = piece.ColumnPosition;
+                        }
+                    }
+                    if (previousPieceColumnPosition < Constants.GRID_SIZE)
+                        rowFenString.Append(Constants.GRID_SIZE - previousPieceColumnPosition);
+                }
+                fenString.Append(rowFenString);
+                if (rowCounter < Constants.GRID_SIZE)
+                    fenString.Append("/");
+            }
+            fenString.Append(" ");
+
+            //Append string part for "Active Color"
+            fenString.Append(Constants.ActiveMove);
+            fenString.Append(" ");
+
+            //Append string part for "Castling"
+            //TO DO: Need to implement exact Castling rule
+            fenString.Append("-");
+            fenString.Append(" ");
+
+            return null;
+        }
+
     }
 }

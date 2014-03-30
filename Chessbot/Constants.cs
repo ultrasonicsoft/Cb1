@@ -27,5 +27,9 @@ namespace OpenCVDemo1
         internal const string BlackQueen = "BQ";
         internal const string BlackPawn1 = "BP";
         internal const string BlackPawn2 = "BP";
+
+        internal static string ActiveMove = string.Empty;
+        internal const string WhiteMove = "w";
+        internal const string BlackMove = "b";
     }
 }

@@ -39,6 +39,8 @@ namespace OpenCVDemo1
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard();
+`                
+                ImageProcessingManager.PrepareFenString();
             }
             else
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
@@ -86,6 +88,13 @@ namespace OpenCVDemo1
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        
+        private void rbtnWhite_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnWhite.Checked)
+                Constants.ActiveMove = Constants.WhiteMove;
+            else
+                Constants.ActiveMove = Constants.BlackMove;
+
+        }        
     }
 }

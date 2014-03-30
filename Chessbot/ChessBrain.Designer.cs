@@ -81,6 +81,7 @@
             this.rbtnWhite.TabStop = true;
             this.rbtnWhite.Text = "White";
             this.rbtnWhite.UseVisualStyleBackColor = true;
+            this.rbtnWhite.CheckedChanged += new System.EventHandler(this.rbtnWhite_CheckedChanged);
             // 
             // rbtnBlack
             // 
@@ -130,7 +131,7 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Padding";
             // 
-            // Form1
+            // ChessBrain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,7 +143,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSplitImae);
             this.Controls.Add(this.btnCaptureScreen);
-            this.Name = "Form1";
+            this.Name = "ChessBrain";
             this.Text = "Chessbot";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
