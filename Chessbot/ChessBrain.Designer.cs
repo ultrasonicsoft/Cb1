@@ -37,6 +37,10 @@
             this.btnReadMasterTemplate = new System.Windows.Forms.Button();
             this.txtPadding = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,9 +56,9 @@
             // 
             // btnSplitImae
             // 
-            this.btnSplitImae.Location = new System.Drawing.Point(160, 49);
+            this.btnSplitImae.Location = new System.Drawing.Point(160, 57);
             this.btnSplitImae.Name = "btnSplitImae";
-            this.btnSplitImae.Size = new System.Drawing.Size(111, 23);
+            this.btnSplitImae.Size = new System.Drawing.Size(129, 23);
             this.btnSplitImae.TabIndex = 2;
             this.btnSplitImae.Text = "Read Chessboard";
             this.btnSplitImae.UseVisualStyleBackColor = true;
@@ -62,9 +66,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(568, 28);
+            this.button1.Location = new System.Drawing.Point(568, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Compare";
             this.button1.UseVisualStyleBackColor = true;
@@ -116,7 +120,7 @@
             // 
             // txtPadding
             // 
-            this.txtPadding.Location = new System.Drawing.Point(380, 14);
+            this.txtPadding.Location = new System.Drawing.Point(86, 81);
             this.txtPadding.Name = "txtPadding";
             this.txtPadding.Size = new System.Drawing.Size(48, 20);
             this.txtPadding.TabIndex = 8;
@@ -125,17 +129,59 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(328, 17);
+            this.label1.Location = new System.Drawing.Point(15, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Padding";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(439, 15);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(48, 20);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.Text = "0";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(320, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Halfmove Clock";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(320, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Fullmove number";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(439, 59);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(48, 20);
+            this.textBox2.TabIndex = 12;
+            this.textBox2.Text = "0";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            // 
             // ChessBrain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 84);
+            this.ClientSize = new System.Drawing.Size(694, 116);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPadding);
             this.Controls.Add(this.btnReadMasterTemplate);
@@ -164,6 +210,10 @@
         private System.Windows.Forms.Button btnReadMasterTemplate;
         private System.Windows.Forms.TextBox txtPadding;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

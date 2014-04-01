@@ -39,7 +39,7 @@ namespace OpenCVDemo1
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard();
-`                
+
                 ImageProcessingManager.PrepareFenString();
             }
             else
@@ -95,6 +95,32 @@ namespace OpenCVDemo1
             else
                 Constants.ActiveMove = Constants.BlackMove;
 
-        }        
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            int result =0;
+            if (int.TryParse(textBox1.Text, out result))
+                Constants.HalfmoveClock = result;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int result = 0;
+            if (int.TryParse(textBox2.Text, out result))
+                Constants.FullmoveNumber = result;
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char delete = (char)8;
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != delete;
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char delete = (char)8;
+            e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != delete;
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace OpenCVDemo1
     internal class ChessPiece
     {
         public string Name { get; set; }
+        public string Code { get; set; }
         public Image<Gray, Byte> Piece { get; set; }
     }
 

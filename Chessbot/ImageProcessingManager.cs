@@ -191,6 +191,7 @@ namespace OpenCVDemo1
                                         // Piece matched. Extract its name and save its position
                                         currentEntity.PieceInfo = new ChessPiece();
                                         currentEntity.PieceInfo.Name = item.Name;
+                                        currentEntity.PieceInfo.Code = item.Code;
                                         currentEntity.PieceInfo.Piece = item.Piece;
                                         currentEntity.IsAlive = true;
 
@@ -268,6 +269,7 @@ namespace OpenCVDemo1
                             using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                             {
                                 string pieceName = string.Empty;
+                                string pieceCode = string.Empty;
                                 if (isWhiteFirst)
                                 {
                                     //position = String.Format("{0}{1}", columnNames[whiteRowCounter], rowIndex);
@@ -275,20 +277,20 @@ namespace OpenCVDemo1
 
                                     // White side pieces
                                     if ((rowIndex == 1 && colIndex == 1) || (rowIndex == 1 && colIndex == 8))
-                                        pieceName = Constants.WhiteRook;
+                                    { pieceName = Constants.WhiteRook; pieceCode = Constants.WhiteRook_Code; }
                                     else if ((rowIndex == 1 && colIndex == 2) || (rowIndex == 1 && colIndex == 7))
-                                        pieceName = Constants.WhiteKnight;
+                                    { pieceName = Constants.WhiteKnight; pieceCode = Constants.WhiteKnight_Code; }
                                     else if ((rowIndex == 1 && colIndex == 3) || (rowIndex == 1 && colIndex == 6))
-                                        pieceName = Constants.WhiteBishop;
+                                    { pieceName = Constants.WhiteBishop; pieceCode = Constants.WhiteBishop_Code; }
                                     else if (rowIndex == 1 && colIndex == 4)
-                                        pieceName = Constants.WhiteKing;
+                                    { pieceName = Constants.WhiteKing; pieceCode = Constants.WhiteKing_Code; }
                                     else if (rowIndex == 1 && colIndex == 5)
-                                        pieceName = Constants.WhiteQueen;
+                                    {pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
                                     // Save 2 pieaces of white pawn of different background color to match in future
                                     else if (rowIndex == 2 && colIndex == 1)
-                                        pieceName = Constants.WhitePawn1;
+                                    { pieceName = Constants.WhitePawn1; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 2 && colIndex == 2)
-                                        pieceName = Constants.WhitePawn2;
+                                    {pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 3 && colIndex == 1)
                                         pieceName = Constants.EmptyGridZone1;
                                     else if (rowIndex == 3 && colIndex == 2)
@@ -296,19 +298,19 @@ namespace OpenCVDemo1
 
                                     // black side pieces
                                     else if (rowIndex == 7 && colIndex == 1)
-                                        pieceName = Constants.BlackPawn1;
+                                    { pieceName = Constants.BlackPawn1; pieceCode = Constants.BlackPawn_Code; }
                                     else if (rowIndex == 7 && colIndex == 2)
-                                        pieceName = Constants.BlackPawn2;
+                                    {pieceName = Constants.BlackPawn2;; pieceCode = Constants.BlackPawn_Code; }
                                     else if ((rowIndex == 8 && colIndex == 1) || (rowIndex == 8 && colIndex == 8))
-                                        pieceName = Constants.BlackRook;
+                                    { pieceName = Constants.BlackRook; ; pieceCode = Constants.BlackRook_Code; }
                                     else if ((rowIndex == 8 && colIndex == 2) || (rowIndex == 8 && colIndex == 7))
-                                        pieceName = Constants.BlackKnight;
+                                    {pieceName = Constants.BlackKnight;; pieceCode = Constants.BlackKnight_Code; }
                                     else if ((rowIndex == 8 && colIndex == 3) || (rowIndex == 8 && colIndex == 6))
-                                        pieceName = Constants.BlackBishop;
+                                    {pieceName = Constants.BlackBishop;; pieceCode = Constants.BlackBishop_Code; }
                                     else if (rowIndex == 8 && colIndex == 4)
-                                        pieceName = Constants.BlackKing;
+                                    {pieceName = Constants.BlackKing;; pieceCode = Constants.BlackKing_Code; }
                                     else if (rowIndex == 8 && colIndex == 5)
-                                        pieceName = Constants.BlackQueen;
+                                    {pieceName = Constants.BlackQueen;; pieceCode = Constants.BlackQueen_Code; }
                                 }
                                 else
                                 {
@@ -317,17 +319,17 @@ namespace OpenCVDemo1
 
                                     // black side pieces
                                     if ((rowIndex == 1 && colIndex == 1) || (rowIndex == 1 && colIndex == 8))
-                                        pieceName = Constants.BlackRook;
+                                    { pieceName = Constants.BlackRook; ; pieceCode = Constants.BlackRook; }
                                     else if ((rowIndex == 1 && colIndex == 2) || (rowIndex == 1 && colIndex == 7))
-                                        pieceName = Constants.BlackKnight;
+                                    { pieceName = Constants.BlackKnight; ; pieceCode = Constants.BlackKnight_Code; }
                                     else if ((rowIndex == 1 && colIndex == 3) || (rowIndex == 1 && colIndex == 6))
-                                        pieceName = Constants.BlackBishop;
+                                    {pieceName = Constants.BlackBishop;; pieceCode = Constants.BlackBishop_Code; }
                                     else if (rowIndex == 1 && colIndex == 4)
-                                        pieceName = Constants.BlackQueen;
+                                    {pieceName = Constants.BlackQueen;; pieceCode = Constants.BlackQueen_Code; }
                                     else if (rowIndex == 1 && colIndex == 5)
-                                        pieceName = Constants.BlackKing;
+                                    {pieceName = Constants.BlackKing;; pieceCode = Constants.BlackKing_Code; }
                                     else if (rowIndex == 2)
-                                        pieceName = Constants.BlackPawn1;
+                                    {pieceName = Constants.BlackPawn1;; pieceCode = Constants.BlackPawn_Code; }
                                     else if (rowIndex == 3 && colIndex == 1)
                                         pieceName = Constants.EmptyGridZone2;
                                     else if (rowIndex == 3 && colIndex == 2)
@@ -335,24 +337,24 @@ namespace OpenCVDemo1
 
                                      // White side pieces
                                     else if ((rowIndex == 8 && colIndex == 1) || (rowIndex == 8 && colIndex == 8))
-                                        pieceName = Constants.WhiteRook;
+                                    {pieceName = Constants.WhiteRook; pieceCode = Constants.WhiteRook_Code; }
                                     else if ((rowIndex == 8 && colIndex == 2) || (rowIndex == 8 && colIndex == 7))
-                                        pieceName = Constants.WhiteKnight;
+                                    {pieceName = Constants.WhiteKnight; pieceCode = Constants.WhiteKnight_Code; }
                                     else if ((rowIndex == 8 && colIndex == 3) || (rowIndex == 8 && colIndex == 6))
-                                        pieceName = Constants.WhiteBishop;
+                                    {pieceName = Constants.WhiteBishop; pieceCode = Constants.WhiteBishop_Code; }
                                     else if (rowIndex == 8 && colIndex == 4)
-                                        pieceName = Constants.WhiteQueen;
+                                    {pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
                                     else if (rowIndex == 8 && colIndex == 5)
-                                        pieceName = Constants.WhiteKing;
+                                    {pieceName = Constants.WhiteKing; pieceCode = Constants.WhiteKing_Code; }
                                     else if (rowIndex == 7 && colIndex == 1)
-                                        pieceName = Constants.WhitePawn1;
+                                    {pieceName = Constants.WhitePawn1; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 7 && colIndex == 2)
-                                        pieceName = Constants.WhitePawn2;
+                                    {pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
                                 }
 
                                 // Add current piece to list
                                 //ChessBoardTemplate.Add(new ChessPiece { Name = pieceName, Piece = new Image<Gray, Byte>(currentPiece), ColumnPosition = colIndex, RowPosition = rowIndex, IsAlive = true });
-                                allChessBoardTemplate.Add(new ChessPiece { Name = pieceName, Piece = new Image<Gray, Byte>(currentPiece) });
+                                allChessBoardTemplate.Add(new ChessPiece { Name = pieceName, Code = pieceCode, Piece = new Image<Gray, Byte>(currentPiece) });
                                 //temp.Save(String.Format(fileName, columnNames[rowIndex - 1], colIndex), ImageFormat.Jpeg);
                                 //ChessPieceTemplate[position].Save(String.Format(fileName, position));
                                 blockLeft += blockWidth;
@@ -633,7 +635,7 @@ namespace OpenCVDemo1
             }
         }
 
-        public static string PrepareFenString()
+        public static void PrepareFenString()
         {
             StringBuilder fenString = new StringBuilder(string.Empty);
             //Prepare string part for "Piece Placement"
@@ -651,9 +653,9 @@ namespace OpenCVDemo1
                         if (piece.IsAlive)
                         {
                             if (piece.ColumnPosition > 1 && piece.ColumnPosition - previousPieceColumnPosition > 1)
-                                rowFenString.Append((piece.ColumnPosition - previousPieceColumnPosition - 1).ToString()).Append(piece.PieceInfo.Name);
+                                rowFenString.Append((piece.ColumnPosition - previousPieceColumnPosition - 1).ToString()).Append(piece.PieceInfo.Code);
                             else
-                                rowFenString.Append(piece.PieceInfo.Name);
+                                rowFenString.Append(piece.PieceInfo.Code);
 
                             previousPieceColumnPosition = piece.ColumnPosition;
                         }
@@ -673,10 +675,77 @@ namespace OpenCVDemo1
 
             //Append string part for "Castling"
             //TO DO: Need to implement exact Castling rule
+            bool castlingPossible = false;
+            int blackPrimeRow = 0;
+            int whitePrimeRow = 0;
+            if (Constants.ActiveMove == "w")
+            {
+                whitePrimeRow = 1;
+                blackPrimeRow = Constants.GRID_SIZE;
+            }
+            else if (Constants.ActiveMove == "b")
+            {
+                whitePrimeRow = Constants.GRID_SIZE;
+                blackPrimeRow = 1;
+            }
+
+            //Check castling for white pieces
+            var whitePieces = currentChessBoardPosition.Where(c => c.RowPosition == whitePrimeRow);
+
+            if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
+            {
+                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                    whitePieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null) == null)
+                {
+                    fenString.Append("K");
+                    castlingPossible = true;
+                }
+
+                if(whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                   whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                {
+                    fenString.Append("Q");
+                    castlingPossible = true;
+                }
+            }
+
+            var blackPieces = currentChessBoardPosition.Where(c => c.RowPosition == blackPrimeRow);
+
+            if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
+            {
+                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                    blackPieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null).FirstOrDefault() == null)
+                {
+                    fenString.Append("k");
+                    castlingPossible = true;
+                }
+
+                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                   blackPieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                {
+                    fenString.Append("q");
+                    castlingPossible = true;
+                }
+            }
+            if(castlingPossible == false)
+                fenString.Append("-");
+
+            fenString.Append(" ");
+
+            //En Passant rule is not applied yet.
+            //TO DO: Need to implement En Passant rule
             fenString.Append("-");
             fenString.Append(" ");
 
-            return null;
+            //Append Halfmove clock count
+            fenString.Append(Constants.HalfmoveClock.ToString());
+            fenString.Append(" ");
+
+            //Append Fullmove number
+            fenString.Append(Constants.FullmoveNumber.ToString());
+            fenString.Append(" ");
+
+            Console.WriteLine(fenString.ToString());
         }
 
     }

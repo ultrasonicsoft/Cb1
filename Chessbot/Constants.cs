@@ -20,6 +20,13 @@ namespace OpenCVDemo1
         internal const string EmptyGridZone1 = "WE1";
         internal const string EmptyGridZone2 = "WE2";
 
+        internal const string WhiteRook_Code = "R";
+        internal const string WhiteBishop_Code = "B";
+        internal const string WhiteKnight_Code = "N";
+        internal const string WhiteKing_Code = "K";
+        internal const string WhiteQueen_Code = "Q";
+        internal const string WhitePawn_Code = "P";
+
         internal const string BlackRook = "BR";
         internal const string BlackBishop = "BB";
         internal const string BlackKnight = "BN";
@@ -28,8 +35,19 @@ namespace OpenCVDemo1
         internal const string BlackPawn1 = "BP";
         internal const string BlackPawn2 = "BP";
 
-        internal static string ActiveMove = string.Empty;
+        internal const string BlackRook_Code = "r";
+        internal const string BlackBishop_Code = "b";
+        internal const string BlackKnight_Code = "n";
+        internal const string BlackKing_Code = "k";
+        internal const string BlackQueen_Code = "q";
+        internal const string BlackPawn_Code = "p";
+
         internal const string WhiteMove = "w";
         internal const string BlackMove = "b";
+        internal static string ActiveMove = WhiteMove;
+
+        internal static int FullmoveNumber = 0;
+        internal static int HalfmoveClock = 0;
     }
+
 }
