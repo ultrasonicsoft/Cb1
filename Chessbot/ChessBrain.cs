@@ -18,6 +18,16 @@ namespace OpenCVDemo1
 {
     public partial class ChessBrain : Form
     {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr GetConsoleWindow();
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
+        [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
+        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
+
         public ChessBrain()
         {
             InitializeComponent();
@@ -32,18 +42,24 @@ namespace OpenCVDemo1
 
         private void btnSplitImae_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
+            Console.WriteLine("Reading current Chess position...");
+
             int paddingPixel = int.Parse(txtPadding.Text);
-            
+
             if (rbtnWhite.Checked)
             {
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
-                ImageProcessingManager.PrintChessBoard();
-
+                ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
             }
             else
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
+
+            Cursor = Cursors.Default;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,6 +84,18 @@ namespace OpenCVDemo1
 
         private void btnReadMasterTemplate_Click(object sender, EventArgs e)
         {
+            int frm_width = this.Width;
+            int frm_height = this.Height;
+            System.Windows.Forms.Screen src = System.Windows.Forms.Screen.PrimaryScreen;
+            int src_height = src.Bounds.Height;
+            int src_width = src.Bounds.Width;
+            this.Left = (src_width - frm_width) / 2;
+            this.Top = (src_height - frm_height) / 2;
+
+            this.SetDesktopLocation(Left, Top);
+
+            Cursor = Cursors.WaitCursor;
+            Console.WriteLine("Reading master template...");
             int paddingPixel = int.Parse(txtPadding.Text);
             if (rbtnWhite.Checked)
             {
@@ -76,6 +104,9 @@ namespace OpenCVDemo1
             }
             else
                 ImageProcessingManager.FillMasterTemplate(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
+            Cursor = Cursors.Default;
+            Console.WriteLine("Done!");
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -84,9 +115,6 @@ namespace OpenCVDemo1
             //Console.WriteLine("Jai Ganesh");
         }
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
 
         private void rbtnWhite_CheckedChanged(object sender, EventArgs e)
         {
@@ -99,7 +127,7 @@ namespace OpenCVDemo1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            int result =0;
+            int result = 0;
             if (int.TryParse(textBox1.Text, out result))
                 Constants.HalfmoveClock = result;
         }

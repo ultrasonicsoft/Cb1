@@ -189,7 +189,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSplitImae);
             this.Controls.Add(this.btnCaptureScreen);
+            this.MaximizeBox = false;
             this.Name = "ChessBrain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chessbot";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);

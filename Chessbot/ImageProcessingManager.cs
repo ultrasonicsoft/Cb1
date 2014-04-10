@@ -553,7 +553,7 @@ namespace OpenCVDemo1
             return result;
         }
 
-        internal static void PrintChessBoard()
+        internal static void PrintChessBoard(bool isUserPlayingWhite)
         {
             Console.Clear();
 
@@ -561,7 +561,19 @@ namespace OpenCVDemo1
             Console.WriteLine();
 
             string rowHeader = "     A    B    C    D    E    F    G    H";
-            Console.WriteLine(rowHeader);
+            //string blackRowHeader = "     A    B    C    D    E    F    G    H";
+            //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
+
+            if (isUserPlayingWhite)
+            {
+                rowHeader = "     H    G    F    E    D    C    B    A";
+            }
+            else
+            {
+                rowHeader = "     A    B    C    D    E    F    G    H";
+            }
+
+            Console.WriteLine(rowHeader); 
             string rowSeparator = "  +----+----+----+----+----+----+----+----+";
             Console.WriteLine(rowSeparator);
             string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
@@ -628,7 +640,14 @@ namespace OpenCVDemo1
                     }
 
                 }
-                Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
+                if(isUserPlayingWhite)
+                {
+                    Console.Write(string.Format(chessRowTemplate, 9-rowIndex, one, two, three, four, five, six, seven, eight));
+                }
+                else
+                {
+                    Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
+                }
                 Console.WriteLine();
                 Console.WriteLine(rowSeparator);
 
@@ -745,6 +764,8 @@ namespace OpenCVDemo1
             fenString.Append(Constants.FullmoveNumber.ToString());
             fenString.Append(" ");
 
+            Console.WriteLine();
+            Console.WriteLine("FEN String is:");
             Console.WriteLine(fenString.ToString());
         }
 
