@@ -19,9 +19,6 @@ namespace OpenCVDemo1
     public partial class ChessBrain : Form
     {
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern IntPtr GetConsoleWindow();
-
-        [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
@@ -53,8 +50,11 @@ namespace OpenCVDemo1
                 ImageProcessingManager.PrepareFenString();
             }
             else
+            {
                 ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
-
+                ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
+                ImageProcessingManager.PrepareFenString();
+            }
             Cursor = Cursors.Default;
 
         }
@@ -81,9 +81,6 @@ namespace OpenCVDemo1
 
         private void btnReadMasterTemplate_Click(object sender, EventArgs e)
         {
-           
-
-            
             //this.SetDesktopLocation(Left+20, this.Top);
 
             Cursor = Cursors.WaitCursor;

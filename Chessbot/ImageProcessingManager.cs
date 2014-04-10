@@ -331,7 +331,7 @@ namespace OpenCVDemo1
                                     else if (rowIndex == 2)
                                     {pieceName = Constants.BlackPawn1;; pieceCode = Constants.BlackPawn_Code; }
                                     else if (rowIndex == 3 && colIndex == 1)
-                                        pieceName = Constants.EmptyGridZone2;
+                                        pieceName = Constants.EmptyGridZone1;
                                     else if (rowIndex == 3 && colIndex == 2)
                                         pieceName = Constants.EmptyGridZone2;
 
