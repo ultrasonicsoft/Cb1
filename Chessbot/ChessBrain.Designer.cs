@@ -41,12 +41,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnShowImage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCaptureScreen
             // 
-            this.btnCaptureScreen.Location = new System.Drawing.Point(568, 57);
+            this.btnCaptureScreen.Location = new System.Drawing.Point(568, 52);
             this.btnCaptureScreen.Name = "btnCaptureScreen";
             this.btnCaptureScreen.Size = new System.Drawing.Size(97, 23);
             this.btnCaptureScreen.TabIndex = 0;
@@ -173,11 +174,22 @@
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
+            // btnShowImage
+            // 
+            this.btnShowImage.Location = new System.Drawing.Point(568, 86);
+            this.btnShowImage.Name = "btnShowImage";
+            this.btnShowImage.Size = new System.Drawing.Size(97, 23);
+            this.btnShowImage.TabIndex = 14;
+            this.btnShowImage.Text = "Show Image";
+            this.btnShowImage.UseVisualStyleBackColor = true;
+            this.btnShowImage.Click += new System.EventHandler(this.btnShowImage_Click);
+            // 
             // ChessBrain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 116);
+            this.Controls.Add(this.btnShowImage);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -216,6 +228,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnShowImage;
     }
 }
 

@@ -25,9 +25,6 @@ namespace OpenCVDemo1
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
 
-        [DllImport("user32.dll", EntryPoint = "SetWindowPos")]
-        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
-
         public ChessBrain()
         {
             InitializeComponent();
@@ -84,15 +81,10 @@ namespace OpenCVDemo1
 
         private void btnReadMasterTemplate_Click(object sender, EventArgs e)
         {
-            int frm_width = this.Width;
-            int frm_height = this.Height;
-            System.Windows.Forms.Screen src = System.Windows.Forms.Screen.PrimaryScreen;
-            int src_height = src.Bounds.Height;
-            int src_width = src.Bounds.Width;
-            this.Left = (src_width - frm_width) / 2;
-            this.Top = (src_height - frm_height) / 2;
+           
 
-            this.SetDesktopLocation(Left, Top);
+            
+            //this.SetDesktopLocation(Left+20, this.Top);
 
             Cursor = Cursors.WaitCursor;
             Console.WriteLine("Reading master template...");
@@ -112,6 +104,13 @@ namespace OpenCVDemo1
         private void Form1_Load(object sender, EventArgs e)
         {
             AllocConsole();
+            int frm_width = this.Width;
+            int frm_height = this.Height;
+            System.Windows.Forms.Screen src = System.Windows.Forms.Screen.PrimaryScreen;
+            int src_height = src.Bounds.Height;
+            int src_width = src.Bounds.Width;
+            this.Left = ((src_width - frm_width) / 2) + 100;
+            //this.Top = (src_height - frm_height) / 2;
             //Console.WriteLine("Jai Ganesh");
         }
 
@@ -149,6 +148,12 @@ namespace OpenCVDemo1
         {
             char delete = (char)8;
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != delete;
+        }
+
+        private void btnShowImage_Click(object sender, EventArgs e)
+        {
+            Image<Gray, Byte> normalizedMasterImage = new Image<Gray, Byte>("inprogress.PNG");
+            CvInvoke.cvShowImage("Current Image under use...", normalizedMasterImage);
         }
     }
 }
