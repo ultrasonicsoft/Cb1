@@ -30,7 +30,9 @@ namespace OpenCVDemo1
         private void btnCaptureScreen_Click(object sender, EventArgs e)
         {
             ImageProcessingManager.TakeScreenShot();
-            Image img = Image.FromFile("screen.jpg");
+            CaptureChessBoard chessBoard = new CaptureChessBoard();
+            chessBoard.CapturedScreen = Image.FromFile("screen.jpg");
+            chessBoard.ShowDialog();
             //pictureBox1.Image = img;
         }
 

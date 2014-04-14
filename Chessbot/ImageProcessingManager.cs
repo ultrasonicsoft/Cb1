@@ -36,10 +36,11 @@ namespace OpenCVDemo1
         }
 
         static List<ChessEntity> currentChessBoardPosition = null;
-        
-        public static void TakeScreenShot()
+
+        public static Image TakeScreenShot()
         {
-            Bitmap capturedScreen = null;
+            Image capturedScreen = null;
+            
             try
             {
                 Rectangle bounds = Screen.GetBounds(Point.Empty);
@@ -49,8 +50,11 @@ namespace OpenCVDemo1
                     {
                         g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
                     }
-                    bitmap.Save("screen.jpg", ImageFormat.Jpeg);
-
+                    System.IO.Stream imageStream = new MemoryStream();
+                    bitmap.Save(imageStream, ImageFormat.Jpeg);
+                    //bitmap.Save("screen.jpg", ImageFormat.Jpeg);
+                    capturedScreen = Image.FromStream(imageStream); ;
+                    //capturedScreen = Image.FromFile("screen.jpg");
                 }
 
                 // Capture only Active Window ************
@@ -69,6 +73,8 @@ namespace OpenCVDemo1
             {
                 throw ex;
             }
+
+            return capturedScreen;
         }
 
         public static void ReadChessBoardCurrentPosition(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst)
@@ -564,7 +570,7 @@ namespace OpenCVDemo1
             //string blackRowHeader = "     A    B    C    D    E    F    G    H";
             //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
 
-            if (isUserPlayingWhite)
+            if (!isUserPlayingWhite)
             {
                 rowHeader = "     H    G    F    E    D    C    B    A";
             }
