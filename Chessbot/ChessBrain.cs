@@ -39,15 +39,13 @@ namespace OpenCVDemo1
         private void btnSplitImae_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-
             Console.WriteLine("Reading current Chess position...");
-
             int paddingPixel = int.Parse(txtPadding.Text);
-
             if (rbtnWhite.Checked)
             {
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
-                ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
+                ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("test.jpg"), paddingPixel, rbtnWhite.Checked);
+                //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
             }
