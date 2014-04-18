@@ -148,6 +148,7 @@ namespace OpenCVDemo1
                 int height = chessboardImage.Height;
 
                 Bitmap bmpChessboard = new Bitmap(chessboardImage);
+                //Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
                 Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
                 bmpChessboard = grayScaledChessboard.ToBitmap();
                 //bmpChessboard.Save("gray board.jpg");

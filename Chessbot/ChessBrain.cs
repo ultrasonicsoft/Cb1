@@ -32,7 +32,7 @@ namespace OpenCVDemo1
             ImageProcessingManager.TakeScreenShot();
             CaptureChessBoard chessBoard = new CaptureChessBoard();
             chessBoard.CapturedScreen = Image.FromFile("screen.jpg");
-            chessBoard.ShowDialog();
+            chessBoard.Show();
             //pictureBox1.Image = img;
         }
 
@@ -44,7 +44,7 @@ namespace OpenCVDemo1
             if (rbtnWhite.Checked)
             {
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
-                ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("test.jpg"), paddingPixel, rbtnWhite.Checked);
+                ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("test.png"), paddingPixel, rbtnWhite.Checked);
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
@@ -88,7 +88,9 @@ namespace OpenCVDemo1
             int paddingPixel = int.Parse(txtPadding.Text);
             if (rbtnWhite.Checked)
             {
-                ImageProcessingManager.FillMasterTemplate(Image.FromFile("white.png"), paddingPixel, rbtnWhite.Checked);
+                //ImageProcessingManager.FillMasterTemplate(Image.FromFile("white.png"), paddingPixel, rbtnWhite.Checked);
+                ImageProcessingManager.FillMasterTemplate(Image.FromFile("croppedTemplate.png"), paddingPixel, rbtnWhite.Checked);
+                //ImageProcessingManager.FillMasterTemplate(Image.FromFile("test.jpg"), paddingPixel, rbtnWhite.Checked);
                 //ImageProcessingManager.PrintChessBoard();
             }
             else
