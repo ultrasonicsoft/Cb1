@@ -7,6 +7,7 @@ using Emgu.CV.Structure;
 
 namespace OpenCVDemo1
 {
+    [Serializable()]
     internal class ChessPiece
     {
         public string Name { get; set; }

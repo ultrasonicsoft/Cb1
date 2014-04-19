@@ -48,6 +48,12 @@ namespace OpenCVDemo1
 
         internal static int FullmoveNumber = 0;
         internal static int HalfmoveClock = 0;
+
+        internal const string TEMPLATE_CATELOG_FILE = @"TemplateCatalog.txt";
+        internal const string TEMPLATE_PATH = @"Template";
+        internal const string TEMPLATE_EXTENSION = @".bin";
+        internal const string TEMPLATE_EXTENSION_SEARCH = @"*.bin";
+
     }
 
 }

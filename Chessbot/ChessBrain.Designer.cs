@@ -42,6 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.btnShowImage = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbTemplates = new System.Windows.Forms.ComboBox();
+            this.btnLoadTemplate = new System.Windows.Forms.Button();
+            this.btnReloadTemplate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,11 +188,51 @@
             this.btnShowImage.UseVisualStyleBackColor = true;
             this.btnShowImage.Click += new System.EventHandler(this.btnShowImage_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 124);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Select Template:";
+            // 
+            // cmbTemplates
+            // 
+            this.cmbTemplates.FormattingEnabled = true;
+            this.cmbTemplates.Location = new System.Drawing.Point(105, 121);
+            this.cmbTemplates.Name = "cmbTemplates";
+            this.cmbTemplates.Size = new System.Drawing.Size(302, 21);
+            this.cmbTemplates.TabIndex = 16;
+            // 
+            // btnLoadTemplate
+            // 
+            this.btnLoadTemplate.Location = new System.Drawing.Point(429, 119);
+            this.btnLoadTemplate.Name = "btnLoadTemplate";
+            this.btnLoadTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnLoadTemplate.TabIndex = 17;
+            this.btnLoadTemplate.Text = "Load Template";
+            this.btnLoadTemplate.UseVisualStyleBackColor = true;
+            this.btnLoadTemplate.Click += new System.EventHandler(this.btnLoadTemplate_Click);
+            // 
+            // btnReloadTemplate
+            // 
+            this.btnReloadTemplate.Location = new System.Drawing.Point(546, 119);
+            this.btnReloadTemplate.Name = "btnReloadTemplate";
+            this.btnReloadTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnReloadTemplate.TabIndex = 18;
+            this.btnReloadTemplate.Text = "Reload Template";
+            this.btnReloadTemplate.UseVisualStyleBackColor = true;
+            // 
             // ChessBrain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 116);
+            this.ClientSize = new System.Drawing.Size(694, 210);
+            this.Controls.Add(this.btnReloadTemplate);
+            this.Controls.Add(this.btnLoadTemplate);
+            this.Controls.Add(this.cmbTemplates);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnShowImage);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
@@ -229,6 +273,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnShowImage;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cmbTemplates;
+        private System.Windows.Forms.Button btnLoadTemplate;
+        private System.Windows.Forms.Button btnReloadTemplate;
     }
 }
 

@@ -15,12 +15,26 @@ using Emgu.CV.Features2D;
 using Emgu.CV.Util;
 using Emgu.CV.GPU;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OpenCVDemo1
 {
     static class ImageProcessingManager
     {
         public static readonly string CurrentExecutationPath = AssemblyDirectory;
+
+        private static string templatePath = null;
+        public static string TemplatePath
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(templatePath))
+                {
+                    templatePath = string.Concat(CurrentExecutationPath, "\\", Constants.TEMPLATE_PATH, "\\");
+                }
+                return templatePath;
+            }
+        }
 
         //private static Dictionary<string, Image<Gray, Byte>> dicChessPosition = null;
         private static List<ChessPiece> allChessBoardTemplate = null;
@@ -40,7 +54,7 @@ namespace OpenCVDemo1
         public static Image TakeScreenShot()
         {
             Image capturedScreen = null;
-            
+
             try
             {
                 Rectangle bounds = Screen.GetBounds(Point.Empty);
@@ -230,7 +244,51 @@ namespace OpenCVDemo1
             }
         }
 
-        public static void FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst)
+
+        public static bool SaveTemplate(string templateFileName, List<ChessPiece> masterTemplate)
+        {
+            bool result = true;
+            try
+            {
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, masterTemplate);
+                }
+            }
+            catch (IOException)
+            {
+                result = false;
+            }
+            return result;
+        }
+
+        public static List<ChessPiece> ReadTemplate(string templateFileName)
+        {
+            List<ChessPiece> masterTemplate = new System.Collections.Generic.List<ChessPiece>();
+            try
+            {
+                if (File.Exists(templateFileName) == false)
+                {
+                    MessageBox.Show("Template not found. Please create and save template.", "Read Tempalte", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    masterTemplate = (List<ChessPiece>)bin.Deserialize(stream);
+                    allChessBoardTemplate = masterTemplate;
+                }
+            }
+            catch (IOException ex)
+            {
+                masterTemplate = null;
+                throw ex;
+            }
+            return masterTemplate;
+        }
+
+        public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst)
         {
             try
             {
@@ -292,12 +350,12 @@ namespace OpenCVDemo1
                                     else if (rowIndex == 1 && colIndex == 4)
                                     { pieceName = Constants.WhiteKing; pieceCode = Constants.WhiteKing_Code; }
                                     else if (rowIndex == 1 && colIndex == 5)
-                                    {pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
+                                    { pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
                                     // Save 2 pieaces of white pawn of different background color to match in future
                                     else if (rowIndex == 2 && colIndex == 1)
                                     { pieceName = Constants.WhitePawn1; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 2 && colIndex == 2)
-                                    {pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
+                                    { pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 3 && colIndex == 1)
                                         pieceName = Constants.EmptyGridZone1;
                                     else if (rowIndex == 3 && colIndex == 2)
@@ -307,17 +365,17 @@ namespace OpenCVDemo1
                                     else if (rowIndex == 7 && colIndex == 1)
                                     { pieceName = Constants.BlackPawn1; pieceCode = Constants.BlackPawn_Code; }
                                     else if (rowIndex == 7 && colIndex == 2)
-                                    {pieceName = Constants.BlackPawn2;; pieceCode = Constants.BlackPawn_Code; }
+                                    { pieceName = Constants.BlackPawn2; ; pieceCode = Constants.BlackPawn_Code; }
                                     else if ((rowIndex == 8 && colIndex == 1) || (rowIndex == 8 && colIndex == 8))
                                     { pieceName = Constants.BlackRook; ; pieceCode = Constants.BlackRook_Code; }
                                     else if ((rowIndex == 8 && colIndex == 2) || (rowIndex == 8 && colIndex == 7))
-                                    {pieceName = Constants.BlackKnight;; pieceCode = Constants.BlackKnight_Code; }
+                                    { pieceName = Constants.BlackKnight; ; pieceCode = Constants.BlackKnight_Code; }
                                     else if ((rowIndex == 8 && colIndex == 3) || (rowIndex == 8 && colIndex == 6))
-                                    {pieceName = Constants.BlackBishop;; pieceCode = Constants.BlackBishop_Code; }
+                                    { pieceName = Constants.BlackBishop; ; pieceCode = Constants.BlackBishop_Code; }
                                     else if (rowIndex == 8 && colIndex == 4)
-                                    {pieceName = Constants.BlackKing;; pieceCode = Constants.BlackKing_Code; }
+                                    { pieceName = Constants.BlackKing; ; pieceCode = Constants.BlackKing_Code; }
                                     else if (rowIndex == 8 && colIndex == 5)
-                                    {pieceName = Constants.BlackQueen;; pieceCode = Constants.BlackQueen_Code; }
+                                    { pieceName = Constants.BlackQueen; ; pieceCode = Constants.BlackQueen_Code; }
                                 }
                                 else
                                 {
@@ -330,13 +388,13 @@ namespace OpenCVDemo1
                                     else if ((rowIndex == 1 && colIndex == 2) || (rowIndex == 1 && colIndex == 7))
                                     { pieceName = Constants.BlackKnight; ; pieceCode = Constants.BlackKnight_Code; }
                                     else if ((rowIndex == 1 && colIndex == 3) || (rowIndex == 1 && colIndex == 6))
-                                    {pieceName = Constants.BlackBishop;; pieceCode = Constants.BlackBishop_Code; }
+                                    { pieceName = Constants.BlackBishop; ; pieceCode = Constants.BlackBishop_Code; }
                                     else if (rowIndex == 1 && colIndex == 4)
-                                    {pieceName = Constants.BlackQueen;; pieceCode = Constants.BlackQueen_Code; }
+                                    { pieceName = Constants.BlackQueen; ; pieceCode = Constants.BlackQueen_Code; }
                                     else if (rowIndex == 1 && colIndex == 5)
-                                    {pieceName = Constants.BlackKing;; pieceCode = Constants.BlackKing_Code; }
+                                    { pieceName = Constants.BlackKing; ; pieceCode = Constants.BlackKing_Code; }
                                     else if (rowIndex == 2)
-                                    {pieceName = Constants.BlackPawn1;; pieceCode = Constants.BlackPawn_Code; }
+                                    { pieceName = Constants.BlackPawn1; ; pieceCode = Constants.BlackPawn_Code; }
                                     else if (rowIndex == 3 && colIndex == 1)
                                         pieceName = Constants.EmptyGridZone1;
                                     else if (rowIndex == 3 && colIndex == 2)
@@ -344,19 +402,19 @@ namespace OpenCVDemo1
 
                                      // White side pieces
                                     else if ((rowIndex == 8 && colIndex == 1) || (rowIndex == 8 && colIndex == 8))
-                                    {pieceName = Constants.WhiteRook; pieceCode = Constants.WhiteRook_Code; }
+                                    { pieceName = Constants.WhiteRook; pieceCode = Constants.WhiteRook_Code; }
                                     else if ((rowIndex == 8 && colIndex == 2) || (rowIndex == 8 && colIndex == 7))
-                                    {pieceName = Constants.WhiteKnight; pieceCode = Constants.WhiteKnight_Code; }
+                                    { pieceName = Constants.WhiteKnight; pieceCode = Constants.WhiteKnight_Code; }
                                     else if ((rowIndex == 8 && colIndex == 3) || (rowIndex == 8 && colIndex == 6))
-                                    {pieceName = Constants.WhiteBishop; pieceCode = Constants.WhiteBishop_Code; }
+                                    { pieceName = Constants.WhiteBishop; pieceCode = Constants.WhiteBishop_Code; }
                                     else if (rowIndex == 8 && colIndex == 4)
-                                    {pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
+                                    { pieceName = Constants.WhiteQueen; pieceCode = Constants.WhiteQueen_Code; }
                                     else if (rowIndex == 8 && colIndex == 5)
-                                    {pieceName = Constants.WhiteKing; pieceCode = Constants.WhiteKing_Code; }
+                                    { pieceName = Constants.WhiteKing; pieceCode = Constants.WhiteKing_Code; }
                                     else if (rowIndex == 7 && colIndex == 1)
-                                    {pieceName = Constants.WhitePawn1; pieceCode = Constants.WhitePawn_Code; }
+                                    { pieceName = Constants.WhitePawn1; pieceCode = Constants.WhitePawn_Code; }
                                     else if (rowIndex == 7 && colIndex == 2)
-                                    {pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
+                                    { pieceName = Constants.WhitePawn2; pieceCode = Constants.WhitePawn_Code; }
                                 }
 
                                 // Add current piece to list
@@ -376,6 +434,7 @@ namespace OpenCVDemo1
             {
                 MessageBox.Show(ex.Message);
             }
+            return allChessBoardTemplate;
         }
 
         public static void ConvertImageToGrayScale(Bitmap image)
@@ -580,7 +639,7 @@ namespace OpenCVDemo1
                 rowHeader = "     A    B    C    D    E    F    G    H";
             }
 
-            Console.WriteLine(rowHeader); 
+            Console.WriteLine(rowHeader);
             string rowSeparator = "  +----+----+----+----+----+----+----+----+";
             Console.WriteLine(rowSeparator);
             string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
@@ -647,9 +706,9 @@ namespace OpenCVDemo1
                     }
 
                 }
-                if(isUserPlayingWhite)
+                if (isUserPlayingWhite)
                 {
-                    Console.Write(string.Format(chessRowTemplate, 9-rowIndex, one, two, three, four, five, six, seven, eight));
+                    Console.Write(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
                 }
                 else
                 {
@@ -727,7 +786,7 @@ namespace OpenCVDemo1
                     castlingPossible = true;
                 }
 
-                if(whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
                    whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
                 {
                     fenString.Append("Q");
@@ -753,7 +812,7 @@ namespace OpenCVDemo1
                     castlingPossible = true;
                 }
             }
-            if(castlingPossible == false)
+            if (castlingPossible == false)
                 fenString.Append("-");
 
             fenString.Append(" ");

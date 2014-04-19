@@ -13,11 +13,16 @@ using Emgu.CV.Structure;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
+using Emgu.CV.GPU;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace OpenCVDemo1
 {
     public partial class ChessBrain : Form
     {
+        private List<TemplateEntity> allLoadedTemplates = new List<TemplateEntity>();
+
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -111,6 +116,40 @@ namespace OpenCVDemo1
             this.Left = ((src_width - frm_width) / 2) + 100;
             //this.Top = (src_height - frm_height) / 2;
             //Console.WriteLine("Jai Ganesh");
+
+            LoadTemplates();
+        }
+
+        private void LoadTemplates()
+        {
+            //var allTemplate = Directory.EnumerateFiles(ImageProcessingManager.TemplatePath, Constants.TEMPLATE_EXTENSION_SEARCH);
+            //cmbTemplates.Items.Clear();
+            //foreach (string template in allTemplate)
+            //{
+            //    cmbTemplates.Items.Add( Path.GetFileNameWithoutExtension(template));
+            //}
+
+            string tempalteCatalogFileName = ImageProcessingManager.TemplatePath + Constants.TEMPLATE_CATELOG_FILE;
+            if (File.Exists(tempalteCatalogFileName) == false)
+            {
+                MessageBox.Show("There are no template present. Please create and save them.", "Load Template", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            var allTemplate = File.ReadAllLines(tempalteCatalogFileName);
+            allLoadedTemplates = new List<TemplateEntity>();
+            cmbTemplates.Items.Clear();
+
+            foreach (string templateEntry in allTemplate)
+            {
+                TemplateEntity newTemplate = new TemplateEntity();
+                var templateParts = templateEntry.Split(',');
+                newTemplate.TemplateName = templateParts[0];
+                newTemplate.WebsiteURL = templateParts[1];
+                newTemplate.TemplateFileName= templateParts[2];
+                allLoadedTemplates.Add(newTemplate);
+                
+                cmbTemplates.Items.Add(newTemplate.TemplateName + " <-> " + newTemplate.WebsiteURL);
+            }
+            
         }
 
 
@@ -154,5 +193,16 @@ namespace OpenCVDemo1
             Image<Gray, Byte> normalizedMasterImage = new Image<Gray, Byte>("inprogress.PNG");
             CvInvoke.cvShowImage("Current Image under use...", normalizedMasterImage);
         }
+
+        private void btnLoadTemplate_Click(object sender, EventArgs e)
+        {
+            TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
+            if(selectedEntity !=null)
+            {
+                ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
+            }
+        }
+
+     
     }
 }
