@@ -199,6 +199,7 @@
             // 
             // cmbTemplates
             // 
+            this.cmbTemplates.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTemplates.FormattingEnabled = true;
             this.cmbTemplates.Location = new System.Drawing.Point(105, 121);
             this.cmbTemplates.Name = "cmbTemplates";
@@ -217,12 +218,13 @@
             // 
             // btnReloadTemplate
             // 
-            this.btnReloadTemplate.Location = new System.Drawing.Point(546, 119);
+            this.btnReloadTemplate.Location = new System.Drawing.Point(429, 148);
             this.btnReloadTemplate.Name = "btnReloadTemplate";
-            this.btnReloadTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnReloadTemplate.Size = new System.Drawing.Size(101, 34);
             this.btnReloadTemplate.TabIndex = 18;
-            this.btnReloadTemplate.Text = "Reload Template";
+            this.btnReloadTemplate.Text = "Refresh Template List";
             this.btnReloadTemplate.UseVisualStyleBackColor = true;
+            this.btnReloadTemplate.Click += new System.EventHandler(this.btnReloadTemplate_Click);
             // 
             // ChessBrain
             // 

@@ -24,6 +24,8 @@ namespace OpenCVDemo1
         public static readonly string CurrentExecutationPath = AssemblyDirectory;
 
         private static string templatePath = null;
+
+        public static Image CurrentTemplate { get; set; }
         public static string TemplatePath
         {
             get
@@ -169,6 +171,7 @@ namespace OpenCVDemo1
 
                 int blockWidth = (width / Constants.GRID_SIZE);
                 int blockHeight = (height / Constants.GRID_SIZE);
+
                 int blockLeft = 0;
                 int blockTop = 0;
                 Rectangle r = new Rectangle();
@@ -245,7 +248,7 @@ namespace OpenCVDemo1
         }
 
 
-        public static bool SaveTemplate(string templateFileName, List<ChessPiece> masterTemplate)
+        public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate)
         {
             bool result = true;
             try
@@ -253,7 +256,11 @@ namespace OpenCVDemo1
                 using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, masterTemplate);
+                    //bin.Serialize(stream, masterTemplate);
+                    ChessTemplate template = new ChessTemplate();
+                    template.ChessConfiguration = masterTemplate;
+                    template.CurrentTemplateImage = masterTemplateImage;
+                    bin.Serialize(stream, template);
                 }
             }
             catch (IOException)
@@ -263,9 +270,9 @@ namespace OpenCVDemo1
             return result;
         }
 
-        public static List<ChessPiece> ReadTemplate(string templateFileName)
+        public static ChessTemplate ReadTemplate(string templateFileName)
         {
-            List<ChessPiece> masterTemplate = new System.Collections.Generic.List<ChessPiece>();
+            ChessTemplate chessTemplate = null;
             try
             {
                 if (File.Exists(templateFileName) == false)
@@ -276,16 +283,17 @@ namespace OpenCVDemo1
                 using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Open))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
-                    masterTemplate = (List<ChessPiece>)bin.Deserialize(stream);
-                    allChessBoardTemplate = masterTemplate;
+                    //masterTemplate = (List<ChessPiece>)bin.Deserialize(stream);
+                    chessTemplate = (ChessTemplate)bin.Deserialize(stream);
+                    allChessBoardTemplate = chessTemplate.ChessConfiguration;
                 }
             }
             catch (IOException ex)
             {
-                masterTemplate = null;
+                allChessBoardTemplate = null;
                 throw ex;
             }
-            return masterTemplate;
+            return chessTemplate;
         }
 
         public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst)

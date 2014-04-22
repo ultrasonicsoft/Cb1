@@ -15,6 +15,14 @@ namespace OpenCVDemo1
         public Image<Gray, Byte> Piece { get; set; }
     }
 
+    [Serializable()]
+    internal class ChessTemplate
+    {
+        public List<ChessPiece> ChessConfiguration { get; set; }
+
+        public System.Drawing.Image CurrentTemplateImage { get; set; }
+    }
+
     internal class ChessEntity
     {
         public ChessPiece PieceInfo { get; set; }

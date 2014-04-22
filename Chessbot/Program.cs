@@ -15,7 +15,7 @@ namespace OpenCVDemo1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChessBrain());
+            Application.Run(new CaptureChessBoard());
         }
     }
 }

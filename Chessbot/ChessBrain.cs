@@ -199,10 +199,17 @@ namespace OpenCVDemo1
             TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
             if(selectedEntity !=null)
             {
+                Console.WriteLine("Reading template " + selectedEntity.TemplateName);             
                 ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
+                
+                MessageBox.Show("Template successfully loaded..", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Console.WriteLine("Reading template DONE!");
             }
         }
 
-     
+        private void btnReloadTemplate_Click(object sender, EventArgs e)
+        {
+            LoadTemplates();
+        }
     }
 }
