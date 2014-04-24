@@ -199,7 +199,7 @@ namespace OpenCVDemo1
                             currentEntity = new ChessEntity();
 
                             // Check is empty grid zone?
-                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece)) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece));
+                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
                             if (isEmptyGridZone)
                             {
                                 currentEntity.IsAlive = false;
@@ -209,7 +209,7 @@ namespace OpenCVDemo1
                             {
                                 foreach (ChessPiece item in allChessBoardTemplate)
                                 {
-                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece));
+                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
                                     if (result == true)
                                     {
                                         // Piece matched. Extract its name and save its position
@@ -464,7 +464,7 @@ namespace OpenCVDemo1
             }
         }
 
-        public static bool AreImagesSame(Image<Gray, Byte> inputImage, Image<Gray, Byte> templateImage)
+        public static bool AreImagesSame(Image<Gray, Byte> inputImage, Image<Gray, Byte> templateImage, double comparisonFactor)
         {
 
             Point Object_Location = new Point();
@@ -490,7 +490,8 @@ namespace OpenCVDemo1
                     {
                         //#TAG WILL NEED TO INCREASE SO THRESHOLD AT LEAST 0.8
 
-                        if (max[0] > 0.75)
+                        if (max[0] > comparisonFactor)
+                            //if (max[0] > 0.75)
                         {
                             Object_Location = MAX_Loc[0];
                             Success = true;
@@ -500,6 +501,7 @@ namespace OpenCVDemo1
             }
             return Success;
         }
+
 
         public static Image<Bgr, Byte> Draw(Image<Gray, Byte> modelImage, Image<Gray, byte> observedImage, out long matchTime)
         {

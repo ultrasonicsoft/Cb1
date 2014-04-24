@@ -69,7 +69,7 @@ namespace OpenCVDemo1
             Image<Gray, Byte> template = new Image<Gray, byte>("A-1.jpg");
             //Image<Gray, Byte> template = new Image<Gray, byte>("1.jpg");
             Image<Gray, Byte> input_Image = new Image<Gray, byte>("after.jpg");
-            bool result = ImageProcessingManager.AreImagesSame(template, input_Image);
+            bool result = ImageProcessingManager.AreImagesSame(template, input_Image, Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
 
             //long matchTime = 0;
             //Image<Bgr, Byte> resultImage = ImageProcessingManager.Draw(template, input_Image, out matchTime);
