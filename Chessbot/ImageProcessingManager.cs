@@ -247,6 +247,69 @@ namespace OpenCVDemo1
             }
         }
 
+        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount)
+        {
+            bool isWhitePlaying = false;
+            try
+            {
+                if(allChessBoardTemplate == null || allChessBoardTemplate.Count == 0)
+                {
+                    MessageBox.Show("Please Load Template.", "Chess Master", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    return false;
+                }
+                int width = chessboardImage.Width;
+                int height = chessboardImage.Height;
+
+                Bitmap bmpChessboard = new Bitmap(chessboardImage);
+                //Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
+                Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+                bmpChessboard = grayScaledChessboard.ToBitmap();
+                //bmpChessboard.Save("gray board.jpg");
+
+                int blockWidth = (width / Constants.GRID_SIZE);
+                int blockHeight = (height / Constants.GRID_SIZE);
+
+                int blockLeft = 0;
+                int blockTop = 0;
+                Rectangle r = new Rectangle();
+
+                if (blockHeight < blockWidth)
+                    blockHeight = blockWidth;
+                else
+                    blockWidth = blockHeight;
+
+                currentChessBoardPosition = new List<ChessEntity>();
+
+                Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
+                Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
+
+                r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
+                {
+                    currentPiece.Save("NewGameTopLeftRook.png");
+                    allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
+
+                    var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r,PixelFormat.DontCare);
+                    isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
+                    if (isWhitePlaying)
+                    {
+                        MessageBox.Show("User is playing with Black side.");
+                        return false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("User is playing with White side.");
+                        return true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return isWhitePlaying;
+        }
 
         public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate)
         {
