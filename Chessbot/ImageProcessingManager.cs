@@ -24,6 +24,7 @@ namespace OpenCVDemo1
         public static readonly string CurrentExecutationPath = AssemblyDirectory;
 
         private static string templatePath = null;
+        public static double IntensityValue { get; set; }
 
         public static Image CurrentTemplate { get; set; }
         public static string TemplatePath
@@ -359,7 +360,7 @@ namespace OpenCVDemo1
             return chessTemplate;
         }
 
-        public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst)
+        public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, double intensity=100)
         {
             try
             {
@@ -370,7 +371,8 @@ namespace OpenCVDemo1
                 int height = chessboardImage.Height;
 
                 Bitmap bmpChessboard = new Bitmap(chessboardImage);
-                Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+                //Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+                Image<Gray, Byte> grayScaledChessboard = ImageProcessingManager.GetBinaryImage(chessboardImage, ImageProcessingManager.IntensityValue);
                 //grayScaledChessboard = grayScaledChessboard.ThresholdBinary(new Gray(100), new Gray(255));
                 bmpChessboard = grayScaledChessboard.ToBitmap();
                 bmpChessboard.Save("gray board.jpg");
@@ -907,6 +909,17 @@ namespace OpenCVDemo1
             Console.WriteLine("FEN String is:");
             Console.WriteLine(fenString.ToString());
         }
+
+        public static Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> GetBinaryImage(Image inputImage, double intensity)
+        {
+            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(inputImage as Bitmap);
+
+            var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
+            //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
+
+            return binaryImage;
+        }
+
 
     }
 }

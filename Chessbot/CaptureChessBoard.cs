@@ -512,6 +512,8 @@ namespace OpenCVDemo1
             var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
             Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
             txtIntensity.Text = trackBar1.Value.ToString();
+
+           ImageProcessingManager.IntensityValue = intensity;
         }
 
         private void btnUseIntensity_Click(object sender, EventArgs e)
@@ -521,6 +523,8 @@ namespace OpenCVDemo1
 
         }
         Image test = Image.FromFile("white.png");
+
+       
 
     }
 }
