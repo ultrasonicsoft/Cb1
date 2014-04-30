@@ -231,7 +231,6 @@ namespace OpenCVDemo1
             croprect = Rectangle.Empty;
             pbScreen.Image = null;
             ScreenBoardCoordinates = Rectangle.Empty;
-            
         }
 
         private void btnCropUsingCoordinates_Click(object sender, EventArgs e)
@@ -312,7 +311,10 @@ namespace OpenCVDemo1
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             PreviewTemplate preview = new PreviewTemplate();
-            preview.ChessBoardImage = CapturedScreen;
+            var binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen,trackBar1.Value).Bitmap).Clone(new Rectangle(0,0,CapturedScreen.Width,CapturedScreen.Height), CapturedScreen.PixelFormat);
+
+            //preview.ChessBoardImage = CapturedScreen;
+            preview.ChessBoardImage = binaryImage;
             preview.Show();
         }
 
@@ -522,7 +524,7 @@ namespace OpenCVDemo1
             RefreshGrayImage();
 
         }
-        Image test = Image.FromFile("white.png");
+        Image test = Image.FromFile("in progress black.jpg");
 
        
 
