@@ -15,6 +15,7 @@ namespace OpenCVDemo1
         public Image ChessBoard { get; set; }
         public int Padding { get; set; }
 
+        public int Intensity { get; set; }
         public bool IsWhiteFirst { get; set; }
         public FrmSaveTemplate()
         {
@@ -40,7 +41,7 @@ namespace OpenCVDemo1
                     }
                 }
                 var masterTemplate = ImageProcessingManager.FillMasterTemplate(ChessBoard, Padding, IsWhiteFirst);
-                ImageProcessingManager.SaveTemplate(ChessBoard, templateFileName, masterTemplate);
+                ImageProcessingManager.SaveTemplate(ChessBoard, templateFileName, masterTemplate, Intensity);
                 AddEntryToTemplateCatalog(txtTemplateName.Text, lbl.Text, templateFileName);
 
                 MessageBox.Show("Template saved successfully!", "Save Template", MessageBoxButtons.OK, MessageBoxIcon.Information);

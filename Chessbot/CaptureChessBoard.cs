@@ -311,9 +311,11 @@ namespace OpenCVDemo1
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             PreviewTemplate preview = new PreviewTemplate();
-            var binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen,trackBar1.Value).Bitmap).Clone(new Rectangle(0,0,CapturedScreen.Width,CapturedScreen.Height), CapturedScreen.PixelFormat);
-
-            //preview.ChessBoardImage = CapturedScreen;
+            var binaryImage = CapturedScreen;
+            if(rbtnBWIntensity.Checked)
+            {
+                binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
+            }
             preview.ChessBoardImage = binaryImage;
             preview.Show();
         }
@@ -321,7 +323,14 @@ namespace OpenCVDemo1
         private void btnSaveTemplate_Click(object sender, EventArgs e)
         {
             FrmSaveTemplate saveTemplate = new FrmSaveTemplate();
-            saveTemplate.ChessBoard = pbScreen.Image;
+            
+            var binaryImage = CapturedScreen;
+            if (rbtnBWIntensity.Checked)
+            {
+                binaryImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
+            }
+
+            saveTemplate.ChessBoard = binaryImage;
             saveTemplate.Padding = int.Parse(txtPadding.Text);
             saveTemplate.IsWhiteFirst = rbtnWhite.Checked;
             saveTemplate.ShowDialog();
@@ -507,26 +516,24 @@ namespace OpenCVDemo1
 
         private void RefreshGrayImage()
         {
-            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(test as Bitmap);
+            //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(test as Bitmap);
+            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(CapturedScreen as Bitmap);
             //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", cvImage);
 
-            double intensity = trackBar1.Value;
+            double intensity = tbIntensity.Value;
             var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
             Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
-            txtIntensity.Text = trackBar1.Value.ToString();
+            txtIntensity.Text = tbIntensity.Value.ToString();
 
            ImageProcessingManager.IntensityValue = intensity;
         }
 
         private void btnUseIntensity_Click(object sender, EventArgs e)
         {
-            trackBar1.Value = int.Parse(txtIntensity.Text);
+            tbIntensity.Value = int.Parse(txtIntensity.Text);
             RefreshGrayImage();
 
         }
         Image test = Image.FromFile("in progress black.jpg");
-
-       
-
     }
 }

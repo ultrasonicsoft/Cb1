@@ -21,6 +21,8 @@ namespace OpenCVDemo1
         public List<ChessPiece> ChessConfiguration { get; set; }
 
         public System.Drawing.Image CurrentTemplateImage { get; set; }
+
+        public int Intensity { get; set; }
     }
 
     internal class ChessEntity

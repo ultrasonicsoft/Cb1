@@ -104,10 +104,14 @@
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerTriggerChecker = new System.Windows.Forms.Timer(this.components);
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label21 = new System.Windows.Forms.Label();
-            this.btnUseIntensity = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.rbtnGrayScale = new System.Windows.Forms.RadioButton();
+            this.rbtnBWIntensity = new System.Windows.Forms.RadioButton();
             this.txtIntensity = new System.Windows.Forms.TextBox();
+            this.btnUseIntensity = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbIntensity = new System.Windows.Forms.TrackBar();
+            this.label22 = new System.Windows.Forms.Label();
             this.pnlImageHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbManageBoard.SuspendLayout();
@@ -121,7 +125,8 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbctrController.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlImageHolder
@@ -145,10 +150,6 @@
             // 
             // tbManageBoard
             // 
-            this.tbManageBoard.Controls.Add(this.txtIntensity);
-            this.tbManageBoard.Controls.Add(this.btnUseIntensity);
-            this.tbManageBoard.Controls.Add(this.label21);
-            this.tbManageBoard.Controls.Add(this.trackBar1);
             this.tbManageBoard.Controls.Add(this.label14);
             this.tbManageBoard.Controls.Add(this.textBox2);
             this.tbManageBoard.Controls.Add(this.label15);
@@ -197,6 +198,7 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.groupBox6);
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
             this.tbHome.Controls.Add(this.groupBox1);
             this.tbHome.Controls.Add(this.btnStartNewGame);
@@ -370,9 +372,9 @@
             // 
             // pbPreview
             // 
-            this.pbPreview.Location = new System.Drawing.Point(1058, 6);
+            this.pbPreview.Location = new System.Drawing.Point(1272, 3);
             this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(574, 211);
+            this.pbPreview.Size = new System.Drawing.Size(324, 184);
             this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPreview.TabIndex = 25;
             this.pbPreview.TabStop = false;
@@ -885,47 +887,95 @@
             this.timerTriggerChecker.Interval = 30;
             this.timerTriggerChecker.Tick += new System.EventHandler(this.timerTriggerChecker_Tick);
             // 
-            // trackBar1
+            // groupBox6
             // 
-            this.trackBar1.Location = new System.Drawing.Point(209, 46);
-            this.trackBar1.Maximum = 255;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(829, 42);
-            this.trackBar1.TabIndex = 41;
-            this.trackBar1.Value = 100;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.groupBox6.Controls.Add(this.label22);
+            this.groupBox6.Controls.Add(this.txtIntensity);
+            this.groupBox6.Controls.Add(this.btnUseIntensity);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.tbIntensity);
+            this.groupBox6.Controls.Add(this.rbtnBWIntensity);
+            this.groupBox6.Controls.Add(this.rbtnGrayScale);
+            this.groupBox6.Location = new System.Drawing.Point(1047, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(219, 214);
+            this.groupBox6.TabIndex = 38;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Intensity Settings";
             // 
-            // label21
+            // rbtnGrayScale
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(220, 20);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(129, 13);
-            this.label21.TabIndex = 43;
-            this.label21.Text = "Configure Image Intensity:";
+            this.rbtnGrayScale.AutoSize = true;
+            this.rbtnGrayScale.Checked = true;
+            this.rbtnGrayScale.Location = new System.Drawing.Point(16, 23);
+            this.rbtnGrayScale.Name = "rbtnGrayScale";
+            this.rbtnGrayScale.Size = new System.Drawing.Size(99, 17);
+            this.rbtnGrayScale.TabIndex = 0;
+            this.rbtnGrayScale.TabStop = true;
+            this.rbtnGrayScale.Text = "Use Gray Scale";
+            this.rbtnGrayScale.UseVisualStyleBackColor = true;
+            // 
+            // rbtnBWIntensity
+            // 
+            this.rbtnBWIntensity.AutoSize = true;
+            this.rbtnBWIntensity.Location = new System.Drawing.Point(16, 47);
+            this.rbtnBWIntensity.Name = "rbtnBWIntensity";
+            this.rbtnBWIntensity.Size = new System.Drawing.Size(112, 17);
+            this.rbtnBWIntensity.TabIndex = 1;
+            this.rbtnBWIntensity.Text = "Use B/W Intensity";
+            this.rbtnBWIntensity.UseVisualStyleBackColor = true;
+            // 
+            // txtIntensity
+            // 
+            this.txtIntensity.Location = new System.Drawing.Point(141, 80);
+            this.txtIntensity.Name = "txtIntensity";
+            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
+            this.txtIntensity.TabIndex = 49;
+            this.txtIntensity.Text = "100";
             // 
             // btnUseIntensity
             // 
-            this.btnUseIntensity.Location = new System.Drawing.Point(394, 14);
+            this.btnUseIntensity.Location = new System.Drawing.Point(81, 109);
             this.btnUseIntensity.Name = "btnUseIntensity";
             this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
-            this.btnUseIntensity.TabIndex = 44;
+            this.btnUseIntensity.TabIndex = 48;
             this.btnUseIntensity.Text = "Use Intensity";
             this.btnUseIntensity.UseVisualStyleBackColor = true;
             this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
             // 
-            // txtIntensity
+            // label21
             // 
-            this.txtIntensity.Location = new System.Drawing.Point(355, 17);
-            this.txtIntensity.Name = "txtIntensity";
-            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
-            this.txtIntensity.TabIndex = 45;
-            this.txtIntensity.Text = "100";
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 83);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(129, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Configure Image Intensity:";
+            // 
+            // tbIntensity
+            // 
+            this.tbIntensity.Location = new System.Drawing.Point(9, 166);
+            this.tbIntensity.Maximum = 255;
+            this.tbIntensity.Name = "tbIntensity";
+            this.tbIntensity.Size = new System.Drawing.Size(207, 42);
+            this.tbIntensity.TabIndex = 46;
+            this.tbIntensity.Value = 100;
+            this.tbIntensity.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 144);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(123, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Drag to change Intensity";
             // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1604, 851);
             this.Controls.Add(this.tbctrController);
             this.Controls.Add(this.pnlImageHolder);
@@ -954,7 +1004,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tbctrController.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1036,9 +1088,13 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblWhosMove;
         private System.Windows.Forms.Button btnRefreshTemplate;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtIntensity;
         private System.Windows.Forms.Button btnUseIntensity;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox txtIntensity;
+        private System.Windows.Forms.TrackBar tbIntensity;
+        private System.Windows.Forms.RadioButton rbtnBWIntensity;
+        private System.Windows.Forms.RadioButton rbtnGrayScale;
+        private System.Windows.Forms.Label label22;
     }
 }

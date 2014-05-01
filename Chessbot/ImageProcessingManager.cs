@@ -312,7 +312,7 @@ namespace OpenCVDemo1
             return isWhitePlaying;
         }
 
-        public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate)
+        public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate, int intensity)
         {
             bool result = true;
             try
@@ -324,6 +324,7 @@ namespace OpenCVDemo1
                     ChessTemplate template = new ChessTemplate();
                     template.ChessConfiguration = masterTemplate;
                     template.CurrentTemplateImage = masterTemplateImage;
+                    template.Intensity = intensity;
                     bin.Serialize(stream, template);
                 }
             }
