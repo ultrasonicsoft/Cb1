@@ -39,6 +39,10 @@ namespace OpenCVDemo1
             }
         }
 
+        private static double _standardMatchingFactor = 0.75;
+        public static double StandardMatchingFactor { get { return _standardMatchingFactor; } set { _standardMatchingFactor = value; } }
+
+
         //private static Dictionary<string, Image<Gray, Byte>> dicChessPosition = null;
         private static List<ChessPiece> allChessBoardTemplate = null;
         static public string AssemblyDirectory
@@ -200,7 +204,7 @@ namespace OpenCVDemo1
                             currentEntity = new ChessEntity();
 
                             // Check is empty grid zone?
-                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
+                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
                             if (isEmptyGridZone)
                             {
                                 currentEntity.IsAlive = false;
@@ -210,7 +214,7 @@ namespace OpenCVDemo1
                             {
                                 foreach (ChessPiece item in allChessBoardTemplate)
                                 {
-                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
+                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
                                     if (result == true)
                                     {
                                         // Piece matched. Extract its name and save its position
@@ -253,9 +257,9 @@ namespace OpenCVDemo1
             bool isWhitePlaying = false;
             try
             {
-                if(allChessBoardTemplate == null || allChessBoardTemplate.Count == 0)
+                if (allChessBoardTemplate == null || allChessBoardTemplate.Count == 0)
                 {
-                    MessageBox.Show("Please Load Template.", "Chess Master", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Please Load Template.", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 int width = chessboardImage.Width;
@@ -290,8 +294,8 @@ namespace OpenCVDemo1
                     currentPiece.Save("NewGameTopLeftRook.png");
                     allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
 
-                    var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r,PixelFormat.DontCare);
-                    isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), Constants.STANDARD_IMAGE_COMPARISON_FACTOR);
+                    var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r, PixelFormat.DontCare);
+                    isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), ImageProcessingManager.StandardMatchingFactor);
                     if (isWhitePlaying)
                     {
                         MessageBox.Show("User is playing with Black side.");
@@ -350,6 +354,7 @@ namespace OpenCVDemo1
                     BinaryFormatter bin = new BinaryFormatter();
                     //masterTemplate = (List<ChessPiece>)bin.Deserialize(stream);
                     chessTemplate = (ChessTemplate)bin.Deserialize(stream);
+
                     allChessBoardTemplate = chessTemplate.ChessConfiguration;
                 }
             }
@@ -361,7 +366,7 @@ namespace OpenCVDemo1
             return chessTemplate;
         }
 
-        public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, double intensity=100)
+        public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, double intensity = 100)
         {
             try
             {
@@ -557,7 +562,7 @@ namespace OpenCVDemo1
                         //#TAG WILL NEED TO INCREASE SO THRESHOLD AT LEAST 0.8
 
                         if (max[0] > comparisonFactor)
-                            //if (max[0] > 0.75)
+                        //if (max[0] > 0.75)
                         {
                             Object_Location = MAX_Loc[0];
                             Success = true;
@@ -697,6 +702,11 @@ namespace OpenCVDemo1
 
         internal static void PrintChessBoard(bool isUserPlayingWhite)
         {
+            if (currentChessBoardPosition == null)
+            {
+                MessageBox.Show("Template is not loaded.");
+                return;
+            }
             Console.Clear();
 
             Console.WriteLine("**************************** Chess board ****************************");

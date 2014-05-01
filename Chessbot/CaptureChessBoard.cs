@@ -15,6 +15,7 @@ namespace OpenCVDemo1
 {
     public partial class CaptureChessBoard : Form
     {
+
         private Rectangle croprect = Rectangle.Empty;
         private bool mouseDown = false;
         private Point sp, ep;
@@ -22,6 +23,7 @@ namespace OpenCVDemo1
         private bool isGetYEnabled = false;
         private List<TemplateEntity> allLoadedTemplates = new List<TemplateEntity>();
         private TemplateEntity selectedChessEntity = null;
+
 
         private ChessTemplate masterTemplate = null;
         public Rectangle ScreenBoardCoordinates { get; set; }
@@ -166,6 +168,9 @@ namespace OpenCVDemo1
             try
             {
                 CropChessBoard();
+                CurrentCapturedScreen = pbScreen.Image;
+                RefreshGrayImage();
+
             }
             catch (Exception ex)
             {
@@ -213,6 +218,7 @@ namespace OpenCVDemo1
             //CaptureChessBoard chessBoard = new CaptureChessBoard();
             //chessBoard.CapturedScreen = Image.FromFile("screen.jpg");
             //chessBoard.ShowDialog();
+            RefreshGrayImage();
         }
 
         private void btnClearAll_Click(object sender, EventArgs e)
@@ -269,7 +275,7 @@ namespace OpenCVDemo1
             if (pbScreen.Image.Width != pbScreen.Image.Height && pbScreen.Image.Width % 8 != 0 && pbScreen.Image.Height % 8 != 0)
             {
                 int requiredSize = pbScreen.Image.Width / 8;
-                 message = string.Format("The cropped chess board is not even. Make sure it is perfect square. Try resizing to Width x Height :{0} x {1}", requiredSize.ToString());
+                message = string.Format("The cropped chess board is not even. Make sure it is perfect square. Try resizing to Width x Height :{0} x {1}", requiredSize.ToString());
             }
             else
             {
@@ -311,11 +317,7 @@ namespace OpenCVDemo1
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             PreviewTemplate preview = new PreviewTemplate();
-            var binaryImage = CapturedScreen;
-            if(rbtnBWIntensity.Checked)
-            {
-                binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
-            }
+            var binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
             preview.ChessBoardImage = binaryImage;
             preview.Show();
         }
@@ -323,17 +325,16 @@ namespace OpenCVDemo1
         private void btnSaveTemplate_Click(object sender, EventArgs e)
         {
             FrmSaveTemplate saveTemplate = new FrmSaveTemplate();
-            
-            var binaryImage = CapturedScreen;
-            if (rbtnBWIntensity.Checked)
-            {
-                binaryImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
-            }
+
+            var binaryImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
 
             saveTemplate.ChessBoard = binaryImage;
             saveTemplate.Padding = int.Parse(txtPadding.Text);
             saveTemplate.IsWhiteFirst = rbtnWhite.Checked;
+            saveTemplate.Intensity = tbIntensity.Value;
             saveTemplate.ShowDialog();
+
+            LoadTemplates();
         }
 
         private void btnScanAgain_Click(object sender, EventArgs e)
@@ -371,8 +372,10 @@ namespace OpenCVDemo1
             if (selectedEntity != null)
             {
                 Console.WriteLine("Reading template " + selectedEntity.TemplateName);
-               masterTemplate = ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
-
+                masterTemplate = ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
+                tbIntensity.Value = masterTemplate.Intensity;
+                txtIntensity.Text = tbIntensity.Value.ToString();
+                pbScreen.Image = masterTemplate.CurrentTemplateImage;
                 MessageBox.Show("Template successfully loaded..", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Console.WriteLine("Reading template DONE!");
             }
@@ -416,7 +419,7 @@ namespace OpenCVDemo1
                 CropChessBoard();
                 croprect = ScreenBoardCoordinates;
             }
-            pbPreview.Image = ImageProcessingManager.TakeScreenShot();
+            //pbPreview.Image = ImageProcessingManager.TakeScreenShot();
 
         }
 
@@ -438,7 +441,7 @@ namespace OpenCVDemo1
 
         private void CheckWhosTurnToPlay()
         {
-            if( cbTriggerMarker.Checked && pbTriggerImage.Image != null )
+            if (cbTriggerMarker.Checked && pbTriggerImage.Image != null)
             {
                 Image currentScreen = ImageProcessingManager.TakeScreenShot();
 
@@ -449,7 +452,7 @@ namespace OpenCVDemo1
 
                 Image<Gray, Byte> currentMarker = new Image<Gray, byte>(pbCurrentMarker.Image as Bitmap);
                 Image<Gray, Byte> triggerMarker = new Image<Gray, byte>(pbTriggerImage.Image as Bitmap);
-                if(ImageProcessingManager.AreImagesSame(triggerMarker,currentMarker,Constants.STANDARD_IMAGE_COMPARISON_FACTOR))
+                if (ImageProcessingManager.AreImagesSame(triggerMarker, currentMarker, ImageProcessingManager.StandardMatchingFactor))
                 {
                     lblWhosMove.Text = "User Move";
                 }
@@ -516,16 +519,25 @@ namespace OpenCVDemo1
 
         private void RefreshGrayImage()
         {
+            if (pbScreen.Image == null || CurrentCapturedScreen == null)
+                return;
+
             //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(test as Bitmap);
-            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(CapturedScreen as Bitmap);
+            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(CurrentCapturedScreen as Bitmap);
             //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", cvImage);
 
             double intensity = tbIntensity.Value;
             var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
-            Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
+            //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
+            pbIntensityTest.Image = (binaryImage.Bitmap).Clone(new Rectangle(0, 0, binaryImage.Width, binaryImage.Height), (binaryImage.Bitmap).PixelFormat);
+            
             txtIntensity.Text = tbIntensity.Value.ToString();
+            ImageProcessingManager.IntensityValue = intensity;
 
-           ImageProcessingManager.IntensityValue = intensity;
+            if (cbShowIntensityOnTop.Checked)
+            {
+                pbScreen.Image = pbIntensityTest.Image;
+            }
         }
 
         private void btnUseIntensity_Click(object sender, EventArgs e)
@@ -535,5 +547,24 @@ namespace OpenCVDemo1
 
         }
         Image test = Image.FromFile("in progress black.jpg");
+
+        private void cbShowIntensityOnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbShowIntensityOnTop.Checked== false)
+            {
+                pbScreen.Image = CurrentCapturedScreen;
+            }
+            else
+            {
+                pbScreen.Image = pbIntensityTest.Image;
+            }
+        }
+
+        Image CurrentCapturedScreen = null;
+
+        private void btnUpdateStandardMatchingFactor_Click(object sender, EventArgs e)
+        {
+            ImageProcessingManager.StandardMatchingFactor = (double) (int.Parse(txtStandardMatchingFactor.Text) / 100.0);
+        }
     }
 }

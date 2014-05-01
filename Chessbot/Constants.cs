@@ -54,7 +54,7 @@ namespace OpenCVDemo1
         internal const string TEMPLATE_EXTENSION = @".bin";
         internal const string TEMPLATE_EXTENSION_SEARCH = @"*.bin";
 
-        internal const double STANDARD_IMAGE_COMPARISON_FACTOR = 0.75;
+        //internal const double STANDARD_IMAGE_COMPARISON_FACTOR = 0.75;
         internal const double MARKER_IMAGE_COMPARISON_FACTOR = 0.50;
 
     }

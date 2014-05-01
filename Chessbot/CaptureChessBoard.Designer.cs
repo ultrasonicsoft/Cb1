@@ -37,6 +37,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtIntensity = new System.Windows.Forms.TextBox();
+            this.btnUseIntensity = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbIntensity = new System.Windows.Forms.TrackBar();
             this.btnRefreshTemplate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblWhosMove = new System.Windows.Forms.Label();
@@ -52,7 +57,6 @@
             this.txtRefreshMarkerInterval = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.btnStartNewGame = new System.Windows.Forms.Button();
-            this.pbPreview = new System.Windows.Forms.PictureBox();
             this.btnShowTemplate = new System.Windows.Forms.Button();
             this.btnShowBoardConfiguration = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -104,29 +108,26 @@
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerTriggerChecker = new System.Windows.Forms.Timer(this.components);
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.rbtnGrayScale = new System.Windows.Forms.RadioButton();
-            this.rbtnBWIntensity = new System.Windows.Forms.RadioButton();
-            this.txtIntensity = new System.Windows.Forms.TextBox();
-            this.btnUseIntensity = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbIntensity = new System.Windows.Forms.TrackBar();
+            this.pbIntensityTest = new System.Windows.Forms.PictureBox();
+            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
+            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
+            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.pnlImageHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbManageBoard.SuspendLayout();
             this.tbHome.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tbctrController.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlImageHolder
@@ -198,11 +199,11 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.pbIntensityTest);
             this.tbHome.Controls.Add(this.groupBox6);
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
             this.tbHome.Controls.Add(this.groupBox1);
             this.tbHome.Controls.Add(this.btnStartNewGame);
-            this.tbHome.Controls.Add(this.pbPreview);
             this.tbHome.Controls.Add(this.btnShowTemplate);
             this.tbHome.Controls.Add(this.btnShowBoardConfiguration);
             this.tbHome.Controls.Add(this.groupBox5);
@@ -219,6 +220,61 @@
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Home";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtStandardMatchingFactor);
+            this.groupBox6.Controls.Add(this.btnUpdateStandardMatchingFactor);
+            this.groupBox6.Controls.Add(this.label22);
+            this.groupBox6.Controls.Add(this.cbShowIntensityOnTop);
+            this.groupBox6.Controls.Add(this.txtIntensity);
+            this.groupBox6.Controls.Add(this.btnUseIntensity);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.tbIntensity);
+            this.groupBox6.Location = new System.Drawing.Point(1047, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(219, 214);
+            this.groupBox6.TabIndex = 38;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Intensity Settings";
+            // 
+            // txtIntensity
+            // 
+            this.txtIntensity.Location = new System.Drawing.Point(62, 24);
+            this.txtIntensity.Name = "txtIntensity";
+            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
+            this.txtIntensity.TabIndex = 49;
+            this.txtIntensity.Text = "100";
+            // 
+            // btnUseIntensity
+            // 
+            this.btnUseIntensity.Location = new System.Drawing.Point(101, 24);
+            this.btnUseIntensity.Name = "btnUseIntensity";
+            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
+            this.btnUseIntensity.TabIndex = 48;
+            this.btnUseIntensity.Text = "Use Intensity";
+            this.btnUseIntensity.UseVisualStyleBackColor = true;
+            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(7, 27);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Intensity:";
+            // 
+            // tbIntensity
+            // 
+            this.tbIntensity.Location = new System.Drawing.Point(6, 50);
+            this.tbIntensity.Maximum = 255;
+            this.tbIntensity.Name = "tbIntensity";
+            this.tbIntensity.Size = new System.Drawing.Size(207, 42);
+            this.tbIntensity.TabIndex = 46;
+            this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbIntensity.Value = 100;
+            this.tbIntensity.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // btnRefreshTemplate
             // 
@@ -369,15 +425,6 @@
             this.btnStartNewGame.Text = "Start New Game";
             this.btnStartNewGame.UseVisualStyleBackColor = true;
             this.btnStartNewGame.Click += new System.EventHandler(this.btnStartNewGame_Click);
-            // 
-            // pbPreview
-            // 
-            this.pbPreview.Location = new System.Drawing.Point(1272, 3);
-            this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(324, 184);
-            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPreview.TabIndex = 25;
-            this.pbPreview.TabStop = false;
             // 
             // btnShowTemplate
             // 
@@ -887,89 +934,52 @@
             this.timerTriggerChecker.Interval = 30;
             this.timerTriggerChecker.Tick += new System.EventHandler(this.timerTriggerChecker_Tick);
             // 
-            // groupBox6
+            // pbIntensityTest
             // 
-            this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Controls.Add(this.txtIntensity);
-            this.groupBox6.Controls.Add(this.btnUseIntensity);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.tbIntensity);
-            this.groupBox6.Controls.Add(this.rbtnBWIntensity);
-            this.groupBox6.Controls.Add(this.rbtnGrayScale);
-            this.groupBox6.Location = new System.Drawing.Point(1047, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(219, 214);
-            this.groupBox6.TabIndex = 38;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Intensity Settings";
+            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
+            this.pbIntensityTest.Name = "pbIntensityTest";
+            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
+            this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbIntensityTest.TabIndex = 39;
+            this.pbIntensityTest.TabStop = false;
             // 
-            // rbtnGrayScale
+            // cbShowIntensityOnTop
             // 
-            this.rbtnGrayScale.AutoSize = true;
-            this.rbtnGrayScale.Checked = true;
-            this.rbtnGrayScale.Location = new System.Drawing.Point(16, 23);
-            this.rbtnGrayScale.Name = "rbtnGrayScale";
-            this.rbtnGrayScale.Size = new System.Drawing.Size(99, 17);
-            this.rbtnGrayScale.TabIndex = 0;
-            this.rbtnGrayScale.TabStop = true;
-            this.rbtnGrayScale.Text = "Use Gray Scale";
-            this.rbtnGrayScale.UseVisualStyleBackColor = true;
+            this.cbShowIntensityOnTop.AutoSize = true;
+            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(10, 87);
+            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
+            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
+            this.cbShowIntensityOnTop.TabIndex = 33;
+            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
+            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
+            this.cbShowIntensityOnTop.CheckedChanged += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
             // 
-            // rbtnBWIntensity
+            // txtStandardMatchingFactor
             // 
-            this.rbtnBWIntensity.AutoSize = true;
-            this.rbtnBWIntensity.Location = new System.Drawing.Point(16, 47);
-            this.rbtnBWIntensity.Name = "rbtnBWIntensity";
-            this.rbtnBWIntensity.Size = new System.Drawing.Size(112, 17);
-            this.rbtnBWIntensity.TabIndex = 1;
-            this.rbtnBWIntensity.Text = "Use B/W Intensity";
-            this.rbtnBWIntensity.UseVisualStyleBackColor = true;
+            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(75, 137);
+            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
+            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
+            this.txtStandardMatchingFactor.TabIndex = 52;
+            this.txtStandardMatchingFactor.Text = "75";
             // 
-            // txtIntensity
+            // btnUpdateStandardMatchingFactor
             // 
-            this.txtIntensity.Location = new System.Drawing.Point(141, 80);
-            this.txtIntensity.Name = "txtIntensity";
-            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
-            this.txtIntensity.TabIndex = 49;
-            this.txtIntensity.Text = "100";
-            // 
-            // btnUseIntensity
-            // 
-            this.btnUseIntensity.Location = new System.Drawing.Point(81, 109);
-            this.btnUseIntensity.Name = "btnUseIntensity";
-            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
-            this.btnUseIntensity.TabIndex = 48;
-            this.btnUseIntensity.Text = "Use Intensity";
-            this.btnUseIntensity.UseVisualStyleBackColor = true;
-            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 83);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(129, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Configure Image Intensity:";
-            // 
-            // tbIntensity
-            // 
-            this.tbIntensity.Location = new System.Drawing.Point(9, 166);
-            this.tbIntensity.Maximum = 255;
-            this.tbIntensity.Name = "tbIntensity";
-            this.tbIntensity.Size = new System.Drawing.Size(207, 42);
-            this.tbIntensity.TabIndex = 46;
-            this.tbIntensity.Value = 100;
-            this.tbIntensity.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(129, 135);
+            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
+            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
+            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
+            this.btnUpdateStandardMatchingFactor.Text = "Update";
+            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
+            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(13, 144);
+            this.label22.Location = new System.Drawing.Point(7, 141);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(123, 13);
+            this.label22.Size = new System.Drawing.Size(62, 13);
             this.label22.TabIndex = 50;
-            this.label22.Text = "Drag to change Intensity";
+            this.label22.Text = "Matching %";
             // 
             // CaptureChessBoard
             // 
@@ -990,11 +1000,13 @@
             this.tbManageBoard.PerformLayout();
             this.tbHome.ResumeLayout(false);
             this.tbHome.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1004,9 +1016,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tbctrController.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1071,7 +1081,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtRefreshInterval;
         private System.Windows.Forms.Timer timerAutoRefresh;
-        private System.Windows.Forms.PictureBox pbPreview;
         private System.Windows.Forms.Button btnStartNewGame;
         private System.Windows.Forms.Button btnMarkTrigger;
         private System.Windows.Forms.PictureBox pbTriggerImage;
@@ -1093,8 +1102,10 @@
         private System.Windows.Forms.Button btnUseIntensity;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TrackBar tbIntensity;
-        private System.Windows.Forms.RadioButton rbtnBWIntensity;
-        private System.Windows.Forms.RadioButton rbtnGrayScale;
+        private System.Windows.Forms.PictureBox pbIntensityTest;
+        private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
+        private System.Windows.Forms.TextBox txtStandardMatchingFactor;
+        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
         private System.Windows.Forms.Label label22;
     }
 }
