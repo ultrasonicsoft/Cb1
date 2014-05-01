@@ -91,7 +91,37 @@ namespace OpenCVDemo1
         }
         private void Crop_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Red, GetRectangle(sp, ep));
+            var rect = GetRectangle(sp, ep);
+            e.Graphics.DrawRectangle(Pens.Red,rect );
+
+            int left = sp.X;
+            int top = sp.Y;
+            int right = rect.Width / 8;
+            int bottom = rect.Height / 8;
+
+
+            //var pieceRect = new Rectangle(left, top, right, bottom);
+            //e.Graphics.DrawRectangle(Pens.Red, pieceRect);
+
+            int blockLeft = sp.X;
+            int blockTop = sp.Y;
+            int blockWidth = (rect.Width / Constants.GRID_SIZE);
+            int blockHeight = (rect.Height / Constants.GRID_SIZE);
+
+            Rectangle pieceRect = Rectangle.Empty;
+
+            for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
+            {
+                blockLeft = sp.X;
+                for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
+                {
+                    pieceRect = new Rectangle(blockLeft, blockTop, blockWidth, blockHeight);
+                    //r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                    e.Graphics.DrawRectangle(Pens.Red, pieceRect);
+                    blockLeft += blockWidth;
+                }
+                blockTop += blockHeight;
+            }
             e.Graphics.Save();
         }
 
@@ -102,18 +132,33 @@ namespace OpenCVDemo1
                 ep = e.Location;
                 pbScreen.Invalidate();
             }
+            
+            var rect = GetRectangle(sp, ep);
+
+
             lblCurrentMouseX.Text = e.X.ToString();
             lblCurrentMouseY.Text = e.Y.ToString();
+
 
             if (isGetXEnabled)
             {
                 txtLeft.Text = e.X.ToString();
                 txtTop.Text = e.Y.ToString();
             }
+            else
+            {
+                txtLeft.Text = rect.X.ToString();
+                txtTop.Text = rect.Y.ToString();
+            }
             if (isGetYEnabled)
             {
                 txtRight.Text = e.X.ToString();
                 txtBottom.Text = e.Y.ToString();
+            }
+            else
+            {
+                txtRight.Text = rect.Width.ToString();
+                txtBottom.Text = rect.Height.ToString();
             }
         }
 
@@ -122,6 +167,9 @@ namespace OpenCVDemo1
             ep = e.Location;
             mouseDown = false;
             croprect = GetRectangle(sp, ep);
+
+            txtWidth.Text = ep.X.ToString();
+            txtHeight.Text = ep.Y.ToString();
 
             if (croprect.Width > 10 && croprect.Height > 10)
             {
@@ -168,6 +216,7 @@ namespace OpenCVDemo1
             try
             {
                 CropChessBoard();
+               
                 CurrentCapturedScreen = pbScreen.Image;
                 RefreshGrayImage();
 
@@ -182,6 +231,16 @@ namespace OpenCVDemo1
         {
             if (croprect.IsEmpty)
                 return;
+
+            txtWidth.Text = croprect.Width.ToString();
+            txtHeight.Text = croprect.Height.ToString();
+
+            if (croprect.Width % 2 != 0 || croprect.Height % 2 != 0)
+            {
+                MessageBox.Show("Please select region with heigh and width divisible by 2 for accuracy.");
+                return;
+            }
+
             ScreenBoardCoordinates = new Rectangle();
             ScreenBoardCoordinates = croprect;
 
@@ -272,10 +331,10 @@ namespace OpenCVDemo1
         private void ValidateBoard()
         {
             string message = string.Empty;
-            if (pbScreen.Image.Width != pbScreen.Image.Height && pbScreen.Image.Width % 8 != 0 && pbScreen.Image.Height % 8 != 0)
+            if (pbScreen.Image.Width % 8 != 0 && pbScreen.Image.Height % 8 != 0)
             {
                 int requiredSize = pbScreen.Image.Width / 8;
-                message = string.Format("The cropped chess board is not even. Make sure it is perfect square. Try resizing to Width x Height :{0} x {1}", requiredSize.ToString());
+                message = string.Format("The cropped chess board is not even. Make sure it is perfect square. Try resizing to Width x Height :{0} x {0}", (requiredSize * 8).ToString());
             }
             else
             {
@@ -298,6 +357,12 @@ namespace OpenCVDemo1
                 top = int.Parse(txtResizeTop.Text);
                 width = int.Parse(txtWidth.Text);
                 height = int.Parse(txtHeight.Text);
+
+                int oldWidth = CapturedScreen.Width;
+                int oldHeight = CapturedScreen.Height;
+
+                left = Math.Abs(oldWidth- width) / 2;
+                top = Math.Abs(oldHeight- height) / 2;
 
                 croprect = new Rectangle(left, top, width, height);
                 pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);

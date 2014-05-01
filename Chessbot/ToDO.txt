@@ -1,0 +1,10 @@
+﻿[11:46:12 AM] Jay: 1. finish the logic for your trigger method such that if the users switch sides, the trigger logic also attributes what the trigger zone is attached to each player and who's turn it is to move
+[11:46:21 AM] Jay: 2. make my method with the dont shoot your own movements shit isaid
+[11:46:29 AM] Jay: 3. animation check delay
+
+
+without a trigger to tell us when to take a capture of the board, the bot has to cycle through sequences of images at x ms timing to verify that 1. nothing has changed and 2. if something has changed, make sure its not an animation in progress, and 3. once animation is done (if it exists) capture the board to determine new board state and send that shit to the engine if its our turn to move
+
+** CROPPING ISSUE fix it.
+* Resize form for capturing screen and restore againn
+* Give option to hide Console output and showing output on GUI
