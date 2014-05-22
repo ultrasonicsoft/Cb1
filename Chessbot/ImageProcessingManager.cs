@@ -165,17 +165,14 @@ namespace OpenCVDemo1
             #endregion
             try
             {
-                int width = chessboardImage.Width;
-                int height = chessboardImage.Height;
-
                 Bitmap bmpChessboard = new Bitmap(chessboardImage);
                 //Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
                 Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
                 bmpChessboard = grayScaledChessboard.ToBitmap();
                 //bmpChessboard.Save("gray board.jpg");
 
-                int blockWidth = (width / Constants.GRID_SIZE);
-                int blockHeight = (height / Constants.GRID_SIZE);
+                int blockWidth = (chessboardImage.Width / Constants.GRID_SIZE);
+                int blockHeight = (chessboardImage.Height / Constants.GRID_SIZE);
 
                 int blockLeft = 0;
                 int blockTop = 0;
@@ -224,7 +221,7 @@ namespace OpenCVDemo1
                                         currentEntity.PieceInfo.Piece = item.Piece;
                                         currentEntity.IsAlive = true;
 
-                                        currentEntity.PieceInfo.Piece.Save(currentEntity.PieceInfo.Name + ".jpg");
+                                        //currentEntity.PieceInfo.Piece.Save(currentEntity.PieceInfo.Name + ".jpg");
                                         break;
                                     }
                                 }

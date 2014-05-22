@@ -448,6 +448,11 @@ namespace OpenCVDemo1
 
         private void btnShowBoardConfiguration_Click(object sender, EventArgs e)
         {
+            ProcessAndPrintBoard();
+        }
+
+        private void ProcessAndPrintBoard()
+        {
             Cursor = Cursors.WaitCursor;
             Console.WriteLine("Reading current Chess position...");
             int paddingPixel = int.Parse(txtPadding.Text);
@@ -462,7 +467,7 @@ namespace OpenCVDemo1
             }
             else
             {
-                ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
+                ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
             }
@@ -483,6 +488,7 @@ namespace OpenCVDemo1
                 pbScreen.Image = CapturedScreen;
                 CropChessBoard();
                 croprect = ScreenBoardCoordinates;
+                //ProcessBoardAndPrint();
             }
             //pbPreview.Image = ImageProcessingManager.TakeScreenShot();
 
@@ -611,7 +617,7 @@ namespace OpenCVDemo1
             RefreshGrayImage();
 
         }
-        Image test = Image.FromFile("in progress black.jpg");
+        Image test = Image.FromFile("inprogress.png");
 
         private void cbShowIntensityOnTop_CheckedChanged(object sender, EventArgs e)
         {
@@ -622,6 +628,7 @@ namespace OpenCVDemo1
             else
             {
                 pbScreen.Image = pbIntensityTest.Image;
+                ProcessAndPrintBoard();
             }
         }
 
@@ -631,5 +638,6 @@ namespace OpenCVDemo1
         {
             ImageProcessingManager.StandardMatchingFactor = (double) (int.Parse(txtStandardMatchingFactor.Text) / 100.0);
         }
+             
     }
 }

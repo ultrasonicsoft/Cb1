@@ -29,15 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
+            this.timerTriggerChecker = new System.Windows.Forms.Timer(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlImageHolder = new System.Windows.Forms.Panel();
             this.pbScreen = new System.Windows.Forms.PictureBox();
-            this.tbManageBoard = new System.Windows.Forms.TabPage();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.pbIntensityTest = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
+            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
             this.txtIntensity = new System.Windows.Forms.TextBox();
             this.btnUseIntensity = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
@@ -105,18 +109,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbctrController = new System.Windows.Forms.TabControl();
-            this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
-            this.timerTriggerChecker = new System.Windows.Forms.Timer(this.components);
-            this.pbIntensityTest = new System.Windows.Forms.PictureBox();
-            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
-            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
-            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
+            this.tbManageBoard = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.pnlImageHolder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
-            this.tbManageBoard.SuspendLayout();
+            this.tbctrController.SuspendLayout();
             this.tbHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -126,76 +132,70 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tbctrController.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
+            this.tbManageBoard.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // timerAutoRefresh
+            // 
+            this.timerAutoRefresh.Enabled = true;
+            this.timerAutoRefresh.Interval = 50;
+            this.timerAutoRefresh.Tick += new System.EventHandler(this.timerAutoRefresh_Tick);
+            // 
+            // timerTriggerChecker
+            // 
+            this.timerTriggerChecker.Enabled = true;
+            this.timerTriggerChecker.Interval = 30;
+            this.timerTriggerChecker.Tick += new System.EventHandler(this.timerTriggerChecker_Tick);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.pnlImageHolder);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
+            this.splitContainer1.Size = new System.Drawing.Size(1370, 749);
+            this.splitContainer1.SplitterDistance = 374;
+            this.splitContainer1.TabIndex = 2;
             // 
             // pnlImageHolder
             // 
             this.pnlImageHolder.AutoScroll = true;
             this.pnlImageHolder.Controls.Add(this.pbScreen);
-            this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1604, 600);
-            this.pnlImageHolder.TabIndex = 1;
+            this.pnlImageHolder.Size = new System.Drawing.Size(1368, 372);
+            this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
             // 
-            this.pbScreen.Location = new System.Drawing.Point(3, 3);
+            this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbScreen.Location = new System.Drawing.Point(0, 0);
             this.pbScreen.Name = "pbScreen";
-            this.pbScreen.Size = new System.Drawing.Size(625, 270);
+            this.pbScreen.Size = new System.Drawing.Size(1368, 270);
             this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbScreen.TabIndex = 3;
             this.pbScreen.TabStop = false;
             // 
-            // tbManageBoard
+            // tbctrController
             // 
-            this.tbManageBoard.Controls.Add(this.label14);
-            this.tbManageBoard.Controls.Add(this.textBox2);
-            this.tbManageBoard.Controls.Add(this.label15);
-            this.tbManageBoard.Controls.Add(this.textBox1);
-            this.tbManageBoard.Location = new System.Drawing.Point(4, 22);
-            this.tbManageBoard.Name = "tbManageBoard";
-            this.tbManageBoard.Padding = new System.Windows.Forms.Padding(3);
-            this.tbManageBoard.Size = new System.Drawing.Size(1596, 225);
-            this.tbManageBoard.TabIndex = 1;
-            this.tbManageBoard.Text = "Configuration";
-            this.tbManageBoard.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(22, 49);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(87, 13);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "Fullmove number";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(110, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(48, 20);
-            this.textBox2.TabIndex = 16;
-            this.textBox2.Text = "0";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(22, 20);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(82, 13);
-            this.label15.TabIndex = 15;
-            this.label15.Text = "Halfmove Clock";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(110, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 20);
-            this.textBox1.TabIndex = 14;
-            this.textBox1.Text = "0";
+            this.tbctrController.Controls.Add(this.tbHome);
+            this.tbctrController.Controls.Add(this.tbManageBoard);
+            this.tbctrController.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbctrController.Location = new System.Drawing.Point(0, 0);
+            this.tbctrController.Name = "tbctrController";
+            this.tbctrController.SelectedIndex = 0;
+            this.tbctrController.Size = new System.Drawing.Size(1368, 369);
+            this.tbctrController.TabIndex = 1;
             // 
             // tbHome
             // 
@@ -216,10 +216,19 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1596, 225);
+            this.tbHome.Size = new System.Drawing.Size(1360, 343);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Home";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // pbIntensityTest
+            // 
+            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
+            this.pbIntensityTest.Name = "pbIntensityTest";
+            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
+            this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbIntensityTest.TabIndex = 39;
+            this.pbIntensityTest.TabStop = false;
             // 
             // groupBox6
             // 
@@ -237,6 +246,44 @@
             this.groupBox6.TabIndex = 38;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Intensity Settings";
+            // 
+            // txtStandardMatchingFactor
+            // 
+            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(75, 137);
+            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
+            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
+            this.txtStandardMatchingFactor.TabIndex = 52;
+            this.txtStandardMatchingFactor.Text = "75";
+            // 
+            // btnUpdateStandardMatchingFactor
+            // 
+            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(129, 135);
+            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
+            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
+            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
+            this.btnUpdateStandardMatchingFactor.Text = "Update";
+            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
+            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(7, 141);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(62, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Matching %";
+            // 
+            // cbShowIntensityOnTop
+            // 
+            this.cbShowIntensityOnTop.AutoSize = true;
+            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
+            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
+            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
+            this.cbShowIntensityOnTop.TabIndex = 33;
+            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
+            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
+            this.cbShowIntensityOnTop.Click += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
             // 
             // txtIntensity
             // 
@@ -270,7 +317,7 @@
             this.tbIntensity.Location = new System.Drawing.Point(6, 50);
             this.tbIntensity.Maximum = 255;
             this.tbIntensity.Name = "tbIntensity";
-            this.tbIntensity.Size = new System.Drawing.Size(207, 42);
+            this.tbIntensity.Size = new System.Drawing.Size(207, 45);
             this.tbIntensity.TabIndex = 46;
             this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbIntensity.Value = 100;
@@ -405,7 +452,6 @@
             this.txtRefreshMarkerInterval.Size = new System.Drawing.Size(35, 20);
             this.txtRefreshMarkerInterval.TabIndex = 21;
             this.txtRefreshMarkerInterval.Text = "30";
-            this.txtRefreshMarkerInterval.Leave += new System.EventHandler(this.txtRefreshMarkerInterval_Leave);
             // 
             // label18
             // 
@@ -646,14 +692,13 @@
             // cbAutoRefresh
             // 
             this.cbAutoRefresh.AutoSize = true;
-            this.cbAutoRefresh.Checked = true;
-            this.cbAutoRefresh.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbAutoRefresh.Location = new System.Drawing.Point(23, 86);
             this.cbAutoRefresh.Name = "cbAutoRefresh";
             this.cbAutoRefresh.Size = new System.Drawing.Size(88, 17);
             this.cbAutoRefresh.TabIndex = 32;
             this.cbAutoRefresh.Text = "Auto Refresh";
             this.cbAutoRefresh.UseVisualStyleBackColor = true;
+            this.cbAutoRefresh.CheckedChanged += new System.EventHandler(this.timerAutoRefresh_Tick);
             // 
             // label16
             // 
@@ -666,12 +711,12 @@
             // 
             // txtRefreshInterval
             // 
-            this.txtRefreshInterval.Location = new System.Drawing.Point(110, 84);
+            this.txtRefreshInterval.Location = new System.Drawing.Point(112, 84);
             this.txtRefreshInterval.Name = "txtRefreshInterval";
             this.txtRefreshInterval.Size = new System.Drawing.Size(26, 20);
             this.txtRefreshInterval.TabIndex = 30;
             this.txtRefreshInterval.Text = "50";
-            this.txtRefreshInterval.Leave += new System.EventHandler(this.txtRefreshInterval_Leave);
+            this.txtRefreshInterval.TextChanged += new System.EventHandler(this.txtRefreshInterval_Leave);
             // 
             // btnScanAgain
             // 
@@ -911,95 +956,76 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Left";
             // 
-            // tbctrController
+            // tbManageBoard
             // 
-            this.tbctrController.Controls.Add(this.tbHome);
-            this.tbctrController.Controls.Add(this.tbManageBoard);
-            this.tbctrController.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbctrController.Location = new System.Drawing.Point(0, 600);
-            this.tbctrController.Name = "tbctrController";
-            this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1604, 251);
-            this.tbctrController.TabIndex = 0;
+            this.tbManageBoard.Controls.Add(this.label14);
+            this.tbManageBoard.Controls.Add(this.textBox2);
+            this.tbManageBoard.Controls.Add(this.label15);
+            this.tbManageBoard.Controls.Add(this.textBox1);
+            this.tbManageBoard.Location = new System.Drawing.Point(4, 22);
+            this.tbManageBoard.Name = "tbManageBoard";
+            this.tbManageBoard.Padding = new System.Windows.Forms.Padding(3);
+            this.tbManageBoard.Size = new System.Drawing.Size(1360, 343);
+            this.tbManageBoard.TabIndex = 1;
+            this.tbManageBoard.Text = "Configuration";
+            this.tbManageBoard.UseVisualStyleBackColor = true;
             // 
-            // timerAutoRefresh
+            // label14
             // 
-            this.timerAutoRefresh.Enabled = true;
-            this.timerAutoRefresh.Interval = 50;
-            this.timerAutoRefresh.Tick += new System.EventHandler(this.timerAutoRefresh_Tick);
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(22, 49);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(87, 13);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "Fullmove number";
             // 
-            // timerTriggerChecker
+            // textBox2
             // 
-            this.timerTriggerChecker.Enabled = true;
-            this.timerTriggerChecker.Interval = 30;
-            this.timerTriggerChecker.Tick += new System.EventHandler(this.timerTriggerChecker_Tick);
+            this.textBox2.Location = new System.Drawing.Point(110, 48);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(48, 20);
+            this.textBox2.TabIndex = 16;
+            this.textBox2.Text = "0";
             // 
-            // pbIntensityTest
+            // label15
             // 
-            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
-            this.pbIntensityTest.Name = "pbIntensityTest";
-            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
-            this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbIntensityTest.TabIndex = 39;
-            this.pbIntensityTest.TabStop = false;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(22, 20);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 13);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "Halfmove Clock";
             // 
-            // cbShowIntensityOnTop
+            // textBox1
             // 
-            this.cbShowIntensityOnTop.AutoSize = true;
-            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(10, 87);
-            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
-            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
-            this.cbShowIntensityOnTop.TabIndex = 33;
-            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
-            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
-            this.cbShowIntensityOnTop.CheckedChanged += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
-            // 
-            // txtStandardMatchingFactor
-            // 
-            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(75, 137);
-            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
-            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
-            this.txtStandardMatchingFactor.TabIndex = 52;
-            this.txtStandardMatchingFactor.Text = "75";
-            // 
-            // btnUpdateStandardMatchingFactor
-            // 
-            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(129, 135);
-            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
-            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
-            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
-            this.btnUpdateStandardMatchingFactor.Text = "Update";
-            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
-            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(7, 141);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(62, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "Matching %";
+            this.textBox1.Location = new System.Drawing.Point(110, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(48, 20);
+            this.textBox1.TabIndex = 14;
+            this.textBox1.Text = "0";
             // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1604, 851);
-            this.Controls.Add(this.tbctrController);
-            this.Controls.Add(this.pnlImageHolder);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "CaptureChessBoard";
             this.Text = "Capture Chess Board";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.CaptureChessBoard_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.pnlImageHolder.ResumeLayout(false);
             this.pnlImageHolder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).EndInit();
-            this.tbManageBoard.ResumeLayout(false);
-            this.tbManageBoard.PerformLayout();
+            this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
             this.tbHome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
@@ -1015,18 +1041,48 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.tbctrController.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
+            this.tbManageBoard.ResumeLayout(false);
+            this.tbManageBoard.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Timer timerAutoRefresh;
+        private System.Windows.Forms.Timer timerTriggerChecker;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel pnlImageHolder;
         private System.Windows.Forms.PictureBox pbScreen;
-        private System.Windows.Forms.TabPage tbManageBoard;
+        private System.Windows.Forms.TabControl tbctrController;
         private System.Windows.Forms.TabPage tbHome;
+        private System.Windows.Forms.PictureBox pbIntensityTest;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtStandardMatchingFactor;
+        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
+        private System.Windows.Forms.TextBox txtIntensity;
+        private System.Windows.Forms.Button btnUseIntensity;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TrackBar tbIntensity;
+        private System.Windows.Forms.Button btnRefreshTemplate;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblWhosMove;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnMarkTrigger;
+        private System.Windows.Forms.CheckBox cbTriggerMarker;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.PictureBox pbTriggerImage;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.PictureBox pbCurrentMarker;
+        private System.Windows.Forms.TextBox txtRefreshMarkerInterval;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnStartNewGame;
+        private System.Windows.Forms.Button btnShowTemplate;
+        private System.Windows.Forms.Button btnShowBoardConfiguration;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnSaveTemplate;
         private System.Windows.Forms.TextBox txtPadding;
@@ -1046,6 +1102,9 @@
         private System.Windows.Forms.TextBox txtResizeLeft;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox cbAutoRefresh;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtRefreshInterval;
         private System.Windows.Forms.Button btnScanAgain;
         private System.Windows.Forms.Button btnCaptureScreen;
         private System.Windows.Forms.Button btnCropBoard;
@@ -1070,42 +1129,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLeft;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tbctrController;
+        private System.Windows.Forms.TabPage tbManageBoard;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button btnShowBoardConfiguration;
-        private System.Windows.Forms.Button btnShowTemplate;
-        private System.Windows.Forms.CheckBox cbAutoRefresh;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtRefreshInterval;
-        private System.Windows.Forms.Timer timerAutoRefresh;
-        private System.Windows.Forms.Button btnStartNewGame;
-        private System.Windows.Forms.Button btnMarkTrigger;
-        private System.Windows.Forms.PictureBox pbTriggerImage;
-        private System.Windows.Forms.PictureBox pbCurrentMarker;
-        private System.Windows.Forms.Timer timerTriggerChecker;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtRefreshMarkerInterval;
-        private System.Windows.Forms.CheckBox cbTriggerMarker;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label lblWhosMove;
-        private System.Windows.Forms.Button btnRefreshTemplate;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtIntensity;
-        private System.Windows.Forms.Button btnUseIntensity;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TrackBar tbIntensity;
-        private System.Windows.Forms.PictureBox pbIntensityTest;
-        private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
-        private System.Windows.Forms.TextBox txtStandardMatchingFactor;
-        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
-        private System.Windows.Forms.Label label22;
     }
 }
