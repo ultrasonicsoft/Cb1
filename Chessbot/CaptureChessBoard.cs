@@ -382,8 +382,7 @@ namespace OpenCVDemo1
         private void btnTemplate_Click(object sender, EventArgs e)
         {
             PreviewTemplate preview = new PreviewTemplate();
-            var binaryImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
-            preview.ChessBoardImage = binaryImage;
+            preview.ChessBoardImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
             preview.Show();
         }
 
@@ -460,14 +459,14 @@ namespace OpenCVDemo1
             {
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("test.png"), paddingPixel, rbtnWhite.Checked);
-                ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked);
+                ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
             }
             else
             {
-                ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked);
+                ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString();
             }
