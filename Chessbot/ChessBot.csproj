@@ -91,6 +91,7 @@
     <Compile Include="ChessBrain.Designer.cs">
       <DependentUpon>ChessBrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalHotKeys.cs" />
     <Compile Include="ImageProcessingManager.cs" />
     <Compile Include="PreviewTemplate.cs">
       <SubType>Form</SubType>
@@ -106,7 +107,14 @@
     <Compile Include="SaveTemplate.Designer.cs">
       <DependentUpon>SaveTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowNextMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowNextMove.Designer.cs">
+      <DependentUpon>ShowNextMove.cs</DependentUpon>
+    </Compile>
     <Compile Include="TemplateEntity.cs" />
+    <Compile Include="UCI.cs" />
     <EmbeddedResource Include="CaptureChessBoard.resx">
       <DependentUpon>CaptureChessBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,9 +132,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SaveTemplate.resx">
       <DependentUpon>SaveTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowNextMove.resx">
+      <DependentUpon>ShowNextMove.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -140,6 +152,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Info.txt" />
+    <None Include="Resources\chessbrain.jpeg" />
+    <None Include="Resources\brain_thinking.gif" />
     <Content Include="ToDO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

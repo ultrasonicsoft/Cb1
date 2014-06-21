@@ -42,6 +42,7 @@ namespace OpenCVDemo1
         private static double _standardMatchingFactor = 0.75;
         public static double StandardMatchingFactor { get { return _standardMatchingFactor; } set { _standardMatchingFactor = value; } }
 
+        public static string TotalProcessingTime { get; set; }
 
         //private static Dictionary<string, Image<Gray, Byte>> dicChessPosition = null;
         private static List<ChessPiece> allChessBoardTemplate = null;
@@ -171,9 +172,9 @@ namespace OpenCVDemo1
                 //Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
                 //bmpChessboard = grayScaledChessboard.ToBitmap();
 
-                 Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(chessboardImage as Bitmap);
+                 //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(chessboardImage as Bitmap);
 
-                 var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensityValue), new Gray(255));
+                 //var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensityValue), new Gray(255));
 
                 Bitmap bmpChessboard = (ImageProcessingManager.GetBinaryImage(chessboardImage, intensityValue).Bitmap).Clone(new Rectangle(0, 0, chessboardImage.Width, chessboardImage.Height), chessboardImage.PixelFormat);
 
@@ -197,6 +198,9 @@ namespace OpenCVDemo1
 
                 Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
+
+                //emptyGridZone1 = emptyGridZone1.Resize(0.5, INTER.CV_INTER_AREA);
+                //emptyGridZone2 = emptyGridZone2.Resize(0.5, INTER.CV_INTER_AREA);
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
                 {
                     blockLeft = 0;
@@ -245,7 +249,8 @@ namespace OpenCVDemo1
                     blockTop += blockHeight;
                 }
                 totalExecutionTime.Stop();
-                MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+                TotalProcessingTime =  totalExecutionTime.ElapsedMilliseconds.ToString();
 
                 //MessageBox.Show("done");
                 //var allPieces = currentChessBoardPosition.Where(x => x.IsAlive == true);
@@ -545,8 +550,7 @@ namespace OpenCVDemo1
 
         public static bool AreImagesSame(Image<Gray, Byte> inputImage, Image<Gray, Byte> templateImage, double comparisonFactor)
         {
-
-            Point Object_Location = new Point();
+            //Point Object_Location = new Point();
             Point dftSize = new Point(inputImage.Width + (templateImage.Width * 2), inputImage.Height + (templateImage.Height * 2));
             bool Success = false;
             using (Image<Gray, Byte> pad_array = new Image<Gray, Byte>(dftSize.X, dftSize.Y))
@@ -572,7 +576,7 @@ namespace OpenCVDemo1
                         if (max[0] > comparisonFactor)
                         //if (max[0] > 0.75)
                         {
-                            Object_Location = MAX_Loc[0];
+                            //Object_Location = MAX_Loc[0];
                             Success = true;
                         }
                     }
@@ -710,7 +714,7 @@ namespace OpenCVDemo1
 
         internal static void PrintChessBoard(bool isUserPlayingWhite)
         {
-            var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
+            //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
             if (currentChessBoardPosition == null)
             {
@@ -814,13 +818,13 @@ namespace OpenCVDemo1
                 Console.WriteLine(rowSeparator);
 
             }
-            totalExecutionTime.Stop();
-            MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+            //totalExecutionTime.Stop();
+            //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
         }
 
-        public static void PrepareFenString()
+        public static string PrepareFenString()
         {
-            var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
+            //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
             StringBuilder fenString = new StringBuilder(string.Empty);
             //Prepare string part for "Piece Placement"
@@ -935,8 +939,9 @@ namespace OpenCVDemo1
             fenString = fenString.Replace("BR", "r");
             Console.WriteLine(fenString.ToString());
 
-            totalExecutionTime.Stop();
-            MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+            return fenString.ToString();
+            //totalExecutionTime.Stop();
+            //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
         }
 
         public static Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> GetBinaryImage(Image inputImage, double intensity)

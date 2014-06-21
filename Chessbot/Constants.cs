@@ -56,7 +56,19 @@ namespace OpenCVDemo1
 
         //internal const double STANDARD_IMAGE_COMPARISON_FACTOR = 0.75;
         internal const double MARKER_IMAGE_COMPARISON_FACTOR = 0.50;
+        internal const double IMAGE_RESIZE_FACTOR = 0.50;
 
+        internal const string STOCKFISHENGINE = "stockfishengine.exe";
+
+        //modifiers
+        public const int NOMOD = 0x0000;
+        public const int ALT = 0x0001;
+        public const int CTRL = 0x0002;
+        public const int SHIFT = 0x0004;
+        public const int WIN = 0x0008;
+
+        //windows message id for hotkey
+        public const int WM_HOTKEY_MSG_ID = 0x0312;
     }
 
 }

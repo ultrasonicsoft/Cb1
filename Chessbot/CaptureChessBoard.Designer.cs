@@ -36,6 +36,11 @@
             this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txtBestMove = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.lblExecutionTime = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.pbIntensityTest = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
@@ -122,6 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbctrController.SuspendLayout();
             this.tbHome.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
@@ -137,13 +143,11 @@
             // 
             // timerAutoRefresh
             // 
-            this.timerAutoRefresh.Enabled = true;
             this.timerAutoRefresh.Interval = 50;
             this.timerAutoRefresh.Tick += new System.EventHandler(this.timerAutoRefresh_Tick);
             // 
             // timerTriggerChecker
             // 
-            this.timerTriggerChecker.Enabled = true;
             this.timerTriggerChecker.Interval = 30;
             this.timerTriggerChecker.Tick += new System.EventHandler(this.timerTriggerChecker_Tick);
             // 
@@ -199,6 +203,7 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.groupBox7);
             this.tbHome.Controls.Add(this.pbIntensityTest);
             this.tbHome.Controls.Add(this.groupBox6);
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
@@ -221,6 +226,53 @@
             this.tbHome.Text = "Home";
             this.tbHome.UseVisualStyleBackColor = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.txtBestMove);
+            this.groupBox7.Controls.Add(this.label25);
+            this.groupBox7.Controls.Add(this.lblExecutionTime);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Location = new System.Drawing.Point(400, 127);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(88, 96);
+            this.groupBox7.TabIndex = 40;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Result";
+            // 
+            // txtBestMove
+            // 
+            this.txtBestMove.Location = new System.Drawing.Point(16, 66);
+            this.txtBestMove.Name = "txtBestMove";
+            this.txtBestMove.Size = new System.Drawing.Size(56, 20);
+            this.txtBestMove.TabIndex = 19;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(13, 47);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 13);
+            this.label25.TabIndex = 2;
+            this.label25.Text = "Next  Move:";
+            // 
+            // lblExecutionTime
+            // 
+            this.lblExecutionTime.AutoSize = true;
+            this.lblExecutionTime.Location = new System.Drawing.Point(36, 21);
+            this.lblExecutionTime.Name = "lblExecutionTime";
+            this.lblExecutionTime.Size = new System.Drawing.Size(36, 13);
+            this.lblExecutionTime.TabIndex = 1;
+            this.lblExecutionTime.Text = "[Time]";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 21);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(33, 13);
+            this.label23.TabIndex = 0;
+            this.label23.Text = "Time:";
+            // 
             // pbIntensityTest
             // 
             this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
@@ -229,6 +281,7 @@
             this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbIntensityTest.TabIndex = 39;
             this.pbIntensityTest.TabStop = false;
+            this.pbIntensityTest.Visible = false;
             // 
             // groupBox6
             // 
@@ -347,7 +400,7 @@
             this.groupBox1.Controls.Add(this.pbCurrentMarker);
             this.groupBox1.Controls.Add(this.txtRefreshMarkerInterval);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Location = new System.Drawing.Point(13, 103);
+            this.groupBox1.Location = new System.Drawing.Point(13, 104);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(381, 119);
             this.groupBox1.TabIndex = 36;
@@ -391,7 +444,7 @@
             // 
             // btnMarkTrigger
             // 
-            this.btnMarkTrigger.Location = new System.Drawing.Point(29, 56);
+            this.btnMarkTrigger.Location = new System.Drawing.Point(21, 56);
             this.btnMarkTrigger.Name = "btnMarkTrigger";
             this.btnMarkTrigger.Size = new System.Drawing.Size(133, 28);
             this.btnMarkTrigger.TabIndex = 28;
@@ -402,14 +455,13 @@
             // cbTriggerMarker
             // 
             this.cbTriggerMarker.AutoSize = true;
-            this.cbTriggerMarker.Checked = true;
-            this.cbTriggerMarker.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTriggerMarker.Location = new System.Drawing.Point(6, 13);
             this.cbTriggerMarker.Name = "cbTriggerMarker";
             this.cbTriggerMarker.Size = new System.Drawing.Size(76, 17);
             this.cbTriggerMarker.TabIndex = 33;
             this.cbTriggerMarker.Text = "Auto Scan";
             this.cbTriggerMarker.UseVisualStyleBackColor = true;
+            this.cbTriggerMarker.CheckedChanged += new System.EventHandler(this.cbTriggerMarker_CheckedChanged);
             // 
             // label20
             // 
@@ -425,6 +477,7 @@
             this.pbTriggerImage.Location = new System.Drawing.Point(116, 94);
             this.pbTriggerImage.Name = "pbTriggerImage";
             this.pbTriggerImage.Size = new System.Drawing.Size(20, 20);
+            this.pbTriggerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbTriggerImage.TabIndex = 27;
             this.pbTriggerImage.TabStop = false;
             // 
@@ -442,6 +495,7 @@
             this.pbCurrentMarker.Location = new System.Drawing.Point(257, 94);
             this.pbCurrentMarker.Name = "pbCurrentMarker";
             this.pbCurrentMarker.Size = new System.Drawing.Size(20, 20);
+            this.pbCurrentMarker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCurrentMarker.TabIndex = 29;
             this.pbCurrentMarker.TabStop = false;
             // 
@@ -488,7 +542,7 @@
             this.btnShowBoardConfiguration.Name = "btnShowBoardConfiguration";
             this.btnShowBoardConfiguration.Size = new System.Drawing.Size(101, 41);
             this.btnShowBoardConfiguration.TabIndex = 23;
-            this.btnShowBoardConfiguration.Text = "Show Board Configuration";
+            this.btnShowBoardConfiguration.Text = "GetBestMove";
             this.btnShowBoardConfiguration.UseVisualStyleBackColor = true;
             this.btnShowBoardConfiguration.Click += new System.EventHandler(this.btnShowBoardConfiguration_Click);
             // 
@@ -587,9 +641,9 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.txtResizeLeft);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(400, 126);
+            this.groupBox4.Location = new System.Drawing.Point(491, 126);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(331, 91);
+            this.groupBox4.Size = new System.Drawing.Size(240, 91);
             this.groupBox4.TabIndex = 21;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image Size";
@@ -640,7 +694,7 @@
             // 
             this.btnResize.Location = new System.Drawing.Point(172, 22);
             this.btnResize.Name = "btnResize";
-            this.btnResize.Size = new System.Drawing.Size(152, 23);
+            this.btnResize.Size = new System.Drawing.Size(61, 57);
             this.btnResize.TabIndex = 16;
             this.btnResize.Text = "Resize && Validate";
             this.btnResize.UseVisualStyleBackColor = true;
@@ -698,12 +752,12 @@
             this.cbAutoRefresh.TabIndex = 32;
             this.cbAutoRefresh.Text = "Auto Refresh";
             this.cbAutoRefresh.UseVisualStyleBackColor = true;
-            this.cbAutoRefresh.CheckedChanged += new System.EventHandler(this.timerAutoRefresh_Tick);
+            this.cbAutoRefresh.CheckedChanged += new System.EventHandler(this.cbAutoRefresh_CheckedChanged);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(142, 90);
+            this.label16.Location = new System.Drawing.Point(144, 86);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(26, 13);
             this.label16.TabIndex = 31;
@@ -720,7 +774,7 @@
             // 
             // btnScanAgain
             // 
-            this.btnScanAgain.Location = new System.Drawing.Point(248, 19);
+            this.btnScanAgain.Location = new System.Drawing.Point(239, 38);
             this.btnScanAgain.Name = "btnScanAgain";
             this.btnScanAgain.Size = new System.Drawing.Size(70, 23);
             this.btnScanAgain.TabIndex = 29;
@@ -1011,10 +1065,13 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.splitContainer1);
+            this.KeyPreview = true;
             this.Name = "CaptureChessBoard";
             this.Text = "Capture Chess Board";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CaptureChessBoard_FormClosing);
             this.Load += new System.EventHandler(this.CaptureChessBoard_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CaptureChessBoard_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -1025,6 +1082,8 @@
             this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
             this.tbHome.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -1134,5 +1193,10 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lblExecutionTime;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtBestMove;
     }
 }

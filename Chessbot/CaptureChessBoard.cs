@@ -10,6 +10,9 @@ using System.Text;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace OpenCVDemo1
 {
@@ -23,6 +26,16 @@ namespace OpenCVDemo1
         private bool isGetYEnabled = false;
         private List<TemplateEntity> allLoadedTemplates = new List<TemplateEntity>();
         private TemplateEntity selectedChessEntity = null;
+        private IntPtr desktop = IntPtr.Zero;
+        int chessDrawingRowIndex = -1;
+        int chessDrawingColumnIndex = -1;
+        int chessDrawingNextRowIndex = -1;
+        int chessDrawingNextColumnIndex = -1;
+        private readonly FrmShowNextMove showNextMove;
+        private bool IsComputingNextMove = false;
+        private string nextMove = "-";
+        private bool hasComputerPlayed = true;
+        private GlobalHotkey ghk;
 
 
         private ChessTemplate masterTemplate = null;
@@ -34,7 +47,22 @@ namespace OpenCVDemo1
         public CaptureChessBoard()
         {
             InitializeComponent();
+
+            showNextMove = new FrmShowNextMove();
+            showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
+
+            ghk = new GlobalHotkey(Keys.NumPad0, this);
+
         }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == Constants.WM_HOTKEY_MSG_ID)
+                GetBestMove();
+            base.WndProc(ref m);
+        }
+
+      
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -56,6 +84,17 @@ namespace OpenCVDemo1
             this.DoubleBuffered = true;
 
             LoadTemplates();
+
+            // Show Next Move dialog box
+            showNextMove.Show();
+
+            // Register for Keypad event
+            ghk.Register();
+            //WriteLine("Trying to register SHIFT+ALT+O");
+            //if (ghk.Register())
+                //WriteLine("Hotkey registered.");
+            //else
+                //WriteLine("Hotkey failed to register");
         }
 
         private void LoadTemplates()
@@ -92,7 +131,7 @@ namespace OpenCVDemo1
         private void Crop_Paint(object sender, PaintEventArgs e)
         {
             var rect = GetRectangle(sp, ep);
-            e.Graphics.DrawRectangle(Pens.Red,rect );
+            e.Graphics.DrawRectangle(Pens.Red, rect);
 
             int left = sp.X;
             int top = sp.Y;
@@ -132,7 +171,7 @@ namespace OpenCVDemo1
                 ep = e.Location;
                 pbScreen.Invalidate();
             }
-            
+
             var rect = GetRectangle(sp, ep);
 
 
@@ -216,7 +255,7 @@ namespace OpenCVDemo1
             try
             {
                 CropChessBoard();
-               
+
                 CurrentCapturedScreen = pbScreen.Image;
                 RefreshGrayImage();
 
@@ -361,8 +400,8 @@ namespace OpenCVDemo1
                 int oldWidth = CapturedScreen.Width;
                 int oldHeight = CapturedScreen.Height;
 
-                left = Math.Abs(oldWidth- width) / 2;
-                top = Math.Abs(oldHeight- height) / 2;
+                left = Math.Abs(oldWidth - width) / 2;
+                top = Math.Abs(oldHeight - height) / 2;
 
                 croprect = new Rectangle(left, top, width, height);
                 pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
@@ -402,6 +441,11 @@ namespace OpenCVDemo1
         }
 
         private void btnScanAgain_Click(object sender, EventArgs e)
+        {
+            ScanBoardAgain();
+        }
+
+        private void ScanBoardAgain()
         {
             croprect = ScreenBoardCoordinates;
             Image img = (Image)ImageProcessingManager.TakeScreenShot();
@@ -447,7 +491,25 @@ namespace OpenCVDemo1
 
         private void btnShowBoardConfiguration_Click(object sender, EventArgs e)
         {
+            GetBestMove();
+        }
+
+        private void GetBestMove()
+        {
+            IsComputingNextMove = true;
+
+            ScanBoardAgain();
+
+            showNextMove.IsThinkingNextMove = true;
+            //timerAutoRefresh.Enabled = false;
+            Application.DoEvents();
             ProcessAndPrintBoard();
+            IsComputingNextMove = false;
+            //timerAutoRefresh.Enabled = true;
+
+
+            //DrawOnDesktop();
+           
         }
 
         private void ProcessAndPrintBoard()
@@ -455,6 +517,7 @@ namespace OpenCVDemo1
             Cursor = Cursors.WaitCursor;
             Console.WriteLine("Reading current Chess position...");
             int paddingPixel = int.Parse(txtPadding.Text);
+            string fenString = string.Empty;
             if (rbtnWhite.Checked)
             {
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
@@ -462,15 +525,38 @@ namespace OpenCVDemo1
                 ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
-                ImageProcessingManager.PrepareFenString();
+                fenString = ImageProcessingManager.PrepareFenString();
             }
             else
             {
                 ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
-                ImageProcessingManager.PrepareFenString();
+                fenString = ImageProcessingManager.PrepareFenString();
             }
+            lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
+
+            GetNextBestMove(fenString);
             Cursor = Cursors.Default;
+        }
+
+        private string GetNextBestMove(string fenString)
+        {
+            string bestMove = string.Empty;
+            try
+            {
+                UCI engine = new UCI();
+                engine.BestMovFound += engine_BestMovFound;
+                engine.InitEngine("stockfishengine.exe", string.Empty);
+                var parts = fenString.Split(' ');
+                fenString = parts[0] + " " + parts[1];
+                engine.CalculateBestMove(fenString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return bestMove;
         }
 
         private void btnShowTemplate_Click(object sender, EventArgs e)
@@ -481,7 +567,7 @@ namespace OpenCVDemo1
 
         private void timerAutoRefresh_Tick(object sender, EventArgs e)
         {
-            if (cbAutoRefresh.Checked)
+            if (cbAutoRefresh.Checked && IsComputingNextMove == false)
             {
                 CapturedScreen = ImageProcessingManager.TakeScreenShot();
                 pbScreen.Image = CapturedScreen;
@@ -511,31 +597,46 @@ namespace OpenCVDemo1
 
         private void CheckWhosTurnToPlay()
         {
-            if (cbTriggerMarker.Checked && pbTriggerImage.Image != null)
+            if (IsComputingNextMove == false)
             {
-                Image currentScreen = ImageProcessingManager.TakeScreenShot();
-
-                if (TriggerCoordinates.IsEmpty)
-                    return;
-
-                pbCurrentMarker.Image = ((Bitmap)currentScreen).Clone(TriggerCoordinates, currentScreen.PixelFormat);
-
-                Image<Gray, Byte> currentMarker = new Image<Gray, byte>(pbCurrentMarker.Image as Bitmap);
-                Image<Gray, Byte> triggerMarker = new Image<Gray, byte>(pbTriggerImage.Image as Bitmap);
-                if (ImageProcessingManager.AreImagesSame(triggerMarker, currentMarker, ImageProcessingManager.StandardMatchingFactor))
+                if (cbTriggerMarker.Checked && pbTriggerImage.Image != null)
                 {
-                    lblWhosMove.Text = "User Move";
-                }
-                else
-                {
-                    lblWhosMove.Text = "Computer Move";
+                    Image currentScreen = ImageProcessingManager.TakeScreenShot();
+
+                    if (TriggerCoordinates.IsEmpty)
+                        return;
+
+                    pbCurrentMarker.Image = ((Bitmap)currentScreen).Clone(TriggerCoordinates, currentScreen.PixelFormat);
+
+                    Image<Gray, Byte> currentMarker = new Image<Gray, byte>(pbCurrentMarker.Image as Bitmap);
+                    Image<Gray, Byte> triggerMarker = new Image<Gray, byte>(pbTriggerImage.Image as Bitmap);
+                    if (ImageProcessingManager.AreImagesSame(triggerMarker, currentMarker, ImageProcessingManager.StandardMatchingFactor))
+                    {
+
+                        lblWhosMove.Text = "User Move";
+                        if (hasComputerPlayed )
+                            //if (hasComputerPlayed && showNextMove.BestMove != null && string.Equals(showNextMove.BestMove, nextMove) == false)
+                        {
+                            IsComputingNextMove = true;
+                            //TODO: Check what can be done here for next move
+                            //GetBestMove();
+                        }
+                        hasComputerPlayed = false;
+                    }
+                    else
+                    {
+                        lblWhosMove.Text = "Computer Move";
+                        hasComputerPlayed = true;
+                    }
                 }
             }
         }
 
         private void timerTriggerChecker_Tick(object sender, EventArgs e)
         {
-            CheckWhosTurnToPlay();
+            
+                CheckWhosTurnToPlay();
+            
         }
 
         private void txtRefreshInterval_Leave(object sender, EventArgs e)
@@ -582,6 +683,239 @@ namespace OpenCVDemo1
             LoadTemplates();
         }
 
+        [DllImport("User32.dll", CallingConvention = CallingConvention.StdCall)]
+        static extern IntPtr GetDC(IntPtr hwnd);
+
+        [DllImport("User32.dll", CallingConvention = CallingConvention.StdCall)]
+        static extern void ReleaseDC(IntPtr dc);
+        private void DrawOnDesktop()
+        {
+            try
+            {
+                if (desktop == IntPtr.Zero)
+                {
+                    desktop = GetDC(IntPtr.Zero);
+                }
+                using (Graphics g = Graphics.FromHdc(desktop))
+                {
+                    g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
+                }
+                //  ReleaseDC(desktop);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void engine_BestMovFound(object sender, EventArgs e)
+        {
+            var args = (BestMoveFoundArgs)e;
+            if (false == string.IsNullOrEmpty(args.BestMove))
+            {
+                //MessageBox.Show(args.BestMove);
+
+                showNextMove.IsThinkingNextMove = false;
+                Application.DoEvents();
+
+                showNextMove.BestMove = args.BestMove;
+                if (txtBestMove.InvokeRequired)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        txtBestMove.Text = args.BestMove; // runs on UI thread
+                    });
+
+                }
+                char[] info = args.BestMove.ToUpper().ToCharArray();
+
+                GetChessDrawingIndex(info[0], info[1]);
+                GetChessDrawingNextMoveIndex(info[2], info[3]);
+                DrawOnDesktopNextMove();
+
+                nextMove = args.BestMove;
+                IsComputingNextMove = false;
+            }
+        }
+
+        private void GetChessDrawingIndex(char column, char row)
+        {
+            int rowIndex = int.Parse(row.ToString());
+
+
+            if (rbtnWhite.Checked == false)
+            {
+                chessDrawingRowIndex = 8 - rowIndex;
+                switch (column)
+                {
+                    case 'A':
+                        chessDrawingColumnIndex = 0;
+                        break;
+                    case 'B':
+                        chessDrawingColumnIndex = 1;
+                        break;
+                    case 'C':
+                        chessDrawingColumnIndex = 2;
+                        break;
+                    case 'D':
+                        chessDrawingColumnIndex = 3;
+                        break;
+                    case 'E':
+                        chessDrawingColumnIndex = 4;
+                        break;
+                    case 'F':
+                        chessDrawingColumnIndex = 5;
+                        break;
+                    case 'G':
+                        chessDrawingColumnIndex = 6;
+                        break;
+                    case 'H':
+                        chessDrawingColumnIndex = 7;
+                        break;
+                }
+            }
+            else
+            {
+                chessDrawingRowIndex = rowIndex;
+                switch (column)
+                {
+                    case 'A':
+                        chessDrawingColumnIndex = 7;
+                        break;
+                    case 'B':
+                        chessDrawingColumnIndex = 6;
+                        break;
+                    case 'C':
+                        chessDrawingColumnIndex = 5;
+                        break;
+                    case 'D':
+                        chessDrawingColumnIndex = 4;
+                        break;
+                    case 'E':
+                        chessDrawingColumnIndex = 3;
+                        break;
+                    case 'F':
+                        chessDrawingColumnIndex = 2;
+                        break;
+                    case 'G':
+                        chessDrawingColumnIndex = 1;
+                        break;
+                    case 'H':
+                        chessDrawingColumnIndex = 0;
+                        break;
+                }
+            }
+        }
+
+        private void GetChessDrawingNextMoveIndex(char column, char row)
+        {
+            int rowIndex = int.Parse(row.ToString());
+
+            if (rbtnWhite.Checked == false)
+            {
+                chessDrawingNextRowIndex = 8 - rowIndex;
+                switch (column)
+                {
+                    case 'A':
+                        chessDrawingNextColumnIndex = 0;
+                        break;
+                    case 'B':
+                        chessDrawingNextColumnIndex = 1;
+                        break;
+                    case 'C':
+                        chessDrawingNextColumnIndex = 2;
+                        break;
+                    case 'D':
+                        chessDrawingNextColumnIndex = 3;
+                        break;
+                    case 'E':
+                        chessDrawingNextColumnIndex = 4;
+                        break;
+                    case 'F':
+                        chessDrawingNextColumnIndex = 5;
+                        break;
+                    case 'G':
+                        chessDrawingNextColumnIndex = 6;
+                        break;
+                    case 'H':
+                        chessDrawingNextColumnIndex = 7;
+                        break;
+                }
+            }
+            else
+            {
+                chessDrawingNextRowIndex = rowIndex;
+                switch (column)
+                {
+                    case 'A':
+                        chessDrawingNextColumnIndex = 7;
+                        break;
+                    case 'B':
+                        chessDrawingNextColumnIndex = 6;
+                        break;
+                    case 'C':
+                        chessDrawingNextColumnIndex = 5;
+                        break;
+                    case 'D':
+                        chessDrawingNextColumnIndex = 4;
+                        break;
+                    case 'E':
+                        chessDrawingNextColumnIndex = 3;
+                        break;
+                    case 'F':
+                        chessDrawingNextColumnIndex = 2;
+                        break;
+                    case 'G':
+                        chessDrawingNextColumnIndex = 1;
+                        break;
+                    case 'H':
+                        chessDrawingNextColumnIndex = 0;
+                        break;
+                }
+            }
+        }
+        public void DrawOnDesktopNextMove()
+        {
+            try
+            {
+                if (desktop == IntPtr.Zero)
+                {
+                    desktop = GetDC(IntPtr.Zero);
+                }
+                using (Graphics g = Graphics.FromHdc(desktop))
+                {
+                    //g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
+
+                    // Draw current position
+                    int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * 64; // TODO: calculate each block height and width instead of 64
+                    int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * 64;
+
+                    // Draw next move position
+                    int startNewX = ScreenBoardCoordinates.X + chessDrawingNextColumnIndex * 64; // TODO: calculate each block height and width instead of 64
+                    int startNewY = ScreenBoardCoordinates.Y + chessDrawingNextRowIndex * 64;
+
+                    Pen oldPen = new Pen(Color.Red, 5);
+                    Pen newPen = new Pen(Color.Blue, 5);
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
+                        //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
+
+                        g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 50, 50));
+                        g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
+                    }
+
+                }
+                //  ReleaseDC(desktop);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             RefreshGrayImage();
@@ -600,7 +934,7 @@ namespace OpenCVDemo1
             var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
             //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
             pbIntensityTest.Image = (binaryImage.Bitmap).Clone(new Rectangle(0, 0, binaryImage.Width, binaryImage.Height), (binaryImage.Bitmap).PixelFormat);
-            
+
             txtIntensity.Text = tbIntensity.Value.ToString();
             ImageProcessingManager.IntensityValue = intensity;
 
@@ -620,7 +954,7 @@ namespace OpenCVDemo1
 
         private void cbShowIntensityOnTop_CheckedChanged(object sender, EventArgs e)
         {
-            if(cbShowIntensityOnTop.Checked== false)
+            if (cbShowIntensityOnTop.Checked == false)
             {
                 pbScreen.Image = CurrentCapturedScreen;
             }
@@ -635,8 +969,34 @@ namespace OpenCVDemo1
 
         private void btnUpdateStandardMatchingFactor_Click(object sender, EventArgs e)
         {
-            ImageProcessingManager.StandardMatchingFactor = (double) (int.Parse(txtStandardMatchingFactor.Text) / 100.0);
+            ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
         }
-             
+        private void cbTriggerMarker_CheckedChanged(object sender, EventArgs e)
+        {
+            timerTriggerChecker.Enabled = cbTriggerMarker.Checked;
+        }
+
+        private void CaptureChessBoard_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if(e.KeyCode == Keys.NumPad0)
+            //{
+            //    GetBestMove();
+            //}
+        }
+
+        private void CaptureChessBoard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ghk.Unregiser();
+            //if (!ghk.Unregiser())
+            //    MessageBox.Show("Hotkey failed to unregister!");
+        }
+
+        private void cbAutoRefresh_CheckedChanged(object sender, EventArgs e)
+        {
+            timerAutoRefresh.Enabled = cbAutoRefresh.Checked;
+        }
+
+       
+
     }
 }
