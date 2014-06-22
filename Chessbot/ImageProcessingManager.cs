@@ -822,7 +822,7 @@ namespace OpenCVDemo1
             //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
         }
 
-        public static string PrepareFenString()
+        public static string PrepareFenString(bool isBlackMoveNext)
         {
             //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
@@ -859,7 +859,14 @@ namespace OpenCVDemo1
             fenString.Append(" ");
 
             //Append string part for "Active Color"
-            fenString.Append(Constants.ActiveMove);
+
+            if (isBlackMoveNext)
+            {
+                fenString.Append(Constants.BlackMove);
+            }
+            else
+                fenString.Append(Constants.WhiteMove);
+
             fenString.Append(" ");
 
             //Append string part for "Castling"
@@ -934,16 +941,36 @@ namespace OpenCVDemo1
             fenString.Append(Constants.FullmoveNumber.ToString());
             fenString.Append(" ");
 
+            fenString = fenString.Replace("BR", "r");
+
+            if (isBlackMoveNext)
+            {
+                var firstPart = fenString.ToString().Split(' ')[0];
+                var tempPart = firstPart.Split('/');
+                StringBuilder blackFenStringBuilder = new StringBuilder();
+                for (int index = tempPart.Length - 1; index >= 0; index--)
+                {
+                    blackFenStringBuilder.Append(ReverseString(tempPart[index]));
+                    if (index != 0)
+                        blackFenStringBuilder.Append("/");
+                }
+                fenString = fenString.Replace(firstPart, blackFenStringBuilder.ToString());
+            }
+
             Console.WriteLine();
             Console.WriteLine("FEN String is:");
-            fenString = fenString.Replace("BR", "r");
             Console.WriteLine(fenString.ToString());
 
             return fenString.ToString();
             //totalExecutionTime.Stop();
             //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
         }
-
+        public static string ReverseString(string s)
+        {
+            char[] arr = s.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
         public static Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> GetBinaryImage(Image inputImage, double intensity)
         {
             Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(inputImage as Bitmap);

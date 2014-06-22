@@ -119,6 +119,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtEngineDepth = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -728,6 +730,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.txtEngineDepth);
             this.groupBox3.Controls.Add(this.cbAutoRefresh);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.txtRefreshInterval);
@@ -1058,6 +1062,24 @@
             this.textBox1.TabIndex = 14;
             this.textBox1.Text = "0";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(205, 92);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(72, 13);
+            this.label24.TabIndex = 34;
+            this.label24.Text = "Engine Depth";
+            // 
+            // txtEngineDepth
+            // 
+            this.txtEngineDepth.Location = new System.Drawing.Point(283, 88);
+            this.txtEngineDepth.Name = "txtEngineDepth";
+            this.txtEngineDepth.Size = new System.Drawing.Size(26, 20);
+            this.txtEngineDepth.TabIndex = 33;
+            this.txtEngineDepth.Text = "16";
+            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1198,5 +1220,7 @@
         private System.Windows.Forms.Label lblExecutionTime;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtBestMove;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtEngineDepth;
     }
 }

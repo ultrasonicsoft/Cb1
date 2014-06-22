@@ -36,7 +36,8 @@ namespace OpenCVDemo1
         private string nextMove = "-";
         private bool hasComputerPlayed = true;
         private GlobalHotkey ghk;
-
+        private string _engineDepth = "16";
+        public string EngineDepth { get { return _engineDepth; } set { _engineDepth = value; } }
 
         private ChessTemplate masterTemplate = null;
         public Rectangle ScreenBoardCoordinates { get; set; }
@@ -525,13 +526,13 @@ namespace OpenCVDemo1
                 ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
-                fenString = ImageProcessingManager.PrepareFenString();
+                fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
             }
             else
             {
                 ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
-                fenString = ImageProcessingManager.PrepareFenString();
+                fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
             }
             lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
 
@@ -549,7 +550,7 @@ namespace OpenCVDemo1
                 engine.InitEngine("stockfishengine.exe", string.Empty);
                 var parts = fenString.Split(' ');
                 fenString = parts[0] + " " + parts[1];
-                engine.CalculateBestMove(fenString);
+                engine.CalculateBestMove(fenString, EngineDepth);
             }
             catch (Exception ex)
             {
@@ -777,7 +778,7 @@ namespace OpenCVDemo1
             }
             else
             {
-                chessDrawingRowIndex = rowIndex;
+                chessDrawingRowIndex = rowIndex -1;
                 switch (column)
                 {
                     case 'A':
@@ -845,7 +846,7 @@ namespace OpenCVDemo1
             }
             else
             {
-                chessDrawingNextRowIndex = rowIndex;
+                chessDrawingNextRowIndex = rowIndex -1;
                 switch (column)
                 {
                     case 'A':
@@ -950,7 +951,6 @@ namespace OpenCVDemo1
             RefreshGrayImage();
 
         }
-        Image test = Image.FromFile("inprogress.png");
 
         private void cbShowIntensityOnTop_CheckedChanged(object sender, EventArgs e)
         {
@@ -994,6 +994,11 @@ namespace OpenCVDemo1
         private void cbAutoRefresh_CheckedChanged(object sender, EventArgs e)
         {
             timerAutoRefresh.Enabled = cbAutoRefresh.Checked;
+        }
+
+        private void txtEngineDepth_TextChanged(object sender, EventArgs e)
+        {
+            EngineDepth = txtEngineDepth.Text;
         }
 
        
