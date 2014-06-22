@@ -696,6 +696,8 @@ namespace OpenCVDemo1
             int padding = int.Parse(txtPadding.Text);
             rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
             rbtnBlack.Checked = !rbtnWhite.Checked;
+            btnGetBestMove.Enabled = true;
+            
         }
 
         private void btnRefreshTemplate_Click(object sender, EventArgs e)

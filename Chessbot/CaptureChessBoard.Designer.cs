@@ -67,7 +67,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.btnStartNewGame = new System.Windows.Forms.Button();
             this.btnShowTemplate = new System.Windows.Forms.Button();
-            this.btnShowBoardConfiguration = new System.Windows.Forms.Button();
+            this.btnGetBestMove = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveTemplate = new System.Windows.Forms.Button();
             this.txtPadding = new System.Windows.Forms.TextBox();
@@ -87,6 +87,8 @@
             this.txtResizeLeft = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtEngineDepth = new System.Windows.Forms.TextBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtRefreshInterval = new System.Windows.Forms.TextBox();
@@ -119,8 +121,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtEngineDepth = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -212,7 +212,7 @@
             this.tbHome.Controls.Add(this.groupBox1);
             this.tbHome.Controls.Add(this.btnStartNewGame);
             this.tbHome.Controls.Add(this.btnShowTemplate);
-            this.tbHome.Controls.Add(this.btnShowBoardConfiguration);
+            this.tbHome.Controls.Add(this.btnGetBestMove);
             this.tbHome.Controls.Add(this.groupBox5);
             this.tbHome.Controls.Add(this.groupBox4);
             this.tbHome.Controls.Add(this.groupBox3);
@@ -538,15 +538,16 @@
             this.btnShowTemplate.UseVisualStyleBackColor = true;
             this.btnShowTemplate.Click += new System.EventHandler(this.btnShowTemplate_Click);
             // 
-            // btnShowBoardConfiguration
+            // btnGetBestMove
             // 
-            this.btnShowBoardConfiguration.Location = new System.Drawing.Point(270, 55);
-            this.btnShowBoardConfiguration.Name = "btnShowBoardConfiguration";
-            this.btnShowBoardConfiguration.Size = new System.Drawing.Size(101, 41);
-            this.btnShowBoardConfiguration.TabIndex = 23;
-            this.btnShowBoardConfiguration.Text = "GetBestMove";
-            this.btnShowBoardConfiguration.UseVisualStyleBackColor = true;
-            this.btnShowBoardConfiguration.Click += new System.EventHandler(this.btnShowBoardConfiguration_Click);
+            this.btnGetBestMove.Enabled = false;
+            this.btnGetBestMove.Location = new System.Drawing.Point(270, 55);
+            this.btnGetBestMove.Name = "btnGetBestMove";
+            this.btnGetBestMove.Size = new System.Drawing.Size(101, 41);
+            this.btnGetBestMove.TabIndex = 23;
+            this.btnGetBestMove.Text = "Get Best Move";
+            this.btnGetBestMove.UseVisualStyleBackColor = true;
+            this.btnGetBestMove.Click += new System.EventHandler(this.btnShowBoardConfiguration_Click);
             // 
             // groupBox5
             // 
@@ -746,6 +747,24 @@
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Capture Chess Board";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(205, 92);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(72, 13);
+            this.label24.TabIndex = 34;
+            this.label24.Text = "Engine Depth";
+            // 
+            // txtEngineDepth
+            // 
+            this.txtEngineDepth.Location = new System.Drawing.Point(283, 88);
+            this.txtEngineDepth.Name = "txtEngineDepth";
+            this.txtEngineDepth.Size = new System.Drawing.Size(26, 20);
+            this.txtEngineDepth.TabIndex = 33;
+            this.txtEngineDepth.Text = "16";
+            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
             // 
             // cbAutoRefresh
             // 
@@ -1062,24 +1081,6 @@
             this.textBox1.TabIndex = 14;
             this.textBox1.Text = "0";
             // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(205, 92);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(72, 13);
-            this.label24.TabIndex = 34;
-            this.label24.Text = "Engine Depth";
-            // 
-            // txtEngineDepth
-            // 
-            this.txtEngineDepth.Location = new System.Drawing.Point(283, 88);
-            this.txtEngineDepth.Name = "txtEngineDepth";
-            this.txtEngineDepth.Size = new System.Drawing.Size(26, 20);
-            this.txtEngineDepth.TabIndex = 33;
-            this.txtEngineDepth.Text = "16";
-            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
-            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1163,7 +1164,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnStartNewGame;
         private System.Windows.Forms.Button btnShowTemplate;
-        private System.Windows.Forms.Button btnShowBoardConfiguration;
+        private System.Windows.Forms.Button btnGetBestMove;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnSaveTemplate;
         private System.Windows.Forms.TextBox txtPadding;

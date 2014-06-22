@@ -311,12 +311,12 @@ namespace OpenCVDemo1
                     isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), ImageProcessingManager.StandardMatchingFactor);
                     if (isWhitePlaying)
                     {
-                        MessageBox.Show("User is playing with White side.");
+                        //MessageBox.Show("User is playing with White side.");
                         return false;
                     }
                     else
                     {
-                        MessageBox.Show("User is playing with Black side.");
+                        //MessageBox.Show("User is playing with Black side.");
                         return true;
                     }
                 }
