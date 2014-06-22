@@ -60,6 +60,8 @@ namespace OpenCVDemo1
 
         internal const string STOCKFISHENGINE = "stockfishengine.exe";
 
+        internal const string INVALID_FEN_STRING = "8/8/8/8/8/8/8/8";
+
         //modifiers
         public const int NOMOD = 0x0000;
         public const int ALT = 0x0001;

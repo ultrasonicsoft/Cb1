@@ -546,9 +546,9 @@ namespace OpenCVDemo1
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
             }
-            lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
+            lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime ;
 
-            if (fenString.Contains("8/8/8/8/8/8/8/8") == false)
+            if (fenString.Contains(Constants.INVALID_FEN_STRING) == false)
             {
                 GetNextBestMove(fenString);
             }
