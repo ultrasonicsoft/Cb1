@@ -48,20 +48,15 @@ namespace OpenCVDemo1
             int paddingPixel = int.Parse(txtPadding.Text);
             if (rbtnWhite.Checked)
             {
-                //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("white.png"), 5, rbtnWhite.Checked);
-                //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("test.png"), paddingPixel, rbtnWhite.Checked);
-                //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
             }
             else
             {
-                //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
                 ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                 ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
             }
             Cursor = Cursors.Default;
-
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -446,9 +446,14 @@ namespace OpenCVDemo1
             ScanBoardAgain();
         }
 
-        private void ScanBoardAgain()
+        private bool ScanBoardAgain()
         {
             croprect = ScreenBoardCoordinates;
+            if (croprect == Rectangle.Empty)
+            {
+                MessageBox.Show("Board selection is invalid. Please crop board properly.");
+                return false;
+            }
             Image img = (Image)ImageProcessingManager.TakeScreenShot();
             CapturedScreen = img;
             pbScreen.Image = img;
@@ -473,6 +478,7 @@ namespace OpenCVDemo1
             {
                 MessageBox.Show(ex.Message);
             }
+            return true;
         }
 
         private void btnLoadTemplate_Click(object sender, EventArgs e)
@@ -492,6 +498,11 @@ namespace OpenCVDemo1
 
         private void btnShowBoardConfiguration_Click(object sender, EventArgs e)
         {
+            if (ImageProcessingManager.allChessBoardTemplate == null )
+            {
+                MessageBox.Show("Template not loaded.");
+                return;
+            }
             GetBestMove();
         }
 
@@ -499,7 +510,8 @@ namespace OpenCVDemo1
         {
             IsComputingNextMove = true;
 
-            ScanBoardAgain();
+            if(ScanBoardAgain() == false)
+            { return; }
 
             showNextMove.IsThinkingNextMove = true;
             //timerAutoRefresh.Enabled = false;
@@ -536,7 +548,14 @@ namespace OpenCVDemo1
             }
             lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
 
-            GetNextBestMove(fenString);
+            if (fenString.Contains("8/8/8/8/8/8/8/8") == false)
+            {
+                GetNextBestMove(fenString);
+            }
+            else
+            {
+                MessageBox.Show("Invalid chess board screen fed. Please check proper chess board is configured.");
+            }
             Cursor = Cursors.Default;
         }
 

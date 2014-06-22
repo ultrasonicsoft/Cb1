@@ -45,7 +45,7 @@ namespace OpenCVDemo1
         public static string TotalProcessingTime { get; set; }
 
         //private static Dictionary<string, Image<Gray, Byte>> dicChessPosition = null;
-        private static List<ChessPiece> allChessBoardTemplate = null;
+        public static List<ChessPiece> allChessBoardTemplate = null;
         static public string AssemblyDirectory
         {
             get
@@ -716,7 +716,7 @@ namespace OpenCVDemo1
         {
             //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
-            if (currentChessBoardPosition == null)
+            if (currentChessBoardPosition == null || currentChessBoardPosition.Count==0)
             {
                 MessageBox.Show("Template is not loaded.");
                 return;
