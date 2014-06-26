@@ -45,6 +45,8 @@ namespace OpenCVDemo1
 
         public Image CapturedScreen { get; set; }
         public static Image CapturedBoard { get; set; }
+
+        public CompactView SmallView { get; set; }
         public CaptureChessBoard()
         {
             InitializeComponent();
@@ -54,6 +56,12 @@ namespace OpenCVDemo1
 
             ghk = new GlobalHotkey(Keys.NumPad0, this);
 
+            if(SmallView ==null )
+            {
+                SmallView = new CompactView();
+                SmallView.MainView = this;
+                SmallView.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
+            }
         }
 
         protected override void WndProc(ref Message m)
@@ -62,8 +70,6 @@ namespace OpenCVDemo1
                 GetBestMove();
             base.WndProc(ref m);
         }
-
-      
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -515,6 +521,7 @@ namespace OpenCVDemo1
 
             txtStatus.Text = "Computing next best move...";
             //showNextMove.IsThinkingNextMove = true;
+            SmallView.IsThinkingNextMove = true;
             //timerAutoRefresh.Enabled = false;
             Application.DoEvents();
             ProcessAndPrintBoard();
@@ -739,8 +746,11 @@ namespace OpenCVDemo1
                 //MessageBox.Show(args.BestMove);
 
                 //showNextMove.IsThinkingNextMove = false;
-                //Application.DoEvents();
 
+                SmallView.IsThinkingNextMove = false;
+                SmallView.BestMove = args.BestMove;
+                SmallView.TimeTaken = ImageProcessingManager.TotalProcessingTime;
+                Application.DoEvents();
                 //showNextMove.BestMove = args.BestMove;
                 if (statusStrip1.InvokeRequired)
                 {
@@ -1029,7 +1039,11 @@ namespace OpenCVDemo1
             EngineDepth = txtEngineDepth.Text;
         }
 
-       
+        private void btnCompactView_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SmallView.Show();
+        }
 
     }
 }

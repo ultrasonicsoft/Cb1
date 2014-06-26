@@ -84,6 +84,12 @@
       <DependentUpon>CaptureChessBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="ChessPiece.cs" />
+    <Compile Include="CompactView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CompactView.Designer.cs">
+      <DependentUpon>CompactView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ChessBrain.cs">
       <SubType>Form</SubType>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChessBrain.resx">
       <DependentUpon>ChessBrain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CompactView.resx">
+      <DependentUpon>CompactView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PreviewTemplate.resx">
       <DependentUpon>PreviewTemplate.cs</DependentUpon>
