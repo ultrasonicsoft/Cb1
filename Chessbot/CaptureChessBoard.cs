@@ -49,8 +49,8 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
-            showNextMove = new FrmShowNextMove();
-            showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
+            //showNextMove = new FrmShowNextMove();
+            //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
 
             ghk = new GlobalHotkey(Keys.NumPad0, this);
 
@@ -58,7 +58,7 @@ namespace OpenCVDemo1
 
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == Constants.WM_HOTKEY_MSG_ID)
+            if (IsComputingNextMove == false && m.Msg == Constants.WM_HOTKEY_MSG_ID)
                 GetBestMove();
             base.WndProc(ref m);
         }
@@ -87,7 +87,7 @@ namespace OpenCVDemo1
             LoadTemplates();
 
             // Show Next Move dialog box
-            showNextMove.Show();
+            //showNextMove.Show();
 
             // Register for Keypad event
             ghk.Register();
@@ -513,11 +513,11 @@ namespace OpenCVDemo1
             if(ScanBoardAgain() == false)
             { return; }
 
-            showNextMove.IsThinkingNextMove = true;
+            txtStatus.Text = "Computing next best move...";
+            //showNextMove.IsThinkingNextMove = true;
             //timerAutoRefresh.Enabled = false;
             Application.DoEvents();
             ProcessAndPrintBoard();
-            IsComputingNextMove = false;
             //timerAutoRefresh.Enabled = true;
 
 
@@ -738,17 +738,24 @@ namespace OpenCVDemo1
             {
                 //MessageBox.Show(args.BestMove);
 
-                showNextMove.IsThinkingNextMove = false;
-                Application.DoEvents();
+                //showNextMove.IsThinkingNextMove = false;
+                //Application.DoEvents();
 
-                showNextMove.BestMove = args.BestMove;
+                //showNextMove.BestMove = args.BestMove;
+                if (statusStrip1.InvokeRequired)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        txtStatus.Text = "Best move is: " + args.BestMove;
+                    });
+                }
+                
                 if (txtBestMove.InvokeRequired)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
                         txtBestMove.Text = args.BestMove; // runs on UI thread
                     });
-
                 }
                 char[] info = args.BestMove.ToUpper().ToCharArray();
 
