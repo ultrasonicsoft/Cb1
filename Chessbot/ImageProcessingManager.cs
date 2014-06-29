@@ -95,7 +95,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -119,7 +119,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -165,7 +165,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -184,7 +184,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -217,7 +217,7 @@ namespace OpenCVDemo1
             catch (Exception exception)
             {
                 allChessBoardTemplate = null;
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -244,7 +244,7 @@ namespace OpenCVDemo1
             catch (Exception exception)
             {
                 result = false;
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -397,7 +397,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -568,7 +568,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -637,7 +637,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -760,7 +760,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -918,7 +918,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }

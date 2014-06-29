@@ -133,7 +133,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("CaptureChessBoard_Load: " + exception.InnerException.Message);
+                LogHelper.logger.Error("CaptureChessBoard_Load: " + exception.Message);
                 LogHelper.logger.Error("CaptureChessBoard_Load: " + exception.StackTrace);
                 throw exception;
             }
@@ -155,7 +155,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnCropBoard_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnCropBoard_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCropBoard_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -181,7 +181,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnCaptureScreen_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnCaptureScreen_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCaptureScreen_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -231,7 +231,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -278,7 +278,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnResize_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnResize_Click: " + exception.Message);
                 LogHelper.logger.Error("btnResize_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -296,7 +296,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnTemplate_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnTemplate_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -320,7 +320,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -353,7 +353,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -374,7 +374,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.Message);
                 LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -390,7 +390,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnShowTemplate_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnShowTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnShowTemplate_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -414,7 +414,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.InnerException.Message);
+                LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.Message);
                 LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.StackTrace);
                 throw exception;
             }
@@ -435,7 +435,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.Message);
                 LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -468,7 +468,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.InnerException.Message);
+                LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.Message);
                 LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.StackTrace);
                 throw exception;
             }
@@ -501,7 +501,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnStartNewGame_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnStartNewGame_Click: " + exception.Message);
                 LogHelper.logger.Error("btnStartNewGame_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -540,7 +540,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.InnerException.Message);
+                LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.Message);
                 LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.StackTrace);
                 throw exception;
             }
@@ -556,7 +556,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.InnerException.Message);
+                LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.Message);
                 LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.StackTrace);
                 throw exception;
             }
@@ -584,7 +584,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("CaptureChessBoard_FormClosing: " + exception.InnerException.Message);
+                LogHelper.logger.Error("CaptureChessBoard_FormClosing: " + exception.Message);
                 LogHelper.logger.Error("CaptureChessBoard_FormClosing: " + exception.StackTrace);
                 throw exception;
             }
@@ -652,7 +652,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("Crop_Paint: " + exception.InnerException.Message);
+                LogHelper.logger.Error("Crop_Paint: " + exception.Message);
                 LogHelper.logger.Error("Crop_Paint: " + exception.StackTrace);
                 throw exception;
             }
@@ -700,7 +700,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("Crop_MouseMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("Crop_MouseMove: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -730,7 +730,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("Crop_MouseUp: " + exception.InnerException.Message);
+                LogHelper.logger.Error("Crop_MouseUp: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseUp: " + exception.StackTrace);
                 throw exception;
             }
@@ -761,7 +761,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("Crop_MouseDown: " + exception.InnerException.Message);
+                LogHelper.logger.Error("Crop_MouseDown: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseDown: " + exception.StackTrace);
                 throw exception;
             }
@@ -820,7 +820,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.Message);
                 LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -898,7 +898,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetChessDrawingIndex: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetChessDrawingIndex: " + exception.Message);
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
                 throw exception;
             }
@@ -977,7 +977,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetChessDrawingIndex: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetChessDrawingIndex: " + exception.Message);
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
                 throw exception;
             }
@@ -1020,7 +1020,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("CropChessBoard: " + exception.InnerException.Message);
+                LogHelper.logger.Error("CropChessBoard: " + exception.Message);
                 LogHelper.logger.Error("CropChessBoard: " + exception.StackTrace);
                 throw exception;
             }
@@ -1057,7 +1057,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("ScanBoardAgain: " + exception.InnerException.Message);
+                LogHelper.logger.Error("ScanBoardAgain: " + exception.Message);
                 LogHelper.logger.Error("ScanBoardAgain: " + exception.StackTrace);
                 throw exception;
             }
@@ -1082,7 +1082,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("ValidateBoard: " + exception.InnerException.Message);
+                LogHelper.logger.Error("ValidateBoard: " + exception.Message);
                 LogHelper.logger.Error("ValidateBoard: " + exception.StackTrace);
                 throw exception;
             }
@@ -1129,7 +1129,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("LoadTemplate: " + exception.InnerException.Message);
+                LogHelper.logger.Error("LoadTemplate: " + exception.Message);
                 LogHelper.logger.Error("LoadTemplate: " + exception.StackTrace);
                 throw exception;
             }
@@ -1174,7 +1174,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.InnerException.Message);
+                LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.Message);
                 LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.StackTrace);
                 throw exception;
             }
@@ -1222,7 +1222,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.InnerException.Message);
+                LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.Message);
                 LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.StackTrace);
                 throw exception;
             }
@@ -1256,7 +1256,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("RefreshGrayImage: " + exception.InnerException.Message);
+                LogHelper.logger.Error("RefreshGrayImage: " + exception.Message);
                 LogHelper.logger.Error("RefreshGrayImage: " + exception.StackTrace);
                 throw exception;
             }
@@ -1286,7 +1286,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -1308,7 +1308,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 throw exception;
             }
@@ -1361,7 +1361,7 @@ namespace OpenCVDemo1
             }
             catch (Exception exception)
             {
-                LogHelper.logger.Error("engine_BestMovFound: " + exception.InnerException.Message);
+                LogHelper.logger.Error("engine_BestMovFound: " + exception.Message);
                 LogHelper.logger.Error("engine_BestMovFound: " + exception.StackTrace);
                 throw exception;
             }
