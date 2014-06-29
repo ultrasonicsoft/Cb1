@@ -11,7 +11,8 @@
     <RootNamespace>OpenCVDemo1</RootNamespace>
     <AssemblyName>OpenCVDemo1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -32,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>flying-robot.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Emgu.CV">
@@ -60,6 +64,10 @@
     </Reference>
     <Reference Include="Emgu.Util">
       <HintPath>C:\Emgu\emgucv-windows-universal-cuda 2.9.0.1922\bin\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -99,6 +107,7 @@
     </Compile>
     <Compile Include="GlobalHotKeys.cs" />
     <Compile Include="ImageProcessingManager.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="PreviewTemplate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +158,7 @@
     <EmbeddedResource Include="ShowNextMove.resx">
       <DependentUpon>ShowNextMove.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -160,10 +170,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="flying-robot.ico" />
     <Content Include="Info.txt" />
     <None Include="Resources\chessbrain.jpeg" />
     <None Include="Resources\brain_thinking.gif" />
     <Content Include="ToDO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,11 +21,17 @@ namespace OpenCVDemo1
 {
     static class ImageProcessingManager
     {
-        public static readonly string CurrentExecutationPath = AssemblyDirectory;
-
+        #region Members
         private static string templatePath = null;
-        public static double IntensityValue { get; set; }
+        public static readonly string CurrentExecutationPath = AssemblyDirectory;
+        private static double _standardMatchingFactor = 0.75;
+        public static List<ChessPiece> allChessBoardTemplate = null;
+        static List<ChessEntity> currentChessBoardPosition = null;
 
+        #endregion
+
+        #region Properties
+        public static double IntensityValue { get; set; }
         public static Image CurrentTemplate { get; set; }
         public static string TemplatePath
         {
@@ -39,13 +45,8 @@ namespace OpenCVDemo1
             }
         }
 
-        private static double _standardMatchingFactor = 0.75;
         public static double StandardMatchingFactor { get { return _standardMatchingFactor; } set { _standardMatchingFactor = value; } }
-
         public static string TotalProcessingTime { get; set; }
-
-        //private static Dictionary<string, Image<Gray, Byte>> dicChessPosition = null;
-        public static List<ChessPiece> allChessBoardTemplate = null;
         static public string AssemblyDirectory
         {
             get
@@ -56,13 +57,14 @@ namespace OpenCVDemo1
                 return Path.GetDirectoryName(path);
             }
         }
+        #endregion
 
-        static List<ChessEntity> currentChessBoardPosition = null;
-
+        #region Image Processing Methods
         public static Image TakeScreenShot()
         {
             Image capturedScreen = null;
 
+            LogHelper.logger.Info("TakeScreenShot called...");
             try
             {
                 Rectangle bounds = Screen.GetBounds(Point.Empty);
@@ -91,269 +93,110 @@ namespace OpenCVDemo1
                 //    bitmap.Save("C://test.jpg", ImageFormat.Jpeg);
                 //}
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw ex;
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
+            LogHelper.logger.Info("TakeScreenShot finished...");
 
             return capturedScreen;
         }
-
-        public static void ReadChessBoardCurrentPosition(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, int intensityValue)
+        public static void ConvertImageToGrayScale(Bitmap image)
         {
-            #region Old code
-            //try
-            //{
-            //    //dicChessPosition = new System.Collections.Generic.Dictionary<string, Image<Gray, byte>>();
-            //    //CreateMasterTemplate(chessboardImage);
-
-            //    int width = chessboardImage.Width;
-            //    int height = chessboardImage.Height;
-            //    int startTop = 0;
-            //    int startLeft = 0;
-
-            //    Bitmap bmpChessboard = new Bitmap(chessboardImage);
-            //    Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
-            //    //grayScaledChessboard = grayScaledChessboard.ThresholdBinary(new Gray(255), new Gray(255));
-            //    bmpChessboard = grayScaledChessboard.ToBitmap();
-            //    bmpChessboard.Save("gray board.jpg");
-
-            //    int blockWidth = (width / Constants.GRID_SIZE);
-            //    int blockHeight = (height / Constants.GRID_SIZE);
-            //    int blockLeft = 0;
-            //    int blockTop = 0;
-
-            //    string piecePosition = string.Empty;
-            //    string fileName = CurrentExecutationPath + Constants.PositionFolderName + "{0}.jpg";
-            //    string[] columnNames = { "A", "B", "C", "D", "E", "F", "G", "H" };
-
-            //    string rowName = string.Empty;
-            //    Rectangle r = new Rectangle();
-            //    for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
-            //    {
-            //        blockLeft = 0;
-            //        int whiteRowCounter = 7;
-            //        int blackRowCounter = 0;
-            //        for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
-            //        {
-            //            r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
-            //            using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
-            //            {
-            //                if (isWhiteFirst)
-            //                {
-            //                    piecePosition = String.Format("{0}{1}", columnNames[whiteRowCounter], rowIndex);
-            //                    whiteRowCounter--;
-            //                }
-            //                else
-            //                {
-            //                    piecePosition = String.Format("{0}{1}", columnNames[blackRowCounter], Constants.GRID_SIZE - rowIndex + 1);
-            //                    blackRowCounter++;
-            //                }
-            //                //dicChessPosition[piecePosition] = new Image<Gray, Byte>(currentPiece);
-            //                //temp.Save(String.Format(fileName, columnNames[rowIndex - 1], colIndex), ImageFormat.Jpeg);
-            //                //dicChessPosition[piecePosition].Save(String.Format(fileName, piecePosition));
-            //                blockLeft += blockWidth;
-            //            }
-            //        }
-            //        blockTop += blockHeight;
-            //    }
-            //    //MessageBox.Show("done");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            #endregion
             try
             {
-                 var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
-                //Bitmap bmpChessboard = new Bitmap(chessboardImage);
-                ////Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
-                //Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
-                //bmpChessboard = grayScaledChessboard.ToBitmap();
-
-                 //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(chessboardImage as Bitmap);
-
-                 //var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensityValue), new Gray(255));
-
-                Bitmap bmpChessboard = (ImageProcessingManager.GetBinaryImage(chessboardImage, intensityValue).Bitmap).Clone(new Rectangle(0, 0, chessboardImage.Width, chessboardImage.Height), chessboardImage.PixelFormat);
-
-                //bmpChessboard.Save("gray board.jpg");
-
-                int blockWidth = (chessboardImage.Width / Constants.GRID_SIZE);
-                int blockHeight = (chessboardImage.Height / Constants.GRID_SIZE);
-
-                int blockLeft = 0;
-                int blockTop = 0;
-                Rectangle r = new Rectangle();
-
-                if (blockHeight < blockWidth)
-                    blockHeight = blockWidth;
-                else
-                    blockWidth = blockHeight;
-
-                currentChessBoardPosition = new List<ChessEntity>();
-                ChessEntity currentEntity = null;
-
-
-                Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
-                Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
-
-                //emptyGridZone1 = emptyGridZone1.Resize(0.5, INTER.CV_INTER_AREA);
-                //emptyGridZone2 = emptyGridZone2.Resize(0.5, INTER.CV_INTER_AREA);
-                for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
+                LogHelper.logger.Info("ConvertImageToGrayScale called...");
+                // Normalizing it to grayscale
+                Image<Gray, Byte> normalizedMasterImage = new Image<Gray, Byte>(image);
+                normalizedMasterImage.Save("before.jpg");
+                normalizedMasterImage = normalizedMasterImage.ThresholdBinary(new Gray(100), new Gray(255));
+                normalizedMasterImage.Save("after.jpg");
+                //CvInvoke.cvShowImage("gray scale input image", normalizedMasterImage.Ptr);
+                //image = normalizedMasterImage.ToBitmap();
+                //image.Save("gray.jpg");
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
+            }
+            LogHelper.logger.Info("ConvertImageToGrayScale finished...");
+        }
+        public static bool AreImagesSame(Image<Gray, Byte> inputImage, Image<Gray, Byte> templateImage, double comparisonFactor)
+        {
+            bool Success = false;
+            try
+            {
+                LogHelper.logger.Info("AreImagesSame called...");
+                //Point Object_Location = new Point();
+                Point dftSize = new Point(inputImage.Width + (templateImage.Width * 2), inputImage.Height + (templateImage.Height * 2));
+                using (Image<Gray, Byte> pad_array = new Image<Gray, Byte>(dftSize.X, dftSize.Y))
                 {
-                    blockLeft = 0;
-                    for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
+                    //copy centre
+                    pad_array.ROI = new Rectangle(templateImage.Width, templateImage.Height, inputImage.Width, inputImage.Height);
+                    CvInvoke.cvCopy(inputImage.Convert<Gray, Byte>(), pad_array, IntPtr.Zero);
+
+                    //CvInvoke.cvShowImage("pad_array", pad_array);
+                    pad_array.ROI = (new Rectangle(0, 0, dftSize.X, dftSize.Y));
+                    using (Image<Gray, float> result_Matrix = pad_array.MatchTemplate(templateImage, TM_TYPE.CV_TM_CCOEFF_NORMED))
                     {
-                        r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
-                        using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
+                        result_Matrix.ROI = new Rectangle(templateImage.Width, templateImage.Height, inputImage.Width, inputImage.Height);
+
+                        Point[] MAX_Loc, Min_Loc;
+                        double[] min, max;
+                        result_Matrix.MinMax(out min, out max, out Min_Loc, out MAX_Loc);
+
+                        using (Image<Gray, double> RG_Image = result_Matrix.Convert<Gray, double>().Copy())
                         {
-                            // Mark each grid zone entity
-                            currentEntity = new ChessEntity();
+                            //#TAG WILL NEED TO INCREASE SO THRESHOLD AT LEAST 0.8
 
-                            // Check is empty grid zone?
-                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
-                            if (isEmptyGridZone)
+                            if (max[0] > comparisonFactor)
+                            //if (max[0] > 0.75)
                             {
-                                currentEntity.IsAlive = false;
+                                //Object_Location = MAX_Loc[0];
+                                Success = true;
                             }
-                            // If not empty grid zone, find exact piece from template
-                            else
-                            {
-                                foreach (ChessPiece item in allChessBoardTemplate)
-                                {
-                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
-                                    if (result == true)
-                                    {
-                                        // Piece matched. Extract its name and save its position
-                                        currentEntity.PieceInfo = new ChessPiece();
-                                        currentEntity.PieceInfo.Name = item.Name;
-                                        currentEntity.PieceInfo.Code = item.Code;
-                                        currentEntity.PieceInfo.Piece = item.Piece;
-                                        currentEntity.IsAlive = true;
-
-                                        //currentEntity.PieceInfo.Piece.Save(currentEntity.PieceInfo.Name + ".jpg");
-                                        break;
-                                    }
-                                }
-                            }
-
-                            //Add current entity to chessboard position list
-                            currentEntity.RowPosition = rowIndex;
-                            currentEntity.ColumnPosition = colIndex;
-                            currentChessBoardPosition.Add(currentEntity);
-                            blockLeft += blockWidth;
                         }
                     }
-                    blockTop += blockHeight;
                 }
-                totalExecutionTime.Stop();
-                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
-                TotalProcessingTime =  totalExecutionTime.ElapsedMilliseconds.ToString();
-
-                //MessageBox.Show("done");
-                //var allPieces = currentChessBoardPosition.Where(x => x.IsAlive == true);
-                //foreach (var item in allPieces)
-                //{
-                //    //item.PieceInfo.Piece.Save(item.PieceInfo.Name + ".jpg");
-                //}
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
+            LogHelper.logger.Info("AreImagesSame finished...");
+            return Success;
         }
-
-        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount)
+        public static Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> GetBinaryImage(Image inputImage, double intensity)
         {
-            bool isWhitePlaying = false;
+            LogHelper.logger.Info("GetBinaryImage called...");
+            Image<Gray, byte> binaryImage = null;
             try
             {
-                if (allChessBoardTemplate == null || allChessBoardTemplate.Count == 0)
-                {
-                    MessageBox.Show("Please Load Template.", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-                int width = chessboardImage.Width;
-                int height = chessboardImage.Height;
-
-                Bitmap bmpChessboard = new Bitmap(chessboardImage);
-                //Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
-                Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
-                bmpChessboard = grayScaledChessboard.ToBitmap();
-                //bmpChessboard.Save("gray board.jpg");
-
-                int blockWidth = (width / Constants.GRID_SIZE);
-                int blockHeight = (height / Constants.GRID_SIZE);
-
-                int blockLeft = 0;
-                int blockTop = 0;
-                Rectangle r = new Rectangle();
-
-                if (blockHeight < blockWidth)
-                    blockHeight = blockWidth;
-                else
-                    blockWidth = blockHeight;
-
-                currentChessBoardPosition = new List<ChessEntity>();
-
-                Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
-                Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
-
-                r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
-                using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
-                {
-                    currentPiece.Save("NewGameTopLeftRook.png");
-                    allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
-
-                    var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r, PixelFormat.DontCare);
-                    isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), ImageProcessingManager.StandardMatchingFactor);
-                    if (isWhitePlaying)
-                    {
-                        //MessageBox.Show("User is playing with White side.");
-                        return false;
-                    }
-                    else
-                    {
-                        //MessageBox.Show("User is playing with Black side.");
-                        return true;
-                    }
-                }
-
+                Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(inputImage as Bitmap);
+                binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
+                //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
-            return isWhitePlaying;
+            LogHelper.logger.Info("GetBinaryImage finished...");
+            return binaryImage;
         }
+        #endregion
 
-        public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate, int intensity)
-        {
-            bool result = true;
-            try
-            {
-                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    //bin.Serialize(stream, masterTemplate);
-                    ChessTemplate template = new ChessTemplate();
-                    template.ChessConfiguration = masterTemplate;
-                    template.CurrentTemplateImage = masterTemplateImage;
-                    template.Intensity = intensity;
-                    bin.Serialize(stream, template);
-                }
-            }
-            catch (IOException)
-            {
-                result = false;
-            }
-            return result;
-        }
-
+        #region Template Methods
         public static ChessTemplate ReadTemplate(string templateFileName)
         {
+            LogHelper.logger.Info("ReadTemplate called...");
             ChessTemplate chessTemplate = null;
             try
             {
@@ -371,18 +214,48 @@ namespace OpenCVDemo1
                     allChessBoardTemplate = chessTemplate.ChessConfiguration;
                 }
             }
-            catch (IOException ex)
+            catch (Exception exception)
             {
                 allChessBoardTemplate = null;
-                throw ex;
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
+            LogHelper.logger.Info("ReadTemplate finished...");
             return chessTemplate;
         }
-
+        public static bool SaveTemplate(Image masterTemplateImage, string templateFileName, List<ChessPiece> masterTemplate, int intensity)
+        {
+            LogHelper.logger.Info("SaveTemplate called...");
+            bool result = true;
+            try
+            {
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    //bin.Serialize(stream, masterTemplate);
+                    ChessTemplate template = new ChessTemplate();
+                    template.ChessConfiguration = masterTemplate;
+                    template.CurrentTemplateImage = masterTemplateImage;
+                    template.Intensity = intensity;
+                    bin.Serialize(stream, template);
+                }
+            }
+            catch (Exception exception)
+            {
+                result = false;
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
+            }
+            LogHelper.logger.Info("SaveTemplate finished...");
+            return result;
+        }
         public static List<ChessPiece> FillMasterTemplate(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, double intensity = 100)
         {
             try
             {
+                LogHelper.logger.Info("FillMasterTemplate called...");
                 //ChessPieceTemplate = new System.Collections.Generic.Dictionary<string, Image<Gray, byte>>();
                 allChessBoardTemplate = new List<ChessPiece>();
 
@@ -522,464 +395,544 @@ namespace OpenCVDemo1
                 }
                 //MessageBox.Show("done");
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
+            LogHelper.logger.Info("FillMasterTemplate finished...");
             return allChessBoardTemplate;
         }
-
-        public static void ConvertImageToGrayScale(Bitmap image)
+        #endregion
+        public static void ReadChessBoardCurrentPosition(Image chessboardImage, int blockPaddingAmount, bool isWhiteFirst, int intensityValue)
         {
+            #region Old code
+            //try
+            //{
+            //    //dicChessPosition = new System.Collections.Generic.Dictionary<string, Image<Gray, byte>>();
+            //    //CreateMasterTemplate(chessboardImage);
+
+            //    int width = chessboardImage.Width;
+            //    int height = chessboardImage.Height;
+            //    int startTop = 0;
+            //    int startLeft = 0;
+
+            //    Bitmap bmpChessboard = new Bitmap(chessboardImage);
+            //    Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+            //    //grayScaledChessboard = grayScaledChessboard.ThresholdBinary(new Gray(255), new Gray(255));
+            //    bmpChessboard = grayScaledChessboard.ToBitmap();
+            //    bmpChessboard.Save("gray board.jpg");
+
+            //    int blockWidth = (width / Constants.GRID_SIZE);
+            //    int blockHeight = (height / Constants.GRID_SIZE);
+            //    int blockLeft = 0;
+            //    int blockTop = 0;
+
+            //    string piecePosition = string.Empty;
+            //    string fileName = CurrentExecutationPath + Constants.PositionFolderName + "{0}.jpg";
+            //    string[] columnNames = { "A", "B", "C", "D", "E", "F", "G", "H" };
+
+            //    string rowName = string.Empty;
+            //    Rectangle r = new Rectangle();
+            //    for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
+            //    {
+            //        blockLeft = 0;
+            //        int whiteRowCounter = 7;
+            //        int blackRowCounter = 0;
+            //        for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
+            //        {
+            //            r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+            //            using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
+            //            {
+            //                if (isWhiteFirst)
+            //                {
+            //                    piecePosition = String.Format("{0}{1}", columnNames[whiteRowCounter], rowIndex);
+            //                    whiteRowCounter--;
+            //                }
+            //                else
+            //                {
+            //                    piecePosition = String.Format("{0}{1}", columnNames[blackRowCounter], Constants.GRID_SIZE - rowIndex + 1);
+            //                    blackRowCounter++;
+            //                }
+            //                //dicChessPosition[piecePosition] = new Image<Gray, Byte>(currentPiece);
+            //                //temp.Save(String.Format(fileName, columnNames[rowIndex - 1], colIndex), ImageFormat.Jpeg);
+            //                //dicChessPosition[piecePosition].Save(String.Format(fileName, piecePosition));
+            //                blockLeft += blockWidth;
+            //            }
+            //        }
+            //        blockTop += blockHeight;
+            //    }
+            //    //MessageBox.Show("done");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            #endregion
             try
             {
-                // Normalizing it to grayscale
-                Image<Gray, Byte> normalizedMasterImage = new Image<Gray, Byte>(image);
-                normalizedMasterImage.Save("before.jpg");
-                normalizedMasterImage = normalizedMasterImage.ThresholdBinary(new Gray(100), new Gray(255));
-                normalizedMasterImage.Save("after.jpg");
-                //CvInvoke.cvShowImage("gray scale input image", normalizedMasterImage.Ptr);
-                //image = normalizedMasterImage.ToBitmap();
-                //image.Save("gray.jpg");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+                LogHelper.logger.Info("ReadChessBoardCurrentPosition called...");
+                var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
+                //Bitmap bmpChessboard = new Bitmap(chessboardImage);
+                ////Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
+                //Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+                //bmpChessboard = grayScaledChessboard.ToBitmap();
 
-        public static bool AreImagesSame(Image<Gray, Byte> inputImage, Image<Gray, Byte> templateImage, double comparisonFactor)
-        {
-            //Point Object_Location = new Point();
-            Point dftSize = new Point(inputImage.Width + (templateImage.Width * 2), inputImage.Height + (templateImage.Height * 2));
-            bool Success = false;
-            using (Image<Gray, Byte> pad_array = new Image<Gray, Byte>(dftSize.X, dftSize.Y))
-            {
-                //copy centre
-                pad_array.ROI = new Rectangle(templateImage.Width, templateImage.Height, inputImage.Width, inputImage.Height);
-                CvInvoke.cvCopy(inputImage.Convert<Gray, Byte>(), pad_array, IntPtr.Zero);
+                //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(chessboardImage as Bitmap);
 
-                //CvInvoke.cvShowImage("pad_array", pad_array);
-                pad_array.ROI = (new Rectangle(0, 0, dftSize.X, dftSize.Y));
-                using (Image<Gray, float> result_Matrix = pad_array.MatchTemplate(templateImage, TM_TYPE.CV_TM_CCOEFF_NORMED))
+                //var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensityValue), new Gray(255));
+
+                Bitmap bmpChessboard = (ImageProcessingManager.GetBinaryImage(chessboardImage, intensityValue).Bitmap).Clone(new Rectangle(0, 0, chessboardImage.Width, chessboardImage.Height), chessboardImage.PixelFormat);
+
+                //bmpChessboard.Save("gray board.jpg");
+
+                int blockWidth = (chessboardImage.Width / Constants.GRID_SIZE);
+                int blockHeight = (chessboardImage.Height / Constants.GRID_SIZE);
+
+                int blockLeft = 0;
+                int blockTop = 0;
+                Rectangle r = new Rectangle();
+
+                if (blockHeight < blockWidth)
+                    blockHeight = blockWidth;
+                else
+                    blockWidth = blockHeight;
+
+                currentChessBoardPosition = new List<ChessEntity>();
+                ChessEntity currentEntity = null;
+
+
+                Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
+                Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
+
+                //emptyGridZone1 = emptyGridZone1.Resize(0.5, INTER.CV_INTER_AREA);
+                //emptyGridZone2 = emptyGridZone2.Resize(0.5, INTER.CV_INTER_AREA);
+                for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
                 {
-                    result_Matrix.ROI = new Rectangle(templateImage.Width, templateImage.Height, inputImage.Width, inputImage.Height);
-
-                    Point[] MAX_Loc, Min_Loc;
-                    double[] min, max;
-                    result_Matrix.MinMax(out min, out max, out Min_Loc, out MAX_Loc);
-
-                    using (Image<Gray, double> RG_Image = result_Matrix.Convert<Gray, double>().Copy())
+                    blockLeft = 0;
+                    for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
                     {
-                        //#TAG WILL NEED TO INCREASE SO THRESHOLD AT LEAST 0.8
-
-                        if (max[0] > comparisonFactor)
-                        //if (max[0] > 0.75)
+                        r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                        using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                         {
-                            //Object_Location = MAX_Loc[0];
-                            Success = true;
+                            // Mark each grid zone entity
+                            currentEntity = new ChessEntity();
+
+                            // Check is empty grid zone?
+                            bool isEmptyGridZone = AreImagesSame(emptyGridZone1, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor) || AreImagesSame(emptyGridZone2, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
+                            if (isEmptyGridZone)
+                            {
+                                currentEntity.IsAlive = false;
+                            }
+                            // If not empty grid zone, find exact piece from template
+                            else
+                            {
+                                foreach (ChessPiece item in allChessBoardTemplate)
+                                {
+                                    bool result = AreImagesSame(item.Piece, new Image<Gray, Byte>(currentPiece), StandardMatchingFactor);
+                                    if (result == true)
+                                    {
+                                        // Piece matched. Extract its name and save its position
+                                        currentEntity.PieceInfo = new ChessPiece();
+                                        currentEntity.PieceInfo.Name = item.Name;
+                                        currentEntity.PieceInfo.Code = item.Code;
+                                        currentEntity.PieceInfo.Piece = item.Piece;
+                                        currentEntity.IsAlive = true;
+
+                                        //currentEntity.PieceInfo.Piece.Save(currentEntity.PieceInfo.Name + ".jpg");
+                                        break;
+                                    }
+                                }
+                            }
+
+                            //Add current entity to chessboard position list
+                            currentEntity.RowPosition = rowIndex;
+                            currentEntity.ColumnPosition = colIndex;
+                            currentChessBoardPosition.Add(currentEntity);
+                            blockLeft += blockWidth;
                         }
                     }
+                    blockTop += blockHeight;
                 }
+                totalExecutionTime.Stop();
+                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+                TotalProcessingTime = totalExecutionTime.ElapsedMilliseconds.ToString();
+
+                //MessageBox.Show("done");
+                //var allPieces = currentChessBoardPosition.Where(x => x.IsAlive == true);
+                //foreach (var item in allPieces)
+                //{
+                //    //item.PieceInfo.Piece.Save(item.PieceInfo.Name + ".jpg");
+                //}
             }
-            return Success;
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
+            }
+            LogHelper.logger.Info("ReadChessBoardCurrentPosition finished...");
         }
 
-
-        public static Image<Bgr, Byte> Draw(Image<Gray, Byte> modelImage, Image<Gray, byte> observedImage, out long matchTime)
+        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount)
         {
-            Stopwatch watch;
-            HomographyMatrix homography = null;
-
-            SURFDetector surfCPU = new SURFDetector(500, false);
-            VectorOfKeyPoint modelKeyPoints;
-            VectorOfKeyPoint observedKeyPoints;
-            Matrix<int> indices;
-
-            Matrix<byte> mask;
-            int k = 2;
-            double uniquenessThreshold = 0.8;
-            if (GpuInvoke.HasCuda)
+            bool isWhitePlaying = false;
+            try
             {
-                GpuSURFDetector surfGPU = new GpuSURFDetector(surfCPU.SURFParams, 0.01f);
-                using (GpuImage<Gray, Byte> gpuModelImage = new GpuImage<Gray, byte>(modelImage))
-                //extract features from the object image
-                using (GpuMat<float> gpuModelKeyPoints = surfGPU.DetectKeyPointsRaw(gpuModelImage, null))
-                using (GpuMat<float> gpuModelDescriptors = surfGPU.ComputeDescriptorsRaw(gpuModelImage, null, gpuModelKeyPoints))
-                using (GpuBruteForceMatcher<float> matcher = new GpuBruteForceMatcher<float>(DistanceType.L2))
+                LogHelper.logger.Info("CheckFirstWhosFirstMove called...");
+                if (allChessBoardTemplate == null || allChessBoardTemplate.Count == 0)
                 {
-                    modelKeyPoints = new VectorOfKeyPoint();
-                    surfGPU.DownloadKeypoints(gpuModelKeyPoints, modelKeyPoints);
-                    watch = Stopwatch.StartNew();
+                    MessageBox.Show("Please Load Template.", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int width = chessboardImage.Width;
+                int height = chessboardImage.Height;
 
-                    // extract features from the observed image
-                    using (GpuImage<Gray, Byte> gpuObservedImage = new GpuImage<Gray, byte>(observedImage))
-                    using (GpuMat<float> gpuObservedKeyPoints = surfGPU.DetectKeyPointsRaw(gpuObservedImage, null))
-                    using (GpuMat<float> gpuObservedDescriptors = surfGPU.ComputeDescriptorsRaw(gpuObservedImage, null, gpuObservedKeyPoints))
-                    using (GpuMat<int> gpuMatchIndices = new GpuMat<int>(gpuObservedDescriptors.Size.Height, k, 1, true))
-                    using (GpuMat<float> gpuMatchDist = new GpuMat<float>(gpuObservedDescriptors.Size.Height, k, 1, true))
-                    using (GpuMat<Byte> gpuMask = new GpuMat<byte>(gpuMatchIndices.Size.Height, 1, 1))
-                    using (Emgu.CV.GPU.Stream stream = new Emgu.CV.GPU.Stream())
+                Bitmap bmpChessboard = new Bitmap(chessboardImage);
+                //Bitmap bmpChessboard = new Bitmap(CaptureChessBoard.CapturedBoard);
+                Image<Gray, Byte> grayScaledChessboard = new Image<Gray, Byte>(bmpChessboard);
+                bmpChessboard = grayScaledChessboard.ToBitmap();
+                //bmpChessboard.Save("gray board.jpg");
+
+                int blockWidth = (width / Constants.GRID_SIZE);
+                int blockHeight = (height / Constants.GRID_SIZE);
+
+                int blockLeft = 0;
+                int blockTop = 0;
+                Rectangle r = new Rectangle();
+
+                if (blockHeight < blockWidth)
+                    blockHeight = blockWidth;
+                else
+                    blockWidth = blockHeight;
+
+                currentChessBoardPosition = new List<ChessEntity>();
+
+                Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
+                Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
+
+                r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
+                {
+                    currentPiece.Save("NewGameTopLeftRook.png");
+                    allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
+
+                    var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r, PixelFormat.DontCare);
+                    isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), ImageProcessingManager.StandardMatchingFactor);
+                    if (isWhitePlaying)
                     {
-                        matcher.KnnMatchSingle(gpuObservedDescriptors, gpuModelDescriptors, gpuMatchIndices, gpuMatchDist, k, null, stream);
-                        indices = new Matrix<int>(gpuMatchIndices.Size);
-                        mask = new Matrix<byte>(gpuMask.Size);
-
-                        //gpu implementation of voteForUniquess
-                        using (GpuMat<float> col0 = gpuMatchDist.Col(0))
-                        using (GpuMat<float> col1 = gpuMatchDist.Col(1))
-                        {
-                            GpuInvoke.Multiply(col1, new MCvScalar(uniquenessThreshold), col1, stream);
-                            GpuInvoke.Compare(col0, col1, gpuMask, CMP_TYPE.CV_CMP_LE, stream);
-                        }
-
-                        observedKeyPoints = new VectorOfKeyPoint();
-                        surfGPU.DownloadKeypoints(gpuObservedKeyPoints, observedKeyPoints);
-
-                        //wait for the stream to complete its tasks
-                        //We can perform some other CPU intesive stuffs here while we are waiting for the stream to complete.
-                        stream.WaitForCompletion();
-
-                        gpuMask.Download(mask);
-                        gpuMatchIndices.Download(indices);
-
-                        if (GpuInvoke.CountNonZero(gpuMask) >= 4)
-                        {
-                            int nonZeroCount = Features2DToolbox.VoteForSizeAndOrientation(modelKeyPoints, observedKeyPoints, indices, mask, 1.5, 20);
-                            if (nonZeroCount >= 4)
-                                homography = Features2DToolbox.GetHomographyMatrixFromMatchedFeatures(modelKeyPoints, observedKeyPoints, indices, mask, 2);
-                        }
-
-                        watch.Stop();
+                        //MessageBox.Show("User is playing with White side.");
+                        LogHelper.logger.Info("CheckFirstWhosFirstMove finished...");
+                        return false;
+                    }
+                    else
+                    {
+                        //MessageBox.Show("User is playing with Black side.");
+                        LogHelper.logger.Info("CheckFirstWhosFirstMove finished...");
+                        return true;
                     }
                 }
+
             }
-            else
+            catch (Exception exception)
             {
-                //extract features from the object image
-                modelKeyPoints = surfCPU.DetectKeyPointsRaw(modelImage, null);
-                Matrix<float> modelDescriptors = surfCPU.ComputeDescriptorsRaw(modelImage, null, modelKeyPoints);
-
-                watch = Stopwatch.StartNew();
-
-                // extract features from the observed image
-                observedKeyPoints = surfCPU.DetectKeyPointsRaw(observedImage, null);
-                Matrix<float> observedDescriptors = surfCPU.ComputeDescriptorsRaw(observedImage, null, observedKeyPoints);
-                BruteForceMatcher<float> matcher = new BruteForceMatcher<float>(DistanceType.L2);
-                matcher.Add(modelDescriptors);
-
-                indices = new Matrix<int>(observedDescriptors.Rows, k);
-                using (Matrix<float> dist = new Matrix<float>(observedDescriptors.Rows, k))
-                {
-                    matcher.KnnMatch(observedDescriptors, indices, dist, k, null);
-                    mask = new Matrix<byte>(dist.Rows, 1);
-                    mask.SetValue(255);
-                    Features2DToolbox.VoteForUniqueness(dist, uniquenessThreshold, mask);
-                }
-
-                int nonZeroCount = CvInvoke.cvCountNonZero(mask);
-                if (nonZeroCount >= 4)
-                {
-                    nonZeroCount = Features2DToolbox.VoteForSizeAndOrientation(modelKeyPoints, observedKeyPoints, indices, mask, 1.5, 20);
-                    if (nonZeroCount >= 4)
-                        homography = Features2DToolbox.GetHomographyMatrixFromMatchedFeatures(modelKeyPoints, observedKeyPoints, indices, mask, 2);
-                }
-
-                watch.Stop();
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
             }
-
-            //Draw the matched keypoints
-            Image<Bgr, Byte> result = Features2DToolbox.DrawMatches(modelImage, modelKeyPoints, observedImage, observedKeyPoints,
-               indices, new Bgr(255, 255, 255), new Bgr(255, 255, 255), mask, Features2DToolbox.KeypointDrawType.DEFAULT);
-
-            #region draw the projected region on the image
-            if (homography != null)
-            {  //draw a rectangle along the projected model
-                Rectangle rect = modelImage.ROI;
-                PointF[] pts = new PointF[] { 
-               new PointF(rect.Left, rect.Bottom),
-               new PointF(rect.Right, rect.Bottom),
-               new PointF(rect.Right, rect.Top),
-               new PointF(rect.Left, rect.Top)};
-                homography.ProjectPoints(pts);
-
-                result.DrawPolyline(Array.ConvertAll<PointF, Point>(pts, Point.Round), true, new Bgr(Color.Red), 5);
-            }
-            #endregion
-
-            matchTime = watch.ElapsedMilliseconds;
-
-            return result;
+            return isWhitePlaying;
         }
 
         internal static void PrintChessBoard(bool isUserPlayingWhite)
         {
-            //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
-
-            if (currentChessBoardPosition == null || currentChessBoardPosition.Count==0)
+            try
             {
-                MessageBox.Show("Template is not loaded.");
-                return;
-            }
-            Console.Clear();
 
-            Console.WriteLine("**************************** Chess board ****************************");
-            Console.WriteLine();
+                LogHelper.logger.Info("PrintChessBoard called...");
 
-            string rowHeader = "     A    B    C    D    E    F    G    H";
-            //string blackRowHeader = "     A    B    C    D    E    F    G    H";
-            //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
+                //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
-            if (!isUserPlayingWhite)
-            {
-                rowHeader = "     H    G    F    E    D    C    B    A";
-            }
-            else
-            {
-                rowHeader = "     A    B    C    D    E    F    G    H";
-            }
-
-            Console.WriteLine(rowHeader);
-            string rowSeparator = "  +----+----+----+----+----+----+----+----+";
-            Console.WriteLine(rowSeparator);
-            string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
-            string emptyPiece = "  ";
-            string currentRow = string.Empty;
-            for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
-            {
-                currentRow = string.Empty;
-                string one = string.Empty;
-                string two = string.Empty;
-                string three = string.Empty;
-                string four = string.Empty;
-                string five = string.Empty;
-                string six = string.Empty;
-                string seven = string.Empty;
-                string eight = string.Empty;
-                for (int columnIndex = 1; columnIndex <= Constants.GRID_SIZE; columnIndex++)
+                if (currentChessBoardPosition == null || currentChessBoardPosition.Count == 0)
                 {
-                    var currentPiece = currentChessBoardPosition.FirstOrDefault(x => x.RowPosition == rowIndex && x.ColumnPosition == columnIndex);
-                    switch (columnIndex)
-                    {
-                        case 1:
-                            one = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (one.Equals("WE1") || one.Equals("WE2") || one.Equals("BE1") || one.Equals("BE2"))
-                                one = emptyPiece;
-                            break;
-                        case 2:
-                            two = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (two.Equals("WE1") || two.Equals("WE2") || two.Equals("BE1") || two.Equals("BE2"))
-                                two = emptyPiece;
-                            break;
-                        case 3:
-                            three = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (three.Equals("WE1") || three.Equals("WE2") || three.Equals("BE1") || three.Equals("BE2"))
-                                three = emptyPiece;
-                            break;
-                        case 4:
-                            four = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (four.Equals("WE1") || four.Equals("WE2") || four.Equals("BE1") || four.Equals("BE2"))
-                                four = emptyPiece;
-                            break;
-                        case 5:
-                            five = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (five.Equals("WE1") || five.Equals("WE2") || five.Equals("BE1") || five.Equals("BE2"))
-                                five = emptyPiece;
-                            break;
-                        case 6:
-                            six = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (six.Equals("WE1") || six.Equals("WE2") || six.Equals("BE1") || six.Equals("BE2"))
-                                six = emptyPiece;
-                            break;
-                        case 7:
-                            seven = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (seven.Equals("WE1") || seven.Equals("WE2") || seven.Equals("BE1") || seven.Equals("BE2"))
-                                seven = emptyPiece;
-                            break;
-                        case 8:
-                            eight = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                            if (eight.Equals("WE1") || eight.Equals("WE2") || eight.Equals("BE1") || eight.Equals("BE2"))
-                                eight = emptyPiece;
-                            break;
-                        default:
-                            break;
-                    }
-
+                    MessageBox.Show("Template is not loaded.");
+                    return;
                 }
-                if (isUserPlayingWhite)
+                Console.Clear();
+
+                Console.WriteLine("**************************** Chess board ****************************");
+                Console.WriteLine();
+
+                string rowHeader = "     A    B    C    D    E    F    G    H";
+                //string blackRowHeader = "     A    B    C    D    E    F    G    H";
+                //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
+
+                if (!isUserPlayingWhite)
                 {
-                    Console.Write(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
+                    rowHeader = "     H    G    F    E    D    C    B    A";
                 }
                 else
                 {
-                    Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
+                    rowHeader = "     A    B    C    D    E    F    G    H";
                 }
-                Console.WriteLine();
-                Console.WriteLine(rowSeparator);
 
+                Console.WriteLine(rowHeader);
+                string rowSeparator = "  +----+----+----+----+----+----+----+----+";
+                Console.WriteLine(rowSeparator);
+                string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
+                string emptyPiece = "  ";
+                string currentRow = string.Empty;
+                for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
+                {
+                    currentRow = string.Empty;
+                    string one = string.Empty;
+                    string two = string.Empty;
+                    string three = string.Empty;
+                    string four = string.Empty;
+                    string five = string.Empty;
+                    string six = string.Empty;
+                    string seven = string.Empty;
+                    string eight = string.Empty;
+                    for (int columnIndex = 1; columnIndex <= Constants.GRID_SIZE; columnIndex++)
+                    {
+                        var currentPiece = currentChessBoardPosition.FirstOrDefault(x => x.RowPosition == rowIndex && x.ColumnPosition == columnIndex);
+                        switch (columnIndex)
+                        {
+                            case 1:
+                                one = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (one.Equals("WE1") || one.Equals("WE2") || one.Equals("BE1") || one.Equals("BE2"))
+                                    one = emptyPiece;
+                                break;
+                            case 2:
+                                two = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (two.Equals("WE1") || two.Equals("WE2") || two.Equals("BE1") || two.Equals("BE2"))
+                                    two = emptyPiece;
+                                break;
+                            case 3:
+                                three = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (three.Equals("WE1") || three.Equals("WE2") || three.Equals("BE1") || three.Equals("BE2"))
+                                    three = emptyPiece;
+                                break;
+                            case 4:
+                                four = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (four.Equals("WE1") || four.Equals("WE2") || four.Equals("BE1") || four.Equals("BE2"))
+                                    four = emptyPiece;
+                                break;
+                            case 5:
+                                five = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (five.Equals("WE1") || five.Equals("WE2") || five.Equals("BE1") || five.Equals("BE2"))
+                                    five = emptyPiece;
+                                break;
+                            case 6:
+                                six = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (six.Equals("WE1") || six.Equals("WE2") || six.Equals("BE1") || six.Equals("BE2"))
+                                    six = emptyPiece;
+                                break;
+                            case 7:
+                                seven = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (seven.Equals("WE1") || seven.Equals("WE2") || seven.Equals("BE1") || seven.Equals("BE2"))
+                                    seven = emptyPiece;
+                                break;
+                            case 8:
+                                eight = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+                                if (eight.Equals("WE1") || eight.Equals("WE2") || eight.Equals("BE1") || eight.Equals("BE2"))
+                                    eight = emptyPiece;
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+                    if (isUserPlayingWhite)
+                    {
+                        Console.Write(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
+                    }
+                    else
+                    {
+                        Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine(rowSeparator);
+
+                }
+                //totalExecutionTime.Stop();
+                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
             }
-            //totalExecutionTime.Stop();
-            //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
+            }
+            LogHelper.logger.Info("PrintChessBoard finished...");
         }
 
         public static string PrepareFenString(bool isBlackMoveNext)
         {
-            //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
-
-            StringBuilder fenString = new StringBuilder(string.Empty);
-            //Prepare string part for "Piece Placement"
-            for (int rowCounter = 1; rowCounter <= Constants.GRID_SIZE; rowCounter++)
+            try
             {
-                StringBuilder rowFenString = new StringBuilder(string.Empty);
-                var rowTemplate = currentChessBoardPosition.Where(c => c.RowPosition == rowCounter && c.PieceInfo != null && c.IsAlive);
-                if (rowTemplate == null || rowTemplate.Count() == 0)
-                    rowFenString.Append("8");
-                else
+
+                LogHelper.logger.Info("PrepareFenString called...");
+
+                //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
+
+                StringBuilder fenString = new StringBuilder(string.Empty);
+                //Prepare string part for "Piece Placement"
+                for (int rowCounter = 1; rowCounter <= Constants.GRID_SIZE; rowCounter++)
                 {
-                    int previousPieceColumnPosition = 0;
-                    foreach (var piece in rowTemplate)
+                    StringBuilder rowFenString = new StringBuilder(string.Empty);
+                    var rowTemplate = currentChessBoardPosition.Where(c => c.RowPosition == rowCounter && c.PieceInfo != null && c.IsAlive);
+                    if (rowTemplate == null || rowTemplate.Count() == 0)
+                        rowFenString.Append("8");
+                    else
                     {
-                        if (piece.IsAlive)
+                        int previousPieceColumnPosition = 0;
+                        foreach (var piece in rowTemplate)
                         {
-                            if (piece.ColumnPosition > 1 && piece.ColumnPosition - previousPieceColumnPosition > 1)
-                                rowFenString.Append((piece.ColumnPosition - previousPieceColumnPosition - 1).ToString()).Append(piece.PieceInfo.Code);
-                            else
-                                rowFenString.Append(piece.PieceInfo.Code);
+                            if (piece.IsAlive)
+                            {
+                                if (piece.ColumnPosition > 1 && piece.ColumnPosition - previousPieceColumnPosition > 1)
+                                    rowFenString.Append((piece.ColumnPosition - previousPieceColumnPosition - 1).ToString()).Append(piece.PieceInfo.Code);
+                                else
+                                    rowFenString.Append(piece.PieceInfo.Code);
 
-                            previousPieceColumnPosition = piece.ColumnPosition;
+                                previousPieceColumnPosition = piece.ColumnPosition;
+                            }
                         }
+                        if (previousPieceColumnPosition < Constants.GRID_SIZE)
+                            rowFenString.Append(Constants.GRID_SIZE - previousPieceColumnPosition);
                     }
-                    if (previousPieceColumnPosition < Constants.GRID_SIZE)
-                        rowFenString.Append(Constants.GRID_SIZE - previousPieceColumnPosition);
+                    fenString.Append(rowFenString);
+                    if (rowCounter < Constants.GRID_SIZE)
+                        fenString.Append("/");
                 }
-                fenString.Append(rowFenString);
-                if (rowCounter < Constants.GRID_SIZE)
-                    fenString.Append("/");
-            }
-            fenString.Append(" ");
+                fenString.Append(" ");
 
-            //Append string part for "Active Color"
+                //Append string part for "Active Color"
 
-            if (isBlackMoveNext)
-            {
-                fenString.Append(Constants.BlackMove);
-            }
-            else
-                fenString.Append(Constants.WhiteMove);
-
-            fenString.Append(" ");
-
-            //Append string part for "Castling"
-            //TO DO: Need to implement exact Castling rule
-            bool castlingPossible = false;
-            int blackPrimeRow = 0;
-            int whitePrimeRow = 0;
-            if (Constants.ActiveMove == "w")
-            {
-                whitePrimeRow = 1;
-                blackPrimeRow = Constants.GRID_SIZE;
-            }
-            else if (Constants.ActiveMove == "b")
-            {
-                whitePrimeRow = Constants.GRID_SIZE;
-                blackPrimeRow = 1;
-            }
-
-            //Check castling for white pieces
-            var whitePieces = currentChessBoardPosition.Where(c => c.RowPosition == whitePrimeRow);
-
-            if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
-            {
-                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
-                    whitePieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null) == null)
+                if (isBlackMoveNext)
                 {
-                    fenString.Append("K");
-                    castlingPossible = true;
+                    fenString.Append(Constants.BlackMove);
                 }
+                else
+                    fenString.Append(Constants.WhiteMove);
 
-                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
-                   whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                fenString.Append(" ");
+
+                //Append string part for "Castling"
+                //TO DO: Need to implement exact Castling rule
+                bool castlingPossible = false;
+                int blackPrimeRow = 0;
+                int whitePrimeRow = 0;
+                if (Constants.ActiveMove == "w")
                 {
-                    fenString.Append("Q");
-                    castlingPossible = true;
+                    whitePrimeRow = 1;
+                    blackPrimeRow = Constants.GRID_SIZE;
                 }
-            }
-
-            var blackPieces = currentChessBoardPosition.Where(c => c.RowPosition == blackPrimeRow);
-
-            if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
-            {
-                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
-                    blackPieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null).FirstOrDefault() == null)
+                else if (Constants.ActiveMove == "b")
                 {
-                    fenString.Append("k");
-                    castlingPossible = true;
+                    whitePrimeRow = Constants.GRID_SIZE;
+                    blackPrimeRow = 1;
                 }
 
-                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
-                   blackPieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                //Check castling for white pieces
+                var whitePieces = currentChessBoardPosition.Where(c => c.RowPosition == whitePrimeRow);
+
+                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
                 {
-                    fenString.Append("q");
-                    castlingPossible = true;
+                    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                        whitePieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null) == null)
+                    {
+                        fenString.Append("K");
+                        castlingPossible = true;
+                    }
+
+                    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                       whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                    {
+                        fenString.Append("Q");
+                        castlingPossible = true;
+                    }
                 }
-            }
-            if (castlingPossible == false)
+
+                var blackPieces = currentChessBoardPosition.Where(c => c.RowPosition == blackPrimeRow);
+
+                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
+                {
+                    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                        blackPieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null).FirstOrDefault() == null)
+                    {
+                        fenString.Append("k");
+                        castlingPossible = true;
+                    }
+
+                    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                       blackPieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
+                    {
+                        fenString.Append("q");
+                        castlingPossible = true;
+                    }
+                }
+                if (castlingPossible == false)
+                    fenString.Append("-");
+
+                fenString.Append(" ");
+
+                //En Passant rule is not applied yet.
+                //TO DO: Need to implement En Passant rule
                 fenString.Append("-");
+                fenString.Append(" ");
 
-            fenString.Append(" ");
+                //Append Halfmove clock count
+                fenString.Append(Constants.HalfmoveClock.ToString());
+                fenString.Append(" ");
 
-            //En Passant rule is not applied yet.
-            //TO DO: Need to implement En Passant rule
-            fenString.Append("-");
-            fenString.Append(" ");
+                //Append Fullmove number
+                fenString.Append(Constants.FullmoveNumber.ToString());
+                fenString.Append(" ");
 
-            //Append Halfmove clock count
-            fenString.Append(Constants.HalfmoveClock.ToString());
-            fenString.Append(" ");
+                fenString = fenString.Replace("BR", "r");
 
-            //Append Fullmove number
-            fenString.Append(Constants.FullmoveNumber.ToString());
-            fenString.Append(" ");
-
-            fenString = fenString.Replace("BR", "r");
-
-            if (isBlackMoveNext)
-            {
-                var firstPart = fenString.ToString().Split(' ')[0];
-                var tempPart = firstPart.Split('/');
-                StringBuilder blackFenStringBuilder = new StringBuilder();
-                for (int index = tempPart.Length - 1; index >= 0; index--)
+                if (isBlackMoveNext)
                 {
-                    blackFenStringBuilder.Append(ReverseString(tempPart[index]));
-                    if (index != 0)
-                        blackFenStringBuilder.Append("/");
+                    var firstPart = fenString.ToString().Split(' ')[0];
+                    var tempPart = firstPart.Split('/');
+                    StringBuilder blackFenStringBuilder = new StringBuilder();
+                    for (int index = tempPart.Length - 1; index >= 0; index--)
+                    {
+                        blackFenStringBuilder.Append(ReverseString(tempPart[index]));
+                        if (index != 0)
+                            blackFenStringBuilder.Append("/");
+                    }
+                    fenString = fenString.Replace(firstPart, blackFenStringBuilder.ToString());
                 }
-                fenString = fenString.Replace(firstPart, blackFenStringBuilder.ToString());
+
+                Console.WriteLine();
+                Console.WriteLine("FEN String is:");
+                Console.WriteLine(fenString.ToString());
+
+                LogHelper.logger.Info("PrepareFenString finished...");
+                return fenString.ToString();
+                //totalExecutionTime.Stop();
+                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
             }
-
-            Console.WriteLine();
-            Console.WriteLine("FEN String is:");
-            Console.WriteLine(fenString.ToString());
-
-            return fenString.ToString();
-            //totalExecutionTime.Stop();
-            //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("GetNextBestMove: " + exception.InnerException.Message);
+                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+                throw exception;
+            }
         }
         public static string ReverseString(string s)
         {
+            LogHelper.logger.Info("ReverseString called...");
             char[] arr = s.ToCharArray();
             Array.Reverse(arr);
+            LogHelper.logger.Info("ReverseString finished...");
+
             return new string(arr);
         }
-        public static Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> GetBinaryImage(Image inputImage, double intensity)
-        {
-            Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(inputImage as Bitmap);
 
-            var binaryImage = cvImage.Convert<Gray, byte>().ThresholdBinary(new Gray(intensity), new Gray(255));
-            //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", binaryImage);
-
-            return binaryImage;
-        }
 
 
     }

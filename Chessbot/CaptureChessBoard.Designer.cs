@@ -32,6 +32,8 @@
             this.timerAutoRefresh = new System.Windows.Forms.Timer(this.components);
             this.timerTriggerChecker = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pnlImageHolder = new System.Windows.Forms.Panel();
+            this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -39,6 +41,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.lblExecutionTime = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
+            this.pbIntensityTest = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
             this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
@@ -57,7 +60,9 @@
             this.btnMarkTrigger = new System.Windows.Forms.Button();
             this.cbTriggerMarker = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.pbTriggerImage = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.pbCurrentMarker = new System.Windows.Forms.PictureBox();
             this.txtRefreshMarkerInterval = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.btnStartNewGame = new System.Windows.Forms.Button();
@@ -82,6 +87,7 @@
             this.txtResizeLeft = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCompactView = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.txtEngineDepth = new System.Windows.Forms.TextBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
@@ -113,32 +119,28 @@
             this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbIntensityTest = new System.Windows.Forms.PictureBox();
-            this.pbTriggerImage = new System.Windows.Forms.PictureBox();
-            this.pbCurrentMarker = new System.Windows.Forms.PictureBox();
-            this.pnlImageHolder = new System.Windows.Forms.Panel();
-            this.pbScreen = new System.Windows.Forms.PictureBox();
-            this.btnCompactView = new System.Windows.Forms.Button();
+            this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.pnlImageHolder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbctrController.SuspendLayout();
             this.tbHome.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).BeginInit();
-            this.pnlImageHolder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -169,6 +171,26 @@
             this.splitContainer1.Size = new System.Drawing.Size(1370, 543);
             this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // pnlImageHolder
+            // 
+            this.pnlImageHolder.AutoScroll = true;
+            this.pnlImageHolder.Controls.Add(this.pbScreen);
+            this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
+            this.pnlImageHolder.Name = "pnlImageHolder";
+            this.pnlImageHolder.Size = new System.Drawing.Size(1368, 269);
+            this.pnlImageHolder.TabIndex = 2;
+            // 
+            // pbScreen
+            // 
+            this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pbScreen.Location = new System.Drawing.Point(0, 0);
+            this.pbScreen.Name = "pbScreen";
+            this.pbScreen.Size = new System.Drawing.Size(1351, 270);
+            this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbScreen.TabIndex = 3;
+            this.pbScreen.TabStop = false;
             // 
             // tbctrController
             // 
@@ -251,6 +273,16 @@
             this.label23.Size = new System.Drawing.Size(33, 13);
             this.label23.TabIndex = 0;
             this.label23.Text = "Time:";
+            // 
+            // pbIntensityTest
+            // 
+            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
+            this.pbIntensityTest.Name = "pbIntensityTest";
+            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
+            this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbIntensityTest.TabIndex = 39;
+            this.pbIntensityTest.TabStop = false;
+            this.pbIntensityTest.Visible = false;
             // 
             // groupBox6
             // 
@@ -441,6 +473,15 @@
             this.label20.TabIndex = 35;
             this.label20.Text = "Current Turn Marker:";
             // 
+            // pbTriggerImage
+            // 
+            this.pbTriggerImage.Location = new System.Drawing.Point(116, 94);
+            this.pbTriggerImage.Name = "pbTriggerImage";
+            this.pbTriggerImage.Size = new System.Drawing.Size(20, 20);
+            this.pbTriggerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTriggerImage.TabIndex = 27;
+            this.pbTriggerImage.TabStop = false;
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -449,6 +490,15 @@
             this.label19.Size = new System.Drawing.Size(93, 13);
             this.label19.TabIndex = 34;
             this.label19.Text = "User Turn Marker:";
+            // 
+            // pbCurrentMarker
+            // 
+            this.pbCurrentMarker.Location = new System.Drawing.Point(257, 94);
+            this.pbCurrentMarker.Name = "pbCurrentMarker";
+            this.pbCurrentMarker.Size = new System.Drawing.Size(20, 20);
+            this.pbCurrentMarker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCurrentMarker.TabIndex = 29;
+            this.pbCurrentMarker.TabStop = false;
             // 
             // txtRefreshMarkerInterval
             // 
@@ -697,6 +747,16 @@
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Capture Chess Board";
+            // 
+            // btnCompactView
+            // 
+            this.btnCompactView.Location = new System.Drawing.Point(239, 54);
+            this.btnCompactView.Name = "btnCompactView";
+            this.btnCompactView.Size = new System.Drawing.Size(85, 23);
+            this.btnCompactView.TabIndex = 35;
+            this.btnCompactView.Text = "Compact View";
+            this.btnCompactView.UseVisualStyleBackColor = true;
+            this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
             // 
             // label24
             // 
@@ -986,7 +1046,9 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtStatus});
+            this.txtStatus,
+            this.txtScore,
+            this.txtMessage});
             this.statusStrip1.Location = new System.Drawing.Point(0, 521);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
@@ -999,63 +1061,18 @@
             this.txtStatus.Size = new System.Drawing.Size(47, 17);
             this.txtStatus.Text = "[Status]";
             // 
-            // pbIntensityTest
+            // txtScore
             // 
-            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
-            this.pbIntensityTest.Name = "pbIntensityTest";
-            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
-            this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbIntensityTest.TabIndex = 39;
-            this.pbIntensityTest.TabStop = false;
-            this.pbIntensityTest.Visible = false;
+            this.txtScore.Name = "txtScore";
+            this.txtScore.Size = new System.Drawing.Size(44, 17);
+            this.txtScore.Text = "[Score]";
             // 
-            // pbTriggerImage
+            // txtMessage
             // 
-            this.pbTriggerImage.Location = new System.Drawing.Point(116, 94);
-            this.pbTriggerImage.Name = "pbTriggerImage";
-            this.pbTriggerImage.Size = new System.Drawing.Size(20, 20);
-            this.pbTriggerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbTriggerImage.TabIndex = 27;
-            this.pbTriggerImage.TabStop = false;
-            // 
-            // pbCurrentMarker
-            // 
-            this.pbCurrentMarker.Location = new System.Drawing.Point(257, 94);
-            this.pbCurrentMarker.Name = "pbCurrentMarker";
-            this.pbCurrentMarker.Size = new System.Drawing.Size(20, 20);
-            this.pbCurrentMarker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCurrentMarker.TabIndex = 29;
-            this.pbCurrentMarker.TabStop = false;
-            // 
-            // pnlImageHolder
-            // 
-            this.pnlImageHolder.AutoScroll = true;
-            this.pnlImageHolder.Controls.Add(this.pbScreen);
-            this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
-            this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1368, 269);
-            this.pnlImageHolder.TabIndex = 2;
-            // 
-            // pbScreen
-            // 
-            this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pbScreen.Location = new System.Drawing.Point(0, 0);
-            this.pbScreen.Name = "pbScreen";
-            this.pbScreen.Size = new System.Drawing.Size(1351, 270);
-            this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pbScreen.TabIndex = 3;
-            this.pbScreen.TabStop = false;
-            // 
-            // btnCompactView
-            // 
-            this.btnCompactView.Location = new System.Drawing.Point(239, 54);
-            this.btnCompactView.Name = "btnCompactView";
-            this.btnCompactView.Size = new System.Drawing.Size(85, 23);
-            this.btnCompactView.TabIndex = 35;
-            this.btnCompactView.Text = "Compact View";
-            this.btnCompactView.UseVisualStyleBackColor = true;
-            this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(61, 17);
+            this.txtMessage.Text = "[Message]";
             // 
             // CaptureChessBoard
             // 
@@ -1076,16 +1093,22 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.pnlImageHolder.ResumeLayout(false);
+            this.pnlImageHolder.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).EndInit();
             this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
             this.tbHome.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -1096,12 +1119,6 @@
             this.groupBox2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).EndInit();
-            this.pnlImageHolder.ResumeLayout(false);
-            this.pnlImageHolder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1199,5 +1216,7 @@
         private System.Windows.Forms.Panel pnlImageHolder;
         private System.Windows.Forms.PictureBox pbScreen;
         private System.Windows.Forms.Button btnCompactView;
+        private System.Windows.Forms.ToolStripStatusLabel txtScore;
+        private System.Windows.Forms.ToolStripStatusLabel txtMessage;
     }
 }
