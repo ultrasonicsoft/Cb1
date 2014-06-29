@@ -1109,6 +1109,7 @@ namespace OpenCVDemo1
                 if (File.Exists(tempalteCatalogFileName) == false)
                 {
                     MessageBox.Show("There are no template present. Please create and save them.", "Load Template", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 var allTemplate = File.ReadAllLines(tempalteCatalogFileName);
                 allLoadedTemplates = new List<TemplateEntity>();

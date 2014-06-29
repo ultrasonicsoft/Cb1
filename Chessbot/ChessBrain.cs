@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Windows.Forms;
 
@@ -127,7 +128,9 @@ namespace OpenCVDemo1
             string tempalteCatalogFileName = ImageProcessingManager.TemplatePath + Constants.TEMPLATE_CATELOG_FILE;
             if (File.Exists(tempalteCatalogFileName) == false)
             {
-                MessageBox.Show("There are no template present. Please create and save them.", "Load Template", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("There are no template present. Please create and save them.", "Load Template",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             var allTemplate = File.ReadAllLines(tempalteCatalogFileName);
             allLoadedTemplates = new List<TemplateEntity>();
