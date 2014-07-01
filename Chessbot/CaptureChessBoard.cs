@@ -129,7 +129,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("CaptureChessBoard_Load: " + exception.Message);
                 LogHelper.logger.Error("CaptureChessBoard_Load: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -151,7 +151,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnCropBoard_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCropBoard_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -177,7 +177,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnCaptureScreen_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCaptureScreen_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -227,7 +227,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.Message);
                 LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnGetX_Click(object sender, EventArgs e)
@@ -274,7 +274,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnResize_Click: " + exception.Message);
                 LogHelper.logger.Error("btnResize_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnResize_Click finished...");
         }
@@ -293,7 +293,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnTemplate_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnTemplate_Click finished...");
         }
@@ -317,9 +317,9 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                LogHelper.logger.Info("btnSaveTemplate_Click finished...");
+            LogHelper.logger.Info("btnSaveTemplate_Click finished...");
         }
 
         private void btnScanAgain_Click(object sender, EventArgs e)
@@ -350,7 +350,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnLoadTemplate_Click finished...");
         }
@@ -371,7 +371,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.Message);
                 LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnShowBoardConfiguration_Click finished...");
         }
@@ -387,7 +387,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnShowTemplate_Click: " + exception.Message);
                 LogHelper.logger.Error("btnShowTemplate_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnShowTemplate_Click finished...");
         }
@@ -411,7 +411,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.Message);
                 LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("timerAutoRefresh_Tick finished...");
         }
@@ -432,7 +432,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.Message);
                 LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnMarkTrigger_Click finished...");
         }
@@ -465,7 +465,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.Message);
                 LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("txtRefreshInterval_Leave finished...");
         }
@@ -498,7 +498,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnStartNewGame_Click: " + exception.Message);
                 LogHelper.logger.Error("btnStartNewGame_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnStartNewGame_Click finished...");
         }
@@ -537,7 +537,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.Message);
                 LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged finished...");
         }
@@ -553,7 +553,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.Message);
                 LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnUpdateStandardMatchingFactor_Click finished...");
         }
@@ -581,7 +581,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("CaptureChessBoard_FormClosing: " + exception.Message);
                 LogHelper.logger.Error("CaptureChessBoard_FormClosing: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //if (!ghk.Unregiser())
             //    MessageBox.Show("Hotkey failed to unregister!");
@@ -602,6 +602,61 @@ namespace OpenCVDemo1
         {
             this.Hide();
             SmallView.Show();
+        }
+
+        private void cbEnableHotKey_CheckedChanged(object sender, EventArgs e)
+        {
+            enableHotKeyForGetNextMove = cbEnableHotKey.Checked;
+        }
+
+        private void btnDeleteTemplate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogHelper.logger.Info("btnDeleteTemplate_Click called...");
+                var result = MessageBox.Show("Are you sure to delete this template?", "Chessbot",
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
+                if (selectedEntity != null && result == DialogResult.Yes)
+                {
+                    string tempalteCatalogFileName = ImageProcessingManager.TemplatePath + Constants.TEMPLATE_CATELOG_FILE;
+                    if (File.Exists(tempalteCatalogFileName) == false)
+                    {
+                        MessageBox.Show("There are no template present. Please create and save them.", "Load Template", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    var allTemplate = File.ReadAllLines(tempalteCatalogFileName);
+
+                    List<string> newTemplateList = new List<string>();
+                    foreach (string templateEntry in allTemplate)
+                    {
+                        TemplateEntity newTemplate = new TemplateEntity();
+                        var templateParts = templateEntry.Split(',');
+                        newTemplate.TemplateName = templateParts[0];
+                        newTemplate.WebsiteURL = templateParts[1];
+                        newTemplate.TemplateFileName = templateParts[2];
+                        if (templateParts[0] != selectedEntity.TemplateName)
+                        {
+                            newTemplateList.Add(templateEntry);
+                        }
+                    }
+                    File.WriteAllLines(tempalteCatalogFileName, newTemplateList.ToArray());
+
+                    File.Delete(selectedEntity.TemplateFileName);
+
+                    MessageBox.Show("Template Deleted!", "Chessbot",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LoadTemplates();
+                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("btnDeleteTemplate_Click: " + exception.Message);
+                LogHelper.logger.Error("btnDeleteTemplate_Click: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("btnDeleteTemplate_Click finished...");
         }
         #endregion
 
@@ -649,7 +704,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("Crop_Paint: " + exception.Message);
                 LogHelper.logger.Error("Crop_Paint: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("Crop_Paint finished...");
         }
@@ -697,7 +752,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("Crop_MouseMove: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("Crop_MouseMove finished...");
         }
@@ -727,7 +782,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("Crop_MouseUp: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseUp: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("Crop_MouseUp finished...");
         }
@@ -758,7 +813,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("Crop_MouseDown: " + exception.Message);
                 LogHelper.logger.Error("Crop_MouseDown: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("Crop_MouseDown finished...");
         }
@@ -817,7 +872,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.Message);
                 LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("DrawOnDesktopNextMove finished...");
         }
@@ -895,7 +950,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.Message);
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("GetChessDrawingIndex finished...");
         }
@@ -974,7 +1029,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.Message);
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("GetChessDrawingNextMoveIndex finished...");
         }
@@ -1017,7 +1072,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("CropChessBoard: " + exception.Message);
                 LogHelper.logger.Error("CropChessBoard: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("CropChessBoard finished...");
         }
@@ -1054,7 +1109,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("ScanBoardAgain: " + exception.Message);
                 LogHelper.logger.Error("ScanBoardAgain: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("ScanBoardAgain finished...");
             return true;
@@ -1079,7 +1134,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("ValidateBoard: " + exception.Message);
                 LogHelper.logger.Error("ValidateBoard: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             MessageBox.Show(message);
             LogHelper.logger.Info("ValidateBoard finished...");
@@ -1126,7 +1181,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("LoadTemplate: " + exception.Message);
                 LogHelper.logger.Error("LoadTemplate: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("LoadTemplates finished...");
         }
@@ -1171,7 +1226,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.Message);
                 LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("ProcessAndPrintBoard finished...");
         }
@@ -1219,7 +1274,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.Message);
                 LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("CheckWhosTurnToPlay finished...");
         }
@@ -1253,7 +1308,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("RefreshGrayImage: " + exception.Message);
                 LogHelper.logger.Error("RefreshGrayImage: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("RefreshGrayImage finished...");
         }
@@ -1283,7 +1338,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("GetBestMove finished...");
         }
@@ -1305,7 +1360,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("GetNextBestMove finished...");
             return bestMove;
@@ -1358,15 +1413,12 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("engine_BestMovFound: " + exception.Message);
                 LogHelper.logger.Error("engine_BestMovFound: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("engine_BestMovFound finished...");
         }
         #endregion
 
-        private void cbEnableHotKey_CheckedChanged(object sender, EventArgs e)
-        {
-            enableHotKeyForGetNextMove = cbEnableHotKey.Checked;
-        }
+
     }
 }

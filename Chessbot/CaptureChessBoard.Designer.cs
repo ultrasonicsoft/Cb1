@@ -66,7 +66,7 @@
             this.txtRefreshMarkerInterval = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.btnStartNewGame = new System.Windows.Forms.Button();
-            this.btnShowTemplate = new System.Windows.Forms.Button();
+            this.btnDeleteTemplate = new System.Windows.Forms.Button();
             this.btnGetBestMove = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveTemplate = new System.Windows.Forms.Button();
@@ -211,7 +211,7 @@
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
             this.tbHome.Controls.Add(this.groupBox1);
             this.tbHome.Controls.Add(this.btnStartNewGame);
-            this.tbHome.Controls.Add(this.btnShowTemplate);
+            this.tbHome.Controls.Add(this.btnDeleteTemplate);
             this.tbHome.Controls.Add(this.btnGetBestMove);
             this.tbHome.Controls.Add(this.groupBox5);
             this.tbHome.Controls.Add(this.groupBox4);
@@ -529,22 +529,22 @@
             this.btnStartNewGame.UseVisualStyleBackColor = true;
             this.btnStartNewGame.Click += new System.EventHandler(this.btnStartNewGame_Click);
             // 
-            // btnShowTemplate
+            // btnDeleteTemplate
             // 
-            this.btnShowTemplate.Location = new System.Drawing.Point(13, 61);
-            this.btnShowTemplate.Name = "btnShowTemplate";
-            this.btnShowTemplate.Size = new System.Drawing.Size(101, 23);
-            this.btnShowTemplate.TabIndex = 24;
-            this.btnShowTemplate.Text = "Show Template";
-            this.btnShowTemplate.UseVisualStyleBackColor = true;
-            this.btnShowTemplate.Click += new System.EventHandler(this.btnShowTemplate_Click);
+            this.btnDeleteTemplate.Location = new System.Drawing.Point(13, 61);
+            this.btnDeleteTemplate.Name = "btnDeleteTemplate";
+            this.btnDeleteTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnDeleteTemplate.TabIndex = 24;
+            this.btnDeleteTemplate.Text = "Delete Template";
+            this.btnDeleteTemplate.UseVisualStyleBackColor = true;
+            this.btnDeleteTemplate.Click += new System.EventHandler(this.btnDeleteTemplate_Click);
             // 
             // btnGetBestMove
             // 
             this.btnGetBestMove.Enabled = false;
             this.btnGetBestMove.Location = new System.Drawing.Point(270, 55);
             this.btnGetBestMove.Name = "btnGetBestMove";
-            this.btnGetBestMove.Size = new System.Drawing.Size(101, 41);
+            this.btnGetBestMove.Size = new System.Drawing.Size(90, 27);
             this.btnGetBestMove.TabIndex = 23;
             this.btnGetBestMove.Text = "Get Best Move";
             this.btnGetBestMove.UseVisualStyleBackColor = true;
@@ -1169,7 +1169,7 @@
         private System.Windows.Forms.TextBox txtRefreshMarkerInterval;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnStartNewGame;
-        private System.Windows.Forms.Button btnShowTemplate;
+        private System.Windows.Forms.Button btnDeleteTemplate;
         private System.Windows.Forms.Button btnGetBestMove;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnSaveTemplate;
