@@ -92,6 +92,16 @@
             this.c6 = new System.Windows.Forms.PictureBox();
             this.b6 = new System.Windows.Forms.PictureBox();
             this.a6 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblChessbotWidth = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblChessbotHeight = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblPieceWidth = new System.Windows.Forms.Label();
+            this.lblPieceHeight = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblPadding = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.a1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.b1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.c1)).BeginInit();
@@ -734,11 +744,116 @@
             this.a6.TabIndex = 40;
             this.a6.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(724, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 64;
+            this.label1.Text = "Chessbot Width:";
+            // 
+            // lblChessbotWidth
+            // 
+            this.lblChessbotWidth.AutoSize = true;
+            this.lblChessbotWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChessbotWidth.Location = new System.Drawing.Point(815, 107);
+            this.lblChessbotWidth.Name = "lblChessbotWidth";
+            this.lblChessbotWidth.Size = new System.Drawing.Size(48, 13);
+            this.lblChessbotWidth.TabIndex = 65;
+            this.lblChessbotWidth.Text = "[Width]";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(721, 132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(88, 13);
+            this.label3.TabIndex = 64;
+            this.label3.Text = "Chessbot Height:";
+            // 
+            // lblChessbotHeight
+            // 
+            this.lblChessbotHeight.AutoSize = true;
+            this.lblChessbotHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChessbotHeight.Location = new System.Drawing.Point(815, 132);
+            this.lblChessbotHeight.Name = "lblChessbotHeight";
+            this.lblChessbotHeight.Size = new System.Drawing.Size(52, 13);
+            this.lblChessbotHeight.TabIndex = 65;
+            this.lblChessbotHeight.Text = "[Height]";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(741, 157);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.TabIndex = 64;
+            this.label5.Text = "Piece Width:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(738, 182);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 64;
+            this.label6.Text = "Piece Height:";
+            // 
+            // lblPieceWidth
+            // 
+            this.lblPieceWidth.AutoSize = true;
+            this.lblPieceWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPieceWidth.Location = new System.Drawing.Point(815, 157);
+            this.lblPieceWidth.Name = "lblPieceWidth";
+            this.lblPieceWidth.Size = new System.Drawing.Size(48, 13);
+            this.lblPieceWidth.TabIndex = 65;
+            this.lblPieceWidth.Text = "[Width]";
+            // 
+            // lblPieceHeight
+            // 
+            this.lblPieceHeight.AutoSize = true;
+            this.lblPieceHeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPieceHeight.Location = new System.Drawing.Point(815, 182);
+            this.lblPieceHeight.Name = "lblPieceHeight";
+            this.lblPieceHeight.Size = new System.Drawing.Size(52, 13);
+            this.lblPieceHeight.TabIndex = 65;
+            this.lblPieceHeight.Text = "[Height]";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(760, 207);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 13);
+            this.label9.TabIndex = 64;
+            this.label9.Text = "Padding:";
+            // 
+            // lblPadding
+            // 
+            this.lblPadding.AutoSize = true;
+            this.lblPadding.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPadding.Location = new System.Drawing.Point(815, 207);
+            this.lblPadding.Name = "lblPadding";
+            this.lblPadding.Size = new System.Drawing.Size(61, 13);
+            this.lblPadding.TabIndex = 65;
+            this.lblPadding.Text = "[Padding]";
+            // 
             // PreviewTemplate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 769);
+            this.ClientSize = new System.Drawing.Size(891, 749);
+            this.Controls.Add(this.lblPadding);
+            this.Controls.Add(this.lblPieceHeight);
+            this.Controls.Add(this.lblChessbotHeight);
+            this.Controls.Add(this.lblPieceWidth);
+            this.Controls.Add(this.lblChessbotWidth);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.h8);
             this.Controls.Add(this.g8);
             this.Controls.Add(this.f8);
@@ -941,5 +1056,15 @@
         private System.Windows.Forms.PictureBox c6;
         private System.Windows.Forms.PictureBox b6;
         private System.Windows.Forms.PictureBox a6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblChessbotWidth;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblChessbotHeight;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblPieceWidth;
+        private System.Windows.Forms.Label lblPieceHeight;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPadding;
     }
 }

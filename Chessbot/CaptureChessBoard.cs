@@ -40,7 +40,7 @@ namespace OpenCVDemo1
         private GlobalHotkey ghk;
         private string _engineDepth = "16";
         Image CurrentCapturedScreen = null;
-
+        private bool enableHotKeyForGetNextMove = false;
         #endregion
 
         #region Properties
@@ -81,7 +81,7 @@ namespace OpenCVDemo1
 
         protected override void WndProc(ref Message m)
         {
-            if (IsComputingNextMove == false && m.Msg == Constants.WM_HOTKEY_MSG_ID)
+            if (enableHotKeyForGetNextMove && IsComputingNextMove == false && m.Msg == Constants.WM_HOTKEY_MSG_ID)
                 GetBestMove();
             base.WndProc(ref m);
         }
@@ -285,7 +285,8 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Info("btnTemplate_Click called...");
                 PreviewTemplate preview = new PreviewTemplate();
-                preview.ChessBoardImage = (ImageProcessingManager.GetBinaryImage(CapturedScreen, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, CapturedScreen.Width, CapturedScreen.Height), CapturedScreen.PixelFormat);
+                preview.ChessBoardImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
+                preview.Padding = int.Parse(txtPadding.Text);
                 preview.Show();
             }
             catch (Exception exception)
@@ -1362,5 +1363,10 @@ namespace OpenCVDemo1
             LogHelper.logger.Info("engine_BestMovFound finished...");
         }
         #endregion
+
+        private void cbEnableHotKey_CheckedChanged(object sender, EventArgs e)
+        {
+            enableHotKeyForGetNextMove = cbEnableHotKey.Checked;
+        }
     }
 }

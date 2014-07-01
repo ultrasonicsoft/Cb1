@@ -121,6 +121,7 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -286,6 +287,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.cbEnableHotKey);
             this.groupBox6.Controls.Add(this.txtStandardMatchingFactor);
             this.groupBox6.Controls.Add(this.btnUpdateStandardMatchingFactor);
             this.groupBox6.Controls.Add(this.label22);
@@ -1074,6 +1076,17 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
+            // cbEnableHotKey
+            // 
+            this.cbEnableHotKey.AutoSize = true;
+            this.cbEnableHotKey.Location = new System.Drawing.Point(10, 174);
+            this.cbEnableHotKey.Name = "cbEnableHotKey";
+            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableHotKey.TabIndex = 53;
+            this.cbEnableHotKey.Text = "Enable Hot Key";
+            this.cbEnableHotKey.UseVisualStyleBackColor = true;
+            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1218,5 +1231,6 @@
         private System.Windows.Forms.Button btnCompactView;
         private System.Windows.Forms.ToolStripStatusLabel txtScore;
         private System.Windows.Forms.ToolStripStatusLabel txtMessage;
+        private System.Windows.Forms.CheckBox cbEnableHotKey;
     }
 }

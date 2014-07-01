@@ -12,6 +12,7 @@ namespace OpenCVDemo1
     public partial class PreviewTemplate : Form
     {
         public Image ChessBoardImage { get; set; }
+        public int Padding { get; set; }
         public PreviewTemplate()
         {
             InitializeComponent();
@@ -37,14 +38,27 @@ namespace OpenCVDemo1
                 else
                     blockWidth = blockHeight;
 
+                lblChessbotWidth.Text = ChessBoardImage.Width.ToString();
+                lblChessbotHeight.Text = ChessBoardImage.Height.ToString();
+
+                lblPadding.Text = Padding.ToString();
+
+                bool pieceSizeDisplayed = false;
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
                 {
                     blockLeft = 0;
                     for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
                     {
-                        r = new Rectangle(blockLeft , blockTop , blockWidth , blockHeight);
+                        r = new Rectangle(blockLeft + Padding, blockTop + Padding, blockWidth - Padding, blockHeight - Padding);
+                        //r = new Rectangle(blockLeft, blockTop, blockWidth, blockHeight);
+                        
                         using (Bitmap currentPiece = bmpChessboard.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare))
                         {
+                            if (pieceSizeDisplayed == false)
+                            {
+                                lblPieceWidth.Text = currentPiece.Width.ToString();
+                                lblPieceHeight.Text = currentPiece.Height.ToString();
+                            }
                             SetPictureBoxImage(currentPiece, rowIndex, colIndex);
                             blockLeft += blockWidth;
                         }
