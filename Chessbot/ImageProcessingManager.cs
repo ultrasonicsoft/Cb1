@@ -97,7 +97,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("TakeScreenShot finished...");
 
@@ -121,7 +121,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("ConvertImageToGrayScale finished...");
         }
@@ -167,7 +167,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("AreImagesSame finished...");
             return Success;
@@ -186,7 +186,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("GetBinaryImage finished...");
             return binaryImage;
@@ -219,7 +219,7 @@ namespace OpenCVDemo1
                 allChessBoardTemplate = null;
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("ReadTemplate finished...");
             return chessTemplate;
@@ -246,7 +246,7 @@ namespace OpenCVDemo1
                 result = false;
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("SaveTemplate finished...");
             return result;
@@ -399,7 +399,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("FillMasterTemplate finished...");
             return allChessBoardTemplate;
@@ -570,7 +570,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("ReadChessBoardCurrentPosition finished...");
         }
@@ -613,11 +613,18 @@ namespace OpenCVDemo1
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
 
                 r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                
                 using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                 {
-                    currentPiece.Save("NewGameTopLeftRook.png");
-                    allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
-
+                    //currentPiece.Save("NewGameTopLeftRook.png");
+                    //allChessBoardTemplate[0].Piece.Save("TemplateTopLeftRook.png");
+                    if (r.Width > allChessBoardTemplate[0].Piece.Bitmap.Width ||
+                        r.Height > allChessBoardTemplate[0].Piece.Bitmap.Height)
+                    {
+                        LogHelper.logger.Error("Chessboard template piece size is lesser than current board chessboard size. Please use padding for correct result!");
+                        MessageBox.Show("Chessboard template piece size is lesser than current board chessboard size. Please use padding for correct result!","Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                     var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r, PixelFormat.DontCare);
                     isWhitePlaying = AreImagesSame(new Image<Gray, byte>(currentPiece as Bitmap), new Image<Gray, byte>(templateCroppedPiece), ImageProcessingManager.StandardMatchingFactor);
                     if (isWhitePlaying)
@@ -639,7 +646,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return isWhitePlaying;
         }
@@ -762,7 +769,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("PrintChessBoard finished...");
         }
@@ -920,7 +927,8 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                throw exception;
+                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return string.Empty;
             }
         }
         public static string ReverseString(string s)
