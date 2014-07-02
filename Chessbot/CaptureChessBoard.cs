@@ -336,14 +336,14 @@ namespace OpenCVDemo1
                 TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
                 if (selectedEntity != null)
                 {
-                    Console.WriteLine("Reading template " + selectedEntity.TemplateName);
+                    //Console.WriteLine("Reading template " + selectedEntity.TemplateName);
                     masterTemplate = ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
                     tbIntensity.Value = masterTemplate.Intensity;
                     txtIntensity.Text = tbIntensity.Value.ToString();
                     pbScreen.Image = masterTemplate.CurrentTemplateImage;
                     //MessageBox.Show("Template successfully loaded..", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtMessage.Text = "Template loaded successfully";
-                    Console.WriteLine("Reading template DONE!");
+                    //Console.WriteLine("Reading template DONE!");
                 }
             }
             catch (Exception exception)
@@ -1192,7 +1192,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Info("ProcessAndPrintBoard called...");
                 Cursor = Cursors.WaitCursor;
-                Console.WriteLine("Reading current Chess position...");
+                //Console.WriteLine("Reading current Chess position...");
                 int paddingPixel = int.Parse(txtPadding.Text);
                 string fenString = string.Empty;
                 if (rbtnWhite.Checked)

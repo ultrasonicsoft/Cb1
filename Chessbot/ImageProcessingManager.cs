@@ -653,125 +653,125 @@ namespace OpenCVDemo1
 
         internal static void PrintChessBoard(bool isUserPlayingWhite)
         {
-            try
-            {
+            //try
+            //{
 
-                LogHelper.logger.Info("PrintChessBoard called...");
+            //    LogHelper.logger.Info("PrintChessBoard called...");
 
-                //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
+            //    //var totalExecutionTime = System.Diagnostics.Stopwatch.StartNew();
 
-                if (currentChessBoardPosition == null || currentChessBoardPosition.Count == 0)
-                {
-                    MessageBox.Show("Template is not loaded.");
-                    return;
-                }
-                Console.Clear();
+            //    if (currentChessBoardPosition == null || currentChessBoardPosition.Count == 0)
+            //    {
+            //        MessageBox.Show("Template is not loaded.");
+            //        return;
+            //    }
+            //    Console.Clear();
 
-                Console.WriteLine("**************************** Chess board ****************************");
-                Console.WriteLine();
+            //    //Console.WriteLine("**************************** Chess board ****************************");
+            //    //Console.WriteLine();
 
-                string rowHeader = "     A    B    C    D    E    F    G    H";
-                //string blackRowHeader = "     A    B    C    D    E    F    G    H";
-                //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
+            //    string rowHeader = "     A    B    C    D    E    F    G    H";
+            //    //string blackRowHeader = "     A    B    C    D    E    F    G    H";
+            //    //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
 
-                if (!isUserPlayingWhite)
-                {
-                    rowHeader = "     H    G    F    E    D    C    B    A";
-                }
-                else
-                {
-                    rowHeader = "     A    B    C    D    E    F    G    H";
-                }
+            //    if (!isUserPlayingWhite)
+            //    {
+            //        rowHeader = "     H    G    F    E    D    C    B    A";
+            //    }
+            //    else
+            //    {
+            //        rowHeader = "     A    B    C    D    E    F    G    H";
+            //    }
 
-                Console.WriteLine(rowHeader);
-                string rowSeparator = "  +----+----+----+----+----+----+----+----+";
-                Console.WriteLine(rowSeparator);
-                string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
-                string emptyPiece = "  ";
-                string currentRow = string.Empty;
-                for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
-                {
-                    currentRow = string.Empty;
-                    string one = string.Empty;
-                    string two = string.Empty;
-                    string three = string.Empty;
-                    string four = string.Empty;
-                    string five = string.Empty;
-                    string six = string.Empty;
-                    string seven = string.Empty;
-                    string eight = string.Empty;
-                    for (int columnIndex = 1; columnIndex <= Constants.GRID_SIZE; columnIndex++)
-                    {
-                        var currentPiece = currentChessBoardPosition.FirstOrDefault(x => x.RowPosition == rowIndex && x.ColumnPosition == columnIndex);
-                        switch (columnIndex)
-                        {
-                            case 1:
-                                one = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (one.Equals("WE1") || one.Equals("WE2") || one.Equals("BE1") || one.Equals("BE2"))
-                                    one = emptyPiece;
-                                break;
-                            case 2:
-                                two = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (two.Equals("WE1") || two.Equals("WE2") || two.Equals("BE1") || two.Equals("BE2"))
-                                    two = emptyPiece;
-                                break;
-                            case 3:
-                                three = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (three.Equals("WE1") || three.Equals("WE2") || three.Equals("BE1") || three.Equals("BE2"))
-                                    three = emptyPiece;
-                                break;
-                            case 4:
-                                four = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (four.Equals("WE1") || four.Equals("WE2") || four.Equals("BE1") || four.Equals("BE2"))
-                                    four = emptyPiece;
-                                break;
-                            case 5:
-                                five = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (five.Equals("WE1") || five.Equals("WE2") || five.Equals("BE1") || five.Equals("BE2"))
-                                    five = emptyPiece;
-                                break;
-                            case 6:
-                                six = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (six.Equals("WE1") || six.Equals("WE2") || six.Equals("BE1") || six.Equals("BE2"))
-                                    six = emptyPiece;
-                                break;
-                            case 7:
-                                seven = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (seven.Equals("WE1") || seven.Equals("WE2") || seven.Equals("BE1") || seven.Equals("BE2"))
-                                    seven = emptyPiece;
-                                break;
-                            case 8:
-                                eight = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
-                                if (eight.Equals("WE1") || eight.Equals("WE2") || eight.Equals("BE1") || eight.Equals("BE2"))
-                                    eight = emptyPiece;
-                                break;
-                            default:
-                                break;
-                        }
+            //    //Console.WriteLine(rowHeader);
+            //    string rowSeparator = "  +----+----+----+----+----+----+----+----+";
+            //    //Console.WriteLine(rowSeparator);
+            //    string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
+            //    string emptyPiece = "  ";
+            //    string currentRow = string.Empty;
+            //    for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
+            //    {
+            //        currentRow = string.Empty;
+            //        string one = string.Empty;
+            //        string two = string.Empty;
+            //        string three = string.Empty;
+            //        string four = string.Empty;
+            //        string five = string.Empty;
+            //        string six = string.Empty;
+            //        string seven = string.Empty;
+            //        string eight = string.Empty;
+            //        for (int columnIndex = 1; columnIndex <= Constants.GRID_SIZE; columnIndex++)
+            //        {
+            //            var currentPiece = currentChessBoardPosition.FirstOrDefault(x => x.RowPosition == rowIndex && x.ColumnPosition == columnIndex);
+            //            switch (columnIndex)
+            //            {
+            //                case 1:
+            //                    one = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (one.Equals("WE1") || one.Equals("WE2") || one.Equals("BE1") || one.Equals("BE2"))
+            //                        one = emptyPiece;
+            //                    break;
+            //                case 2:
+            //                    two = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (two.Equals("WE1") || two.Equals("WE2") || two.Equals("BE1") || two.Equals("BE2"))
+            //                        two = emptyPiece;
+            //                    break;
+            //                case 3:
+            //                    three = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (three.Equals("WE1") || three.Equals("WE2") || three.Equals("BE1") || three.Equals("BE2"))
+            //                        three = emptyPiece;
+            //                    break;
+            //                case 4:
+            //                    four = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (four.Equals("WE1") || four.Equals("WE2") || four.Equals("BE1") || four.Equals("BE2"))
+            //                        four = emptyPiece;
+            //                    break;
+            //                case 5:
+            //                    five = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (five.Equals("WE1") || five.Equals("WE2") || five.Equals("BE1") || five.Equals("BE2"))
+            //                        five = emptyPiece;
+            //                    break;
+            //                case 6:
+            //                    six = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (six.Equals("WE1") || six.Equals("WE2") || six.Equals("BE1") || six.Equals("BE2"))
+            //                        six = emptyPiece;
+            //                    break;
+            //                case 7:
+            //                    seven = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (seven.Equals("WE1") || seven.Equals("WE2") || seven.Equals("BE1") || seven.Equals("BE2"))
+            //                        seven = emptyPiece;
+            //                    break;
+            //                case 8:
+            //                    eight = currentPiece.PieceInfo == null ? emptyPiece : currentPiece.PieceInfo.Name;
+            //                    if (eight.Equals("WE1") || eight.Equals("WE2") || eight.Equals("BE1") || eight.Equals("BE2"))
+            //                        eight = emptyPiece;
+            //                    break;
+            //                default:
+            //                    break;
+            //            }
 
-                    }
-                    if (isUserPlayingWhite)
-                    {
-                        Console.Write(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
-                    }
-                    else
-                    {
-                        Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine(rowSeparator);
+            //        }
+            //        if (isUserPlayingWhite)
+            //        {
+            //            Console.Write(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
+            //        }
+            //        else
+            //        {
+            //            Console.Write(string.Format(chessRowTemplate, rowIndex, one, two, three, four, five, six, seven, eight));
+            //        }
+            //        //Console.WriteLine();
+            //        //Console.WriteLine(rowSeparator);
 
-                }
-                //totalExecutionTime.Stop();
-                //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
-            }
-            catch (Exception exception)
-            {
-                LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
-                LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            LogHelper.logger.Info("PrintChessBoard finished...");
+            //    }
+            //    //totalExecutionTime.Stop();
+            //    //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
+            //}
+            //catch (Exception exception)
+            //{
+            //    LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
+            //    LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
+            //    MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //LogHelper.logger.Info("PrintChessBoard finished...");
         }
 
         public static string PrepareFenString(bool isBlackMoveNext)
@@ -914,9 +914,9 @@ namespace OpenCVDemo1
                     fenString = fenString.Replace(firstPart, blackFenStringBuilder.ToString());
                 }
 
-                Console.WriteLine();
-                Console.WriteLine("FEN String is:");
-                Console.WriteLine(fenString.ToString());
+                //Console.WriteLine();
+                //Console.WriteLine("FEN String is:");
+                //Console.WriteLine(fenString.ToString());
 
                 LogHelper.logger.Info("PrepareFenString finished...");
                 return fenString.ToString();

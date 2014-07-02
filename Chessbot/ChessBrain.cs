@@ -45,7 +45,7 @@ namespace OpenCVDemo1
         private void btnSplitImae_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            Console.WriteLine("Reading current Chess position...");
+            //Console.WriteLine("Reading current Chess position...");
             int paddingPixel = int.Parse(txtPadding.Text);
             if (rbtnWhite.Checked)
             {
@@ -85,7 +85,7 @@ namespace OpenCVDemo1
             //this.SetDesktopLocation(Left+20, this.Top);
 
             Cursor = Cursors.WaitCursor;
-            Console.WriteLine("Reading master template...");
+            //Console.WriteLine("Reading master template...");
             int paddingPixel = int.Parse(txtPadding.Text);
             if (rbtnWhite.Checked)
             {
@@ -97,7 +97,7 @@ namespace OpenCVDemo1
             else
                 ImageProcessingManager.FillMasterTemplate(Image.FromFile("black.png"), 5, rbtnWhite.Checked);
             Cursor = Cursors.Default;
-            Console.WriteLine("Done!");
+            //Console.WriteLine("Done!");
 
         }
 
@@ -111,7 +111,7 @@ namespace OpenCVDemo1
             int src_width = src.Bounds.Width;
             this.Left = ((src_width - frm_width) / 2) + 100;
             //this.Top = (src_height - frm_height) / 2;
-            //Console.WriteLine("Jai Ganesh");
+            ////Console.WriteLine("Jai Ganesh");
 
             LoadTemplates();
         }
@@ -197,11 +197,11 @@ namespace OpenCVDemo1
             TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
             if(selectedEntity !=null)
             {
-                Console.WriteLine("Reading template " + selectedEntity.TemplateName);             
+                //Console.WriteLine("Reading template " + selectedEntity.TemplateName);             
                 ImageProcessingManager.ReadTemplate(selectedEntity.TemplateFileName);
                 
                 MessageBox.Show("Template successfully loaded..", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Console.WriteLine("Reading template DONE!");
+                //Console.WriteLine("Reading template DONE!");
             }
         }
 

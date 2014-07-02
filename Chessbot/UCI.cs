@@ -126,7 +126,7 @@ namespace OpenCVDemo1
             if (t.Contains("bestmove"))
             {
                 String bestmove = t.Substring(9, 4);
-                Console.WriteLine("Best move: " + bestmove);
+                //Console.WriteLine("Best move: " + bestmove);
 
                 BestMovFound(null, new BestMoveFoundArgs(bestmove, currentMoveScore));
             }
@@ -136,7 +136,7 @@ namespace OpenCVDemo1
                 Int32 length = considerering.Length;
                 Int32 idxofline = considerering.IndexOf(" pv ") + 4;
                 considerering = considerering.Substring(idxofline, length - idxofline);
-                Console.WriteLine(" Considering line: " + considerering);
+                //Console.WriteLine(" Considering line: " + considerering);
             }
         }
 
