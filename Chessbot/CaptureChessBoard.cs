@@ -46,6 +46,7 @@ namespace OpenCVDemo1
         #region Properties
         public string EngineDepth { get { return _engineDepth; } set { _engineDepth = value; } }
         public Rectangle ScreenBoardCoordinates { get; set; }
+        public Rectangle PreviousScreenBoardCoordinates { get; set; }
         public Rectangle TriggerCoordinates { get; set; }
         public Image CapturedScreen { get; set; }
         public static Image CapturedBoard { get; set; }
@@ -1055,6 +1056,7 @@ namespace OpenCVDemo1
 
                 ScreenBoardCoordinates = new Rectangle();
                 ScreenBoardCoordinates = croprect;
+                PreviousScreenBoardCoordinates = croprect;
 
                 pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
 
@@ -1081,7 +1083,8 @@ namespace OpenCVDemo1
             try
             {
                 LogHelper.logger.Info("ScanBoardAgain called...");
-                croprect = ScreenBoardCoordinates;
+                croprect = PreviousScreenBoardCoordinates;
+                //croprect = ScreenBoardCoordinates;
                 if (croprect == Rectangle.Empty)
                 {
                     MessageBox.Show("Board selection is invalid. Please crop board properly.");
