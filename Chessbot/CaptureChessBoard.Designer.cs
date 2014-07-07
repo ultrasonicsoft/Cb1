@@ -43,6 +43,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.pbIntensityTest = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
             this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
             this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -121,7 +122,7 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
+            this.cbEnableLogging = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -302,6 +303,17 @@
             this.groupBox6.TabIndex = 38;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Intensity Settings";
+            // 
+            // cbEnableHotKey
+            // 
+            this.cbEnableHotKey.AutoSize = true;
+            this.cbEnableHotKey.Location = new System.Drawing.Point(10, 174);
+            this.cbEnableHotKey.Name = "cbEnableHotKey";
+            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableHotKey.TabIndex = 53;
+            this.cbEnableHotKey.Text = "Enable Hot Key";
+            this.cbEnableHotKey.UseVisualStyleBackColor = true;
+            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
             // 
             // txtStandardMatchingFactor
             // 
@@ -552,6 +564,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.cbEnableLogging);
             this.groupBox5.Controls.Add(this.btnSaveTemplate);
             this.groupBox5.Controls.Add(this.txtPadding);
             this.groupBox5.Controls.Add(this.rbtnBlack);
@@ -1076,16 +1089,18 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // cbEnableHotKey
+            // cbEnableLogging
             // 
-            this.cbEnableHotKey.AutoSize = true;
-            this.cbEnableHotKey.Location = new System.Drawing.Point(10, 174);
-            this.cbEnableHotKey.Name = "cbEnableHotKey";
-            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
-            this.cbEnableHotKey.TabIndex = 53;
-            this.cbEnableHotKey.Text = "Enable Hot Key";
-            this.cbEnableHotKey.UseVisualStyleBackColor = true;
-            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
+            this.cbEnableLogging.AutoSize = true;
+            this.cbEnableLogging.Checked = true;
+            this.cbEnableLogging.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbEnableLogging.Location = new System.Drawing.Point(11, 70);
+            this.cbEnableLogging.Name = "cbEnableLogging";
+            this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableLogging.TabIndex = 36;
+            this.cbEnableLogging.Text = "Enable Logging";
+            this.cbEnableLogging.UseVisualStyleBackColor = true;
+            this.cbEnableLogging.CheckedChanged += new System.EventHandler(this.cbEnableLogging_CheckedChanged);
             // 
             // CaptureChessBoard
             // 
@@ -1232,5 +1247,6 @@
         private System.Windows.Forms.ToolStripStatusLabel txtScore;
         private System.Windows.Forms.ToolStripStatusLabel txtMessage;
         private System.Windows.Forms.CheckBox cbEnableHotKey;
+        private System.Windows.Forms.CheckBox cbEnableLogging;
     }
 }

@@ -17,5 +17,18 @@ namespace OpenCVDemo1
         {
             DOMConfigurator.Configure();
         }
+
+        public static void SetLoggingState(bool state)
+        {
+            if (state == false)
+            {
+                LogManager.GetLoggerRepository().Threshold = LogManager.GetLoggerRepository().LevelMap["OFF"];
+            }
+            else
+            {
+                LogManager.GetLoggerRepository().Threshold = LogManager.GetLoggerRepository().LevelMap["ALL"];
+            }
+        }
+
     }
 }

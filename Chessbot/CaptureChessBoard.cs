@@ -1422,6 +1422,11 @@ namespace OpenCVDemo1
         }
         #endregion
 
+        private void cbEnableLogging_CheckedChanged(object sender, EventArgs e)
+        {
+            LogHelper.SetLoggingState(cbEnableLogging.Checked);
+        }
+
 
     }
 }
