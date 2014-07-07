@@ -45,6 +45,9 @@ namespace OpenCVDemo1
 
         #region Properties
         public string EngineDepth { get { return _engineDepth; } set { _engineDepth = value; } }
+
+        public int NextMoveHighlightDuration { get; set; }
+
         public Rectangle ScreenBoardCoordinates { get; set; }
         public Rectangle PreviousScreenBoardCoordinates { get; set; }
         public Rectangle TriggerCoordinates { get; set; }
@@ -857,7 +860,7 @@ namespace OpenCVDemo1
                     Pen oldPen = new Pen(Color.Red, 5);
                     Pen newPen = new Pen(Color.Blue, 5);
 
-                    for (int i = 0; i < 100; i++)
+                    for (int i = 0; i < NextMoveHighlightDuration; i++)
                     {
                         //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
                         //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
@@ -1427,6 +1430,29 @@ namespace OpenCVDemo1
             LogHelper.SetLoggingState(cbEnableLogging.Checked);
         }
 
-       
+        private void txtStandardMatchingFactor_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged called...");
+                ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.Message);
+                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged finished...");
+        }
+
+        private void txtHighlightDuration_TextChanged(object sender, EventArgs e)
+        {
+            int duration = NextMoveHighlightDuration;
+            if (int.TryParse(txtHighlightDuration.Text, out duration))
+            {
+                NextMoveHighlightDuration = duration;
+            }
+        }
     }
 }

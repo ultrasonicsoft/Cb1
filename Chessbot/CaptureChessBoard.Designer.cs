@@ -83,7 +83,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
-            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
             this.txtIntensity = new System.Windows.Forms.TextBox();
@@ -124,6 +123,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtHighlightDuration = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -678,13 +679,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.txtHighlightDuration);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.label24);
             this.tabPage1.Controls.Add(this.txtEngineDepth);
             this.tabPage1.Controls.Add(this.txtStandardMatchingFactor);
             this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.btnUpdateStandardMatchingFactor);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.cbEnableLogging);
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
@@ -711,30 +713,21 @@
             // 
             // txtStandardMatchingFactor
             // 
-            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(199, 13);
+            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(7, 8);
             this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
             this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
             this.txtStandardMatchingFactor.TabIndex = 52;
             this.txtStandardMatchingFactor.Text = "75";
-            // 
-            // btnUpdateStandardMatchingFactor
-            // 
-            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(238, 12);
-            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
-            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
-            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
-            this.btnUpdateStandardMatchingFactor.Text = "Update";
-            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
-            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
+            this.txtStandardMatchingFactor.TextChanged += new System.EventHandler(this.txtStandardMatchingFactor_TextChanged);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(131, 17);
+            this.label22.Location = new System.Drawing.Point(46, 11);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(62, 13);
+            this.label22.Size = new System.Drawing.Size(104, 13);
             this.label22.TabIndex = 50;
-            this.label22.Text = "Matching %";
+            this.label22.Text = "Matching Factor (%):";
             // 
             // cbShowIntensityOnTop
             // 
@@ -787,7 +780,7 @@
             // cbEnableLogging
             // 
             this.cbEnableLogging.AutoSize = true;
-            this.cbEnableLogging.Location = new System.Drawing.Point(7, 39);
+            this.cbEnableLogging.Location = new System.Drawing.Point(7, 128);
             this.cbEnableLogging.Name = "cbEnableLogging";
             this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
             this.cbEnableLogging.TabIndex = 55;
@@ -798,7 +791,7 @@
             // cbEnableHotKey
             // 
             this.cbEnableHotKey.AutoSize = true;
-            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 16);
+            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 101);
             this.cbEnableHotKey.Name = "cbEnableHotKey";
             this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
             this.cbEnableHotKey.TabIndex = 54;
@@ -840,19 +833,20 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(121, 47);
+            this.label24.Location = new System.Drawing.Point(46, 41);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(72, 13);
+            this.label24.Size = new System.Drawing.Size(75, 13);
             this.label24.TabIndex = 58;
-            this.label24.Text = "Engine Depth";
+            this.label24.Text = "Engine Depth:";
             // 
             // txtEngineDepth
             // 
-            this.txtEngineDepth.Location = new System.Drawing.Point(199, 43);
+            this.txtEngineDepth.Location = new System.Drawing.Point(7, 38);
             this.txtEngineDepth.Name = "txtEngineDepth";
             this.txtEngineDepth.Size = new System.Drawing.Size(33, 20);
             this.txtEngineDepth.TabIndex = 57;
             this.txtEngineDepth.Text = "16";
+            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
             // 
             // groupBox4
             // 
@@ -1107,6 +1101,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Left";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(46, 72);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(163, 13);
+            this.label14.TabIndex = 62;
+            this.label14.Text = "Next Move Highlighting Duration:";
+            // 
+            // txtHighlightDuration
+            // 
+            this.txtHighlightDuration.Location = new System.Drawing.Point(7, 69);
+            this.txtHighlightDuration.Name = "txtHighlightDuration";
+            this.txtHighlightDuration.Size = new System.Drawing.Size(33, 20);
+            this.txtHighlightDuration.TabIndex = 61;
+            this.txtHighlightDuration.Text = "100";
+            this.txtHighlightDuration.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1221,7 +1233,6 @@
         private System.Windows.Forms.CheckBox cbEnableLogging;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtStandardMatchingFactor;
-        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
         private System.Windows.Forms.TextBox txtIntensity;
@@ -1256,5 +1267,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txtEngineDepth;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtHighlightDuration;
     }
 }
