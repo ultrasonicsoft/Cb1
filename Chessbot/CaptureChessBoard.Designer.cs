@@ -42,16 +42,6 @@
             this.lblExecutionTime = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.pbIntensityTest = new System.Windows.Forms.PictureBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
-            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
-            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
-            this.txtIntensity = new System.Windows.Forms.TextBox();
-            this.btnUseIntensity = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbIntensity = new System.Windows.Forms.TrackBar();
             this.btnRefreshTemplate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblWhosMove = new System.Windows.Forms.Label();
@@ -77,20 +67,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.rbtnWhite = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtResizeTop = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.btnResize = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtResizeLeft = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCompactView = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtEngineDepth = new System.Windows.Forms.TextBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtRefreshInterval = new System.Windows.Forms.TextBox();
@@ -102,6 +80,34 @@
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.cmbTemplates = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
+            this.btnUpdateStandardMatchingFactor = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
+            this.txtIntensity = new System.Windows.Forms.TextBox();
+            this.btnUseIntensity = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbIntensity = new System.Windows.Forms.TrackBar();
+            this.cbEnableLogging = new System.Windows.Forms.CheckBox();
+            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtEngineDepth = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtResizeTop = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtHeight = new System.Windows.Forms.TextBox();
+            this.btnResize = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtResizeLeft = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblCurrentMouseY = new System.Windows.Forms.Label();
             this.btnGetY = new System.Windows.Forms.Button();
@@ -118,11 +124,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbEnableLogging = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -133,16 +134,17 @@
             this.tbHome.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -197,6 +199,7 @@
             // tbctrController
             // 
             this.tbctrController.Controls.Add(this.tbHome);
+            this.tbctrController.Controls.Add(this.tabPage1);
             this.tbctrController.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
@@ -208,19 +211,16 @@
             // 
             this.tbHome.Controls.Add(this.groupBox7);
             this.tbHome.Controls.Add(this.pbIntensityTest);
-            this.tbHome.Controls.Add(this.groupBox6);
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
             this.tbHome.Controls.Add(this.groupBox1);
             this.tbHome.Controls.Add(this.btnStartNewGame);
             this.tbHome.Controls.Add(this.btnDeleteTemplate);
             this.tbHome.Controls.Add(this.btnGetBestMove);
             this.tbHome.Controls.Add(this.groupBox5);
-            this.tbHome.Controls.Add(this.groupBox4);
             this.tbHome.Controls.Add(this.groupBox3);
             this.tbHome.Controls.Add(this.btnLoadTemplate);
             this.tbHome.Controls.Add(this.cmbTemplates);
             this.tbHome.Controls.Add(this.label13);
-            this.tbHome.Controls.Add(this.groupBox2);
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
@@ -235,9 +235,9 @@
             this.groupBox7.Controls.Add(this.label25);
             this.groupBox7.Controls.Add(this.lblExecutionTime);
             this.groupBox7.Controls.Add(this.label23);
-            this.groupBox7.Location = new System.Drawing.Point(400, 127);
+            this.groupBox7.Location = new System.Drawing.Point(837, 6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(88, 96);
+            this.groupBox7.Size = new System.Drawing.Size(106, 96);
             this.groupBox7.TabIndex = 40;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Result";
@@ -278,118 +278,13 @@
             // 
             // pbIntensityTest
             // 
-            this.pbIntensityTest.Location = new System.Drawing.Point(1272, 6);
+            this.pbIntensityTest.Location = new System.Drawing.Point(1217, 24);
             this.pbIntensityTest.Name = "pbIntensityTest";
-            this.pbIntensityTest.Size = new System.Drawing.Size(318, 184);
+            this.pbIntensityTest.Size = new System.Drawing.Size(77, 69);
             this.pbIntensityTest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbIntensityTest.TabIndex = 39;
             this.pbIntensityTest.TabStop = false;
             this.pbIntensityTest.Visible = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.cbEnableHotKey);
-            this.groupBox6.Controls.Add(this.txtStandardMatchingFactor);
-            this.groupBox6.Controls.Add(this.btnUpdateStandardMatchingFactor);
-            this.groupBox6.Controls.Add(this.label22);
-            this.groupBox6.Controls.Add(this.cbShowIntensityOnTop);
-            this.groupBox6.Controls.Add(this.txtIntensity);
-            this.groupBox6.Controls.Add(this.btnUseIntensity);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.tbIntensity);
-            this.groupBox6.Location = new System.Drawing.Point(1047, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(219, 214);
-            this.groupBox6.TabIndex = 38;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Intensity Settings";
-            // 
-            // cbEnableHotKey
-            // 
-            this.cbEnableHotKey.AutoSize = true;
-            this.cbEnableHotKey.Location = new System.Drawing.Point(10, 174);
-            this.cbEnableHotKey.Name = "cbEnableHotKey";
-            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
-            this.cbEnableHotKey.TabIndex = 53;
-            this.cbEnableHotKey.Text = "Enable Hot Key";
-            this.cbEnableHotKey.UseVisualStyleBackColor = true;
-            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
-            // 
-            // txtStandardMatchingFactor
-            // 
-            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(75, 137);
-            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
-            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
-            this.txtStandardMatchingFactor.TabIndex = 52;
-            this.txtStandardMatchingFactor.Text = "75";
-            // 
-            // btnUpdateStandardMatchingFactor
-            // 
-            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(129, 135);
-            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
-            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
-            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
-            this.btnUpdateStandardMatchingFactor.Text = "Update";
-            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
-            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(7, 141);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(62, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "Matching %";
-            // 
-            // cbShowIntensityOnTop
-            // 
-            this.cbShowIntensityOnTop.AutoSize = true;
-            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
-            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
-            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
-            this.cbShowIntensityOnTop.TabIndex = 33;
-            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
-            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
-            this.cbShowIntensityOnTop.Click += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
-            // 
-            // txtIntensity
-            // 
-            this.txtIntensity.Location = new System.Drawing.Point(62, 24);
-            this.txtIntensity.Name = "txtIntensity";
-            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
-            this.txtIntensity.TabIndex = 49;
-            this.txtIntensity.Text = "100";
-            // 
-            // btnUseIntensity
-            // 
-            this.btnUseIntensity.Location = new System.Drawing.Point(101, 24);
-            this.btnUseIntensity.Name = "btnUseIntensity";
-            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
-            this.btnUseIntensity.TabIndex = 48;
-            this.btnUseIntensity.Text = "Use Intensity";
-            this.btnUseIntensity.UseVisualStyleBackColor = true;
-            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(7, 27);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Intensity:";
-            // 
-            // tbIntensity
-            // 
-            this.tbIntensity.Location = new System.Drawing.Point(6, 50);
-            this.tbIntensity.Maximum = 255;
-            this.tbIntensity.Name = "tbIntensity";
-            this.tbIntensity.Size = new System.Drawing.Size(207, 45);
-            this.tbIntensity.TabIndex = 46;
-            this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tbIntensity.Value = 100;
-            this.tbIntensity.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // btnRefreshTemplate
             // 
@@ -564,7 +459,6 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cbEnableLogging);
             this.groupBox5.Controls.Add(this.btnSaveTemplate);
             this.groupBox5.Controls.Add(this.txtPadding);
             this.groupBox5.Controls.Add(this.rbtnBlack);
@@ -572,7 +466,7 @@
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.rbtnWhite);
-            this.groupBox5.Location = new System.Drawing.Point(746, 126);
+            this.groupBox5.Location = new System.Drawing.Point(400, 129);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(295, 91);
             this.groupBox5.TabIndex = 22;
@@ -647,107 +541,9 @@
             this.rbtnWhite.Text = "Yes";
             this.rbtnWhite.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.txtResizeTop);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.txtWidth);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.txtHeight);
-            this.groupBox4.Controls.Add(this.btnResize);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.txtResizeLeft);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(491, 126);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(240, 91);
-            this.groupBox4.TabIndex = 21;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Image Size";
-            // 
-            // txtResizeTop
-            // 
-            this.txtResizeTop.Location = new System.Drawing.Point(131, 25);
-            this.txtResizeTop.Name = "txtResizeTop";
-            this.txtResizeTop.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeTop.TabIndex = 20;
-            this.txtResizeTop.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 63);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Width";
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.Location = new System.Drawing.Point(44, 59);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(35, 20);
-            this.txtWidth.TabIndex = 13;
-            this.txtWidth.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(87, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Height";
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.Location = new System.Drawing.Point(131, 59);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(35, 20);
-            this.txtHeight.TabIndex = 15;
-            this.txtHeight.Text = "0";
-            // 
-            // btnResize
-            // 
-            this.btnResize.Location = new System.Drawing.Point(172, 22);
-            this.btnResize.Name = "btnResize";
-            this.btnResize.Size = new System.Drawing.Size(61, 57);
-            this.btnResize.TabIndex = 16;
-            this.btnResize.Text = "Resize && Validate";
-            this.btnResize.UseVisualStyleBackColor = true;
-            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Left";
-            // 
-            // txtResizeLeft
-            // 
-            this.txtResizeLeft.Location = new System.Drawing.Point(44, 25);
-            this.txtResizeLeft.Name = "txtResizeLeft";
-            this.txtResizeLeft.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeLeft.TabIndex = 18;
-            this.txtResizeLeft.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(99, 29);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Top";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnCompactView);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.txtEngineDepth);
             this.groupBox3.Controls.Add(this.cbAutoRefresh);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.txtRefreshInterval);
@@ -758,14 +554,14 @@
             this.groupBox3.Controls.Add(this.btnClearAll);
             this.groupBox3.Location = new System.Drawing.Point(400, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 114);
+            this.groupBox3.Size = new System.Drawing.Size(431, 114);
             this.groupBox3.TabIndex = 20;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Capture Chess Board";
             // 
             // btnCompactView
             // 
-            this.btnCompactView.Location = new System.Drawing.Point(239, 54);
+            this.btnCompactView.Location = new System.Drawing.Point(251, 54);
             this.btnCompactView.Name = "btnCompactView";
             this.btnCompactView.Size = new System.Drawing.Size(85, 23);
             this.btnCompactView.TabIndex = 35;
@@ -773,28 +569,10 @@
             this.btnCompactView.UseVisualStyleBackColor = true;
             this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
             // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(205, 92);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(72, 13);
-            this.label24.TabIndex = 34;
-            this.label24.Text = "Engine Depth";
-            // 
-            // txtEngineDepth
-            // 
-            this.txtEngineDepth.Location = new System.Drawing.Point(283, 88);
-            this.txtEngineDepth.Name = "txtEngineDepth";
-            this.txtEngineDepth.Size = new System.Drawing.Size(26, 20);
-            this.txtEngineDepth.TabIndex = 33;
-            this.txtEngineDepth.Text = "16";
-            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
-            // 
             // cbAutoRefresh
             // 
             this.cbAutoRefresh.AutoSize = true;
-            this.cbAutoRefresh.Location = new System.Drawing.Point(23, 86);
+            this.cbAutoRefresh.Location = new System.Drawing.Point(14, 89);
             this.cbAutoRefresh.Name = "cbAutoRefresh";
             this.cbAutoRefresh.Size = new System.Drawing.Size(88, 17);
             this.cbAutoRefresh.TabIndex = 32;
@@ -805,7 +583,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(144, 86);
+            this.label16.Location = new System.Drawing.Point(135, 90);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(26, 13);
             this.label16.TabIndex = 31;
@@ -813,7 +591,7 @@
             // 
             // txtRefreshInterval
             // 
-            this.txtRefreshInterval.Location = new System.Drawing.Point(112, 84);
+            this.txtRefreshInterval.Location = new System.Drawing.Point(103, 87);
             this.txtRefreshInterval.Name = "txtRefreshInterval";
             this.txtRefreshInterval.Size = new System.Drawing.Size(26, 20);
             this.txtRefreshInterval.TabIndex = 30;
@@ -822,7 +600,7 @@
             // 
             // btnScanAgain
             // 
-            this.btnScanAgain.Location = new System.Drawing.Point(239, 18);
+            this.btnScanAgain.Location = new System.Drawing.Point(251, 18);
             this.btnScanAgain.Name = "btnScanAgain";
             this.btnScanAgain.Size = new System.Drawing.Size(85, 23);
             this.btnScanAgain.TabIndex = 29;
@@ -898,6 +676,280 @@
             this.label13.TabIndex = 17;
             this.label13.Text = "Select Master Template:";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.label24);
+            this.tabPage1.Controls.Add(this.txtEngineDepth);
+            this.tabPage1.Controls.Add(this.txtStandardMatchingFactor);
+            this.tabPage1.Controls.Add(this.groupBox6);
+            this.tabPage1.Controls.Add(this.btnUpdateStandardMatchingFactor);
+            this.tabPage1.Controls.Add(this.label22);
+            this.tabPage1.Controls.Add(this.cbEnableLogging);
+            this.tabPage1.Controls.Add(this.cbEnableHotKey);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(1360, 240);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Advance Settings";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbShowIntensityOnTop);
+            this.groupBox6.Controls.Add(this.txtIntensity);
+            this.groupBox6.Controls.Add(this.btnUseIntensity);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.tbIntensity);
+            this.groupBox6.Location = new System.Drawing.Point(664, 10);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(219, 131);
+            this.groupBox6.TabIndex = 56;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Intensity Settings";
+            // 
+            // txtStandardMatchingFactor
+            // 
+            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(199, 13);
+            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
+            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
+            this.txtStandardMatchingFactor.TabIndex = 52;
+            this.txtStandardMatchingFactor.Text = "75";
+            // 
+            // btnUpdateStandardMatchingFactor
+            // 
+            this.btnUpdateStandardMatchingFactor.Location = new System.Drawing.Point(238, 12);
+            this.btnUpdateStandardMatchingFactor.Name = "btnUpdateStandardMatchingFactor";
+            this.btnUpdateStandardMatchingFactor.Size = new System.Drawing.Size(66, 23);
+            this.btnUpdateStandardMatchingFactor.TabIndex = 51;
+            this.btnUpdateStandardMatchingFactor.Text = "Update";
+            this.btnUpdateStandardMatchingFactor.UseVisualStyleBackColor = true;
+            this.btnUpdateStandardMatchingFactor.Click += new System.EventHandler(this.btnUpdateStandardMatchingFactor_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(131, 17);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(62, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Matching %";
+            // 
+            // cbShowIntensityOnTop
+            // 
+            this.cbShowIntensityOnTop.AutoSize = true;
+            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
+            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
+            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
+            this.cbShowIntensityOnTop.TabIndex = 33;
+            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
+            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
+            this.cbShowIntensityOnTop.CheckedChanged += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
+            // 
+            // txtIntensity
+            // 
+            this.txtIntensity.Location = new System.Drawing.Point(62, 24);
+            this.txtIntensity.Name = "txtIntensity";
+            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
+            this.txtIntensity.TabIndex = 49;
+            this.txtIntensity.Text = "100";
+            // 
+            // btnUseIntensity
+            // 
+            this.btnUseIntensity.Location = new System.Drawing.Point(101, 24);
+            this.btnUseIntensity.Name = "btnUseIntensity";
+            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
+            this.btnUseIntensity.TabIndex = 48;
+            this.btnUseIntensity.Text = "Use Intensity";
+            this.btnUseIntensity.UseVisualStyleBackColor = true;
+            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(7, 27);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Intensity:";
+            // 
+            // tbIntensity
+            // 
+            this.tbIntensity.Location = new System.Drawing.Point(6, 50);
+            this.tbIntensity.Maximum = 255;
+            this.tbIntensity.Name = "tbIntensity";
+            this.tbIntensity.Size = new System.Drawing.Size(207, 45);
+            this.tbIntensity.TabIndex = 46;
+            this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbIntensity.Value = 100;
+            // 
+            // cbEnableLogging
+            // 
+            this.cbEnableLogging.AutoSize = true;
+            this.cbEnableLogging.Location = new System.Drawing.Point(7, 39);
+            this.cbEnableLogging.Name = "cbEnableLogging";
+            this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableLogging.TabIndex = 55;
+            this.cbEnableLogging.Text = "Enable Logging";
+            this.cbEnableLogging.UseVisualStyleBackColor = true;
+            this.cbEnableLogging.CheckedChanged += new System.EventHandler(this.cbEnableLogging_CheckedChanged);
+            // 
+            // cbEnableHotKey
+            // 
+            this.cbEnableHotKey.AutoSize = true;
+            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 16);
+            this.cbEnableHotKey.Name = "cbEnableHotKey";
+            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableHotKey.TabIndex = 54;
+            this.cbEnableHotKey.Text = "Enable Hot Key";
+            this.cbEnableHotKey.UseVisualStyleBackColor = true;
+            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txtStatus,
+            this.txtScore,
+            this.txtMessage});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 521);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(47, 17);
+            this.txtStatus.Text = "[Status]";
+            // 
+            // txtScore
+            // 
+            this.txtScore.Name = "txtScore";
+            this.txtScore.Size = new System.Drawing.Size(44, 17);
+            this.txtScore.Text = "[Score]";
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(61, 17);
+            this.txtMessage.Text = "[Message]";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(121, 47);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(72, 13);
+            this.label24.TabIndex = 58;
+            this.label24.Text = "Engine Depth";
+            // 
+            // txtEngineDepth
+            // 
+            this.txtEngineDepth.Location = new System.Drawing.Point(199, 43);
+            this.txtEngineDepth.Name = "txtEngineDepth";
+            this.txtEngineDepth.Size = new System.Drawing.Size(33, 20);
+            this.txtEngineDepth.TabIndex = 57;
+            this.txtEngineDepth.Text = "16";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.txtResizeTop);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.txtWidth);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.txtHeight);
+            this.groupBox4.Controls.Add(this.btnResize);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.txtResizeLeft);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Location = new System.Drawing.Point(347, 133);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(295, 91);
+            this.groupBox4.TabIndex = 59;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Image Size";
+            // 
+            // txtResizeTop
+            // 
+            this.txtResizeTop.Location = new System.Drawing.Point(131, 25);
+            this.txtResizeTop.Name = "txtResizeTop";
+            this.txtResizeTop.Size = new System.Drawing.Size(35, 20);
+            this.txtResizeTop.TabIndex = 20;
+            this.txtResizeTop.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 63);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Width";
+            // 
+            // txtWidth
+            // 
+            this.txtWidth.Location = new System.Drawing.Point(44, 59);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(35, 20);
+            this.txtWidth.TabIndex = 13;
+            this.txtWidth.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(87, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Height";
+            // 
+            // txtHeight
+            // 
+            this.txtHeight.Location = new System.Drawing.Point(131, 59);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.Size = new System.Drawing.Size(35, 20);
+            this.txtHeight.TabIndex = 15;
+            this.txtHeight.Text = "0";
+            // 
+            // btnResize
+            // 
+            this.btnResize.Location = new System.Drawing.Point(193, 22);
+            this.btnResize.Name = "btnResize";
+            this.btnResize.Size = new System.Drawing.Size(61, 57);
+            this.btnResize.TabIndex = 16;
+            this.btnResize.Text = "Resize && Validate";
+            this.btnResize.UseVisualStyleBackColor = true;
+            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(13, 28);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(25, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Left";
+            // 
+            // txtResizeLeft
+            // 
+            this.txtResizeLeft.Location = new System.Drawing.Point(44, 25);
+            this.txtResizeLeft.Name = "txtResizeLeft";
+            this.txtResizeLeft.Size = new System.Drawing.Size(35, 20);
+            this.txtResizeLeft.TabIndex = 18;
+            this.txtResizeLeft.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(99, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Top";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblCurrentMouseY);
@@ -915,10 +967,10 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtLeft);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(746, 3);
+            this.groupBox2.Location = new System.Drawing.Point(347, 10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(295, 117);
-            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Enter Coordinates";
             // 
@@ -940,7 +992,6 @@
             this.btnGetY.TabIndex = 9;
             this.btnGetY.Text = "Get Y";
             this.btnGetY.UseVisualStyleBackColor = true;
-            this.btnGetY.Click += new System.EventHandler(this.btnGetY_Click);
             // 
             // label7
             // 
@@ -969,7 +1020,6 @@
             this.btnGetX.TabIndex = 8;
             this.btnGetX.Text = "Get X";
             this.btnGetX.UseVisualStyleBackColor = true;
-            this.btnGetX.Click += new System.EventHandler(this.btnGetX_Click);
             // 
             // label5
             // 
@@ -988,7 +1038,6 @@
             this.btnCropUsingCoordinates.TabIndex = 5;
             this.btnCropUsingCoordinates.Text = "Show";
             this.btnCropUsingCoordinates.UseVisualStyleBackColor = true;
-            this.btnCropUsingCoordinates.Click += new System.EventHandler(this.btnCropUsingCoordinates_Click);
             // 
             // txtBottom
             // 
@@ -1058,48 +1107,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Left";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtStatus,
-            this.txtScore,
-            this.txtMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 521);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(47, 17);
-            this.txtStatus.Text = "[Status]";
-            // 
-            // txtScore
-            // 
-            this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(44, 17);
-            this.txtScore.Text = "[Score]";
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(61, 17);
-            this.txtMessage.Text = "[Message]";
-            // 
-            // cbEnableLogging
-            // 
-            this.cbEnableLogging.AutoSize = true;
-            this.cbEnableLogging.Location = new System.Drawing.Point(11, 70);
-            this.cbEnableLogging.Name = "cbEnableLogging";
-            this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
-            this.cbEnableLogging.TabIndex = 36;
-            this.cbEnableLogging.Text = "Enable Logging";
-            this.cbEnableLogging.UseVisualStyleBackColor = true;
-            this.cbEnableLogging.CheckedChanged += new System.EventHandler(this.cbEnableLogging_CheckedChanged);
-            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1128,23 +1135,25 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1158,15 +1167,6 @@
         private System.Windows.Forms.TabControl tbctrController;
         private System.Windows.Forms.TabPage tbHome;
         private System.Windows.Forms.PictureBox pbIntensityTest;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtStandardMatchingFactor;
-        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
-        private System.Windows.Forms.TextBox txtIntensity;
-        private System.Windows.Forms.Button btnUseIntensity;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TrackBar tbIntensity;
         private System.Windows.Forms.Button btnRefreshTemplate;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblWhosMove;
@@ -1192,16 +1192,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.RadioButton rbtnWhite;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox txtResizeTop;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtWidth;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtHeight;
-        private System.Windows.Forms.Button btnResize;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtResizeLeft;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cbAutoRefresh;
         private System.Windows.Forms.Label label16;
@@ -1214,6 +1204,30 @@
         private System.Windows.Forms.Button btnLoadTemplate;
         private System.Windows.Forms.ComboBox cmbTemplates;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label lblExecutionTime;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtBestMove;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel txtStatus;
+        private System.Windows.Forms.Panel pnlImageHolder;
+        private System.Windows.Forms.PictureBox pbScreen;
+        private System.Windows.Forms.Button btnCompactView;
+        private System.Windows.Forms.ToolStripStatusLabel txtScore;
+        private System.Windows.Forms.ToolStripStatusLabel txtMessage;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.CheckBox cbEnableHotKey;
+        private System.Windows.Forms.CheckBox cbEnableLogging;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtStandardMatchingFactor;
+        private System.Windows.Forms.Button btnUpdateStandardMatchingFactor;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox cbShowIntensityOnTop;
+        private System.Windows.Forms.TextBox txtIntensity;
+        private System.Windows.Forms.Button btnUseIntensity;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TrackBar tbIntensity;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblCurrentMouseY;
         private System.Windows.Forms.Button btnGetY;
@@ -1230,21 +1244,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLeft;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label lblExecutionTime;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtBestMove;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtResizeTop;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtWidth;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtHeight;
+        private System.Windows.Forms.Button btnResize;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtResizeLeft;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txtEngineDepth;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel txtStatus;
-        private System.Windows.Forms.Panel pnlImageHolder;
-        private System.Windows.Forms.PictureBox pbScreen;
-        private System.Windows.Forms.Button btnCompactView;
-        private System.Windows.Forms.ToolStripStatusLabel txtScore;
-        private System.Windows.Forms.ToolStripStatusLabel txtMessage;
-        private System.Windows.Forms.CheckBox cbEnableHotKey;
-        private System.Windows.Forms.CheckBox cbEnableLogging;
     }
 }

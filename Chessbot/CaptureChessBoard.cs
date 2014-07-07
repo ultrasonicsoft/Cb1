@@ -1427,6 +1427,6 @@ namespace OpenCVDemo1
             LogHelper.SetLoggingState(cbEnableLogging.Checked);
         }
 
-
+       
     }
 }
