@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 //using Globals;
+using log4net.Repository.Hierarchy;
+using System.Windows.Forms;
 
 namespace OpenCVDemo1
 {
@@ -37,50 +39,82 @@ namespace OpenCVDemo1
 
         public bool InitEngine(String enginePath, String engineIniPath)
         {
-            // create process
-            UCI_Engine = new Process();
-            UCI_Engine.StartInfo.FileName = enginePath;
-            //UCI_Engine.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(enginePath);
-            UCI_Engine.StartInfo.UseShellExecute = false;
-            UCI_Engine.StartInfo.CreateNoWindow = true;
-            UCI_Engine.StartInfo.RedirectStandardInput = true;
-            UCI_Engine.StartInfo.RedirectStandardOutput = true;
-            UCI_Engine.Start();
-            UCI_Engine.OutputDataReceived += OutputDataReceivedProc;
-            UCI_Engine.BeginOutputReadLine();
+            LogHelper.logger.Info("InitEngine called with enginePath: " + enginePath + " and engineIniPath: " + engineIniPath);
+            try
+            {
+                // create process
+                UCI_Engine = new Process();
+                UCI_Engine.StartInfo.FileName = enginePath;
+                //UCI_Engine.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(enginePath);
+                UCI_Engine.StartInfo.UseShellExecute = false;
+                UCI_Engine.StartInfo.CreateNoWindow = true;
+                UCI_Engine.StartInfo.RedirectStandardInput = true;
+                UCI_Engine.StartInfo.RedirectStandardOutput = true;
+                UCI_Engine.Start();
+                UCI_Engine.OutputDataReceived += OutputDataReceivedProc;
+                UCI_Engine.BeginOutputReadLine();
 
-            // start new game
-            EngineCommand(kSetUCIMode);
-            ResetEngine();
+                // start new game
+                EngineCommand(kSetUCIMode);
+                ResetEngine();
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error(exception.Message);
+                MessageBox.Show(
+                    "Engine initialization failed. Please restart. If problem persists, contact your vendor.",
+                    "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            LogHelper.logger.Info("InitEngine finished.");
 
             return true;
         }
 
         public bool ResetEngine()
         {
-            // stop engine 
-            EngineCommand(kStopEngine);
+            LogHelper.logger.Info("ResetEngine called");
+            try
+            {
+                // stop engine 
+                EngineCommand(kStopEngine);
 
-            // reset engine
-            EngineCommand(kResetEngine);
+                // reset engine
+                EngineCommand(kResetEngine);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error(exception.Message);
+                throw;
+            }
+            LogHelper.logger.Info("ResetEngine finished");
+            
             return true;
         }
 
         public bool ShutdownEngine()
         {
-            if (UCI_Engine != null)
+            try
             {
-                // stop kill STOP!
-                EngineCommand(kStopEngine);
-                EngineCommand(kQuitEngine);
-                UCI_Engine.Kill();
+                if (UCI_Engine != null)
+                {
+                    // stop kill STOP!
+                    EngineCommand(kStopEngine);
+                    EngineCommand(kQuitEngine);
+                    UCI_Engine.Kill();
+                }
             }
-
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error(exception.Message);
+                throw;
+            }
             return true;
         }
 
-        public bool CalculateBestMove( string fenString, string engineDepth )
+        public bool CalculateBestMove(string fenString, string engineDepth)
         {
+            LogHelper.logger.Info("CalculateBestMove called. fenstring: " + fenString + "  and engine Depth: " + engineDepth);
             if (UCI_Engine != null)
             {
                 // setup engine board string
@@ -89,13 +123,17 @@ namespace OpenCVDemo1
                 //String searchString = kStartMovesFromStartPos + ConstructMoveString();
 
                 // stop thinking
+                LogHelper.logger.Info("Stopping engine with stop command: " + kStopEngine);
                 EngineCommand(kStopEngine);
 
                 // setup engine board
+                LogHelper.logger.Info("Searching next best move with searh query: " + searchString);
                 EngineCommand(searchString);
 
                 // think!
-                EngineCommand("go depth " + engineDepth);
+                string depthQuery = "go depth " + engineDepth;
+                LogHelper.logger.Info("Searching next best move with depth query: " + depthQuery);
+                EngineCommand(depthQuery);
             }
 
             return true;
@@ -108,7 +146,7 @@ namespace OpenCVDemo1
         //////////////////////////////////////////////////////////////////////////
         #region Private methods
 
-        private  void OutputDataReceivedProc(object sendingProcess, DataReceivedEventArgs outLine)
+        private void OutputDataReceivedProc(object sendingProcess, DataReceivedEventArgs outLine)
         {
             if (outLine.Data == null)
                 return;
@@ -116,28 +154,33 @@ namespace OpenCVDemo1
             String t = outLine.Data;
             if (t.Contains("score"))
             {
+                LogHelper.logger.Info("Trying to parse engine output for searching score. Current line: " + t);
                 var allParts = t.Split(' ');
                 int score = 0;
                 if (int.TryParse(allParts[7], out score))
                 {
-                    currentMoveScore = (score/100.0).ToString();
+                    LogHelper.logger.Info("score parsed as: " + score);
+                    currentMoveScore = (score / 100.0).ToString();
+                    LogHelper.logger.Info("score parsed as in percentage : " + currentMoveScore);
                 }
             }
             if (t.Contains("bestmove"))
             {
+                LogHelper.logger.Info("Trying to parse engine output for best move score. Current line: " + t);
                 String bestmove = t.Substring(9, 4);
                 //Console.WriteLine("Best move: " + bestmove);
 
+                LogHelper.logger.Info("Best move parsed as: " + bestmove);
                 BestMovFound(null, new BestMoveFoundArgs(bestmove, currentMoveScore));
             }
-            else if (t.Contains(" pv "))
-            {
-                String considerering = t;
-                Int32 length = considerering.Length;
-                Int32 idxofline = considerering.IndexOf(" pv ") + 4;
-                considerering = considerering.Substring(idxofline, length - idxofline);
-                //Console.WriteLine(" Considering line: " + considerering);
-            }
+            //else if (t.Contains(" pv "))
+            //{
+            //    String considerering = t;
+            //    Int32 length = considerering.Length;
+            //    Int32 idxofline = considerering.IndexOf(" pv ") + 4;
+            //    considerering = considerering.Substring(idxofline, length - idxofline);
+            //    //Console.WriteLine(" Considering line: " + considerering);
+            //}
         }
 
         //private String ConstructMoveString()
@@ -227,9 +270,18 @@ namespace OpenCVDemo1
 
         private void EngineCommand(String cmd)
         {
-            if (UCI_Engine != null)
-                UCI_Engine.StandardInput.WriteLine(cmd);
-
+            LogHelper.logger.Info("Executing command on engine. Current Command is: " + cmd);
+            try
+            {
+                if (UCI_Engine != null)
+                    UCI_Engine.StandardInput.WriteLine(cmd);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error(exception.Message);
+                throw;
+            }
+          LogHelper.logger.Info("EngineCommand finished");
             //string value = UCI_Engine.StandardOutput.ReadToEnd();
         }
 

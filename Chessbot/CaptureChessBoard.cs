@@ -667,7 +667,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("Crop_Paint called...");
+                //LogHelper.logger.Info("Crop_Paint called...");
                 var rect = GetRectangle(sp, ep);
                 e.Graphics.DrawRectangle(Pens.Red, rect);
 
@@ -707,14 +707,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("Crop_Paint: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("Crop_Paint finished...");
+            //LogHelper.logger.Info("Crop_Paint finished...");
         }
 
         private void Crop_MouseMove(object sender, MouseEventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("Crop_MouseMove callled...");
+                //LogHelper.logger.Info("Crop_MouseMove callled...");
                 if (mouseDown)
                 {
                     ep = e.Location;
@@ -755,7 +755,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("Crop_MouseMove: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("Crop_MouseMove finished...");
+            //LogHelper.logger.Info("Crop_MouseMove finished...");
         }
 
         private void Crop_MouseUp(object sender, MouseEventArgs e)
@@ -1348,7 +1348,7 @@ namespace OpenCVDemo1
 
         private string GetNextBestMove(string fenString)
         {
-            LogHelper.logger.Info("GetNextBestMove called...");
+            LogHelper.logger.Info("Engine: GetNextBestMove called for fenstring: " + fenString);
             string bestMove = string.Empty;
             try
             {
