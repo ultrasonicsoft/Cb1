@@ -13,9 +13,10 @@ namespace OpenCVDemo1
         public static readonly ILog logger =
           LogManager.GetLogger(typeof(LogHelper));
 
-         static LogHelper()
+        static LogHelper()
         {
             DOMConfigurator.Configure();
+            SetLoggingState(false);
         }
 
         public static void SetLoggingState(bool state)

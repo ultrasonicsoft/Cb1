@@ -1092,8 +1092,6 @@
             // cbEnableLogging
             // 
             this.cbEnableLogging.AutoSize = true;
-            this.cbEnableLogging.Checked = true;
-            this.cbEnableLogging.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbEnableLogging.Location = new System.Drawing.Point(11, 70);
             this.cbEnableLogging.Name = "cbEnableLogging";
             this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
