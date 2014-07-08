@@ -189,10 +189,10 @@ namespace OpenCVDemo1
         {
             lblCurrentMouseX.Text = string.Empty;
             lblCurrentMouseY.Text = string.Empty;
-            txtLeft.Text = string.Empty;
-            txtRight.Text = string.Empty;
-            txtTop.Text = string.Empty;
-            txtBottom.Text = string.Empty;
+            //txtLeft.Text = string.Empty;
+            //txtRight.Text = string.Empty;
+            //txtTop.Text = string.Empty;
+            //txtBottom.Text = string.Empty;
             isGetXEnabled = false;
             isGetYEnabled = false;
 
@@ -205,34 +205,34 @@ namespace OpenCVDemo1
 
         private void btnCropUsingCoordinates_Click(object sender, EventArgs e)
         {
-            int left = 0;
-            int top = 0;
-            int right = 0;
-            int bottom = 0;
-            int.TryParse(txtLeft.Text, out left);
-            int.TryParse(txtTop.Text, out top);
-            int.TryParse(txtRight.Text, out right);
-            int.TryParse(txtBottom.Text, out bottom);
-            int width = Math.Abs(right - left);
-            int height = Math.Abs(bottom - top);
+            //int left = 0;
+            //int top = 0;
+            //int right = 0;
+            //int bottom = 0;
+            //int.TryParse(txtLeft.Text, out left);
+            //int.TryParse(txtTop.Text, out top);
+            //int.TryParse(txtRight.Text, out right);
+            //int.TryParse(txtBottom.Text, out bottom);
+            //int width = Math.Abs(right - left);
+            //int height = Math.Abs(bottom - top);
 
-            try
-            {
-                LogHelper.logger.Info("btnCropUsingCoordinates_Click called...");
-                sp = new Point(left, top);
-                ep = new Point(right, bottom);
-                croprect = new Rectangle(left, top, width, height);
-                //pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
+            //try
+            //{
+            //    LogHelper.logger.Info("btnCropUsingCoordinates_Click called...");
+            //    sp = new Point(left, top);
+            //    ep = new Point(right, bottom);
+            //    croprect = new Rectangle(left, top, width, height);
+            //    //pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
 
-                pbScreen.Invalidate();
-                LogHelper.logger.Info("btnCropUsingCoordinates_Click finished...");
-            }
-            catch (Exception exception)
-            {
-                LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.Message);
-                LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //    pbScreen.Invalidate();
+            //    LogHelper.logger.Info("btnCropUsingCoordinates_Click finished...");
+            //}
+            //catch (Exception exception)
+            //{
+            //    LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.Message);
+            //    LogHelper.logger.Error("btnCropUsingCoordinates_Click: " + exception.StackTrace);
+            //    MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void btnGetX_Click(object sender, EventArgs e)
         {
@@ -247,42 +247,42 @@ namespace OpenCVDemo1
         }
         private void btnResize_Click(object sender, EventArgs e)
         {
-            int left = 0;
-            int top = 0;
-            int width = 0;
-            int height = 0;
+            //int left = 0;
+            //int top = 0;
+            //int width = 0;
+            //int height = 0;
 
-            try
-            {
+            //try
+            //{
 
-                LogHelper.logger.Info("btnResize_Click called...");
-                left = int.Parse(txtResizeLeft.Text);
-                top = int.Parse(txtResizeTop.Text);
-                width = int.Parse(txtWidth.Text);
-                height = int.Parse(txtHeight.Text);
+            //    LogHelper.logger.Info("btnResize_Click called...");
+            //    left = int.Parse(txtResizeLeft.Text);
+            //    top = int.Parse(txtResizeTop.Text);
+            //    width = int.Parse(txtWidth.Text);
+            //    height = int.Parse(txtHeight.Text);
 
-                int oldWidth = CapturedScreen.Width;
-                int oldHeight = CapturedScreen.Height;
+            //    int oldWidth = CapturedScreen.Width;
+            //    int oldHeight = CapturedScreen.Height;
 
-                left = Math.Abs(oldWidth - width) / 2;
-                top = Math.Abs(oldHeight - height) / 2;
+            //    left = Math.Abs(oldWidth - width) / 2;
+            //    top = Math.Abs(oldHeight - height) / 2;
 
-                croprect = new Rectangle(left, top, width, height);
-                pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
-                CapturedScreen = pbScreen.Image;
+            //    croprect = new Rectangle(left, top, width, height);
+            //    pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
+            //    CapturedScreen = pbScreen.Image;
 
-                ClearSelection();
+            //    ClearSelection();
 
-                ValidateBoard();
+            //    ValidateBoard();
 
-            }
-            catch (Exception exception)
-            {
-                LogHelper.logger.Error("btnResize_Click: " + exception.Message);
-                LogHelper.logger.Error("btnResize_Click: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            LogHelper.logger.Info("btnResize_Click finished...");
+            //}
+            //catch (Exception exception)
+            //{
+            //    LogHelper.logger.Error("btnResize_Click: " + exception.Message);
+            //    LogHelper.logger.Error("btnResize_Click: " + exception.StackTrace);
+            //    MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //LogHelper.logger.Info("btnResize_Click finished...");
         }
 
         private void btnTemplate_Click(object sender, EventArgs e)
@@ -733,26 +733,26 @@ namespace OpenCVDemo1
                 lblCurrentMouseY.Text = e.Y.ToString();
 
 
-                if (isGetXEnabled)
-                {
-                    txtLeft.Text = e.X.ToString();
-                    txtTop.Text = e.Y.ToString();
-                }
-                else
-                {
-                    txtLeft.Text = rect.X.ToString();
-                    txtTop.Text = rect.Y.ToString();
-                }
-                if (isGetYEnabled)
-                {
-                    txtRight.Text = e.X.ToString();
-                    txtBottom.Text = e.Y.ToString();
-                }
-                else
-                {
-                    txtRight.Text = rect.Width.ToString();
-                    txtBottom.Text = rect.Height.ToString();
-                }
+                //if (isGetXEnabled)
+                //{
+                //    txtLeft.Text = e.X.ToString();
+                //    txtTop.Text = e.Y.ToString();
+                //}
+                //else
+                //{
+                //    txtLeft.Text = rect.X.ToString();
+                //    txtTop.Text = rect.Y.ToString();
+                //}
+                //if (isGetYEnabled)
+                //{
+                //    txtRight.Text = e.X.ToString();
+                //    txtBottom.Text = e.Y.ToString();
+                //}
+                //else
+                //{
+                //    txtRight.Text = rect.Width.ToString();
+                //    txtBottom.Text = rect.Height.ToString();
+                //}
             }
             catch (Exception exception)
             {
@@ -772,8 +772,8 @@ namespace OpenCVDemo1
                 mouseDown = false;
                 croprect = GetRectangle(sp, ep);
 
-                txtWidth.Text = ep.X.ToString();
-                txtHeight.Text = ep.Y.ToString();
+                //txtWidth.Text = ep.X.ToString();
+                //txtHeight.Text = ep.Y.ToString();
 
                 txtSelectedLeft.Text = croprect.Left.ToString();
                 txtSelectedTop.Text = croprect.Top.ToString();
@@ -1055,8 +1055,8 @@ namespace OpenCVDemo1
                 if (croprect.IsEmpty)
                     return;
 
-                txtWidth.Text = croprect.Width.ToString();
-                txtHeight.Text = croprect.Height.ToString();
+                //txtWidth.Text = croprect.Width.ToString();
+                //txtHeight.Text = croprect.Height.ToString();
 
                 if (croprect.Width % 2 != 0 || croprect.Height % 2 != 0)
                 {
@@ -1075,8 +1075,8 @@ namespace OpenCVDemo1
 
                 //txtResizeLeft.Text = "0";
                 //txtResizeTop.Text = "0";
-                txtWidth.Text = CapturedScreen.Width.ToString();
-                txtHeight.Text = CapturedScreen.Height.ToString();
+                //txtWidth.Text = CapturedScreen.Width.ToString();
+                //txtHeight.Text = CapturedScreen.Height.ToString();
 
                 //cbAutoRefresh.Checked = false;
             }
@@ -1114,8 +1114,8 @@ namespace OpenCVDemo1
 
                 //txtResizeLeft.Text = "0";
                 //txtResizeTop.Text = "0";
-                txtWidth.Text = CapturedScreen.Width.ToString();
-                txtHeight.Text = CapturedScreen.Height.ToString();
+                //txtWidth.Text = CapturedScreen.Width.ToString();
+                //txtHeight.Text = CapturedScreen.Height.ToString();
 
             }
             catch (Exception exception)
@@ -1481,6 +1481,11 @@ namespace OpenCVDemo1
             ep = new Point(ep.X + diffWidth, ep.Y + diffHeigght);
             croprect = new Rectangle(left,top,width,height);
             pbScreen.Invalidate();
+        }
+
+        private void tbIntensity_Scroll(object sender, EventArgs e)
+        {
+            txtIntensity.Text = tbIntensity.Value.ToString();
         }
 
     }

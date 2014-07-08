@@ -36,6 +36,7 @@
             this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.btnCompactView = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtBestMove = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -67,48 +68,34 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.rbtnWhite = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCompactView = new System.Windows.Forms.Button();
-            this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtRefreshInterval = new System.Windows.Forms.TextBox();
-            this.btnScanAgain = new System.Windows.Forms.Button();
-            this.btnCaptureScreen = new System.Windows.Forms.Button();
-            this.btnCropBoard = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnClearAll = new System.Windows.Forms.Button();
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.cmbTemplates = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
+            this.txtRefreshInterval = new System.Windows.Forms.TextBox();
+            this.btnScanAgain = new System.Windows.Forms.Button();
+            this.btnCaptureScreen = new System.Windows.Forms.Button();
+            this.btnCropBoard = new System.Windows.Forms.Button();
+            this.btnClearSelection = new System.Windows.Forms.Button();
+            this.btnClearAll = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lblCurrentMouseY = new System.Windows.Forms.Label();
+            this.txtSelectedTop = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtSelectedWidth = new System.Windows.Forms.TextBox();
+            this.lblCurrentMouseX = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSelectedHeight = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnUpdatedSelection = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtSelectedLeft = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtHighlightDuration = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblCurrentMouseY = new System.Windows.Forms.Label();
-            this.btnGetY = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblCurrentMouseX = new System.Windows.Forms.Label();
-            this.btnGetX = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnCropUsingCoordinates = new System.Windows.Forms.Button();
-            this.txtBottom = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtRight = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtTop = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtLeft = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtResizeTop = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.btnResize = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtResizeLeft = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.txtEngineDepth = new System.Windows.Forms.TextBox();
             this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
@@ -125,16 +112,6 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.txtSelectedTop = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtSelectedWidth = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtSelectedHeight = new System.Windows.Forms.TextBox();
-            this.btnUpdatedSelection = new System.Windows.Forms.Button();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtSelectedLeft = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -149,14 +126,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -221,6 +196,7 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.btnCompactView);
             this.tbHome.Controls.Add(this.groupBox7);
             this.tbHome.Controls.Add(this.pbIntensityTest);
             this.tbHome.Controls.Add(this.btnRefreshTemplate);
@@ -229,17 +205,26 @@
             this.tbHome.Controls.Add(this.btnDeleteTemplate);
             this.tbHome.Controls.Add(this.btnGetBestMove);
             this.tbHome.Controls.Add(this.groupBox5);
-            this.tbHome.Controls.Add(this.groupBox3);
             this.tbHome.Controls.Add(this.btnLoadTemplate);
             this.tbHome.Controls.Add(this.cmbTemplates);
             this.tbHome.Controls.Add(this.label13);
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1360, 240);
+            this.tbHome.Size = new System.Drawing.Size(974, 240);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // btnCompactView
+            // 
+            this.btnCompactView.Location = new System.Drawing.Point(765, 175);
+            this.btnCompactView.Name = "btnCompactView";
+            this.btnCompactView.Size = new System.Drawing.Size(85, 23);
+            this.btnCompactView.TabIndex = 35;
+            this.btnCompactView.Text = "Compact View";
+            this.btnCompactView.UseVisualStyleBackColor = true;
+            this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
             // 
             // groupBox7
             // 
@@ -553,113 +538,6 @@
             this.rbtnWhite.Text = "Yes";
             this.rbtnWhite.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnCompactView);
-            this.groupBox3.Controls.Add(this.cbAutoRefresh);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.txtRefreshInterval);
-            this.groupBox3.Controls.Add(this.btnScanAgain);
-            this.groupBox3.Controls.Add(this.btnCaptureScreen);
-            this.groupBox3.Controls.Add(this.btnCropBoard);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.btnClearAll);
-            this.groupBox3.Location = new System.Drawing.Point(400, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(431, 114);
-            this.groupBox3.TabIndex = 20;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Capture Chess Board";
-            // 
-            // btnCompactView
-            // 
-            this.btnCompactView.Location = new System.Drawing.Point(251, 54);
-            this.btnCompactView.Name = "btnCompactView";
-            this.btnCompactView.Size = new System.Drawing.Size(85, 23);
-            this.btnCompactView.TabIndex = 35;
-            this.btnCompactView.Text = "Compact View";
-            this.btnCompactView.UseVisualStyleBackColor = true;
-            this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
-            // 
-            // cbAutoRefresh
-            // 
-            this.cbAutoRefresh.AutoSize = true;
-            this.cbAutoRefresh.Location = new System.Drawing.Point(14, 89);
-            this.cbAutoRefresh.Name = "cbAutoRefresh";
-            this.cbAutoRefresh.Size = new System.Drawing.Size(88, 17);
-            this.cbAutoRefresh.TabIndex = 32;
-            this.cbAutoRefresh.Text = "Auto Refresh";
-            this.cbAutoRefresh.UseVisualStyleBackColor = true;
-            this.cbAutoRefresh.CheckedChanged += new System.EventHandler(this.cbAutoRefresh_CheckedChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(135, 90);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(26, 13);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "(ms)";
-            // 
-            // txtRefreshInterval
-            // 
-            this.txtRefreshInterval.Location = new System.Drawing.Point(103, 87);
-            this.txtRefreshInterval.Name = "txtRefreshInterval";
-            this.txtRefreshInterval.Size = new System.Drawing.Size(26, 20);
-            this.txtRefreshInterval.TabIndex = 30;
-            this.txtRefreshInterval.Text = "50";
-            this.txtRefreshInterval.TextChanged += new System.EventHandler(this.txtRefreshInterval_Leave);
-            // 
-            // btnScanAgain
-            // 
-            this.btnScanAgain.Location = new System.Drawing.Point(251, 18);
-            this.btnScanAgain.Name = "btnScanAgain";
-            this.btnScanAgain.Size = new System.Drawing.Size(85, 23);
-            this.btnScanAgain.TabIndex = 29;
-            this.btnScanAgain.Text = "Scan Again";
-            this.btnScanAgain.UseVisualStyleBackColor = true;
-            this.btnScanAgain.Click += new System.EventHandler(this.btnScanAgain_Click);
-            // 
-            // btnCaptureScreen
-            // 
-            this.btnCaptureScreen.Location = new System.Drawing.Point(16, 19);
-            this.btnCaptureScreen.Name = "btnCaptureScreen";
-            this.btnCaptureScreen.Size = new System.Drawing.Size(95, 23);
-            this.btnCaptureScreen.TabIndex = 1;
-            this.btnCaptureScreen.Text = "Capture Screen";
-            this.btnCaptureScreen.UseVisualStyleBackColor = true;
-            this.btnCaptureScreen.Click += new System.EventHandler(this.btnCaptureScreen_Click);
-            // 
-            // btnCropBoard
-            // 
-            this.btnCropBoard.Location = new System.Drawing.Point(16, 54);
-            this.btnCropBoard.Name = "btnCropBoard";
-            this.btnCropBoard.Size = new System.Drawing.Size(95, 23);
-            this.btnCropBoard.TabIndex = 0;
-            this.btnCropBoard.Text = "Crop Board";
-            this.btnCropBoard.UseVisualStyleBackColor = true;
-            this.btnCropBoard.Click += new System.EventHandler(this.btnCropBoard_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(138, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Clear Selection";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnClearSelection_Click);
-            // 
-            // btnClearAll
-            // 
-            this.btnClearAll.Location = new System.Drawing.Point(138, 54);
-            this.btnClearAll.Name = "btnClearAll";
-            this.btnClearAll.Size = new System.Drawing.Size(95, 23);
-            this.btnClearAll.TabIndex = 3;
-            this.btnClearAll.Text = "Clear All";
-            this.btnClearAll.UseVisualStyleBackColor = true;
-            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
-            // 
             // btnLoadTemplate
             // 
             this.btnLoadTemplate.Location = new System.Drawing.Point(270, 26);
@@ -690,11 +568,10 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.txtHighlightDuration);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.label24);
             this.tabPage1.Controls.Add(this.txtEngineDepth);
             this.tabPage1.Controls.Add(this.txtStandardMatchingFactor);
@@ -708,6 +585,230 @@
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cbAutoRefresh);
+            this.groupBox3.Controls.Add(this.txtRefreshInterval);
+            this.groupBox3.Controls.Add(this.btnScanAgain);
+            this.groupBox3.Controls.Add(this.btnCaptureScreen);
+            this.groupBox3.Controls.Add(this.btnCropBoard);
+            this.groupBox3.Controls.Add(this.btnClearSelection);
+            this.groupBox3.Controls.Add(this.btnClearAll);
+            this.groupBox3.Location = new System.Drawing.Point(215, 11);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(239, 141);
+            this.groupBox3.TabIndex = 63;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Capture Chess Board";
+            // 
+            // cbAutoRefresh
+            // 
+            this.cbAutoRefresh.AutoSize = true;
+            this.cbAutoRefresh.Location = new System.Drawing.Point(16, 117);
+            this.cbAutoRefresh.Name = "cbAutoRefresh";
+            this.cbAutoRefresh.Size = new System.Drawing.Size(110, 17);
+            this.cbAutoRefresh.TabIndex = 32;
+            this.cbAutoRefresh.Text = "Auto Refresh (ms)";
+            this.cbAutoRefresh.UseVisualStyleBackColor = true;
+            this.cbAutoRefresh.CheckedChanged += new System.EventHandler(this.cbAutoRefresh_CheckedChanged);
+            // 
+            // txtRefreshInterval
+            // 
+            this.txtRefreshInterval.Location = new System.Drawing.Point(132, 115);
+            this.txtRefreshInterval.Name = "txtRefreshInterval";
+            this.txtRefreshInterval.Size = new System.Drawing.Size(26, 20);
+            this.txtRefreshInterval.TabIndex = 30;
+            this.txtRefreshInterval.Text = "50";
+            this.txtRefreshInterval.Leave += new System.EventHandler(this.txtRefreshInterval_Leave);
+            // 
+            // btnScanAgain
+            // 
+            this.btnScanAgain.Location = new System.Drawing.Point(16, 86);
+            this.btnScanAgain.Name = "btnScanAgain";
+            this.btnScanAgain.Size = new System.Drawing.Size(95, 23);
+            this.btnScanAgain.TabIndex = 29;
+            this.btnScanAgain.Text = "Scan Again";
+            this.btnScanAgain.UseVisualStyleBackColor = true;
+            this.btnScanAgain.Click += new System.EventHandler(this.btnScanAgain_Click);
+            // 
+            // btnCaptureScreen
+            // 
+            this.btnCaptureScreen.Location = new System.Drawing.Point(16, 19);
+            this.btnCaptureScreen.Name = "btnCaptureScreen";
+            this.btnCaptureScreen.Size = new System.Drawing.Size(95, 23);
+            this.btnCaptureScreen.TabIndex = 1;
+            this.btnCaptureScreen.Text = "Capture Screen";
+            this.btnCaptureScreen.UseVisualStyleBackColor = true;
+            this.btnCaptureScreen.Click += new System.EventHandler(this.btnCaptureScreen_Click);
+            // 
+            // btnCropBoard
+            // 
+            this.btnCropBoard.Location = new System.Drawing.Point(16, 54);
+            this.btnCropBoard.Name = "btnCropBoard";
+            this.btnCropBoard.Size = new System.Drawing.Size(95, 23);
+            this.btnCropBoard.TabIndex = 0;
+            this.btnCropBoard.Text = "Crop Board";
+            this.btnCropBoard.UseVisualStyleBackColor = true;
+            this.btnCropBoard.Click += new System.EventHandler(this.btnCropBoard_Click);
+            // 
+            // btnClearSelection
+            // 
+            this.btnClearSelection.Location = new System.Drawing.Point(138, 19);
+            this.btnClearSelection.Name = "btnClearSelection";
+            this.btnClearSelection.Size = new System.Drawing.Size(95, 23);
+            this.btnClearSelection.TabIndex = 2;
+            this.btnClearSelection.Text = "Clear Selection";
+            this.btnClearSelection.UseVisualStyleBackColor = true;
+            this.btnClearSelection.Click += new System.EventHandler(this.btnClearSelection_Click);
+            // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Location = new System.Drawing.Point(138, 54);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(95, 23);
+            this.btnClearAll.TabIndex = 3;
+            this.btnClearAll.Text = "Clear All";
+            this.btnClearAll.UseVisualStyleBackColor = true;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.lblCurrentMouseY);
+            this.groupBox8.Controls.Add(this.txtSelectedTop);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.label7);
+            this.groupBox8.Controls.Add(this.txtSelectedWidth);
+            this.groupBox8.Controls.Add(this.lblCurrentMouseX);
+            this.groupBox8.Controls.Add(this.label26);
+            this.groupBox8.Controls.Add(this.txtSelectedHeight);
+            this.groupBox8.Controls.Add(this.label5);
+            this.groupBox8.Controls.Add(this.btnUpdatedSelection);
+            this.groupBox8.Controls.Add(this.label27);
+            this.groupBox8.Controls.Add(this.txtSelectedLeft);
+            this.groupBox8.Controls.Add(this.label28);
+            this.groupBox8.Location = new System.Drawing.Point(460, 12);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(251, 117);
+            this.groupBox8.TabIndex = 60;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Selection Size";
+            // 
+            // lblCurrentMouseY
+            // 
+            this.lblCurrentMouseY.AutoSize = true;
+            this.lblCurrentMouseY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentMouseY.Location = new System.Drawing.Point(151, 93);
+            this.lblCurrentMouseY.Name = "lblCurrentMouseY";
+            this.lblCurrentMouseY.Size = new System.Drawing.Size(23, 13);
+            this.lblCurrentMouseY.TabIndex = 11;
+            this.lblCurrentMouseY.Text = "[Y]";
+            // 
+            // txtSelectedTop
+            // 
+            this.txtSelectedTop.Location = new System.Drawing.Point(131, 25);
+            this.txtSelectedTop.Name = "txtSelectedTop";
+            this.txtSelectedTop.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedTop.TabIndex = 20;
+            this.txtSelectedTop.Text = "0";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 63);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 13);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Width";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(128, 93);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Y:";
+            // 
+            // txtSelectedWidth
+            // 
+            this.txtSelectedWidth.Location = new System.Drawing.Point(44, 59);
+            this.txtSelectedWidth.Name = "txtSelectedWidth";
+            this.txtSelectedWidth.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedWidth.TabIndex = 13;
+            this.txtSelectedWidth.Text = "0";
+            // 
+            // lblCurrentMouseX
+            // 
+            this.lblCurrentMouseX.AutoSize = true;
+            this.lblCurrentMouseX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentMouseX.Location = new System.Drawing.Point(54, 93);
+            this.lblCurrentMouseX.Name = "lblCurrentMouseX";
+            this.lblCurrentMouseX.Size = new System.Drawing.Size(23, 13);
+            this.lblCurrentMouseX.TabIndex = 9;
+            this.lblCurrentMouseX.Text = "[X]";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(87, 62);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(38, 13);
+            this.label26.TabIndex = 14;
+            this.label26.Text = "Height";
+            // 
+            // txtSelectedHeight
+            // 
+            this.txtSelectedHeight.Location = new System.Drawing.Point(131, 59);
+            this.txtSelectedHeight.Name = "txtSelectedHeight";
+            this.txtSelectedHeight.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedHeight.TabIndex = 15;
+            this.txtSelectedHeight.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(31, 93);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "X:";
+            // 
+            // btnUpdatedSelection
+            // 
+            this.btnUpdatedSelection.Location = new System.Drawing.Point(181, 23);
+            this.btnUpdatedSelection.Name = "btnUpdatedSelection";
+            this.btnUpdatedSelection.Size = new System.Drawing.Size(61, 57);
+            this.btnUpdatedSelection.TabIndex = 16;
+            this.btnUpdatedSelection.Text = "Update Selection";
+            this.btnUpdatedSelection.UseVisualStyleBackColor = true;
+            this.btnUpdatedSelection.Click += new System.EventHandler(this.btnUpdatedSelection_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(13, 28);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(25, 13);
+            this.label27.TabIndex = 17;
+            this.label27.Text = "Left";
+            // 
+            // txtSelectedLeft
+            // 
+            this.txtSelectedLeft.Location = new System.Drawing.Point(44, 25);
+            this.txtSelectedLeft.Name = "txtSelectedLeft";
+            this.txtSelectedLeft.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedLeft.TabIndex = 18;
+            this.txtSelectedLeft.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(99, 29);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(26, 13);
+            this.label28.TabIndex = 19;
+            this.label28.Text = "Top";
             // 
             // label14
             // 
@@ -726,262 +827,6 @@
             this.txtHighlightDuration.TabIndex = 61;
             this.txtHighlightDuration.Text = "100";
             this.txtHighlightDuration.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.lblCurrentMouseY);
-            this.groupBox2.Controls.Add(this.btnGetY);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.lblCurrentMouseX);
-            this.groupBox2.Controls.Add(this.btnGetX);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.btnCropUsingCoordinates);
-            this.groupBox2.Controls.Add(this.txtBottom);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.txtRight);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.txtTop);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtLeft);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(472, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 117);
-            this.groupBox2.TabIndex = 60;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Enter Coordinates";
-            // 
-            // lblCurrentMouseY
-            // 
-            this.lblCurrentMouseY.AutoSize = true;
-            this.lblCurrentMouseY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentMouseY.Location = new System.Drawing.Point(143, 95);
-            this.lblCurrentMouseY.Name = "lblCurrentMouseY";
-            this.lblCurrentMouseY.Size = new System.Drawing.Size(23, 13);
-            this.lblCurrentMouseY.TabIndex = 11;
-            this.lblCurrentMouseY.Text = "[Y]";
-            // 
-            // btnGetY
-            // 
-            this.btnGetY.Location = new System.Drawing.Point(193, 41);
-            this.btnGetY.Name = "btnGetY";
-            this.btnGetY.Size = new System.Drawing.Size(55, 23);
-            this.btnGetY.TabIndex = 9;
-            this.btnGetY.Text = "Get Y";
-            this.btnGetY.UseVisualStyleBackColor = true;
-            this.btnGetY.Click += new System.EventHandler(this.btnGetY_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(120, 95);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Y:";
-            // 
-            // lblCurrentMouseX
-            // 
-            this.lblCurrentMouseX.AutoSize = true;
-            this.lblCurrentMouseX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentMouseX.Location = new System.Drawing.Point(46, 95);
-            this.lblCurrentMouseX.Name = "lblCurrentMouseX";
-            this.lblCurrentMouseX.Size = new System.Drawing.Size(23, 13);
-            this.lblCurrentMouseX.TabIndex = 9;
-            this.lblCurrentMouseX.Text = "[X]";
-            // 
-            // btnGetX
-            // 
-            this.btnGetX.Location = new System.Drawing.Point(193, 12);
-            this.btnGetX.Name = "btnGetX";
-            this.btnGetX.Size = new System.Drawing.Size(55, 23);
-            this.btnGetX.TabIndex = 8;
-            this.btnGetX.Text = "Get X";
-            this.btnGetX.UseVisualStyleBackColor = true;
-            this.btnGetX.Click += new System.EventHandler(this.btnGetX_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(17, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "X:";
-            // 
-            // btnCropUsingCoordinates
-            // 
-            this.btnCropUsingCoordinates.Location = new System.Drawing.Point(193, 70);
-            this.btnCropUsingCoordinates.Name = "btnCropUsingCoordinates";
-            this.btnCropUsingCoordinates.Size = new System.Drawing.Size(55, 38);
-            this.btnCropUsingCoordinates.TabIndex = 5;
-            this.btnCropUsingCoordinates.Text = "Show";
-            this.btnCropUsingCoordinates.UseVisualStyleBackColor = true;
-            this.btnCropUsingCoordinates.Click += new System.EventHandler(this.btnCropUsingCoordinates_Click);
-            // 
-            // txtBottom
-            // 
-            this.txtBottom.Location = new System.Drawing.Point(143, 63);
-            this.txtBottom.Name = "txtBottom";
-            this.txtBottom.Size = new System.Drawing.Size(35, 20);
-            this.txtBottom.TabIndex = 7;
-            this.txtBottom.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(97, 66);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Bottom";
-            // 
-            // txtRight
-            // 
-            this.txtRight.Location = new System.Drawing.Point(46, 63);
-            this.txtRight.Name = "txtRight";
-            this.txtRight.Size = new System.Drawing.Size(35, 20);
-            this.txtRight.TabIndex = 5;
-            this.txtRight.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Right";
-            // 
-            // txtTop
-            // 
-            this.txtTop.Location = new System.Drawing.Point(143, 25);
-            this.txtTop.Name = "txtTop";
-            this.txtTop.Size = new System.Drawing.Size(35, 20);
-            this.txtTop.TabIndex = 3;
-            this.txtTop.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(111, 28);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Top";
-            // 
-            // txtLeft
-            // 
-            this.txtLeft.Location = new System.Drawing.Point(46, 25);
-            this.txtLeft.Name = "txtLeft";
-            this.txtLeft.Size = new System.Drawing.Size(35, 20);
-            this.txtLeft.TabIndex = 1;
-            this.txtLeft.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Left";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.txtResizeTop);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.txtWidth);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.txtHeight);
-            this.groupBox4.Controls.Add(this.btnResize);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.txtResizeLeft);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(215, 15);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(251, 91);
-            this.groupBox4.TabIndex = 59;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Image Size";
-            // 
-            // txtResizeTop
-            // 
-            this.txtResizeTop.Location = new System.Drawing.Point(131, 25);
-            this.txtResizeTop.Name = "txtResizeTop";
-            this.txtResizeTop.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeTop.TabIndex = 20;
-            this.txtResizeTop.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 63);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Width";
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.Location = new System.Drawing.Point(44, 59);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(35, 20);
-            this.txtWidth.TabIndex = 13;
-            this.txtWidth.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(87, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Height";
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.Location = new System.Drawing.Point(131, 59);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(35, 20);
-            this.txtHeight.TabIndex = 15;
-            this.txtHeight.Text = "0";
-            // 
-            // btnResize
-            // 
-            this.btnResize.Location = new System.Drawing.Point(181, 23);
-            this.btnResize.Name = "btnResize";
-            this.btnResize.Size = new System.Drawing.Size(61, 57);
-            this.btnResize.TabIndex = 16;
-            this.btnResize.Text = "Resize && Validate";
-            this.btnResize.UseVisualStyleBackColor = true;
-            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Left";
-            // 
-            // txtResizeLeft
-            // 
-            this.txtResizeLeft.Location = new System.Drawing.Point(44, 25);
-            this.txtResizeLeft.Name = "txtResizeLeft";
-            this.txtResizeLeft.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeLeft.TabIndex = 18;
-            this.txtResizeLeft.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(99, 29);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Top";
             // 
             // label24
             // 
@@ -1019,7 +864,7 @@
             this.groupBox6.Controls.Add(this.tbIntensity);
             this.groupBox6.Location = new System.Drawing.Point(734, 11);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(219, 131);
+            this.groupBox6.Size = new System.Drawing.Size(219, 118);
             this.groupBox6.TabIndex = 56;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Intensity Settings";
@@ -1027,7 +872,7 @@
             // cbShowIntensityOnTop
             // 
             this.cbShowIntensityOnTop.AutoSize = true;
-            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
+            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 99);
             this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
             this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
             this.cbShowIntensityOnTop.TabIndex = 33;
@@ -1071,6 +916,7 @@
             this.tbIntensity.TabIndex = 46;
             this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.tbIntensity.Value = 100;
+            this.tbIntensity.Scroll += new System.EventHandler(this.tbIntensity_Scroll);
             // 
             // label22
             // 
@@ -1134,102 +980,6 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.txtSelectedTop);
-            this.groupBox8.Controls.Add(this.label15);
-            this.groupBox8.Controls.Add(this.txtSelectedWidth);
-            this.groupBox8.Controls.Add(this.label26);
-            this.groupBox8.Controls.Add(this.txtSelectedHeight);
-            this.groupBox8.Controls.Add(this.btnUpdatedSelection);
-            this.groupBox8.Controls.Add(this.label27);
-            this.groupBox8.Controls.Add(this.txtSelectedLeft);
-            this.groupBox8.Controls.Add(this.label28);
-            this.groupBox8.Location = new System.Drawing.Point(215, 112);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(251, 91);
-            this.groupBox8.TabIndex = 60;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Selection Size";
-            // 
-            // txtSelectedTop
-            // 
-            this.txtSelectedTop.Location = new System.Drawing.Point(131, 25);
-            this.txtSelectedTop.Name = "txtSelectedTop";
-            this.txtSelectedTop.Size = new System.Drawing.Size(35, 20);
-            this.txtSelectedTop.TabIndex = 20;
-            this.txtSelectedTop.Text = "0";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 63);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "Width";
-            // 
-            // txtSelectedWidth
-            // 
-            this.txtSelectedWidth.Location = new System.Drawing.Point(44, 59);
-            this.txtSelectedWidth.Name = "txtSelectedWidth";
-            this.txtSelectedWidth.Size = new System.Drawing.Size(35, 20);
-            this.txtSelectedWidth.TabIndex = 13;
-            this.txtSelectedWidth.Text = "0";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(87, 62);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 13);
-            this.label26.TabIndex = 14;
-            this.label26.Text = "Height";
-            // 
-            // txtSelectedHeight
-            // 
-            this.txtSelectedHeight.Location = new System.Drawing.Point(131, 59);
-            this.txtSelectedHeight.Name = "txtSelectedHeight";
-            this.txtSelectedHeight.Size = new System.Drawing.Size(35, 20);
-            this.txtSelectedHeight.TabIndex = 15;
-            this.txtSelectedHeight.Text = "0";
-            // 
-            // btnUpdatedSelection
-            // 
-            this.btnUpdatedSelection.Location = new System.Drawing.Point(181, 23);
-            this.btnUpdatedSelection.Name = "btnUpdatedSelection";
-            this.btnUpdatedSelection.Size = new System.Drawing.Size(61, 57);
-            this.btnUpdatedSelection.TabIndex = 16;
-            this.btnUpdatedSelection.Text = "Update Selection";
-            this.btnUpdatedSelection.UseVisualStyleBackColor = true;
-            this.btnUpdatedSelection.Click += new System.EventHandler(this.btnUpdatedSelection_Click);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(13, 28);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(25, 13);
-            this.label27.TabIndex = 17;
-            this.label27.Text = "Left";
-            // 
-            // txtSelectedLeft
-            // 
-            this.txtSelectedLeft.Location = new System.Drawing.Point(44, 25);
-            this.txtSelectedLeft.Name = "txtSelectedLeft";
-            this.txtSelectedLeft.Size = new System.Drawing.Size(35, 20);
-            this.txtSelectedLeft.TabIndex = 18;
-            this.txtSelectedLeft.Text = "0";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(99, 29);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(26, 13);
-            this.label28.TabIndex = 19;
-            this.label28.Text = "Top";
-            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1264,21 +1014,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbCurrentMarker)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1317,15 +1063,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.RadioButton rbtnWhite;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox cbAutoRefresh;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtRefreshInterval;
-        private System.Windows.Forms.Button btnScanAgain;
-        private System.Windows.Forms.Button btnCaptureScreen;
-        private System.Windows.Forms.Button btnCropBoard;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.Button btnLoadTemplate;
         private System.Windows.Forms.ComboBox cmbTemplates;
         private System.Windows.Forms.Label label13;
@@ -1352,32 +1089,10 @@
         private System.Windows.Forms.Button btnUseIntensity;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TrackBar tbIntensity;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblCurrentMouseY;
-        private System.Windows.Forms.Button btnGetY;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblCurrentMouseX;
-        private System.Windows.Forms.Button btnGetX;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnCropUsingCoordinates;
-        private System.Windows.Forms.TextBox txtBottom;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtRight;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTop;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtLeft;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox txtResizeTop;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtWidth;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtHeight;
-        private System.Windows.Forms.Button btnResize;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtResizeLeft;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txtEngineDepth;
         private System.Windows.Forms.Label label14;
@@ -1392,5 +1107,13 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txtSelectedLeft;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox cbAutoRefresh;
+        private System.Windows.Forms.TextBox txtRefreshInterval;
+        private System.Windows.Forms.Button btnScanAgain;
+        private System.Windows.Forms.Button btnCaptureScreen;
+        private System.Windows.Forms.Button btnCropBoard;
+        private System.Windows.Forms.Button btnClearSelection;
+        private System.Windows.Forms.Button btnClearAll;
     }
 }
