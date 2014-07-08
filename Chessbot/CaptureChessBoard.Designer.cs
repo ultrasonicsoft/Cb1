@@ -81,32 +81,8 @@
             this.cmbTemplates = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
-            this.txtIntensity = new System.Windows.Forms.TextBox();
-            this.btnUseIntensity = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbIntensity = new System.Windows.Forms.TrackBar();
-            this.cbEnableLogging = new System.Windows.Forms.CheckBox();
-            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtEngineDepth = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtResizeTop = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.btnResize = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtResizeLeft = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtHighlightDuration = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblCurrentMouseY = new System.Windows.Forms.Label();
             this.btnGetY = new System.Windows.Forms.Button();
@@ -123,8 +99,42 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtHighlightDuration = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtResizeTop = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtHeight = new System.Windows.Forms.TextBox();
+            this.btnResize = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtResizeLeft = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtEngineDepth = new System.Windows.Forms.TextBox();
+            this.txtStandardMatchingFactor = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbShowIntensityOnTop = new System.Windows.Forms.CheckBox();
+            this.txtIntensity = new System.Windows.Forms.TextBox();
+            this.btnUseIntensity = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbIntensity = new System.Windows.Forms.TrackBar();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cbEnableLogging = new System.Windows.Forms.CheckBox();
+            this.cbEnableHotKey = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtSelectedTop = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtSelectedWidth = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSelectedHeight = new System.Windows.Forms.TextBox();
+            this.btnUpdatedSelection = new System.Windows.Forms.Button();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtSelectedLeft = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -141,11 +151,12 @@
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -173,7 +184,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1370, 543);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 543);
             this.splitContainer1.SplitterDistance = 271;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -184,7 +195,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1368, 269);
+            this.pnlImageHolder.Size = new System.Drawing.Size(982, 269);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -192,7 +203,7 @@
             this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
             this.pbScreen.Location = new System.Drawing.Point(0, 0);
             this.pbScreen.Name = "pbScreen";
-            this.pbScreen.Size = new System.Drawing.Size(1351, 270);
+            this.pbScreen.Size = new System.Drawing.Size(965, 270);
             this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbScreen.TabIndex = 3;
             this.pbScreen.TabStop = false;
@@ -205,7 +216,7 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1368, 266);
+            this.tbctrController.Size = new System.Drawing.Size(982, 266);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
@@ -679,6 +690,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.txtHighlightDuration);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -692,257 +704,28 @@
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1360, 240);
+            this.tabPage1.Size = new System.Drawing.Size(974, 240);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // groupBox6
+            // label14
             // 
-            this.groupBox6.Controls.Add(this.cbShowIntensityOnTop);
-            this.groupBox6.Controls.Add(this.txtIntensity);
-            this.groupBox6.Controls.Add(this.btnUseIntensity);
-            this.groupBox6.Controls.Add(this.label21);
-            this.groupBox6.Controls.Add(this.tbIntensity);
-            this.groupBox6.Location = new System.Drawing.Point(664, 10);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(219, 131);
-            this.groupBox6.TabIndex = 56;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Intensity Settings";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(46, 72);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(163, 13);
+            this.label14.TabIndex = 62;
+            this.label14.Text = "Next Move Highlighting Duration:";
             // 
-            // txtStandardMatchingFactor
+            // txtHighlightDuration
             // 
-            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(7, 8);
-            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
-            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
-            this.txtStandardMatchingFactor.TabIndex = 52;
-            this.txtStandardMatchingFactor.Text = "75";
-            this.txtStandardMatchingFactor.TextChanged += new System.EventHandler(this.txtStandardMatchingFactor_TextChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(46, 11);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(104, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "Matching Factor (%):";
-            // 
-            // cbShowIntensityOnTop
-            // 
-            this.cbShowIntensityOnTop.AutoSize = true;
-            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
-            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
-            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
-            this.cbShowIntensityOnTop.TabIndex = 33;
-            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
-            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
-            this.cbShowIntensityOnTop.CheckedChanged += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
-            // 
-            // txtIntensity
-            // 
-            this.txtIntensity.Location = new System.Drawing.Point(62, 24);
-            this.txtIntensity.Name = "txtIntensity";
-            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
-            this.txtIntensity.TabIndex = 49;
-            this.txtIntensity.Text = "100";
-            // 
-            // btnUseIntensity
-            // 
-            this.btnUseIntensity.Location = new System.Drawing.Point(101, 24);
-            this.btnUseIntensity.Name = "btnUseIntensity";
-            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
-            this.btnUseIntensity.TabIndex = 48;
-            this.btnUseIntensity.Text = "Use Intensity";
-            this.btnUseIntensity.UseVisualStyleBackColor = true;
-            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(7, 27);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Intensity:";
-            // 
-            // tbIntensity
-            // 
-            this.tbIntensity.Location = new System.Drawing.Point(6, 50);
-            this.tbIntensity.Maximum = 255;
-            this.tbIntensity.Name = "tbIntensity";
-            this.tbIntensity.Size = new System.Drawing.Size(207, 45);
-            this.tbIntensity.TabIndex = 46;
-            this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.tbIntensity.Value = 100;
-            // 
-            // cbEnableLogging
-            // 
-            this.cbEnableLogging.AutoSize = true;
-            this.cbEnableLogging.Location = new System.Drawing.Point(7, 128);
-            this.cbEnableLogging.Name = "cbEnableLogging";
-            this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
-            this.cbEnableLogging.TabIndex = 55;
-            this.cbEnableLogging.Text = "Enable Logging";
-            this.cbEnableLogging.UseVisualStyleBackColor = true;
-            this.cbEnableLogging.CheckedChanged += new System.EventHandler(this.cbEnableLogging_CheckedChanged);
-            // 
-            // cbEnableHotKey
-            // 
-            this.cbEnableHotKey.AutoSize = true;
-            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 101);
-            this.cbEnableHotKey.Name = "cbEnableHotKey";
-            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
-            this.cbEnableHotKey.TabIndex = 54;
-            this.cbEnableHotKey.Text = "Enable Hot Key";
-            this.cbEnableHotKey.UseVisualStyleBackColor = true;
-            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtStatus,
-            this.txtScore,
-            this.txtMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 521);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1370, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(47, 17);
-            this.txtStatus.Text = "[Status]";
-            // 
-            // txtScore
-            // 
-            this.txtScore.Name = "txtScore";
-            this.txtScore.Size = new System.Drawing.Size(44, 17);
-            this.txtScore.Text = "[Score]";
-            // 
-            // txtMessage
-            // 
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
-            this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(61, 17);
-            this.txtMessage.Text = "[Message]";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(46, 41);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(75, 13);
-            this.label24.TabIndex = 58;
-            this.label24.Text = "Engine Depth:";
-            // 
-            // txtEngineDepth
-            // 
-            this.txtEngineDepth.Location = new System.Drawing.Point(7, 38);
-            this.txtEngineDepth.Name = "txtEngineDepth";
-            this.txtEngineDepth.Size = new System.Drawing.Size(33, 20);
-            this.txtEngineDepth.TabIndex = 57;
-            this.txtEngineDepth.Text = "16";
-            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.txtResizeTop);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.txtWidth);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.txtHeight);
-            this.groupBox4.Controls.Add(this.btnResize);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.txtResizeLeft);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(347, 133);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(295, 91);
-            this.groupBox4.TabIndex = 59;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Image Size";
-            // 
-            // txtResizeTop
-            // 
-            this.txtResizeTop.Location = new System.Drawing.Point(131, 25);
-            this.txtResizeTop.Name = "txtResizeTop";
-            this.txtResizeTop.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeTop.TabIndex = 20;
-            this.txtResizeTop.Text = "0";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 63);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Width";
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.Location = new System.Drawing.Point(44, 59);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(35, 20);
-            this.txtWidth.TabIndex = 13;
-            this.txtWidth.Text = "0";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(87, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 14;
-            this.label6.Text = "Height";
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.Location = new System.Drawing.Point(131, 59);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(35, 20);
-            this.txtHeight.TabIndex = 15;
-            this.txtHeight.Text = "0";
-            // 
-            // btnResize
-            // 
-            this.btnResize.Location = new System.Drawing.Point(193, 22);
-            this.btnResize.Name = "btnResize";
-            this.btnResize.Size = new System.Drawing.Size(61, 57);
-            this.btnResize.TabIndex = 16;
-            this.btnResize.Text = "Resize && Validate";
-            this.btnResize.UseVisualStyleBackColor = true;
-            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 28);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "Left";
-            // 
-            // txtResizeLeft
-            // 
-            this.txtResizeLeft.Location = new System.Drawing.Point(44, 25);
-            this.txtResizeLeft.Name = "txtResizeLeft";
-            this.txtResizeLeft.Size = new System.Drawing.Size(35, 20);
-            this.txtResizeLeft.TabIndex = 18;
-            this.txtResizeLeft.Text = "0";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(99, 29);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 13);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Top";
+            this.txtHighlightDuration.Location = new System.Drawing.Point(7, 69);
+            this.txtHighlightDuration.Name = "txtHighlightDuration";
+            this.txtHighlightDuration.Size = new System.Drawing.Size(33, 20);
+            this.txtHighlightDuration.TabIndex = 61;
+            this.txtHighlightDuration.Text = "100";
+            this.txtHighlightDuration.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
             // 
             // groupBox2
             // 
@@ -961,9 +744,9 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtLeft);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(347, 10);
+            this.groupBox2.Location = new System.Drawing.Point(472, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(295, 117);
+            this.groupBox2.Size = new System.Drawing.Size(256, 117);
             this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Enter Coordinates";
@@ -986,6 +769,7 @@
             this.btnGetY.TabIndex = 9;
             this.btnGetY.Text = "Get Y";
             this.btnGetY.UseVisualStyleBackColor = true;
+            this.btnGetY.Click += new System.EventHandler(this.btnGetY_Click);
             // 
             // label7
             // 
@@ -1014,6 +798,7 @@
             this.btnGetX.TabIndex = 8;
             this.btnGetX.Text = "Get X";
             this.btnGetX.UseVisualStyleBackColor = true;
+            this.btnGetX.Click += new System.EventHandler(this.btnGetX_Click);
             // 
             // label5
             // 
@@ -1032,6 +817,7 @@
             this.btnCropUsingCoordinates.TabIndex = 5;
             this.btnCropUsingCoordinates.Text = "Show";
             this.btnCropUsingCoordinates.UseVisualStyleBackColor = true;
+            this.btnCropUsingCoordinates.Click += new System.EventHandler(this.btnCropUsingCoordinates_Click);
             // 
             // txtBottom
             // 
@@ -1101,36 +887,361 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Left";
             // 
-            // label14
+            // groupBox4
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(46, 72);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(163, 13);
-            this.label14.TabIndex = 62;
-            this.label14.Text = "Next Move Highlighting Duration:";
+            this.groupBox4.Controls.Add(this.txtResizeTop);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.txtWidth);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.txtHeight);
+            this.groupBox4.Controls.Add(this.btnResize);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.txtResizeLeft);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Location = new System.Drawing.Point(215, 15);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(251, 91);
+            this.groupBox4.TabIndex = 59;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Image Size";
             // 
-            // txtHighlightDuration
+            // txtResizeTop
             // 
-            this.txtHighlightDuration.Location = new System.Drawing.Point(7, 69);
-            this.txtHighlightDuration.Name = "txtHighlightDuration";
-            this.txtHighlightDuration.Size = new System.Drawing.Size(33, 20);
-            this.txtHighlightDuration.TabIndex = 61;
-            this.txtHighlightDuration.Text = "100";
-            this.txtHighlightDuration.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
+            this.txtResizeTop.Location = new System.Drawing.Point(131, 25);
+            this.txtResizeTop.Name = "txtResizeTop";
+            this.txtResizeTop.Size = new System.Drawing.Size(35, 20);
+            this.txtResizeTop.TabIndex = 20;
+            this.txtResizeTop.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 63);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Width";
+            // 
+            // txtWidth
+            // 
+            this.txtWidth.Location = new System.Drawing.Point(44, 59);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(35, 20);
+            this.txtWidth.TabIndex = 13;
+            this.txtWidth.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(87, 62);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Height";
+            // 
+            // txtHeight
+            // 
+            this.txtHeight.Location = new System.Drawing.Point(131, 59);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.Size = new System.Drawing.Size(35, 20);
+            this.txtHeight.TabIndex = 15;
+            this.txtHeight.Text = "0";
+            // 
+            // btnResize
+            // 
+            this.btnResize.Location = new System.Drawing.Point(181, 23);
+            this.btnResize.Name = "btnResize";
+            this.btnResize.Size = new System.Drawing.Size(61, 57);
+            this.btnResize.TabIndex = 16;
+            this.btnResize.Text = "Resize && Validate";
+            this.btnResize.UseVisualStyleBackColor = true;
+            this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(13, 28);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(25, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Left";
+            // 
+            // txtResizeLeft
+            // 
+            this.txtResizeLeft.Location = new System.Drawing.Point(44, 25);
+            this.txtResizeLeft.Name = "txtResizeLeft";
+            this.txtResizeLeft.Size = new System.Drawing.Size(35, 20);
+            this.txtResizeLeft.TabIndex = 18;
+            this.txtResizeLeft.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(99, 29);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(26, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Top";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(46, 41);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(75, 13);
+            this.label24.TabIndex = 58;
+            this.label24.Text = "Engine Depth:";
+            // 
+            // txtEngineDepth
+            // 
+            this.txtEngineDepth.Location = new System.Drawing.Point(7, 38);
+            this.txtEngineDepth.Name = "txtEngineDepth";
+            this.txtEngineDepth.Size = new System.Drawing.Size(33, 20);
+            this.txtEngineDepth.TabIndex = 57;
+            this.txtEngineDepth.Text = "16";
+            this.txtEngineDepth.TextChanged += new System.EventHandler(this.txtEngineDepth_TextChanged);
+            // 
+            // txtStandardMatchingFactor
+            // 
+            this.txtStandardMatchingFactor.Location = new System.Drawing.Point(7, 8);
+            this.txtStandardMatchingFactor.Name = "txtStandardMatchingFactor";
+            this.txtStandardMatchingFactor.Size = new System.Drawing.Size(33, 20);
+            this.txtStandardMatchingFactor.TabIndex = 52;
+            this.txtStandardMatchingFactor.Text = "75";
+            this.txtStandardMatchingFactor.TextChanged += new System.EventHandler(this.txtStandardMatchingFactor_TextChanged);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cbShowIntensityOnTop);
+            this.groupBox6.Controls.Add(this.txtIntensity);
+            this.groupBox6.Controls.Add(this.btnUseIntensity);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.tbIntensity);
+            this.groupBox6.Location = new System.Drawing.Point(734, 11);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(219, 131);
+            this.groupBox6.TabIndex = 56;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Intensity Settings";
+            // 
+            // cbShowIntensityOnTop
+            // 
+            this.cbShowIntensityOnTop.AutoSize = true;
+            this.cbShowIntensityOnTop.Location = new System.Drawing.Point(6, 101);
+            this.cbShowIntensityOnTop.Name = "cbShowIntensityOnTop";
+            this.cbShowIntensityOnTop.Size = new System.Drawing.Size(173, 17);
+            this.cbShowIntensityOnTop.TabIndex = 33;
+            this.cbShowIntensityOnTop.Text = "Show Intensity Preview on Top";
+            this.cbShowIntensityOnTop.UseVisualStyleBackColor = true;
+            this.cbShowIntensityOnTop.CheckedChanged += new System.EventHandler(this.cbShowIntensityOnTop_CheckedChanged);
+            // 
+            // txtIntensity
+            // 
+            this.txtIntensity.Location = new System.Drawing.Point(62, 24);
+            this.txtIntensity.Name = "txtIntensity";
+            this.txtIntensity.Size = new System.Drawing.Size(33, 20);
+            this.txtIntensity.TabIndex = 49;
+            this.txtIntensity.Text = "100";
+            // 
+            // btnUseIntensity
+            // 
+            this.btnUseIntensity.Location = new System.Drawing.Point(101, 24);
+            this.btnUseIntensity.Name = "btnUseIntensity";
+            this.btnUseIntensity.Size = new System.Drawing.Size(94, 23);
+            this.btnUseIntensity.TabIndex = 48;
+            this.btnUseIntensity.Text = "Use Intensity";
+            this.btnUseIntensity.UseVisualStyleBackColor = true;
+            this.btnUseIntensity.Click += new System.EventHandler(this.btnUseIntensity_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(7, 27);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Intensity:";
+            // 
+            // tbIntensity
+            // 
+            this.tbIntensity.Location = new System.Drawing.Point(6, 50);
+            this.tbIntensity.Maximum = 255;
+            this.tbIntensity.Name = "tbIntensity";
+            this.tbIntensity.Size = new System.Drawing.Size(207, 45);
+            this.tbIntensity.TabIndex = 46;
+            this.tbIntensity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbIntensity.Value = 100;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(46, 11);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(104, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Matching Factor (%):";
+            // 
+            // cbEnableLogging
+            // 
+            this.cbEnableLogging.AutoSize = true;
+            this.cbEnableLogging.Location = new System.Drawing.Point(7, 128);
+            this.cbEnableLogging.Name = "cbEnableLogging";
+            this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableLogging.TabIndex = 55;
+            this.cbEnableLogging.Text = "Enable Logging";
+            this.cbEnableLogging.UseVisualStyleBackColor = true;
+            this.cbEnableLogging.CheckedChanged += new System.EventHandler(this.cbEnableLogging_CheckedChanged);
+            // 
+            // cbEnableHotKey
+            // 
+            this.cbEnableHotKey.AutoSize = true;
+            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 101);
+            this.cbEnableHotKey.Name = "cbEnableHotKey";
+            this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
+            this.cbEnableHotKey.TabIndex = 54;
+            this.cbEnableHotKey.Text = "Enable Hot Key";
+            this.cbEnableHotKey.UseVisualStyleBackColor = true;
+            this.cbEnableHotKey.CheckedChanged += new System.EventHandler(this.cbEnableHotKey_CheckedChanged);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txtStatus,
+            this.txtScore,
+            this.txtMessage});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 521);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(47, 17);
+            this.txtStatus.Text = "[Status]";
+            // 
+            // txtScore
+            // 
+            this.txtScore.Name = "txtScore";
+            this.txtScore.Size = new System.Drawing.Size(44, 17);
+            this.txtScore.Text = "[Score]";
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(100, 3, 0, 2);
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(61, 17);
+            this.txtMessage.Text = "[Message]";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.txtSelectedTop);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.txtSelectedWidth);
+            this.groupBox8.Controls.Add(this.label26);
+            this.groupBox8.Controls.Add(this.txtSelectedHeight);
+            this.groupBox8.Controls.Add(this.btnUpdatedSelection);
+            this.groupBox8.Controls.Add(this.label27);
+            this.groupBox8.Controls.Add(this.txtSelectedLeft);
+            this.groupBox8.Controls.Add(this.label28);
+            this.groupBox8.Location = new System.Drawing.Point(215, 112);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(251, 91);
+            this.groupBox8.TabIndex = 60;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Selection Size";
+            // 
+            // txtSelectedTop
+            // 
+            this.txtSelectedTop.Location = new System.Drawing.Point(131, 25);
+            this.txtSelectedTop.Name = "txtSelectedTop";
+            this.txtSelectedTop.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedTop.TabIndex = 20;
+            this.txtSelectedTop.Text = "0";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(3, 63);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(35, 13);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Width";
+            // 
+            // txtSelectedWidth
+            // 
+            this.txtSelectedWidth.Location = new System.Drawing.Point(44, 59);
+            this.txtSelectedWidth.Name = "txtSelectedWidth";
+            this.txtSelectedWidth.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedWidth.TabIndex = 13;
+            this.txtSelectedWidth.Text = "0";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(87, 62);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(38, 13);
+            this.label26.TabIndex = 14;
+            this.label26.Text = "Height";
+            // 
+            // txtSelectedHeight
+            // 
+            this.txtSelectedHeight.Location = new System.Drawing.Point(131, 59);
+            this.txtSelectedHeight.Name = "txtSelectedHeight";
+            this.txtSelectedHeight.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedHeight.TabIndex = 15;
+            this.txtSelectedHeight.Text = "0";
+            // 
+            // btnUpdatedSelection
+            // 
+            this.btnUpdatedSelection.Location = new System.Drawing.Point(181, 23);
+            this.btnUpdatedSelection.Name = "btnUpdatedSelection";
+            this.btnUpdatedSelection.Size = new System.Drawing.Size(61, 57);
+            this.btnUpdatedSelection.TabIndex = 16;
+            this.btnUpdatedSelection.Text = "Update Selection";
+            this.btnUpdatedSelection.UseVisualStyleBackColor = true;
+            this.btnUpdatedSelection.Click += new System.EventHandler(this.btnUpdatedSelection_Click);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(13, 28);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(25, 13);
+            this.label27.TabIndex = 17;
+            this.label27.Text = "Left";
+            // 
+            // txtSelectedLeft
+            // 
+            this.txtSelectedLeft.Location = new System.Drawing.Point(44, 25);
+            this.txtSelectedLeft.Name = "txtSelectedLeft";
+            this.txtSelectedLeft.Size = new System.Drawing.Size(35, 20);
+            this.txtSelectedLeft.TabIndex = 18;
+            this.txtSelectedLeft.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(99, 29);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(26, 13);
+            this.label28.TabIndex = 19;
+            this.label28.Text = "Top";
             // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1370, 543);
+            this.ClientSize = new System.Drawing.Size(984, 543);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;
             this.Name = "CaptureChessBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Capture Chess Board";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CaptureChessBoard_FormClosing);
             this.Load += new System.EventHandler(this.CaptureChessBoard_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CaptureChessBoard_KeyDown);
@@ -1157,15 +1268,17 @@
             this.groupBox3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1269,5 +1382,15 @@
         private System.Windows.Forms.TextBox txtEngineDepth;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtHighlightDuration;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox txtSelectedTop;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtSelectedWidth;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtSelectedHeight;
+        private System.Windows.Forms.Button btnUpdatedSelection;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtSelectedLeft;
+        private System.Windows.Forms.Label label28;
     }
 }

@@ -5,3 +5,5 @@ http://en.wikipedia.org/wiki/Fifty-move_rule
 http://en.wikipedia.org/wiki/En_passant
 http://en.wikipedia.org/wiki/Castling
 http://en.wikipedia.org/wiki/Rook_and_bishop_versus_rook_endgame
+
+test

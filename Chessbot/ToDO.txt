@@ -8,3 +8,5 @@ without a trigger to tell us when to take a capture of the board, the bot has to
 ** CROPPING ISSUE fix it.
 * Resize form for capturing screen and restore againn
 * Give option to hide Console output and showing output on GUI
+
+testing...

@@ -237,11 +237,13 @@ namespace OpenCVDemo1
         private void btnGetX_Click(object sender, EventArgs e)
         {
             isGetXEnabled = true;
+            isGetYEnabled = false;
         }
 
         private void btnGetY_Click(object sender, EventArgs e)
         {
             isGetYEnabled = true;
+            isGetXEnabled = false;
         }
         private void btnResize_Click(object sender, EventArgs e)
         {
@@ -772,6 +774,11 @@ namespace OpenCVDemo1
 
                 txtWidth.Text = ep.X.ToString();
                 txtHeight.Text = ep.Y.ToString();
+
+                txtSelectedLeft.Text = croprect.Left.ToString();
+                txtSelectedTop.Text = croprect.Top.ToString();
+                txtSelectedWidth.Text = croprect.Width.ToString();
+                txtSelectedHeight.Text = croprect.Height.ToString();
 
                 if (croprect.Width > 10 && croprect.Height > 10)
                 {
@@ -1454,5 +1461,27 @@ namespace OpenCVDemo1
                 NextMoveHighlightDuration = duration;
             }
         }
+
+        private void btnUpdatedSelection_Click(object sender, EventArgs e)
+        {
+            int left = 0;
+            int top= 0;
+            int width= 0;
+            int height = 0;
+
+            
+            int.TryParse(txtSelectedLeft.Text, out left);
+            int.TryParse(txtSelectedTop.Text, out top);
+            int.TryParse(txtSelectedWidth.Text, out width);
+            int.TryParse(txtSelectedHeight.Text, out height);
+
+            int diffWidth = width - croprect.Width;
+            int diffHeigght = height- croprect.Height;
+
+            ep = new Point(ep.X + diffWidth, ep.Y + diffHeigght);
+            croprect = new Rectangle(left,top,width,height);
+            pbScreen.Invalidate();
+        }
+
     }
 }
