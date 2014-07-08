@@ -1488,5 +1488,6 @@ namespace OpenCVDemo1
             txtIntensity.Text = tbIntensity.Value.ToString();
         }
 
+       
     }
 }
