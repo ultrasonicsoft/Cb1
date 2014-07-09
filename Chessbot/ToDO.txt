@@ -27,4 +27,5 @@ DONE 4.) Real time size measurement strings are broken during crop. They do not 
 	When the conditions are met, these answers may change from YES to NO etc etc...
 ***10.) Some times the screendraw square does not align correctly.
 11.) Make template preview more enhanced by showing what is used in the template piece by piece.
+12.) First move screen draw doesnt work
 ***13.) Remove toggle of White on TOp when pressing Start new Game button. Session last used.
