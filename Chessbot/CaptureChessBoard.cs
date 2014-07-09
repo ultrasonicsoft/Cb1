@@ -732,27 +732,12 @@ namespace OpenCVDemo1
                 lblCurrentMouseX.Text = e.X.ToString();
                 lblCurrentMouseY.Text = e.Y.ToString();
 
+                txtSelectedLeft.Text = rect.X.ToString();
+                txtSelectedTop.Text = rect.Y.ToString();
+                txtSelectedWidth.Text = rect.Width.ToString();
+                txtSelectedHeight.Text = rect.Height.ToString();
 
-                //if (isGetXEnabled)
-                //{
-                //    txtLeft.Text = e.X.ToString();
-                //    txtTop.Text = e.Y.ToString();
-                //}
-                //else
-                //{
-                //    txtLeft.Text = rect.X.ToString();
-                //    txtTop.Text = rect.Y.ToString();
-                //}
-                //if (isGetYEnabled)
-                //{
-                //    txtRight.Text = e.X.ToString();
-                //    txtBottom.Text = e.Y.ToString();
-                //}
-                //else
-                //{
-                //    txtRight.Text = rect.Width.ToString();
-                //    txtBottom.Text = rect.Height.ToString();
-                //}
+                
             }
             catch (Exception exception)
             {
@@ -772,9 +757,11 @@ namespace OpenCVDemo1
                 mouseDown = false;
                 croprect = GetRectangle(sp, ep);
 
-                //txtWidth.Text = ep.X.ToString();
-                //txtHeight.Text = ep.Y.ToString();
-
+                if (croprect.Width % 2 != 0 || croprect.Height % 2 != 0)
+                {
+                    MessageBox.Show("Please select region with heigh and width divisible by 2 for accuracy.");
+                    return;
+                }
                 txtSelectedLeft.Text = croprect.Left.ToString();
                 txtSelectedTop.Text = croprect.Top.ToString();
                 txtSelectedWidth.Text = croprect.Width.ToString();
@@ -804,21 +791,15 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Info("Crop_MouseDown called...");
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                    this.Close();
-                else
                 {
-                    mouseDown = true;
-                    sp = ep = e.Location;
+                    return;
                 }
+                mouseDown = true;
+                sp = ep = e.Location;
 
-                if (isGetXEnabled)
-                {
-                    isGetXEnabled = false;
-                }
-                if (isGetYEnabled)
-                {
-                    isGetYEnabled = false;
-                }
+                txtSelectedLeft.Text = sp.X.ToString();
+                txtSelectedTop.Text = sp.Y.ToString();
+
             }
             catch (Exception exception)
             {
@@ -1465,21 +1446,21 @@ namespace OpenCVDemo1
         private void btnUpdatedSelection_Click(object sender, EventArgs e)
         {
             int left = 0;
-            int top= 0;
-            int width= 0;
+            int top = 0;
+            int width = 0;
             int height = 0;
 
-            
+
             int.TryParse(txtSelectedLeft.Text, out left);
             int.TryParse(txtSelectedTop.Text, out top);
             int.TryParse(txtSelectedWidth.Text, out width);
             int.TryParse(txtSelectedHeight.Text, out height);
 
             int diffWidth = width - croprect.Width;
-            int diffHeigght = height- croprect.Height;
+            int diffHeigght = height - croprect.Height;
 
             ep = new Point(ep.X + diffWidth, ep.Y + diffHeigght);
-            croprect = new Rectangle(left,top,width,height);
+            croprect = new Rectangle(left, top, width, height);
             pbScreen.Invalidate();
         }
 
@@ -1488,6 +1469,6 @@ namespace OpenCVDemo1
             txtIntensity.Text = tbIntensity.Value.ToString();
         }
 
-       
+
     }
 }
