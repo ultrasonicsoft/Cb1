@@ -10,3 +10,20 @@ without a trigger to tell us when to take a capture of the board, the bot has to
 * Give option to hide Console output and showing output on GUI
 
 testing...
+
+***1.) Padding currently crops towards the upper left of the image slice. This can cause inaccuracy issues.
+2.) Need some form of a real-time status console. Something that can constantly be looked at to see the given state of the bot.
+***3.) Loading a template should load the last used screen settings.
+DONE 4.) Real time size measurement strings are broken during crop. They do not report the size in real time but only after user finishes dragging red box.
+5.) Need a spot in GUI to show basic console display of board layout upon each refresh.
+***6.) Need a horizontal capture screen bar to scroll left and right along a larger capture.
+7.) Is zoom possible in view?
+***8.) Change "White on top?" to "What color is player?" Bubble select Black or White and make your logic fit your existing code.
+9.) Need some form of status indication so the player can see if the bot is ready to play. For example, we can have another section in the compact view that says " 
+    - Template Loaded: OK   
+	- Current board Coords loaded: OK
+	- Ready for new game: OK
+	- Game in progress: NO
+	When the conditions are met, these answers may change from YES to NO etc etc...
+***10.) Some times the screendraw square does not align correctly.
+11.) Make template preview more enhanced by showing what is used in the template piece by piece.
