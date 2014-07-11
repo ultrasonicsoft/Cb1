@@ -42,6 +42,8 @@ namespace OpenCVDemo1
                 lblChessbotHeight.Text = ChessBoardImage.Height.ToString();
 
                 lblPadding.Text = Padding.ToString();
+                int doublePaddingWidth = Padding * 2;
+                int doublePaddingHeight = Padding * 2;
 
                 bool pieceSizeDisplayed = false;
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
@@ -49,7 +51,7 @@ namespace OpenCVDemo1
                     blockLeft = 0;
                     for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
                     {
-                        r = new Rectangle(blockLeft + Padding, blockTop + Padding, blockWidth - Padding, blockHeight - Padding);
+                        r = new Rectangle(blockLeft + Padding, blockTop + Padding, blockWidth - doublePaddingWidth, blockHeight - doublePaddingHeight);
                         //r = new Rectangle(blockLeft, blockTop, blockWidth, blockHeight);
                         
                         using (Bitmap currentPiece = bmpChessboard.Clone(r, System.Drawing.Imaging.PixelFormat.DontCare))
