@@ -274,6 +274,8 @@ namespace OpenCVDemo1
                 int blockLeft = 0;
                 int blockTop = 0;
 
+                int blockPaddingAmountDouble = blockPaddingAmount * 2;
+
                 string position = string.Empty;
                 string fileName = CurrentExecutationPath + Constants.PositionFolderName + "{0}.jpg";
                 string[] columnNames = { "A", "B", "C", "D", "E", "F", "G", "H" };
@@ -295,7 +297,7 @@ namespace OpenCVDemo1
                             || (rowIndex == 7 && colIndex == 2) // Scan second pawn from second side
                             || rowIndex == 8) // scan all main pieces from last row
                         {
-                            r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                            r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmountDouble, blockHeight - blockPaddingAmountDouble);
                             using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                             {
                                 string pieceName = string.Empty;
@@ -506,6 +508,7 @@ namespace OpenCVDemo1
                 Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
 
+                int blockPaddingAmountDouble = blockPaddingAmount*2;
                 //emptyGridZone1 = emptyGridZone1.Resize(0.5, INTER.CV_INTER_AREA);
                 //emptyGridZone2 = emptyGridZone2.Resize(0.5, INTER.CV_INTER_AREA);
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
@@ -513,7 +516,7 @@ namespace OpenCVDemo1
                     blockLeft = 0;
                     for (int colIndex = 1; colIndex <= Constants.GRID_SIZE; colIndex++)
                     {
-                        r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+                        r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmountDouble, blockHeight - blockPaddingAmountDouble);
                         using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                         {
                             // Mark each grid zone entity
@@ -612,7 +615,10 @@ namespace OpenCVDemo1
                 Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
 
-                r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmount, blockHeight - blockPaddingAmount);
+
+                int blockPaddingAmountDouble = blockPaddingAmount*2;
+
+                r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmountDouble, blockHeight - blockPaddingAmountDouble);
                 
                 using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                 {
