@@ -42,12 +42,16 @@ namespace OpenCVDemo1
         private string _engineDepth = "16";
         Image CurrentCapturedScreen = null;
         private bool enableHotKeyForGetNextMove = false;
+        private int nextMoveHighlightDuration = 100;
         #endregion
 
         #region Properties
         public string EngineDepth { get { return _engineDepth; } set { _engineDepth = value; } }
 
-        public int NextMoveHighlightDuration { get; set; }
+        public int NextMoveHighlightDuration { get { return nextMoveHighlightDuration; } set
+        {
+            nextMoveHighlightDuration = value;
+        } }
 
         public Rectangle ScreenBoardCoordinates { get; set; }
         public Rectangle PreviousScreenBoardCoordinates { get; set; }
