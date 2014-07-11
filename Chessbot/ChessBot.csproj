@@ -105,6 +105,12 @@
     <Compile Include="ChessBrain.Designer.cs">
       <DependentUpon>ChessBrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="EngineConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EngineConfiguration.Designer.cs">
+      <DependentUpon>EngineConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalHotKeys.cs" />
     <Compile Include="ImageProcessingManager.cs" />
     <Compile Include="LogHelper.cs" />
@@ -138,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompactView.resx">
       <DependentUpon>CompactView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EngineConfiguration.resx">
+      <DependentUpon>EngineConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PreviewTemplate.resx">
       <DependentUpon>PreviewTemplate.cs</DependentUpon>

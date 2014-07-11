@@ -109,6 +109,8 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEngineConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -208,6 +210,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.txtBestMove);
             this.groupBox2.Controls.Add(this.btnGetBestMove);
             this.groupBox2.Controls.Add(this.label25);
@@ -537,6 +540,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnEngineConfiguration);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.label14);
@@ -949,6 +953,26 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(123, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Stop Finding Move";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnEngineConfiguration
+            // 
+            this.btnEngineConfiguration.Location = new System.Drawing.Point(987, 52);
+            this.btnEngineConfiguration.Name = "btnEngineConfiguration";
+            this.btnEngineConfiguration.Size = new System.Drawing.Size(95, 40);
+            this.btnEngineConfiguration.TabIndex = 64;
+            this.btnEngineConfiguration.Text = "Engine Configuration";
+            this.btnEngineConfiguration.UseVisualStyleBackColor = true;
+            this.btnEngineConfiguration.Click += new System.EventHandler(this.btnEngineConfiguration_Click);
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1081,5 +1105,7 @@
         private System.Windows.Forms.Button btnClearSelection;
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnEngineConfiguration;
     }
 }

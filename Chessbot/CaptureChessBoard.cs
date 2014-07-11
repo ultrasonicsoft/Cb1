@@ -68,6 +68,7 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
+            
          
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
@@ -1473,6 +1474,12 @@ namespace OpenCVDemo1
         private void tbIntensity_Scroll(object sender, EventArgs e)
         {
             txtIntensity.Text = tbIntensity.Value.ToString();
+        }
+
+        private void btnEngineConfiguration_Click(object sender, EventArgs e)
+        {
+            EngineConfiguration engine = new EngineConfiguration();
+            engine.Show();
         }
 
 
