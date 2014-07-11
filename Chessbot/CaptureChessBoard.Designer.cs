@@ -36,13 +36,15 @@
             this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
-            this.btnCompactView = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBestMove = new System.Windows.Forms.TextBox();
+            this.btnGetBestMove = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
+            this.btnCompactView = new System.Windows.Forms.Button();
             this.lblExecutionTime = new System.Windows.Forms.Label();
+            this.btnStartNewGame = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.pbIntensityTest = new System.Windows.Forms.PictureBox();
-            this.btnRefreshTemplate = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblWhosMove = new System.Windows.Forms.Label();
             this.btnMarkTrigger = new System.Windows.Forms.Button();
@@ -53,20 +55,19 @@
             this.pbCurrentMarker = new System.Windows.Forms.PictureBox();
             this.txtRefreshMarkerInterval = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.btnStartNewGame = new System.Windows.Forms.Button();
-            this.btnDeleteTemplate = new System.Windows.Forms.Button();
-            this.btnGetBestMove = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveTemplate = new System.Windows.Forms.Button();
             this.txtPadding = new System.Windows.Forms.TextBox();
             this.rbtnBlack = new System.Windows.Forms.RadioButton();
+            this.btnRefreshTemplate = new System.Windows.Forms.Button();
             this.btnTemplate = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.btnDeleteTemplate = new System.Windows.Forms.Button();
             this.rbtnWhite = new System.Windows.Forms.RadioButton();
-            this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.cmbTemplates = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
@@ -108,7 +109,6 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbctrController.SuspendLayout();
             this.tbHome.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImage)).BeginInit();
@@ -128,7 +129,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -151,13 +151,14 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.pnlImageHolder);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1130, 408);
-            this.splitContainer1.SplitterDistance = 290;
+            this.splitContainer1.Size = new System.Drawing.Size(1130, 596);
+            this.splitContainer1.SplitterDistance = 423;
             this.splitContainer1.TabIndex = 2;
             // 
             // pnlImageHolder
@@ -167,7 +168,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 288);
+            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 421);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -188,7 +189,7 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1128, 112);
+            this.tbctrController.Size = new System.Drawing.Size(1128, 167);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
@@ -200,10 +201,53 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1120, 173);
+            this.tbHome.Size = new System.Drawing.Size(1120, 141);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtBestMove);
+            this.groupBox2.Controls.Add(this.btnGetBestMove);
+            this.groupBox2.Controls.Add(this.label25);
+            this.groupBox2.Controls.Add(this.btnCompactView);
+            this.groupBox2.Controls.Add(this.lblExecutionTime);
+            this.groupBox2.Controls.Add(this.btnStartNewGame);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Location = new System.Drawing.Point(417, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(246, 141);
+            this.groupBox2.TabIndex = 41;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Game";
+            // 
+            // txtBestMove
+            // 
+            this.txtBestMove.Location = new System.Drawing.Point(191, 100);
+            this.txtBestMove.Name = "txtBestMove";
+            this.txtBestMove.Size = new System.Drawing.Size(47, 20);
+            this.txtBestMove.TabIndex = 19;
+            // 
+            // btnGetBestMove
+            // 
+            this.btnGetBestMove.Enabled = false;
+            this.btnGetBestMove.Location = new System.Drawing.Point(6, 97);
+            this.btnGetBestMove.Name = "btnGetBestMove";
+            this.btnGetBestMove.Size = new System.Drawing.Size(101, 23);
+            this.btnGetBestMove.TabIndex = 23;
+            this.btnGetBestMove.Text = "Get Best Move";
+            this.btnGetBestMove.UseVisualStyleBackColor = true;
+            this.btnGetBestMove.Click += new System.EventHandler(this.btnShowBoardConfiguration_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(120, 103);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 13);
+            this.label25.TabIndex = 2;
+            this.label25.Text = "Next  Move:";
             // 
             // btnCompactView
             // 
@@ -215,22 +259,6 @@
             this.btnCompactView.UseVisualStyleBackColor = true;
             this.btnCompactView.Click += new System.EventHandler(this.btnCompactView_Click);
             // 
-            // txtBestMove
-            // 
-            this.txtBestMove.Location = new System.Drawing.Point(191, 100);
-            this.txtBestMove.Name = "txtBestMove";
-            this.txtBestMove.Size = new System.Drawing.Size(47, 20);
-            this.txtBestMove.TabIndex = 19;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(120, 103);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(65, 13);
-            this.label25.TabIndex = 2;
-            this.label25.Text = "Next  Move:";
-            // 
             // lblExecutionTime
             // 
             this.lblExecutionTime.AutoSize = true;
@@ -239,6 +267,16 @@
             this.lblExecutionTime.Size = new System.Drawing.Size(36, 13);
             this.lblExecutionTime.TabIndex = 1;
             this.lblExecutionTime.Text = "[Time]";
+            // 
+            // btnStartNewGame
+            // 
+            this.btnStartNewGame.Location = new System.Drawing.Point(6, 28);
+            this.btnStartNewGame.Name = "btnStartNewGame";
+            this.btnStartNewGame.Size = new System.Drawing.Size(101, 23);
+            this.btnStartNewGame.TabIndex = 26;
+            this.btnStartNewGame.Text = "Start New Game";
+            this.btnStartNewGame.UseVisualStyleBackColor = true;
+            this.btnStartNewGame.Click += new System.EventHandler(this.btnStartNewGame_Click);
             // 
             // label23
             // 
@@ -258,16 +296,6 @@
             this.pbIntensityTest.TabIndex = 39;
             this.pbIntensityTest.TabStop = false;
             this.pbIntensityTest.Visible = false;
-            // 
-            // btnRefreshTemplate
-            // 
-            this.btnRefreshTemplate.Location = new System.Drawing.Point(113, 71);
-            this.btnRefreshTemplate.Name = "btnRefreshTemplate";
-            this.btnRefreshTemplate.Size = new System.Drawing.Size(101, 23);
-            this.btnRefreshTemplate.TabIndex = 37;
-            this.btnRefreshTemplate.Text = "Refresh";
-            this.btnRefreshTemplate.UseVisualStyleBackColor = true;
-            this.btnRefreshTemplate.Click += new System.EventHandler(this.btnRefreshTemplate_Click);
             // 
             // groupBox1
             // 
@@ -370,37 +398,6 @@
             this.label18.TabIndex = 21;
             this.label18.Text = "Scan Interval (ms)";
             // 
-            // btnStartNewGame
-            // 
-            this.btnStartNewGame.Location = new System.Drawing.Point(6, 28);
-            this.btnStartNewGame.Name = "btnStartNewGame";
-            this.btnStartNewGame.Size = new System.Drawing.Size(101, 23);
-            this.btnStartNewGame.TabIndex = 26;
-            this.btnStartNewGame.Text = "Start New Game";
-            this.btnStartNewGame.UseVisualStyleBackColor = true;
-            this.btnStartNewGame.Click += new System.EventHandler(this.btnStartNewGame_Click);
-            // 
-            // btnDeleteTemplate
-            // 
-            this.btnDeleteTemplate.Location = new System.Drawing.Point(113, 112);
-            this.btnDeleteTemplate.Name = "btnDeleteTemplate";
-            this.btnDeleteTemplate.Size = new System.Drawing.Size(101, 23);
-            this.btnDeleteTemplate.TabIndex = 24;
-            this.btnDeleteTemplate.Text = "Delete Template";
-            this.btnDeleteTemplate.UseVisualStyleBackColor = true;
-            this.btnDeleteTemplate.Click += new System.EventHandler(this.btnDeleteTemplate_Click);
-            // 
-            // btnGetBestMove
-            // 
-            this.btnGetBestMove.Enabled = false;
-            this.btnGetBestMove.Location = new System.Drawing.Point(6, 97);
-            this.btnGetBestMove.Name = "btnGetBestMove";
-            this.btnGetBestMove.Size = new System.Drawing.Size(101, 23);
-            this.btnGetBestMove.TabIndex = 23;
-            this.btnGetBestMove.Text = "Get Best Move";
-            this.btnGetBestMove.UseVisualStyleBackColor = true;
-            this.btnGetBestMove.Click += new System.EventHandler(this.btnShowBoardConfiguration_Click);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.btnSaveTemplate);
@@ -443,12 +440,22 @@
             // rbtnBlack
             // 
             this.rbtnBlack.AutoSize = true;
-            this.rbtnBlack.Location = new System.Drawing.Point(362, 41);
+            this.rbtnBlack.Location = new System.Drawing.Point(341, 39);
             this.rbtnBlack.Name = "rbtnBlack";
-            this.rbtnBlack.Size = new System.Drawing.Size(39, 17);
+            this.rbtnBlack.Size = new System.Drawing.Size(53, 17);
             this.rbtnBlack.TabIndex = 28;
-            this.rbtnBlack.Text = "No";
+            this.rbtnBlack.Text = "White";
             this.rbtnBlack.UseVisualStyleBackColor = true;
+            // 
+            // btnRefreshTemplate
+            // 
+            this.btnRefreshTemplate.Location = new System.Drawing.Point(113, 71);
+            this.btnRefreshTemplate.Name = "btnRefreshTemplate";
+            this.btnRefreshTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnRefreshTemplate.TabIndex = 37;
+            this.btnRefreshTemplate.Text = "Refresh";
+            this.btnRefreshTemplate.UseVisualStyleBackColor = true;
+            this.btnRefreshTemplate.Click += new System.EventHandler(this.btnRefreshTemplate_Click);
             // 
             // btnTemplate
             // 
@@ -472,33 +479,33 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(229, 42);
+            this.label12.Location = new System.Drawing.Point(229, 20);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(78, 13);
+            this.label12.Size = new System.Drawing.Size(106, 13);
             this.label12.TabIndex = 26;
-            this.label12.Text = "White on Top?";
+            this.label12.Text = "What color is player?";
+            // 
+            // btnDeleteTemplate
+            // 
+            this.btnDeleteTemplate.Location = new System.Drawing.Point(113, 112);
+            this.btnDeleteTemplate.Name = "btnDeleteTemplate";
+            this.btnDeleteTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnDeleteTemplate.TabIndex = 24;
+            this.btnDeleteTemplate.Text = "Delete Template";
+            this.btnDeleteTemplate.UseVisualStyleBackColor = true;
+            this.btnDeleteTemplate.Click += new System.EventHandler(this.btnDeleteTemplate_Click);
             // 
             // rbtnWhite
             // 
             this.rbtnWhite.AutoSize = true;
             this.rbtnWhite.Checked = true;
-            this.rbtnWhite.Location = new System.Drawing.Point(313, 41);
+            this.rbtnWhite.Location = new System.Drawing.Point(341, 19);
             this.rbtnWhite.Name = "rbtnWhite";
-            this.rbtnWhite.Size = new System.Drawing.Size(43, 17);
+            this.rbtnWhite.Size = new System.Drawing.Size(52, 17);
             this.rbtnWhite.TabIndex = 27;
             this.rbtnWhite.TabStop = true;
-            this.rbtnWhite.Text = "Yes";
+            this.rbtnWhite.Text = "Black";
             this.rbtnWhite.UseVisualStyleBackColor = true;
-            // 
-            // btnLoadTemplate
-            // 
-            this.btnLoadTemplate.Location = new System.Drawing.Point(6, 71);
-            this.btnLoadTemplate.Name = "btnLoadTemplate";
-            this.btnLoadTemplate.Size = new System.Drawing.Size(101, 23);
-            this.btnLoadTemplate.TabIndex = 19;
-            this.btnLoadTemplate.Text = "Load Template";
-            this.btnLoadTemplate.UseVisualStyleBackColor = true;
-            this.btnLoadTemplate.Click += new System.EventHandler(this.btnLoadTemplate_Click);
             // 
             // cmbTemplates
             // 
@@ -518,6 +525,16 @@
             this.label13.TabIndex = 17;
             this.label13.Text = "Select Master Template:";
             // 
+            // btnLoadTemplate
+            // 
+            this.btnLoadTemplate.Location = new System.Drawing.Point(6, 71);
+            this.btnLoadTemplate.Name = "btnLoadTemplate";
+            this.btnLoadTemplate.Size = new System.Drawing.Size(101, 23);
+            this.btnLoadTemplate.TabIndex = 19;
+            this.btnLoadTemplate.Text = "Load Template";
+            this.btnLoadTemplate.UseVisualStyleBackColor = true;
+            this.btnLoadTemplate.Click += new System.EventHandler(this.btnLoadTemplate_Click);
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -533,7 +550,7 @@
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1120, 86);
+            this.tabPage1.Size = new System.Drawing.Size(1120, 141);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -907,7 +924,7 @@
             this.txtStatus,
             this.txtScore,
             this.txtMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 386);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
             this.statusStrip1.TabIndex = 3;
@@ -932,28 +949,12 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtBestMove);
-            this.groupBox2.Controls.Add(this.btnGetBestMove);
-            this.groupBox2.Controls.Add(this.label25);
-            this.groupBox2.Controls.Add(this.btnCompactView);
-            this.groupBox2.Controls.Add(this.lblExecutionTime);
-            this.groupBox2.Controls.Add(this.btnStartNewGame);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Location = new System.Drawing.Point(417, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 141);
-            this.groupBox2.TabIndex = 41;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Game";
-            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1130, 408);
+            this.ClientSize = new System.Drawing.Size(1130, 596);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;
@@ -973,6 +974,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).EndInit();
             this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -991,8 +994,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

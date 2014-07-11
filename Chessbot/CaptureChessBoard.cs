@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -62,6 +63,11 @@ namespace OpenCVDemo1
         public CaptureChessBoard()
         {
             InitializeComponent();
+
+
+            string[] formats = {"dd/MM/yyyy"};
+            var dateTime = DateTime.ParseExact("19/12/1984", formats, CultureInfo.InvariantCulture, DateTimeStyles.None);
+            MessageBox.Show(dateTime.ToShortDateString());
 
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
@@ -495,9 +501,9 @@ namespace OpenCVDemo1
             try
             {
                 LogHelper.logger.Info("btnStartNewGame_Click called...");
-                int padding = int.Parse(txtPadding.Text);
-                rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
-                rbtnBlack.Checked = !rbtnWhite.Checked;
+                //int padding = int.Parse(txtPadding.Text);
+                //rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
+                //rbtnBlack.Checked = !rbtnWhite.Checked;
                 btnGetBestMove.Enabled = true;
             }
             catch (Exception exception)
