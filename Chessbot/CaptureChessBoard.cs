@@ -64,11 +64,7 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
-
-            string[] formats = {"dd/MM/yyyy"};
-            var dateTime = DateTime.ParseExact("19/12/1984", formats, CultureInfo.InvariantCulture, DateTimeStyles.None);
-            MessageBox.Show(dateTime.ToShortDateString());
-
+         
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
 
