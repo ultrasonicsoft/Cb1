@@ -43,6 +43,9 @@ namespace OpenCVDemo1
         Image CurrentCapturedScreen = null;
         private bool enableHotKeyForGetNextMove = false;
         private int nextMoveHighlightDuration = 100;
+
+        public UCI Engine { get; set; }
+
         #endregion
 
         #region Properties
@@ -68,7 +71,9 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
-            
+            Engine = new UCI();
+            Engine.BestMovFound += engine_BestMovFound;
+            Engine.InitEngine("stockfishengine.exe", string.Empty, Engine.OutputDataReceivedProc);
          
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
@@ -1350,12 +1355,9 @@ namespace OpenCVDemo1
             string bestMove = string.Empty;
             try
             {
-                UCI engine = new UCI();
-                engine.BestMovFound += engine_BestMovFound;
-                engine.InitEngine("stockfishengine.exe", string.Empty);
                 var parts = fenString.Split(' ');
                 fenString = parts[0] + " " + parts[1];
-                engine.CalculateBestMove(fenString, EngineDepth);
+                Engine.CalculateBestMove(fenString, EngineDepth);
             }
             catch (Exception exception)
             {

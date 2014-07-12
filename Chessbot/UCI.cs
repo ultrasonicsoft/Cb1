@@ -37,23 +37,25 @@ namespace OpenCVDemo1
         //////////////////////////////////////////////////////////////////////////
         #region Public methods
 
-        public bool InitEngine(String enginePath, String engineIniPath)
+        public bool InitEngine(String enginePath, String engineIniPath, System.Diagnostics.DataReceivedEventHandler outputDataReceivedProc)
         {
             LogHelper.logger.Info("InitEngine called with enginePath: " + enginePath + " and engineIniPath: " + engineIniPath);
             try
             {
                 // create process
-                UCI_Engine = new Process();
-                UCI_Engine.StartInfo.FileName = enginePath;
-                //UCI_Engine.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(enginePath);
-                UCI_Engine.StartInfo.UseShellExecute = false;
-                UCI_Engine.StartInfo.CreateNoWindow = true;
-                UCI_Engine.StartInfo.RedirectStandardInput = true;
-                UCI_Engine.StartInfo.RedirectStandardOutput = true;
-                UCI_Engine.Start();
-                UCI_Engine.OutputDataReceived += OutputDataReceivedProc;
-                UCI_Engine.BeginOutputReadLine();
-
+                if (UCI_Engine == null)
+                {
+                    UCI_Engine = new Process();
+                    UCI_Engine.StartInfo.FileName = enginePath;
+                    //UCI_Engine.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(enginePath);
+                    UCI_Engine.StartInfo.UseShellExecute = false;
+                    UCI_Engine.StartInfo.CreateNoWindow = true;
+                    UCI_Engine.StartInfo.RedirectStandardInput = true;
+                    UCI_Engine.StartInfo.RedirectStandardOutput = true;
+                    UCI_Engine.Start();
+                    UCI_Engine.OutputDataReceived += outputDataReceivedProc;
+                    UCI_Engine.BeginOutputReadLine();
+                }
                 // start new game
                 EngineCommand(kSetUCIMode);
                 ResetEngine();
@@ -146,7 +148,7 @@ namespace OpenCVDemo1
         //////////////////////////////////////////////////////////////////////////
         #region Private methods
 
-        private void OutputDataReceivedProc(object sendingProcess, DataReceivedEventArgs outLine)
+        public void OutputDataReceivedProc(object sendingProcess, DataReceivedEventArgs outLine)
         {
             if (outLine.Data == null)
                 return;
@@ -268,7 +270,7 @@ namespace OpenCVDemo1
         //    return result;
         //}
 
-        private void EngineCommand(String cmd)
+        public void EngineCommand(String cmd)
         {
             LogHelper.logger.Info("Executing command on engine. Current Command is: " + cmd);
             try
