@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using Emgu.CV;
@@ -51,10 +52,14 @@ namespace OpenCVDemo1
         #region Properties
         public string EngineDepth { get { return _engineDepth; } set { _engineDepth = value; } }
 
-        public int NextMoveHighlightDuration { get { return nextMoveHighlightDuration; } set
+        public int NextMoveHighlightDuration
         {
-            nextMoveHighlightDuration = value;
-        } }
+            get { return nextMoveHighlightDuration; }
+            set
+            {
+                nextMoveHighlightDuration = value;
+            }
+        }
 
         public Rectangle ScreenBoardCoordinates { get; set; }
         public Rectangle PreviousScreenBoardCoordinates { get; set; }
@@ -74,7 +79,7 @@ namespace OpenCVDemo1
             Engine = new UCI();
             Engine.BestMovFound += engine_BestMovFound;
             Engine.InitEngine("stockfishengine.exe", string.Empty, Engine.OutputDataReceivedProc);
-         
+
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
 
@@ -362,6 +367,7 @@ namespace OpenCVDemo1
                     //MessageBox.Show("Template successfully loaded..", "Chess Master", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtMessage.Text = "Template loaded successfully";
                     //Console.WriteLine("Reading template DONE!");
+                    LoadUserTemplateSettings();
                 }
             }
             catch (Exception exception)
@@ -371,6 +377,47 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LogHelper.logger.Info("btnLoadTemplate_Click finished...");
+        }
+
+        private void LoadUserTemplateSettings()
+        {
+            LogHelper.logger.Info("LoadUserTemplateSettings called...");
+            try
+            {
+                TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
+                string templateFileName = string.Format(Constants.TEMPLATE_SETTING_FILE_NAME, selectedEntity.TemplateFileName);
+                if (File.Exists(templateFileName) == false)
+                    return;
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    TemplateConfiguration templateConfiguration = (TemplateConfiguration)bin.Deserialize(stream);
+
+                    cbEnableHotKey.Checked = templateConfiguration.EnableHotKey;
+                    cbEnableLogging.Checked = templateConfiguration.EnableLogging;
+                    txtEngineDepth.Text = templateConfiguration.EngineDepth.ToString();
+                    txtIntensity.Text = templateConfiguration.Intensity.ToString();
+                    tbIntensity.Value = templateConfiguration.Intensity;
+                    txtStandardMatchingFactor.Text = templateConfiguration.MatchingFactor.ToString();
+                    txtHighlightDuration.Text = templateConfiguration.NextMoveHighlightDuration.ToString();
+                    txtPadding.Text = templateConfiguration.Paddding.ToString();
+                    croprect = templateConfiguration.PreviousScreenCordinates;
+                    if (templateConfiguration.UserPlayingWhite)
+                        rbtnWhite.Checked = true;
+                    else
+                    {
+                        rbtnBlack.Checked = true;
+                    }
+
+                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("LoadUserTemplateSettings: " + exception.Message);
+                LogHelper.logger.Error("LoadUserTemplateSettings: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("LoadUserTemplateSettings finished...");
         }
 
         private void btnShowBoardConfiguration_Click(object sender, EventArgs e)
@@ -592,6 +639,10 @@ namespace OpenCVDemo1
         {
             try
             {
+                if (cmbTemplates.SelectedIndex >= 0)
+                {
+                    SaveUserTemplateSettings();
+                }
                 LogHelper.logger.Info("CaptureChessBoard_FormClosing called...");
                 ghk.Unregiser();
             }
@@ -604,6 +655,42 @@ namespace OpenCVDemo1
             //if (!ghk.Unregiser())
             //    MessageBox.Show("Hotkey failed to unregister!");
             LogHelper.logger.Info("CaptureChessBoard_FormClosing finished...");
+        }
+
+        private void SaveUserTemplateSettings()
+        {
+            LogHelper.logger.Info("SaveUserTemplateSettings finished...");
+            try
+            {
+                TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
+                string templateFileName = string.Format(Constants.TEMPLATE_SETTING_FILE_NAME, selectedEntity.TemplateFileName);
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    //bin.Serialize(stream, masterTemplate);
+                    TemplateConfiguration template = new TemplateConfiguration();
+
+                    template.TemplateName = selectedEntity.TemplateName;
+                    template.EnableHotKey = cbEnableHotKey.Checked;
+                    template.EnableLogging = cbEnableLogging.Checked;
+                    template.EngineDepth = int.Parse(txtEngineDepth.Text);
+                    template.Intensity = int.Parse(txtIntensity.Text);
+                    template.MatchingFactor = int.Parse(txtStandardMatchingFactor.Text);
+                    template.NextMoveHighlightDuration = int.Parse(txtHighlightDuration.Text);
+                    template.Paddding = int.Parse(txtPadding.Text);
+                    template.PreviousScreenCordinates = croprect;
+                    template.UserPlayingWhite = rbtnWhite.Checked;
+
+                    bin.Serialize(stream, template);
+                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("SaveUserTemplateSettings: " + exception.Message);
+                LogHelper.logger.Error("SaveUserTemplateSettings: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("SaveUserTemplateSettings finished...");
         }
 
         private void cbAutoRefresh_CheckedChanged(object sender, EventArgs e)
@@ -749,7 +836,7 @@ namespace OpenCVDemo1
                 txtSelectedWidth.Text = rect.Width.ToString();
                 txtSelectedHeight.Text = rect.Height.ToString();
 
-                
+
             }
             catch (Exception exception)
             {

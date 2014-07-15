@@ -62,6 +62,7 @@
             this.txtTestCommand = new System.Windows.Forms.TextBox();
             this.btnTestCommand = new System.Windows.Forms.Button();
             this.txtEngineOutput = new System.Windows.Forms.RichTextBox();
+            this.btnApply = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtContempFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinSplitDepth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtThreads)).BeginInit();
@@ -308,7 +309,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(130, 373);
+            this.btnSave.Location = new System.Drawing.Point(199, 373);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 8;
@@ -317,7 +318,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(231, 373);
+            this.btnCancel.Location = new System.Drawing.Point(312, 373);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
@@ -363,11 +364,21 @@
             this.txtEngineOutput.Text = "";
             this.txtEngineOutput.TextChanged += new System.EventHandler(this.txtEngineOutput_TextChanged);
             // 
+            // btnApply
+            // 
+            this.btnApply.Location = new System.Drawing.Point(92, 373);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 11;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            // 
             // EngineConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 420);
+            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.txtEngineOutput);
             this.Controls.Add(this.cbUCChess960);
             this.Controls.Add(this.cbPonder);
@@ -456,5 +467,6 @@
         private System.Windows.Forms.TextBox txtTestCommand;
         private System.Windows.Forms.Button btnTestCommand;
         private System.Windows.Forms.RichTextBox txtEngineOutput;
+        private System.Windows.Forms.Button btnApply;
     }
 }

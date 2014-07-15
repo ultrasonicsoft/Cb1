@@ -71,6 +71,8 @@ namespace OpenCVDemo1
 
         //windows message id for hotkey
         public const int WM_HOTKEY_MSG_ID = 0x0312;
+
+        internal const string TEMPLATE_SETTING_FILE_NAME = "{0}_Settings.bin";
     }
 
 }

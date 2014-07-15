@@ -37,6 +37,7 @@
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.txtBestMove = new System.Windows.Forms.TextBox();
             this.btnGetBestMove = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
@@ -69,6 +70,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnEngineConfiguration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
             this.txtRefreshInterval = new System.Windows.Forms.TextBox();
@@ -109,8 +111,6 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnEngineConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,8 +159,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1130, 596);
-            this.splitContainer1.SplitterDistance = 423;
+            this.splitContainer1.Size = new System.Drawing.Size(1130, 661);
+            this.splitContainer1.SplitterDistance = 469;
             this.splitContainer1.TabIndex = 2;
             // 
             // pnlImageHolder
@@ -170,7 +170,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 421);
+            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 467);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -191,7 +191,7 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1128, 167);
+            this.tbctrController.Size = new System.Drawing.Size(1128, 186);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
@@ -203,7 +203,7 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1120, 141);
+            this.tbHome.Size = new System.Drawing.Size(1120, 160);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
@@ -224,6 +224,16 @@
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Game";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(123, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Stop Finding Move";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // txtBestMove
             // 
@@ -558,6 +568,16 @@
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnEngineConfiguration
+            // 
+            this.btnEngineConfiguration.Location = new System.Drawing.Point(987, 52);
+            this.btnEngineConfiguration.Name = "btnEngineConfiguration";
+            this.btnEngineConfiguration.Size = new System.Drawing.Size(95, 40);
+            this.btnEngineConfiguration.TabIndex = 64;
+            this.btnEngineConfiguration.Text = "Engine Configuration";
+            this.btnEngineConfiguration.UseVisualStyleBackColor = true;
+            this.btnEngineConfiguration.Click += new System.EventHandler(this.btnEngineConfiguration_Click);
             // 
             // groupBox3
             // 
@@ -928,7 +948,7 @@
             this.txtStatus,
             this.txtScore,
             this.txtMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 574);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
             this.statusStrip1.TabIndex = 3;
@@ -953,32 +973,12 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(123, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 23);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Stop Finding Move";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnEngineConfiguration
-            // 
-            this.btnEngineConfiguration.Location = new System.Drawing.Point(987, 52);
-            this.btnEngineConfiguration.Name = "btnEngineConfiguration";
-            this.btnEngineConfiguration.Size = new System.Drawing.Size(95, 40);
-            this.btnEngineConfiguration.TabIndex = 64;
-            this.btnEngineConfiguration.Text = "Engine Configuration";
-            this.btnEngineConfiguration.UseVisualStyleBackColor = true;
-            this.btnEngineConfiguration.Click += new System.EventHandler(this.btnEngineConfiguration_Click);
-            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1130, 596);
+            this.ClientSize = new System.Drawing.Size(1130, 661);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;
