@@ -4,8 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Configuration;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.SqlServer.Server;
@@ -150,6 +153,8 @@ namespace OpenCVDemo1
             else if (outLine.Data.Contains("uciok"))
             {
                 UpdateEngineSettings();
+                LoadSavedEngineSettings();
+
             }
             if (txtEngineOutput.InvokeRequired)
             {
@@ -162,6 +167,36 @@ namespace OpenCVDemo1
             {
                 txtEngineOutput.Text += outLine.Data + Environment.NewLine;
             }
+        }
+
+        private void LoadSavedEngineSettings(bool loadFromFile = true)
+        {
+            LogHelper.logger.Info("LoadSavedEngineSettings called...");
+            try
+            {
+                
+                SetValue(txtContempFactor, CaptureChessBoard.CurrentEngineSettings.ContemptFactorValue);
+                SetValue(txtMinSplitDepth, CaptureChessBoard.CurrentEngineSettings.MinSplitDepthValue);
+                SetValue(txtThreads, CaptureChessBoard.CurrentEngineSettings.ThreadValue);
+                SetValue(txtHash, CaptureChessBoard.CurrentEngineSettings.HashValue);
+                SetValue(txtMultiPV, CaptureChessBoard.CurrentEngineSettings.MultiPVValue);
+                SetValue(txtSkillLevel, CaptureChessBoard.CurrentEngineSettings.SkillLevelValue);
+                SetValue(txtEmergencyMoveHorizon, CaptureChessBoard.CurrentEngineSettings.MoveHorizonValue);
+                SetValue(txtEmergencyBaseTime, CaptureChessBoard.CurrentEngineSettings.BaseTimeValue);
+                SetValue(txtEmergencyMoveTime, CaptureChessBoard.CurrentEngineSettings.MoveTimeValue);
+                SetValue(txtMinimumThinkingTime, CaptureChessBoard.CurrentEngineSettings.ThinkingTimeValue);
+                SetValue(txtSlowMover, CaptureChessBoard.CurrentEngineSettings.SlowMoverValue);
+
+                SetValue(cbPonder, CaptureChessBoard.CurrentEngineSettings.Ponder);
+                SetValue(cbUCChess960, CaptureChessBoard.CurrentEngineSettings.UC_960);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("LoadSavedEngineSettings: " + exception.Message);
+                LogHelper.logger.Error("LoadSavedEngineSettings: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("LoadSavedEngineSettings finished...");
         }
         private void SetContempFactorType(string data)
         {
@@ -192,6 +227,37 @@ namespace OpenCVDemo1
                 throw;
             }
             LogHelper.logger.Info("SetContempFactorType finished...");
+        }
+
+        private void SetValue(NumericUpDown target, int value)
+        {
+            if (target.InvokeRequired)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    target.Text = value.ToString();
+                });
+            }
+            else
+            {
+                target.Text = value.ToString();
+
+            }
+        }
+
+        private void SetValue(CheckBox target, bool value)
+        {
+            if (target.InvokeRequired)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    target.Checked = value;
+                });
+            }
+            else
+            {
+                target.Checked = value;
+            }
         }
 
         private void SetValue(NumericUpDown target, int value, int min, int max, 
@@ -578,7 +644,7 @@ namespace OpenCVDemo1
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            UpdateEngineSettings();
+            
         }
 
         private void UpdateEngineSettings()
@@ -596,6 +662,8 @@ namespace OpenCVDemo1
             UpdateEngineParameter(Constants.UPDATE_EMG_THINKING_TIME, txtMinimumThinkingTime.Text);
             UpdateEngineParameter(Constants.UPDATE_SLOW_MOVER, txtSlowMover.Text);
             UpdateEngineParameter(Constants.UPDATE_UC_CHESS960, cbUCChess960.Checked ? "true" : "false");
+
+           
         }
 
         private void UpdateEngineParameter(string parameterName, string parameterValue)
@@ -636,6 +704,31 @@ namespace OpenCVDemo1
             cbUCChess960.Checked = UC_960;
 
             UpdateEngineSettings();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            CaptureChessBoard.CurrentEngineSettings.ContemptFactorValue = int.Parse(txtContempFactor.Text);
+            CaptureChessBoard.CurrentEngineSettings.MinSplitDepthValue = int.Parse(txtMinSplitDepth.Text);
+            CaptureChessBoard.CurrentEngineSettings.ThreadValue = int.Parse(txtThreads.Text);
+            CaptureChessBoard.CurrentEngineSettings.HashValue = int.Parse(txtHash.Text);
+            CaptureChessBoard.CurrentEngineSettings.MultiPVValue = int.Parse(txtMultiPV.Text);
+            CaptureChessBoard.CurrentEngineSettings.SkillLevelValue = int.Parse(txtSkillLevel.Text);
+            CaptureChessBoard.CurrentEngineSettings.MoveHorizonValue = int.Parse(txtEmergencyMoveHorizon.Text);
+            CaptureChessBoard.CurrentEngineSettings.BaseTimeValue = int.Parse(txtEmergencyBaseTime.Text);
+            CaptureChessBoard.CurrentEngineSettings.MoveTimeValue = int.Parse(txtEmergencyMoveTime.Text);
+            CaptureChessBoard.CurrentEngineSettings.ThinkingTimeValue = int.Parse(txtMinimumThinkingTime.Text);
+            CaptureChessBoard.CurrentEngineSettings.SlowMoverValue = int.Parse(txtSlowMover.Text);
+            CaptureChessBoard.CurrentEngineSettings.Ponder = cbPonder.Checked;
+            CaptureChessBoard.CurrentEngineSettings.UC_960 = cbUCChess960.Checked;
+
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            UpdateEngineSettings();
+            MessageBox.Show("Engine settings saved!");
         }
 
     }

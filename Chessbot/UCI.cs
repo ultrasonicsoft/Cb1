@@ -55,8 +55,8 @@ namespace OpenCVDemo1
             try
             {
                 // create process
-                if (UCI_Engine == null)
-                {
+                //if (UCI_Engine == null)
+                //{
                     UCI_Engine = new Process();
                     UCI_Engine.StartInfo.FileName = enginePath;
                     //UCI_Engine.StartInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(enginePath);
@@ -67,7 +67,7 @@ namespace OpenCVDemo1
                     UCI_Engine.Start();
                     UCI_Engine.OutputDataReceived += outputDataReceivedProc;
                     UCI_Engine.BeginOutputReadLine();
-                }
+                //}
                 // start new game
                 EngineCommand(kSetUCIMode);
                 ResetEngine();

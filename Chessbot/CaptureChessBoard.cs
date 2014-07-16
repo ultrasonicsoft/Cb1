@@ -47,6 +47,8 @@ namespace OpenCVDemo1
 
         public UCI Engine { get; set; }
 
+        public static EngineConfigurationSettings CurrentEngineSettings { get; set; }
+
         #endregion
 
         #region Properties
@@ -76,6 +78,8 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
+            CurrentEngineSettings = new EngineConfigurationSettings();
+
             Engine = UCI.GetEngine();
             Engine.BestMovFound += engine_BestMovFound;
             Engine.InitEngine("stockfishengine.exe", string.Empty, Engine.OutputDataReceivedProc);
@@ -94,7 +98,31 @@ namespace OpenCVDemo1
                 SmallView.MainView = this;
                 SmallView.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
             }
+            LoadEngineSettings();
             LogHelper.logger.Info("Constructor finished.");
+        }
+
+        private void LoadEngineSettings()
+        {
+            LogHelper.logger.Info("LoadEngineSettings called...");
+            try
+            {
+                string templateFileName = Constants.ENGINE_SETTING_FILE_NAME;
+                if (File.Exists(templateFileName) == false)
+                    return;
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    CurrentEngineSettings = (EngineConfigurationSettings)bin.Deserialize(stream);
+                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("LoadEngineSettings: " + exception.Message);
+                LogHelper.logger.Error("LoadEngineSettings: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("LoadEngineSettings finished...");
         }
         #endregion
 
@@ -637,13 +665,14 @@ namespace OpenCVDemo1
 
         private void CaptureChessBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
+            LogHelper.logger.Info("CaptureChessBoard_FormClosing called...");
             try
             {
                 if (cmbTemplates.SelectedIndex >= 0)
                 {
                     SaveUserTemplateSettings();
                 }
-                LogHelper.logger.Info("CaptureChessBoard_FormClosing called...");
+                SaveEngineSettings();
                 ghk.Unregiser();
             }
             catch (Exception exception)
@@ -655,6 +684,27 @@ namespace OpenCVDemo1
             //if (!ghk.Unregiser())
             //    MessageBox.Show("Hotkey failed to unregister!");
             LogHelper.logger.Info("CaptureChessBoard_FormClosing finished...");
+        }
+
+        private void SaveEngineSettings()
+        {
+            LogHelper.logger.Info("SaveEngineSettings finished...");
+            try
+            {
+                string templateFileName = Constants.ENGINE_SETTING_FILE_NAME;
+                using (System.IO.Stream stream = File.Open(templateFileName, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, CurrentEngineSettings);
+                }
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("SaveEngineSettings: " + exception.Message);
+                LogHelper.logger.Error("SaveEngineSettings: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("SaveEngineSettings finished...");
         }
 
         private void SaveUserTemplateSettings()

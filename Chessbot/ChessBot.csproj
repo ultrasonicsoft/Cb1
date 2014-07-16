@@ -134,6 +134,7 @@
     <Compile Include="ShowNextMove.Designer.cs">
       <DependentUpon>ShowNextMove.cs</DependentUpon>
     </Compile>
+    <Compile Include="EngineConfigurationSettings.cs" />
     <Compile Include="TemplateConfiguration.cs" />
     <Compile Include="TemplateEntity.cs" />
     <Compile Include="UCI.cs" />

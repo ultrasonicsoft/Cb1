@@ -62,7 +62,6 @@
             this.txtTestCommand = new System.Windows.Forms.TextBox();
             this.btnTestCommand = new System.Windows.Forms.Button();
             this.txtEngineOutput = new System.Windows.Forms.RichTextBox();
-            this.btnApply = new System.Windows.Forms.Button();
             this.btnResetEngine = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtContempFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinSplitDepth)).BeginInit();
@@ -310,12 +309,13 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(199, 373);
+            this.btnSave.Location = new System.Drawing.Point(174, 373);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -323,8 +323,9 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label13
             // 
@@ -365,19 +366,9 @@
             this.txtEngineOutput.Text = "";
             this.txtEngineOutput.TextChanged += new System.EventHandler(this.txtEngineOutput_TextChanged);
             // 
-            // btnApply
-            // 
-            this.btnApply.Location = new System.Drawing.Point(109, 373);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
-            this.btnApply.TabIndex = 11;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
             // btnResetEngine
             // 
-            this.btnResetEngine.Location = new System.Drawing.Point(12, 373);
+            this.btnResetEngine.Location = new System.Drawing.Point(49, 373);
             this.btnResetEngine.Name = "btnResetEngine";
             this.btnResetEngine.Size = new System.Drawing.Size(75, 23);
             this.btnResetEngine.TabIndex = 12;
@@ -391,7 +382,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 420);
             this.Controls.Add(this.btnResetEngine);
-            this.Controls.Add(this.btnApply);
             this.Controls.Add(this.txtEngineOutput);
             this.Controls.Add(this.cbUCChess960);
             this.Controls.Add(this.cbPonder);
@@ -480,7 +470,6 @@
         private System.Windows.Forms.TextBox txtTestCommand;
         private System.Windows.Forms.Button btnTestCommand;
         private System.Windows.Forms.RichTextBox txtEngineOutput;
-        private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnResetEngine;
     }
 }

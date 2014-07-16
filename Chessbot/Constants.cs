@@ -74,6 +74,8 @@ namespace OpenCVDemo1
 
         internal const string TEMPLATE_SETTING_FILE_NAME = "{0}_Settings.bin";
 
+        internal const string ENGINE_SETTING_FILE_NAME = "Engine_Settings.bin";
+
         //internal const string UPDATE_CONTEMP_FACTOR_TYPE = "setoption name Contempt Factor value {0}";
         //internal const string UPDATE_MIN_SPLIT_DEPTH = "setoption name Min Split Depth value {0}";
         //internal const string UPDATE_THREADS = "setoption name Threads value {0}";
