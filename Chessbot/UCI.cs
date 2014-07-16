@@ -27,14 +27,26 @@ namespace OpenCVDemo1
         public event EventHandler BestMovFound;
         private string currentMoveScore = string.Empty;
 
-        //////////////////////////////////////////////////////////////////////////
-        // Members
-        //////////////////////////////////////////////////////////////////////////
+        private static UCI SingletonObject = null;
+
         private Process UCI_Engine;
 
-        //////////////////////////////////////////////////////////////////////////
-        // Public methods
-        //////////////////////////////////////////////////////////////////////////
+        #region Constructor
+
+        private UCI()
+        {
+            
+        }
+
+        public static UCI GetEngine()
+        {
+            if(SingletonObject == null)
+                SingletonObject = new UCI();
+                return SingletonObject;
+
+        }
+        #endregion
+
         #region Public methods
 
         public bool InitEngine(String enginePath, String engineIniPath, System.Diagnostics.DataReceivedEventHandler outputDataReceivedProc)
@@ -143,9 +155,7 @@ namespace OpenCVDemo1
 
         #endregion
 
-        //////////////////////////////////////////////////////////////////////////
-        // Private methods
-        //////////////////////////////////////////////////////////////////////////
+
         #region Private methods
 
         public void OutputDataReceivedProc(object sendingProcess, DataReceivedEventArgs outLine)

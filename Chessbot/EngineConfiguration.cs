@@ -14,7 +14,7 @@ namespace OpenCVDemo1
 {
     public partial class EngineConfiguration : Form
     {
-        private UCI Engine = new UCI();
+        private UCI Engine = null;
 
         private int contemptFactorValue = 0;
         private int contemptFactorMin = 0;
@@ -69,7 +69,7 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
-            Engine = new UCI();
+            Engine = UCI.GetEngine();
             Engine.InitEngine("stockfishengine.exe", string.Empty, EngineDataReceived);
         }
 

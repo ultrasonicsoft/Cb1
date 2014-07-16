@@ -76,7 +76,7 @@ namespace OpenCVDemo1
         {
             InitializeComponent();
 
-            Engine = new UCI();
+            Engine = UCI.GetEngine();
             Engine.BestMovFound += engine_BestMovFound;
             Engine.InitEngine("stockfishengine.exe", string.Empty, Engine.OutputDataReceivedProc);
 
