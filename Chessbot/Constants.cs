@@ -73,6 +73,38 @@ namespace OpenCVDemo1
         public const int WM_HOTKEY_MSG_ID = 0x0312;
 
         internal const string TEMPLATE_SETTING_FILE_NAME = "{0}_Settings.bin";
+
+        //internal const string UPDATE_CONTEMP_FACTOR_TYPE = "setoption name Contempt Factor value {0}";
+        //internal const string UPDATE_MIN_SPLIT_DEPTH = "setoption name Min Split Depth value {0}";
+        //internal const string UPDATE_THREADS = "setoption name Threads value {0}";
+        //internal const string UPDATE_HASH = "setoption name Hash value {0}";
+        //internal const string CLEAR_HASH = "setoption name Clear Hash";
+        //internal const string UPDATE_MULTI_PV = "setoption name MultiPV value {0}";
+        //internal const string UPDATE_PONDER = "setoption name Ponder value {0}";
+        //internal const string UPDATE_SKILL_LEVEL = "setoption name Skill Level value {0}";
+        //internal const string UPDATE_EMG_MOVE_HORIZON = "setoption name Emergency Move Horizon value {0}";
+        //internal const string UPDATE_EMG_BASE_TIME = "setoption name Emergency Base Time value {0}";
+        //internal const string UPDATE_EMG_MOVE_TIME = "setoption name Emergency Move Time value {0}";
+        //internal const string UPDATE_EMG_THINKING_TIME = "setoption name Emergency Thinking Time value {0}";
+        //internal const string UPDATE_SLOW_MOVER = "setoption name Emergency Thinking Time value {0}";
+        //internal const string UPDATE_UC_CHESS960 = "setoption name UCI_Chess960 value {0}";
+
+        internal const string UPDATE_COMMAND = "setoption name {0} value {1}";
+        internal const string CLEAR_HASH = "setoption name Clear Hash";
+
+        internal const string UPDATE_CONTEMP_FACTOR_TYPE = "Contempt Factor";
+        internal const string UPDATE_MIN_SPLIT_DEPTH = "Min Split Depth";
+        internal const string UPDATE_THREADS = "Threads";
+        internal const string UPDATE_HASH = "Hash";
+        internal const string UPDATE_MULTI_PV = "MultiPV";
+        internal const string UPDATE_PONDER = "Ponder";
+        internal const string UPDATE_SKILL_LEVEL = "Skill Level";
+        internal const string UPDATE_EMG_MOVE_HORIZON = "Emergency Move Horizon";
+        internal const string UPDATE_EMG_BASE_TIME = "Emergency Base Time";
+        internal const string UPDATE_EMG_MOVE_TIME = "Emergency Move Time";
+        internal const string UPDATE_EMG_THINKING_TIME = "Minimum Thinking Time";
+        internal const string UPDATE_SLOW_MOVER = "Slow Mover";
+        internal const string UPDATE_UC_CHESS960 = "UCI_Chess960";
     }
 
 }

@@ -63,6 +63,7 @@
             this.btnTestCommand = new System.Windows.Forms.Button();
             this.txtEngineOutput = new System.Windows.Forms.RichTextBox();
             this.btnApply = new System.Windows.Forms.Button();
+            this.btnResetEngine = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtContempFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinSplitDepth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtThreads)).BeginInit();
@@ -366,18 +367,30 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(92, 373);
+            this.btnApply.Location = new System.Drawing.Point(109, 373);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 11;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // btnResetEngine
+            // 
+            this.btnResetEngine.Location = new System.Drawing.Point(12, 373);
+            this.btnResetEngine.Name = "btnResetEngine";
+            this.btnResetEngine.Size = new System.Drawing.Size(75, 23);
+            this.btnResetEngine.TabIndex = 12;
+            this.btnResetEngine.Text = "Reset";
+            this.btnResetEngine.UseVisualStyleBackColor = true;
+            this.btnResetEngine.Click += new System.EventHandler(this.btnResetEngine_Click);
             // 
             // EngineConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 420);
+            this.Controls.Add(this.btnResetEngine);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.txtEngineOutput);
             this.Controls.Add(this.cbUCChess960);
@@ -468,5 +481,6 @@
         private System.Windows.Forms.Button btnTestCommand;
         private System.Windows.Forms.RichTextBox txtEngineOutput;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.Button btnResetEngine;
     }
 }

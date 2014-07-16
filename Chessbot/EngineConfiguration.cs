@@ -5,14 +5,65 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.SqlServer.Server;
 
 namespace OpenCVDemo1
 {
     public partial class EngineConfiguration : Form
     {
         private UCI Engine = new UCI();
+
+        private int contemptFactorValue = 0;
+        private int contemptFactorMin = 0;
+        private int contemptFactorMax = 0;
+
+        private int MinSplitDepthValue = 0;
+        private int MinSplitDepthMin = 0;
+        private int MinSplitDepthMax = 0;
+
+        private int ThreadValue = 0;
+        private int ThreadMin = 0;
+        private int ThreadMax = 0;
+
+        private int HashValue = 0;
+        private int HashMin = 0;
+        private int HashMax = 0;
+
+        private int MultiPVValue = 0;
+        private int MultiPVMin = 0;
+        private int MultiPVMax = 0;
+
+        private bool Ponder = true;
+
+        private int SkillLevelValue = 0;
+        private int SkillLevelMin = 0;
+        private int SkillLevelMax = 0;
+
+        private int MoveHorizonValue = 0;
+        private int MoveHorizonMin = 0;
+        private int MoveHorizonMax = 0;
+
+        private int BaseTimeValue = 0;
+        private int BaseTimeMin = 0;
+        private int BaseTimeMax = 0;
+
+        private int MoveTimeValue = 0;
+        private int MoveTimeMin = 0;
+        private int MoveTimeMax = 0;
+
+        private int ThinkingTimeValue = 0;
+        private int ThinkingTimeMin = 0;
+        private int ThinkingTimeMax = 0;
+
+        private int SlowMoverValue = 0;
+        private int SlowMoverMin = 0;
+        private int SlowMoverMax = 0;
+       
+        private bool UC_960 = false;
+
 
         public EngineConfiguration()
         {
@@ -96,6 +147,10 @@ namespace OpenCVDemo1
             {
                 SetPonder(outLine.Data);
             }
+            else if (outLine.Data.Contains("uciok"))
+            {
+                UpdateEngineSettings();
+            }
             if (txtEngineOutput.InvokeRequired)
             {
                 this.Invoke((MethodInvoker) delegate
@@ -119,16 +174,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtContempFactor.Text = allParts[7];
-                        txtContempFactor.Minimum = int.Parse(allParts[9]);
-                        txtContempFactor.Maximum = int.Parse(allParts[11]);
+                        SetValue(txtContempFactor, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                            ref contemptFactorValue, ref contemptFactorMin, ref contemptFactorMax);
                     });
                 }
                 else
                 {
-                    txtContempFactor.Text = allParts[7];
-                    txtContempFactor.Minimum = int.Parse(allParts[9]);
-                    txtContempFactor.Maximum = int.Parse(allParts[11]);
+                    SetValue(txtContempFactor, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                           ref contemptFactorValue, ref contemptFactorMin, ref contemptFactorMax);
                 }
             }
             catch (Exception exception)
@@ -139,6 +192,18 @@ namespace OpenCVDemo1
                 throw;
             }
             LogHelper.logger.Info("SetContempFactorType finished...");
+        }
+
+        private void SetValue(NumericUpDown target, int value, int min, int max, 
+            ref int localValue, ref int localMin, ref int localMax)
+        {
+            target.Text = value.ToString();
+            target.Minimum = min;
+            target.Maximum = max;
+
+            localValue = value;
+            localMin = min;
+            localMax = max;    
         }
         private void SetMinSplitDepth(string data)
         {
@@ -151,16 +216,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtMinSplitDepth.Text = allParts[8];
-                        txtMinSplitDepth.Minimum = int.Parse(allParts[10]);
-                        txtMinSplitDepth.Maximum = int.Parse(allParts[12]);
+                        SetValue(txtMinSplitDepth, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                           ref MinSplitDepthValue, ref MinSplitDepthMin, ref MinSplitDepthMax);
                     });
                 }
                 else
                 {
-                    txtMinSplitDepth.Text = allParts[8];
-                    txtMinSplitDepth.Minimum = int.Parse(allParts[10]);
-                    txtMinSplitDepth.Maximum = int.Parse(allParts[12]);
+                    SetValue(txtMinSplitDepth, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                          ref MinSplitDepthValue, ref MinSplitDepthMin, ref MinSplitDepthMax);
                 }
                 
             }
@@ -185,16 +248,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtThreads.Text = allParts[6];
-                        txtThreads.Minimum = int.Parse(allParts[8]);
-                        txtThreads.Maximum = int.Parse(allParts[10]);
+                        SetValue(txtThreads, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
+                          ref ThreadValue, ref ThreadMin, ref ThreadMax);
                     });
                 }
                 else
                 {
-                    txtThreads.Text = allParts[6];
-                    txtThreads.Minimum = int.Parse(allParts[8]);
-                    txtThreads.Maximum = int.Parse(allParts[10]);
+                    SetValue(txtThreads, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
+                          ref ThreadValue, ref ThreadMin, ref ThreadMax);
                 }
             }
             catch (Exception exception)
@@ -218,16 +279,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtHash.Text = allParts[6];
-                        txtHash.Minimum = int.Parse(allParts[8]);
-                        txtHash.Maximum = int.Parse(allParts[10]);
+                        SetValue(txtHash, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
+                         ref HashValue, ref HashMin, ref HashMax);
                     });
                 }
                 else
                 {
-                    txtHash.Text = allParts[6];
-                    txtHash.Minimum = int.Parse(allParts[8]);
-                    txtHash.Maximum = int.Parse(allParts[10]);
+                    SetValue(txtHash, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
+                          ref HashValue, ref HashMin, ref HashMax);
                 }
             }
             catch (Exception exception)
@@ -251,16 +310,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtMultiPV.Text = allParts[6];
-                        txtMultiPV.Minimum = int.Parse(allParts[8]);
-                        txtMultiPV.Maximum = int.Parse(allParts[10]);
+                        SetValue(txtMultiPV, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
+                          ref MultiPVValue, ref MultiPVMin, ref MultiPVMax);
                     });
                 }
                 else
                 {
-                    txtMultiPV.Text = allParts[6];
-                    txtMultiPV.Minimum = int.Parse(allParts[8]);
-                    txtMultiPV.Maximum = int.Parse(allParts[11]);
+                    SetValue(txtMultiPV, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[11]),
+                         ref MultiPVValue, ref MultiPVMin, ref MultiPVMax);
                 }
             }
             catch (Exception exception)
@@ -283,16 +340,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtSkillLevel.Text = allParts[7];
-                        txtSkillLevel.Minimum = int.Parse(allParts[9]);
-                        txtSkillLevel.Maximum = int.Parse(allParts[11]);
+                        SetValue(txtSkillLevel, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                         ref SkillLevelValue, ref SkillLevelMin, ref SkillLevelMax);
                     });
                 }
                 else
                 {
-                    txtSkillLevel.Text = allParts[7];
-                    txtSkillLevel.Minimum = int.Parse(allParts[9]);
-                    txtSkillLevel.Maximum = int.Parse(allParts[10]);
+                    SetValue(txtSkillLevel, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                        ref SkillLevelValue, ref SkillLevelMin, ref SkillLevelMax);
                 }
                 
             }
@@ -316,16 +371,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtEmergencyMoveHorizon.Text = allParts[8];
-                        txtEmergencyMoveHorizon.Minimum = int.Parse(allParts[10]);
-                        txtEmergencyMoveHorizon.Maximum = int.Parse(allParts[12]);
+                        SetValue(txtEmergencyMoveHorizon, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                        ref MoveHorizonValue, ref MoveHorizonMin, ref MoveHorizonMax);
                     });
                 }
                 else
                 {
-                    txtEmergencyMoveHorizon.Text = allParts[8];
-                    txtEmergencyMoveHorizon.Minimum = int.Parse(allParts[10]);
-                    txtEmergencyMoveHorizon.Maximum = int.Parse(allParts[12]);
+                    SetValue(txtEmergencyMoveHorizon, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                        ref MoveHorizonValue, ref MoveHorizonMin, ref MoveHorizonMax);
                 }
                 
             }
@@ -349,16 +402,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtEmergencyBaseTime.Text = allParts[8];
-                        txtEmergencyBaseTime.Minimum = int.Parse(allParts[10]);
-                        txtEmergencyBaseTime.Maximum = int.Parse(allParts[12]);
+                        SetValue(txtEmergencyBaseTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                       ref BaseTimeValue, ref BaseTimeMin, ref BaseTimeMax);
                     });
                 }
                 else
                 {
-                    txtEmergencyBaseTime.Text = allParts[8];
-                    txtEmergencyBaseTime.Minimum = int.Parse(allParts[10]);
-                    txtEmergencyBaseTime.Maximum = int.Parse(allParts[12]);
+                    SetValue(txtEmergencyBaseTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                      ref BaseTimeValue, ref BaseTimeMin, ref BaseTimeMax);
                 }
             }
             catch (Exception exception)
@@ -380,16 +431,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtEmergencyMoveTime.Text = allParts[8];
-                        txtEmergencyMoveTime.Minimum = int.Parse(allParts[10]);
-                        txtEmergencyMoveTime.Maximum = int.Parse(allParts[12]);
+                        SetValue(txtEmergencyMoveTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                      ref MoveTimeValue, ref MoveTimeMin, ref MoveTimeMax);
                     });
                 }
                 else
                 {
-                    txtEmergencyMoveTime.Text = allParts[8];
-                    txtEmergencyMoveTime.Minimum = int.Parse(allParts[10]);
-                    txtEmergencyMoveTime.Maximum = int.Parse(allParts[12]);
+                    SetValue(txtEmergencyMoveTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                     ref MoveTimeValue, ref MoveTimeMin, ref MoveTimeMax);
                 }
             }
             catch (Exception exception)
@@ -411,16 +460,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtMinimumThinkingTime.Text = allParts[8];
-                        txtMinimumThinkingTime.Minimum = int.Parse(allParts[10]);
-                        txtMinimumThinkingTime.Maximum = int.Parse(allParts[12]);
+                        SetValue(txtMinimumThinkingTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                     ref ThinkingTimeValue, ref ThinkingTimeMin, ref ThinkingTimeMax);
                     });
                 }
                 else
                 {
-                    txtMinimumThinkingTime.Text = allParts[8];
-                    txtMinimumThinkingTime.Minimum = int.Parse(allParts[10]);
-                    txtMinimumThinkingTime.Maximum = int.Parse(allParts[12]);
+                    SetValue(txtMinimumThinkingTime, int.Parse(allParts[8]), int.Parse(allParts[10]), int.Parse(allParts[12]),
+                     ref ThinkingTimeValue, ref ThinkingTimeMin, ref ThinkingTimeMax);
                 }
             }
             catch (Exception exception)
@@ -442,16 +489,14 @@ namespace OpenCVDemo1
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        txtSlowMover.Text = allParts[7];
-                        txtSlowMover.Minimum = int.Parse(allParts[9]);
-                        txtSlowMover.Maximum = int.Parse(allParts[11]);
+                        SetValue(txtSlowMover, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                    ref SlowMoverValue, ref SlowMoverMin, ref SlowMoverMax);
                     });
                 }
                 else
                 {
-                    txtSlowMover.Text = allParts[7];
-                    txtSlowMover.Minimum = int.Parse(allParts[9]);
-                    txtSlowMover.Maximum = int.Parse(allParts[11]);
+                    SetValue(txtSlowMover, int.Parse(allParts[7]), int.Parse(allParts[9]), int.Parse(allParts[11]),
+                    ref SlowMoverValue, ref SlowMoverMin, ref SlowMoverMax);
                 }
             
             }
@@ -477,6 +522,7 @@ namespace OpenCVDemo1
                         bool state = false;
                         bool.TryParse(allParts[6], out state);
                         cbUCChess960.Checked = state;
+                        UC_960 = cbUCChess960.Checked;
                     });
                 }
                 else
@@ -484,6 +530,7 @@ namespace OpenCVDemo1
                     bool state = false;
                     bool.TryParse(allParts[7], out state);
                     cbUCChess960.Checked = state;
+                    UC_960 = cbUCChess960.Checked;
                 }
             }
             catch (Exception exception)
@@ -508,6 +555,7 @@ namespace OpenCVDemo1
                         bool state = false;
                         bool.TryParse(allParts[6], out state);
                         cbPonder.Checked = state;
+                        Ponder = cbPonder.Checked;
                     });
                 }
                 else
@@ -515,6 +563,7 @@ namespace OpenCVDemo1
                     bool state = false;
                     bool.TryParse(allParts[6], out state);
                     cbPonder.Checked = state;
+                    Ponder = cbPonder.Checked;
                 }
             }
             catch (Exception exception)
@@ -526,5 +575,68 @@ namespace OpenCVDemo1
             }
             LogHelper.logger.Info("SetPonder finished...");
         }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            UpdateEngineSettings();
+        }
+
+        private void UpdateEngineSettings()
+        {
+            UpdateEngineParameter(Constants.UPDATE_CONTEMP_FACTOR_TYPE, txtContempFactor.Text);
+            UpdateEngineParameter(Constants.UPDATE_MIN_SPLIT_DEPTH, txtMinSplitDepth.Text);
+            UpdateEngineParameter(Constants.UPDATE_THREADS, txtThreads.Text);
+            UpdateEngineParameter(Constants.UPDATE_HASH, txtHash.Text);
+            UpdateEngineParameter(Constants.UPDATE_MULTI_PV, txtMultiPV.Text);
+            UpdateEngineParameter(Constants.UPDATE_PONDER, cbPonder.Checked?"true":"false");
+            UpdateEngineParameter(Constants.UPDATE_SKILL_LEVEL, txtSkillLevel.Text);
+            UpdateEngineParameter(Constants.UPDATE_EMG_MOVE_HORIZON, txtEmergencyMoveHorizon.Text);
+            UpdateEngineParameter(Constants.UPDATE_EMG_BASE_TIME, txtEmergencyBaseTime.Text);
+            UpdateEngineParameter(Constants.UPDATE_EMG_MOVE_TIME, txtEmergencyMoveTime.Text);
+            UpdateEngineParameter(Constants.UPDATE_EMG_THINKING_TIME, txtMinimumThinkingTime.Text);
+            UpdateEngineParameter(Constants.UPDATE_SLOW_MOVER, txtSlowMover.Text);
+            UpdateEngineParameter(Constants.UPDATE_UC_CHESS960, cbUCChess960.Checked ? "true" : "false");
+        }
+
+        private void UpdateEngineParameter(string parameterName, string parameterValue)
+        {
+            LogHelper.logger.Info("UpdateEngineParameter called...");
+            LogHelper.logger.Info("Setting engine parameter: " + parameterName + " with value: " + parameterValue);
+            try
+            {
+
+                string command = string.Format(Constants.UPDATE_COMMAND, parameterName,parameterValue);
+                LogHelper.logger.Info("Update Parameter Command: "+ command);
+                Engine.EngineCommand(command);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("UpdateEngineParameter: " + exception.Message);
+                LogHelper.logger.Error("UpdateEngineParameter: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+            LogHelper.logger.Info("UpdateEngineParameter finished...");
+        }
+
+        private void btnResetEngine_Click(object sender, EventArgs e)
+        {
+            txtContempFactor.Text = contemptFactorValue.ToString();
+            txtMinSplitDepth.Text = MinSplitDepthValue.ToString();
+            txtThreads.Text = ThreadValue.ToString();
+            txtHash.Text = HashValue.ToString();
+            txtMultiPV.Text = MultiPVValue.ToString();
+            txtSkillLevel.Text = SkillLevelValue.ToString();
+            txtEmergencyMoveHorizon.Text = MoveHorizonValue.ToString();
+            txtEmergencyBaseTime.Text = BaseTimeValue.ToString();
+            txtEmergencyMoveTime.Text = MoveTimeValue.ToString();
+            txtMinimumThinkingTime.Text = ThinkingTimeValue.ToString();
+            txtSlowMover.Text = SlowMoverValue.ToString();
+            cbPonder.Checked = Ponder;
+            cbUCChess960.Checked = UC_960;
+
+            UpdateEngineSettings();
+        }
+
     }
 }
