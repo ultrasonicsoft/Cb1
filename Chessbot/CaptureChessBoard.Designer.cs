@@ -111,6 +111,8 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtHighlightBoxSize = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,8 +161,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1130, 661);
-            this.splitContainer1.SplitterDistance = 469;
+            this.splitContainer1.Size = new System.Drawing.Size(1130, 664);
+            this.splitContainer1.SplitterDistance = 434;
             this.splitContainer1.TabIndex = 2;
             // 
             // pnlImageHolder
@@ -170,7 +172,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 467);
+            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 432);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -191,7 +193,7 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1128, 186);
+            this.tbctrController.Size = new System.Drawing.Size(1128, 224);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
@@ -203,7 +205,7 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1120, 160);
+            this.tbHome.Size = new System.Drawing.Size(1120, 161);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
@@ -553,6 +555,8 @@
             this.tabPage1.Controls.Add(this.btnEngineConfiguration);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox8);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.txtHighlightBoxSize);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.txtHighlightDuration);
             this.tabPage1.Controls.Add(this.label24);
@@ -564,7 +568,7 @@
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1120, 141);
+            this.tabPage1.Size = new System.Drawing.Size(1120, 198);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -682,7 +686,7 @@
             this.groupBox8.Controls.Add(this.label28);
             this.groupBox8.Location = new System.Drawing.Point(460, 12);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(251, 117);
+            this.groupBox8.Size = new System.Drawing.Size(251, 140);
             this.groupBox8.TabIndex = 60;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Selection Size";
@@ -808,9 +812,9 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(46, 72);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(163, 13);
+            this.label14.Size = new System.Drawing.Size(160, 13);
             this.label14.TabIndex = 62;
-            this.label14.Text = "Next Move Highlighting Duration:";
+            this.label14.Text = "Next Move Highlighting Duration";
             // 
             // txtHighlightDuration
             // 
@@ -826,9 +830,9 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(46, 41);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(75, 13);
+            this.label24.Size = new System.Drawing.Size(72, 13);
             this.label24.TabIndex = 58;
-            this.label24.Text = "Engine Depth:";
+            this.label24.Text = "Engine Depth";
             // 
             // txtEngineDepth
             // 
@@ -916,14 +920,14 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(46, 11);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(104, 13);
+            this.label22.Size = new System.Drawing.Size(101, 13);
             this.label22.TabIndex = 50;
-            this.label22.Text = "Matching Factor (%):";
+            this.label22.Text = "Matching Factor (%)";
             // 
             // cbEnableLogging
             // 
             this.cbEnableLogging.AutoSize = true;
-            this.cbEnableLogging.Location = new System.Drawing.Point(7, 128);
+            this.cbEnableLogging.Location = new System.Drawing.Point(7, 161);
             this.cbEnableLogging.Name = "cbEnableLogging";
             this.cbEnableLogging.Size = new System.Drawing.Size(100, 17);
             this.cbEnableLogging.TabIndex = 55;
@@ -934,7 +938,7 @@
             // cbEnableHotKey
             // 
             this.cbEnableHotKey.AutoSize = true;
-            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 101);
+            this.cbEnableHotKey.Location = new System.Drawing.Point(7, 134);
             this.cbEnableHotKey.Name = "cbEnableHotKey";
             this.cbEnableHotKey.Size = new System.Drawing.Size(100, 17);
             this.cbEnableHotKey.TabIndex = 54;
@@ -948,7 +952,7 @@
             this.txtStatus,
             this.txtScore,
             this.txtMessage});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 642);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
             this.statusStrip1.TabIndex = 3;
@@ -973,12 +977,30 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
+            // txtHighlightBoxSize
+            // 
+            this.txtHighlightBoxSize.Location = new System.Drawing.Point(7, 99);
+            this.txtHighlightBoxSize.Name = "txtHighlightBoxSize";
+            this.txtHighlightBoxSize.Size = new System.Drawing.Size(33, 20);
+            this.txtHighlightBoxSize.TabIndex = 61;
+            this.txtHighlightBoxSize.Text = "20";
+            this.txtHighlightBoxSize.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Highlight Box Size";
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1130, 661);
+            this.ClientSize = new System.Drawing.Size(1130, 664);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;
@@ -1107,5 +1129,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnEngineConfiguration;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtHighlightBoxSize;
     }
 }

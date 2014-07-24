@@ -997,13 +997,16 @@ namespace OpenCVDemo1
                     Pen oldPen = new Pen(Color.Red, 5);
                     Pen newPen = new Pen(Color.Blue, 5);
 
+                    int size = int.Parse(txtHighlightBoxSize.Text);
+                    Rectangle oldPosition = new Rectangle(startX + 5, startY + 5, size, size);
+                    Rectangle newPosition = new Rectangle(startNewX + 5, startNewY + 5, size, size);
                     for (int i = 0; i < NextMoveHighlightDuration; i++)
                     {
                         //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
                         //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
 
-                        g.FillRectangle(Brushes.Red, new Rectangle(startX + 5, startY + 5, 20, 20));
-                        g.FillRectangle(Brushes.Blue, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
+                        g.FillRectangle(Brushes.Red, oldPosition);
+                        g.FillRectangle(Brushes.Blue, newPosition);
                         //g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 20, 20));
                         //g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
                     }
