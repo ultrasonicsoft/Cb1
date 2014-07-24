@@ -623,7 +623,9 @@ namespace OpenCVDemo1
                 else
                 {
                     pbScreen.Image = pbIntensityTest.Image;
-                    ProcessAndPrintBoard();
+                    RefreshGrayImage();
+
+                    //ProcessAndPrintBoard();
                 }
             }
             catch (Exception exception)
@@ -1624,6 +1626,7 @@ namespace OpenCVDemo1
         private void tbIntensity_Scroll(object sender, EventArgs e)
         {
             txtIntensity.Text = tbIntensity.Value.ToString();
+            RefreshGrayImage();
         }
 
         private void btnEngineConfiguration_Click(object sender, EventArgs e)
