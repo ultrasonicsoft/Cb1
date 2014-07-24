@@ -76,13 +76,20 @@ namespace OpenCVDemo1
                     }
                     System.IO.Stream imageStream = new MemoryStream();
 
+                    //EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    //System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                    //EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder,100L);
+                    //myEncoderParameters.Param[0] = myEncoderParameter;
+                    //ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                    //bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
+
                     EncoderParameters myEncoderParameters = new EncoderParameters(1);
                     System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
-                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder,100L);
+                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
                     myEncoderParameters.Param[0] = myEncoderParameter;
-                    //bmp1.Save(@"c:\TestPhotoQualityFifty.jpg", jgpEncoder, myEncoderParameters);
-                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Png);
                     bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
+
                     //bitmap.Save(imageStream, ImageFormat.Jpeg);
                     //bitmap.Save("screen.jpg", ImageFormat.Jpeg);
                     capturedScreen = Image.FromStream(imageStream); ;
