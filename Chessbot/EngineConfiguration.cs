@@ -171,7 +171,7 @@ namespace OpenCVDemo1
 
         private void LoadSavedEngineSettings(bool loadFromFile = true)
         {
-            LogHelper.logger.Info("LoadSavedEngineSettings called...");
+            //LogHelper.logger.Info("LoadSavedEngineSettings called...");
             try
             {
                 
@@ -196,11 +196,11 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("LoadSavedEngineSettings: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("LoadSavedEngineSettings finished...");
+            //LogHelper.logger.Info("LoadSavedEngineSettings finished...");
         }
         private void SetContempFactorType(string data)
         {
-            LogHelper.logger.Info("SetContempFactorType called...");
+            //LogHelper.logger.Info("SetContempFactorType called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -226,7 +226,7 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetContempFactorType finished...");
+            //LogHelper.logger.Info("SetContempFactorType finished...");
         }
 
         private void SetValue(NumericUpDown target, int value)
@@ -273,7 +273,7 @@ namespace OpenCVDemo1
         }
         private void SetMinSplitDepth(string data)
         {
-            LogHelper.logger.Info("SetMinSplitDepth called...");
+            //LogHelper.logger.Info("SetMinSplitDepth called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -300,12 +300,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetMinSplitDepth finished...");
+            //LogHelper.logger.Info("SetMinSplitDepth finished...");
         }
 
         private void SetThreadType(string data)
         {
-            LogHelper.logger.Info("SetThreadType called...");
+            //LogHelper.logger.Info("SetThreadType called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -331,12 +331,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetThreadType finished...");
+            //LogHelper.logger.Info("SetThreadType finished...");
         }
 
         private void SetHash(string data)
         {
-            LogHelper.logger.Info("SetHash called...");
+            //LogHelper.logger.Info("SetHash called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -362,12 +362,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetHash finished...");
+            //LogHelper.logger.Info("SetHash finished...");
         }
 
         private void SetMultiPV(string data)
         {
-            LogHelper.logger.Info("SetMultiPV called...");
+            //LogHelper.logger.Info("SetMultiPV called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -393,12 +393,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetMultiPV finished...");
+            //LogHelper.logger.Info("SetMultiPV finished...");
         }
 
         private void SetSkillLevel(string data)
         {
-            LogHelper.logger.Info("SetSkillLevel called...");
+            //LogHelper.logger.Info("SetSkillLevel called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -424,12 +424,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetSkillLevel finished...");
+            //LogHelper.logger.Info("SetSkillLevel finished...");
         }
 
         private void SetEmergencyMoveHorizon(string data)
         {
-            LogHelper.logger.Info("SetEmergencyMoveHorizon called...");
+            //LogHelper.logger.Info("SetEmergencyMoveHorizon called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -455,12 +455,12 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetEmergencyMoveHorizon finished...");
+            //LogHelper.logger.Info("SetEmergencyMoveHorizon finished...");
         }
 
         private void SetEmergencyBaseTime(string data)
         {
-            LogHelper.logger.Info("SetEmergencyBaseTime called...");
+            //LogHelper.logger.Info("SetEmergencyBaseTime called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -485,11 +485,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetEmergencyBaseTime finished...");
+            //LogHelper.logger.Info("SetEmergencyBaseTime finished...");
         }
         private void SetEmergencyMoveTime(string data)
         {
-            LogHelper.logger.Info("SetEmergencyMoveTime called...");
+            //LogHelper.logger.Info("SetEmergencyMoveTime called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -514,11 +514,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetEmergencyMoveTime finished...");
+            //LogHelper.logger.Info("SetEmergencyMoveTime finished...");
         }
         private void SetMinimumThinkingTime(string data)
         {
-            LogHelper.logger.Info("SetMinimumThinkingTime called...");
+            //LogHelper.logger.Info("SetMinimumThinkingTime called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -543,11 +543,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetMinimumThinkingTime finished...");
+            //LogHelper.logger.Info("SetMinimumThinkingTime finished...");
         }
         private void SetSlowMover(string data)
         {
-            LogHelper.logger.Info("SetSlowMover called...");
+            //LogHelper.logger.Info("SetSlowMover called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -573,11 +573,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetSlowMover finished...");
+            //LogHelper.logger.Info("SetSlowMover finished...");
         }
         private void SetUCI_960(string data)
         {
-            LogHelper.logger.Info("SetUCI_960 called...");
+            //LogHelper.logger.Info("SetUCI_960 called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -606,11 +606,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetUCI_960 finished...");
+            //LogHelper.logger.Info("SetUCI_960 finished...");
         }
         private void SetPonder(string data)
         {
-            LogHelper.logger.Info("SetPonder called...");
+            //LogHelper.logger.Info("SetPonder called...");
             try
             {
                 var allParts = data.Split(' ');
@@ -639,7 +639,7 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("SetPonder finished...");
+            //LogHelper.logger.Info("SetPonder finished...");
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -668,13 +668,13 @@ namespace OpenCVDemo1
 
         private void UpdateEngineParameter(string parameterName, string parameterValue)
         {
-            LogHelper.logger.Info("UpdateEngineParameter called...");
-            LogHelper.logger.Info("Setting engine parameter: " + parameterName + " with value: " + parameterValue);
+            //LogHelper.logger.Info("UpdateEngineParameter called...");
+            //LogHelper.logger.Info("Setting engine parameter: " + parameterName + " with value: " + parameterValue);
             try
             {
 
                 string command = string.Format(Constants.UPDATE_COMMAND, parameterName,parameterValue);
-                LogHelper.logger.Info("Update Parameter Command: "+ command);
+                //LogHelper.logger.Info("Update Parameter Command: "+ command);
                 Engine.EngineCommand(command);
             }
             catch (Exception exception)
@@ -684,7 +684,7 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            LogHelper.logger.Info("UpdateEngineParameter finished...");
+            //LogHelper.logger.Info("UpdateEngineParameter finished...");
         }
 
         private void btnResetEngine_Click(object sender, EventArgs e)

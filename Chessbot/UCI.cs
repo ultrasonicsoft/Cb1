@@ -51,7 +51,7 @@ namespace OpenCVDemo1
 
         public bool InitEngine(String enginePath, String engineIniPath, System.Diagnostics.DataReceivedEventHandler outputDataReceivedProc)
         {
-            LogHelper.logger.Info("InitEngine called with enginePath: " + enginePath + " and engineIniPath: " + engineIniPath);
+            //LogHelper.logger.Info("InitEngine called with enginePath: " + enginePath + " and engineIniPath: " + engineIniPath);
             try
             {
                 // create process
@@ -80,14 +80,14 @@ namespace OpenCVDemo1
                     "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-            LogHelper.logger.Info("InitEngine finished.");
+            //LogHelper.logger.Info("InitEngine finished.");
 
             return true;
         }
 
         public bool ResetEngine()
         {
-            LogHelper.logger.Info("ResetEngine called");
+            //LogHelper.logger.Info("ResetEngine called");
             try
             {
                 // stop engine 
@@ -101,7 +101,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error(exception.Message);
                 throw;
             }
-            LogHelper.logger.Info("ResetEngine finished");
+            //LogHelper.logger.Info("ResetEngine finished");
             
             return true;
         }
@@ -128,7 +128,7 @@ namespace OpenCVDemo1
 
         public bool CalculateBestMove(string fenString, string engineDepth)
         {
-            LogHelper.logger.Info("CalculateBestMove called. fenstring: " + fenString + "  and engine Depth: " + engineDepth);
+            //LogHelper.logger.Info("CalculateBestMove called. fenstring: " + fenString + "  and engine Depth: " + engineDepth);
             if (UCI_Engine != null)
             {
                 // setup engine board string
@@ -137,16 +137,16 @@ namespace OpenCVDemo1
                 //String searchString = kStartMovesFromStartPos + ConstructMoveString();
 
                 // stop thinking
-                LogHelper.logger.Info("Stopping engine with stop command: " + kStopEngine);
+                //LogHelper.logger.Info("Stopping engine with stop command: " + kStopEngine);
                 EngineCommand(kStopEngine);
 
                 // setup engine board
-                LogHelper.logger.Info("Searching next best move with searh query: " + searchString);
+                //LogHelper.logger.Info("Searching next best move with searh query: " + searchString);
                 EngineCommand(searchString);
 
                 // think!
                 string depthQuery = "go depth " + engineDepth;
-                LogHelper.logger.Info("Searching next best move with depth query: " + depthQuery);
+                //LogHelper.logger.Info("Searching next best move with depth query: " + depthQuery);
                 EngineCommand(depthQuery);
             }
 
@@ -166,23 +166,23 @@ namespace OpenCVDemo1
             String t = outLine.Data;
             if (t.Contains("score"))
             {
-                LogHelper.logger.Info("Trying to parse engine output for searching score. Current line: " + t);
+                //LogHelper.logger.Info("Trying to parse engine output for searching score. Current line: " + t);
                 var allParts = t.Split(' ');
                 int score = 0;
                 if (int.TryParse(allParts[7], out score))
                 {
-                    LogHelper.logger.Info("score parsed as: " + score);
+                    //LogHelper.logger.Info("score parsed as: " + score);
                     currentMoveScore = (score / 100.0).ToString();
-                    LogHelper.logger.Info("score parsed as in percentage : " + currentMoveScore);
+                    //LogHelper.logger.Info("score parsed as in percentage : " + currentMoveScore);
                 }
             }
             if (t.Contains("bestmove"))
             {
-                LogHelper.logger.Info("Trying to parse engine output for best move score. Current line: " + t);
+                //LogHelper.logger.Info("Trying to parse engine output for best move score. Current line: " + t);
                 String bestmove = t.Substring(9, 4);
                 //Console.WriteLine("Best move: " + bestmove);
 
-                LogHelper.logger.Info("Best move parsed as: " + bestmove);
+                //LogHelper.logger.Info("Best move parsed as: " + bestmove);
                 BestMovFound(null, new BestMoveFoundArgs(bestmove, currentMoveScore));
             }
             //else if (t.Contains(" pv "))
@@ -282,7 +282,7 @@ namespace OpenCVDemo1
 
         public void EngineCommand(String cmd)
         {
-            LogHelper.logger.Info("Executing command on engine. Current Command is: " + cmd);
+            //LogHelper.logger.Info("Executing command on engine. Current Command is: " + cmd);
             try
             {
                 if (UCI_Engine != null)
@@ -293,7 +293,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error(exception.Message);
                 throw;
             }
-          LogHelper.logger.Info("EngineCommand finished");
+          //LogHelper.logger.Info("EngineCommand finished");
             //string value = UCI_Engine.StandardOutput.ReadToEnd();
         }
 

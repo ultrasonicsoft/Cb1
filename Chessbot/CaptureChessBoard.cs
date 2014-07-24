@@ -1002,8 +1002,10 @@ namespace OpenCVDemo1
                         //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
                         //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
 
-                        g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 50, 50));
-                        g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
+                        g.FillRectangle(Brushes.Red, new Rectangle(startX + 5, startY + 5, 20, 20));
+                        g.FillRectangle(Brushes.Blue, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
+                        //g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 20, 20));
+                        //g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
                     }
 
                 }
