@@ -75,7 +75,15 @@ namespace OpenCVDemo1
                         g.CopyFromScreen(Point.Empty, Point.Empty, bounds.Size);
                     }
                     System.IO.Stream imageStream = new MemoryStream();
-                    bitmap.Save(imageStream, ImageFormat.Jpeg);
+
+                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder,100L);
+                    myEncoderParameters.Param[0] = myEncoderParameter;
+                    //bmp1.Save(@"c:\TestPhotoQualityFifty.jpg", jgpEncoder, myEncoderParameters);
+                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                    bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
+                    //bitmap.Save(imageStream, ImageFormat.Jpeg);
                     //bitmap.Save("screen.jpg", ImageFormat.Jpeg);
                     capturedScreen = Image.FromStream(imageStream); ;
                     //capturedScreen = Image.FromFile("screen.jpg");
@@ -103,6 +111,19 @@ namespace OpenCVDemo1
 
             return capturedScreen;
         }
+
+        private static ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
+        }
         public static void ConvertImageToGrayScale(Bitmap image)
         {
             try
@@ -121,7 +142,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("ConvertImageToGrayScale finished...");
         }
@@ -167,7 +188,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("AreImagesSame finished...");
             return Success;
@@ -186,7 +207,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("GetBinaryImage finished...");
             return binaryImage;
@@ -219,7 +240,7 @@ namespace OpenCVDemo1
                 allChessBoardTemplate = null;
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("ReadTemplate finished...");
             return chessTemplate;
@@ -246,7 +267,7 @@ namespace OpenCVDemo1
                 result = false;
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("SaveTemplate finished...");
             return result;
@@ -401,7 +422,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("FillMasterTemplate finished...");
             return allChessBoardTemplate;
@@ -508,7 +529,7 @@ namespace OpenCVDemo1
                 Image<Gray, Byte> emptyGridZone1 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone1).Piece;
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
 
-                int blockPaddingAmountDouble = blockPaddingAmount*2;
+                int blockPaddingAmountDouble = blockPaddingAmount * 2;
                 //emptyGridZone1 = emptyGridZone1.Resize(0.5, INTER.CV_INTER_AREA);
                 //emptyGridZone2 = emptyGridZone2.Resize(0.5, INTER.CV_INTER_AREA);
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)
@@ -573,7 +594,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("ReadChessBoardCurrentPosition finished...");
         }
@@ -616,10 +637,10 @@ namespace OpenCVDemo1
                 Image<Gray, Byte> emptyGridZone2 = allChessBoardTemplate.FirstOrDefault(x => x.Name == Constants.EmptyGridZone2).Piece;
 
 
-                int blockPaddingAmountDouble = blockPaddingAmount*2;
+                int blockPaddingAmountDouble = blockPaddingAmount * 2;
 
                 r = new Rectangle(blockLeft + blockPaddingAmount, blockTop + blockPaddingAmount, blockWidth - blockPaddingAmountDouble, blockHeight - blockPaddingAmountDouble);
-                
+
                 using (Bitmap currentPiece = bmpChessboard.Clone(r, PixelFormat.DontCare))
                 {
                     //currentPiece.Save("NewGameTopLeftRook.png");
@@ -628,7 +649,7 @@ namespace OpenCVDemo1
                         r.Height > allChessBoardTemplate[0].Piece.Bitmap.Height)
                     {
                         LogHelper.logger.Error("Chessboard template piece size is lesser than current board chessboard size. Please use padding for correct result!");
-                        MessageBox.Show("Chessboard template piece size is lesser than current board chessboard size. Please use padding for correct result!","Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Chessboard template piece size is lesser than current board chessboard size. Please use padding for correct result!", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                     var templateCroppedPiece = allChessBoardTemplate[0].Piece.Bitmap.Clone(r, PixelFormat.DontCare);
@@ -652,7 +673,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return isWhitePlaying;
         }
@@ -933,7 +954,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return string.Empty;
             }
         }

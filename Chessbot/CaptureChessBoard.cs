@@ -986,6 +986,7 @@ namespace OpenCVDemo1
                 {
                     //g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
 
+                    int chessboardPieceSize = GetChessboardPieceSize();
                     // Draw current position
                     int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * 64; // TODO: calculate each block height and width instead of 64
                     int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * 64;
@@ -1021,6 +1022,11 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("DrawOnDesktopNextMove finished...");
+        }
+
+        private int GetChessboardPieceSize()
+        {
+            throw new NotImplementedException();
         }
         private void GetChessDrawingIndex(char column, char row)
         {
