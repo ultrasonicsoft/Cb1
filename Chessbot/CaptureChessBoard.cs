@@ -87,24 +87,24 @@ namespace OpenCVDemo1
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
 
-            LogHelper.logger.Info("Constructor called.");
+            //LogHelper.logger.Info("Constructor called.");
             ghk = new GlobalHotkey(Keys.NumPad0, this);
 
             if (SmallView == null)
             {
-                LogHelper.logger.Info("Registering small view.");
+                //LogHelper.logger.Info("Registering small view.");
 
                 SmallView = new CompactView();
                 SmallView.MainView = this;
                 SmallView.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
             }
             LoadEngineSettings();
-            LogHelper.logger.Info("Constructor finished.");
+            //LogHelper.logger.Info("Constructor finished.");
         }
 
         private void LoadEngineSettings()
         {
-            LogHelper.logger.Info("LoadEngineSettings called...");
+            //LogHelper.logger.Info("LoadEngineSettings called...");
             try
             {
                 string templateFileName = Constants.ENGINE_SETTING_FILE_NAME;
@@ -122,7 +122,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("LoadEngineSettings: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("LoadEngineSettings finished...");
+            //LogHelper.logger.Info("LoadEngineSettings finished...");
         }
         #endregion
 
@@ -148,7 +148,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("CaptureChessBoard_Load started.");
+                //LogHelper.logger.Info("CaptureChessBoard_Load started.");
                 CapturedScreen = ImageProcessingManager.TakeScreenShot();
                 pbScreen.Image = CapturedScreen;
 
@@ -172,7 +172,7 @@ namespace OpenCVDemo1
                 //WriteLine("Hotkey registered.");
                 //else
                 //WriteLine("Hotkey failed to register");
-                LogHelper.logger.Info("CaptureChessBoard_Load finished.");
+                //LogHelper.logger.Info("CaptureChessBoard_Load finished.");
             }
             catch (Exception exception)
             {
@@ -189,12 +189,12 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("btnCropBoard_Click called...");
+                //LogHelper.logger.Info("btnCropBoard_Click called...");
                 CropChessBoard();
 
                 CurrentCapturedScreen = pbScreen.Image;
                 RefreshGrayImage();
-                LogHelper.logger.Info("btnCropBoard_Click finished...");
+                //LogHelper.logger.Info("btnCropBoard_Click finished...");
             }
             catch (Exception exception)
             {
@@ -212,7 +212,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("btnCaptureScreen_Click called...");
+                //LogHelper.logger.Info("btnCaptureScreen_Click called...");
                 Image img = (Image)ImageProcessingManager.TakeScreenShot();
                 CapturedScreen = img;
                 pbScreen.Image = img;
@@ -220,7 +220,7 @@ namespace OpenCVDemo1
                 //chessBoard.CapturedScreen = Image.FromFile("screen.jpg");
                 //chessBoard.ShowDialog();
                 RefreshGrayImage();
-                LogHelper.logger.Info("btnCaptureScreen_Click finished...");
+                //LogHelper.logger.Info("btnCaptureScreen_Click finished...");
             }
             catch (Exception exception)
             {
@@ -263,14 +263,14 @@ namespace OpenCVDemo1
 
             //try
             //{
-            //    LogHelper.logger.Info("btnCropUsingCoordinates_Click called...");
+            //    //LogHelper.logger.Info("btnCropUsingCoordinates_Click called...");
             //    sp = new Point(left, top);
             //    ep = new Point(right, bottom);
             //    croprect = new Rectangle(left, top, width, height);
             //    //pbScreen.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
 
             //    pbScreen.Invalidate();
-            //    LogHelper.logger.Info("btnCropUsingCoordinates_Click finished...");
+            //    //LogHelper.logger.Info("btnCropUsingCoordinates_Click finished...");
             //}
             //catch (Exception exception)
             //{
@@ -300,7 +300,7 @@ namespace OpenCVDemo1
             //try
             //{
 
-            //    LogHelper.logger.Info("btnResize_Click called...");
+            //    //LogHelper.logger.Info("btnResize_Click called...");
             //    left = int.Parse(txtResizeLeft.Text);
             //    top = int.Parse(txtResizeTop.Text);
             //    width = int.Parse(txtWidth.Text);
@@ -334,7 +334,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("btnTemplate_Click called...");
+                //LogHelper.logger.Info("btnTemplate_Click called...");
                 PreviewTemplate preview = new PreviewTemplate();
                 preview.ChessBoardImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
                 preview.Padding = int.Parse(txtPadding.Text);
@@ -346,14 +346,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnTemplate_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnTemplate_Click finished...");
+            //LogHelper.logger.Info("btnTemplate_Click finished...");
         }
 
         private void btnSaveTemplate_Click(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("btnSaveTemplate_Click called...");
+                //LogHelper.logger.Info("btnSaveTemplate_Click called...");
                 FrmSaveTemplate saveTemplate = new FrmSaveTemplate();
                 var binaryImage = (ImageProcessingManager.GetBinaryImage(pbScreen.Image, tbIntensity.Value).Bitmap).Clone(new Rectangle(0, 0, pbScreen.Image.Width, pbScreen.Image.Height), pbScreen.Image.PixelFormat);
                 saveTemplate.ChessBoard = binaryImage;
@@ -370,7 +370,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnSaveTemplate_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnSaveTemplate_Click finished...");
+            //LogHelper.logger.Info("btnSaveTemplate_Click finished...");
         }
 
         private void btnScanAgain_Click(object sender, EventArgs e)
@@ -383,7 +383,7 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("Testing error log");
 
-                LogHelper.logger.Info("btnLoadTemplate_Click called...");
+                //LogHelper.logger.Info("btnLoadTemplate_Click called...");
                 TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
                 if (selectedEntity != null)
                 {
@@ -404,12 +404,12 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnLoadTemplate_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnLoadTemplate_Click finished...");
+            //LogHelper.logger.Info("btnLoadTemplate_Click finished...");
         }
 
         private void LoadUserTemplateSettings()
         {
-            LogHelper.logger.Info("LoadUserTemplateSettings called...");
+            //LogHelper.logger.Info("LoadUserTemplateSettings called...");
             try
             {
                 TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
@@ -445,14 +445,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("LoadUserTemplateSettings: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("LoadUserTemplateSettings finished...");
+            //LogHelper.logger.Info("LoadUserTemplateSettings finished...");
         }
 
         private void btnShowBoardConfiguration_Click(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("btnShowBoardConfiguration_Click called...");
+                //LogHelper.logger.Info("btnShowBoardConfiguration_Click called...");
                 if (ImageProcessingManager.allChessBoardTemplate == null)
                 {
                     MessageBox.Show("Template not loaded.");
@@ -466,11 +466,11 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnShowBoardConfiguration_Click finished...");
+            //LogHelper.logger.Info("btnShowBoardConfiguration_Click finished...");
         }
         private void btnShowTemplate_Click(object sender, EventArgs e)
         {
-            LogHelper.logger.Info("btnShowTemplate_Click called...");
+            //LogHelper.logger.Info("btnShowTemplate_Click called...");
             try
             {
                 Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> normalizedMasterImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(masterTemplate.CurrentTemplateImage as Bitmap);
@@ -482,14 +482,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnShowTemplate_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnShowTemplate_Click finished...");
+            //LogHelper.logger.Info("btnShowTemplate_Click finished...");
         }
 
         private void timerAutoRefresh_Tick(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("timerAutoRefresh_Tick called...");
+                //LogHelper.logger.Info("timerAutoRefresh_Tick called...");
                 if (cbAutoRefresh.Checked && IsComputingNextMove == false)
                 {
                     CapturedScreen = ImageProcessingManager.TakeScreenShot();
@@ -506,14 +506,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("timerAutoRefresh_Tick: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("timerAutoRefresh_Tick finished...");
+            //LogHelper.logger.Info("timerAutoRefresh_Tick finished...");
         }
 
         private void btnMarkTrigger_Click(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("btnMarkTrigger_Click called...");
+                //LogHelper.logger.Info("btnMarkTrigger_Click called...");
                 if (croprect.IsEmpty)
                     return;
                 ScreenBoardCoordinates = new Rectangle();
@@ -527,7 +527,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnMarkTrigger_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnMarkTrigger_Click finished...");
+            //LogHelper.logger.Info("btnMarkTrigger_Click finished...");
         }
         private void timerTriggerChecker_Tick(object sender, EventArgs e)
         {
@@ -538,7 +538,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("txtRefreshInterval_Leave called...");
+                //LogHelper.logger.Info("txtRefreshInterval_Leave called...");
                 int interval = 5;
                 int.TryParse(txtRefreshInterval.Text, out interval);
 
@@ -560,7 +560,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("txtRefreshInterval_Leave: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("txtRefreshInterval_Leave finished...");
+            //LogHelper.logger.Info("txtRefreshInterval_Leave finished...");
         }
 
         private void txtRefreshMarkerInterval_Leave(object sender, EventArgs e)
@@ -581,7 +581,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("btnStartNewGame_Click called...");
+                //LogHelper.logger.Info("btnStartNewGame_Click called...");
                 //int padding = int.Parse(txtPadding.Text);
                 //rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
                 //rbtnBlack.Checked = !rbtnWhite.Checked;
@@ -593,7 +593,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnStartNewGame_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnStartNewGame_Click finished...");
+            //LogHelper.logger.Info("btnStartNewGame_Click finished...");
         }
 
         private void btnRefreshTemplate_Click(object sender, EventArgs e)
@@ -615,7 +615,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged called...");
+                //LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged called...");
                 if (cbShowIntensityOnTop.Checked == false)
                 {
                     pbScreen.Image = CurrentCapturedScreen;
@@ -632,14 +632,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("cbShowIntensityOnTop_CheckedChanged: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged finished...");
+            //LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged finished...");
         }
 
         private void btnUpdateStandardMatchingFactor_Click(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("btnUpdateStandardMatchingFactor_Click called...");
+                //LogHelper.logger.Info("btnUpdateStandardMatchingFactor_Click called...");
                 ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
             }
             catch (Exception exception)
@@ -648,7 +648,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnUpdateStandardMatchingFactor_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnUpdateStandardMatchingFactor_Click finished...");
+            //LogHelper.logger.Info("btnUpdateStandardMatchingFactor_Click finished...");
         }
         private void cbTriggerMarker_CheckedChanged(object sender, EventArgs e)
         {
@@ -665,7 +665,7 @@ namespace OpenCVDemo1
 
         private void CaptureChessBoard_FormClosing(object sender, FormClosingEventArgs e)
         {
-            LogHelper.logger.Info("CaptureChessBoard_FormClosing called...");
+            //LogHelper.logger.Info("CaptureChessBoard_FormClosing called...");
             try
             {
                 if (cmbTemplates.SelectedIndex >= 0)
@@ -683,12 +683,12 @@ namespace OpenCVDemo1
             }
             //if (!ghk.Unregiser())
             //    MessageBox.Show("Hotkey failed to unregister!");
-            LogHelper.logger.Info("CaptureChessBoard_FormClosing finished...");
+            //LogHelper.logger.Info("CaptureChessBoard_FormClosing finished...");
         }
 
         private void SaveEngineSettings()
         {
-            LogHelper.logger.Info("SaveEngineSettings finished...");
+            //LogHelper.logger.Info("SaveEngineSettings finished...");
             try
             {
                 string templateFileName = Constants.ENGINE_SETTING_FILE_NAME;
@@ -704,12 +704,12 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("SaveEngineSettings: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("SaveEngineSettings finished...");
+            //LogHelper.logger.Info("SaveEngineSettings finished...");
         }
 
         private void SaveUserTemplateSettings()
         {
-            LogHelper.logger.Info("SaveUserTemplateSettings finished...");
+            //LogHelper.logger.Info("SaveUserTemplateSettings finished...");
             try
             {
                 TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
@@ -740,7 +740,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("SaveUserTemplateSettings: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("SaveUserTemplateSettings finished...");
+            //LogHelper.logger.Info("SaveUserTemplateSettings finished...");
         }
 
         private void cbAutoRefresh_CheckedChanged(object sender, EventArgs e)
@@ -768,7 +768,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("btnDeleteTemplate_Click called...");
+                //LogHelper.logger.Info("btnDeleteTemplate_Click called...");
                 var result = MessageBox.Show("Are you sure to delete this template?", "Chessbot",
                     MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 TemplateEntity selectedEntity = allLoadedTemplates[cmbTemplates.SelectedIndex];
@@ -811,7 +811,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("btnDeleteTemplate_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("btnDeleteTemplate_Click finished...");
+            //LogHelper.logger.Info("btnDeleteTemplate_Click finished...");
         }
         #endregion
 
@@ -901,14 +901,14 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("Crop_MouseUp called...");
+                //LogHelper.logger.Info("Crop_MouseUp called...");
                 ep = e.Location;
                 mouseDown = false;
                 croprect = GetRectangle(sp, ep);
 
                 if (croprect.Width % 2 != 0 || croprect.Height % 2 != 0)
                 {
-                    MessageBox.Show("Please select region with heigh and width divisible by 2 for accuracy.");
+                    //MessageBox.Show("Please select region with heigh and width divisible by 2 for accuracy.");
                     return;
                 }
                 txtSelectedLeft.Text = croprect.Left.ToString();
@@ -931,14 +931,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("Crop_MouseUp: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("Crop_MouseUp finished...");
+            //LogHelper.logger.Info("Crop_MouseUp finished...");
         }
 
         private void Crop_MouseDown(object sender, MouseEventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("Crop_MouseDown called...");
+                //LogHelper.logger.Info("Crop_MouseDown called...");
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     return;
@@ -956,7 +956,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("Crop_MouseDown: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("Crop_MouseDown finished...");
+            //LogHelper.logger.Info("Crop_MouseDown finished...");
         }
 
         private Rectangle GetRectangle(Point p1, Point p2)
@@ -972,7 +972,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("DrawOnDesktopNextMove called...");
+                //LogHelper.logger.Info("DrawOnDesktopNextMove called...");
                 if (desktop == IntPtr.Zero)
                 {
                     desktop = GetDC(IntPtr.Zero);
@@ -1015,13 +1015,13 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("DrawOnDesktopNextMove: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("DrawOnDesktopNextMove finished...");
+            //LogHelper.logger.Info("DrawOnDesktopNextMove finished...");
         }
         private void GetChessDrawingIndex(char column, char row)
         {
             try
             {
-                LogHelper.logger.Info("GetChessDrawingIndex called...");
+                //LogHelper.logger.Info("GetChessDrawingIndex called...");
                 int rowIndex = int.Parse(row.ToString());
 
                 if (rbtnWhite.Checked == false)
@@ -1093,14 +1093,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("GetChessDrawingIndex finished...");
+            //LogHelper.logger.Info("GetChessDrawingIndex finished...");
         }
 
         private void GetChessDrawingNextMoveIndex(char column, char row)
         {
             try
             {
-                LogHelper.logger.Info("GetChessDrawingNextMoveIndex called...");
+                //LogHelper.logger.Info("GetChessDrawingNextMoveIndex called...");
                 int rowIndex = int.Parse(row.ToString());
 
                 if (rbtnWhite.Checked == false)
@@ -1172,7 +1172,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("GetChessDrawingIndex: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("GetChessDrawingNextMoveIndex finished...");
+            //LogHelper.logger.Info("GetChessDrawingNextMoveIndex finished...");
         }
         #endregion
 
@@ -1181,7 +1181,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("CropChessBoard called...");
+                //LogHelper.logger.Info("CropChessBoard called...");
                 if (croprect.IsEmpty)
                     return;
 
@@ -1216,13 +1216,13 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("CropChessBoard: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("CropChessBoard finished...");
+            //LogHelper.logger.Info("CropChessBoard finished...");
         }
         private bool ScanBoardAgain()
         {
             try
             {
-                LogHelper.logger.Info("ScanBoardAgain called...");
+                //LogHelper.logger.Info("ScanBoardAgain called...");
                 croprect = PreviousScreenBoardCoordinates;
                 //croprect = ScreenBoardCoordinates;
                 if (croprect == Rectangle.Empty)
@@ -1254,12 +1254,12 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("ScanBoardAgain: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("ScanBoardAgain finished...");
+            //LogHelper.logger.Info("ScanBoardAgain finished...");
             return true;
         }
         private void ValidateBoard()
         {
-            LogHelper.logger.Info("ValidateBoard called...");
+            //LogHelper.logger.Info("ValidateBoard called...");
             string message = string.Empty;
             try
             {
@@ -1280,7 +1280,7 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             MessageBox.Show(message);
-            LogHelper.logger.Info("ValidateBoard finished...");
+            //LogHelper.logger.Info("ValidateBoard finished...");
         }
         private void ClearSelection()
         {
@@ -1297,7 +1297,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("LoadTemplates called...");
+                //LogHelper.logger.Info("LoadTemplates called...");
                 string tempalteCatalogFileName = ImageProcessingManager.TemplatePath + Constants.TEMPLATE_CATELOG_FILE;
                 if (File.Exists(tempalteCatalogFileName) == false)
                 {
@@ -1326,14 +1326,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("LoadTemplate: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("LoadTemplates finished...");
+            //LogHelper.logger.Info("LoadTemplates finished...");
         }
 
         private void ProcessAndPrintBoard()
         {
             try
             {
-                LogHelper.logger.Info("ProcessAndPrintBoard called...");
+                //LogHelper.logger.Info("ProcessAndPrintBoard called...");
                 Cursor = Cursors.WaitCursor;
                 //Console.WriteLine("Reading current Chess position...");
                 int paddingPixel = int.Parse(txtPadding.Text);
@@ -1371,14 +1371,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("ProcessAndPrintBoard: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("ProcessAndPrintBoard finished...");
+            //LogHelper.logger.Info("ProcessAndPrintBoard finished...");
         }
 
         private void CheckWhosTurnToPlay()
         {
             try
             {
-                LogHelper.logger.Info("CheckWhosTurnToPlay called...");
+                //LogHelper.logger.Info("CheckWhosTurnToPlay called...");
                 if (IsComputingNextMove == false)
                 {
                     if (cbTriggerMarker.Checked && pbTriggerImage.Image != null)
@@ -1419,14 +1419,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("CheckWhosTurnToPlay: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("CheckWhosTurnToPlay finished...");
+            //LogHelper.logger.Info("CheckWhosTurnToPlay finished...");
         }
 
         private void RefreshGrayImage()
         {
             try
             {
-                LogHelper.logger.Info("RefreshGrayImage called...");
+                //LogHelper.logger.Info("RefreshGrayImage called...");
                 if (pbScreen.Image == null || CurrentCapturedScreen == null)
                     return;
 
@@ -1453,7 +1453,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("RefreshGrayImage: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("RefreshGrayImage finished...");
+            //LogHelper.logger.Info("RefreshGrayImage finished...");
         }
 
         #endregion
@@ -1463,7 +1463,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("GetBestMove called...");
+                //LogHelper.logger.Info("GetBestMove called...");
                 IsComputingNextMove = true;
                 if (ScanBoardAgain() == false)
                 { return; }
@@ -1483,12 +1483,12 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("GetBestMove: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("GetBestMove finished...");
+            //LogHelper.logger.Info("GetBestMove finished...");
         }
 
         private string GetNextBestMove(string fenString)
         {
-            LogHelper.logger.Info("Engine: GetNextBestMove called for fenstring: " + fenString);
+            //LogHelper.logger.Info("Engine: GetNextBestMove called for fenstring: " + fenString);
             string bestMove = string.Empty;
             try
             {
@@ -1502,14 +1502,14 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("GetNextBestMove finished...");
+            //LogHelper.logger.Info("GetNextBestMove finished...");
             return bestMove;
         }
         private void engine_BestMovFound(object sender, EventArgs e)
         {
             try
             {
-                LogHelper.logger.Info("engine_BestMovFound called...");
+                //LogHelper.logger.Info("engine_BestMovFound called...");
                 var args = (BestMoveFoundArgs)e;
                 if (false == string.IsNullOrEmpty(args.BestMove))
                 {
@@ -1555,7 +1555,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("engine_BestMovFound: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("engine_BestMovFound finished...");
+            //LogHelper.logger.Info("engine_BestMovFound finished...");
         }
         #endregion
 
@@ -1568,7 +1568,7 @@ namespace OpenCVDemo1
         {
             try
             {
-                LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged called...");
+                //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged called...");
                 ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
             }
             catch (Exception exception)
@@ -1577,7 +1577,7 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged finished...");
+            //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged finished...");
         }
 
         private void txtHighlightDuration_TextChanged(object sender, EventArgs e)
