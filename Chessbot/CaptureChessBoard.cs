@@ -988,7 +988,7 @@ namespace OpenCVDemo1
                 {
                     //g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
 
-                    int chessboardPieceSize = GetChessboardPieceSize();
+                    //int chessboardPieceSize = GetChessboardPieceSize();
                     // Draw current position
                     int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * 64; // TODO: calculate each block height and width instead of 64
                     int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * 64;
