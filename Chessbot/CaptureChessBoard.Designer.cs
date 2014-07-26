@@ -93,6 +93,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.txtSelectedLeft = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtHighlightBoxSize = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtHighlightDuration = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -111,8 +113,7 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txtHighlightBoxSize = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnShowTextConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -205,7 +206,7 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1120, 161);
+            this.tbHome.Size = new System.Drawing.Size(1120, 198);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
@@ -552,6 +553,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnShowTextConfiguration);
             this.tabPage1.Controls.Add(this.btnEngineConfiguration);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox8);
@@ -575,7 +577,7 @@
             // 
             // btnEngineConfiguration
             // 
-            this.btnEngineConfiguration.Location = new System.Drawing.Point(987, 52);
+            this.btnEngineConfiguration.Location = new System.Drawing.Point(984, 14);
             this.btnEngineConfiguration.Name = "btnEngineConfiguration";
             this.btnEngineConfiguration.Size = new System.Drawing.Size(95, 40);
             this.btnEngineConfiguration.TabIndex = 64;
@@ -807,6 +809,24 @@
             this.label28.TabIndex = 19;
             this.label28.Text = "Top";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 62;
+            this.label1.Text = "Highlight Box Size";
+            // 
+            // txtHighlightBoxSize
+            // 
+            this.txtHighlightBoxSize.Location = new System.Drawing.Point(7, 99);
+            this.txtHighlightBoxSize.Name = "txtHighlightBoxSize";
+            this.txtHighlightBoxSize.Size = new System.Drawing.Size(33, 20);
+            this.txtHighlightBoxSize.TabIndex = 61;
+            this.txtHighlightBoxSize.Text = "20";
+            this.txtHighlightBoxSize.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -977,23 +997,15 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // txtHighlightBoxSize
+            // btnShowTextConfiguration
             // 
-            this.txtHighlightBoxSize.Location = new System.Drawing.Point(7, 99);
-            this.txtHighlightBoxSize.Name = "txtHighlightBoxSize";
-            this.txtHighlightBoxSize.Size = new System.Drawing.Size(33, 20);
-            this.txtHighlightBoxSize.TabIndex = 61;
-            this.txtHighlightBoxSize.Text = "20";
-            this.txtHighlightBoxSize.TextChanged += new System.EventHandler(this.txtHighlightDuration_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 102);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Highlight Box Size";
+            this.btnShowTextConfiguration.Location = new System.Drawing.Point(984, 75);
+            this.btnShowTextConfiguration.Name = "btnShowTextConfiguration";
+            this.btnShowTextConfiguration.Size = new System.Drawing.Size(95, 43);
+            this.btnShowTextConfiguration.TabIndex = 65;
+            this.btnShowTextConfiguration.Text = "Chess Configuration";
+            this.btnShowTextConfiguration.UseVisualStyleBackColor = true;
+            this.btnShowTextConfiguration.Click += new System.EventHandler(this.btnShowTextConfiguration_Click);
             // 
             // CaptureChessBoard
             // 
@@ -1131,5 +1143,6 @@
         private System.Windows.Forms.Button btnEngineConfiguration;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtHighlightBoxSize;
+        private System.Windows.Forms.Button btnShowTextConfiguration;
     }
 }

@@ -44,7 +44,6 @@ namespace OpenCVDemo1
         Image CurrentCapturedScreen = null;
         private bool enableHotKeyForGetNextMove = false;
         private int nextMoveHighlightDuration = 100;
-
         public UCI Engine { get; set; }
 
         public static EngineConfigurationSettings CurrentEngineSettings { get; set; }
@@ -1387,6 +1386,7 @@ namespace OpenCVDemo1
             //LogHelper.logger.Info("ProcessAndPrintBoard finished...");
         }
 
+   
         private void CheckWhosTurnToPlay()
         {
             try
@@ -1633,6 +1633,13 @@ namespace OpenCVDemo1
         {
             EngineConfiguration engine = new EngineConfiguration();
             engine.Show();
+        }
+
+        private void btnShowTextConfiguration_Click(object sender, EventArgs e)
+        {
+            BoardConfigurationTextVersion boardConfigurationTextVersion = new BoardConfigurationTextVersion();
+            boardConfigurationTextVersion.TextBoardConfiguration = ImageProcessingManager.TextChessboardConfiguration.ToString();
+            boardConfigurationTextVersion.Show();
         }
 
 
