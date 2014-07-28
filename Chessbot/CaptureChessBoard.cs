@@ -428,7 +428,7 @@ namespace OpenCVDemo1
                     txtStandardMatchingFactor.Text = templateConfiguration.MatchingFactor.ToString();
                     txtHighlightDuration.Text = templateConfiguration.NextMoveHighlightDuration.ToString();
                     txtPadding.Text = templateConfiguration.Paddding.ToString();
-                    croprect = templateConfiguration.PreviousScreenCordinates;
+                    PreviousScreenBoardCoordinates = templateConfiguration.PreviousScreenCordinates;
                     if (templateConfiguration.UserPlayingWhite)
                         rbtnWhite.Checked = true;
                     else
@@ -729,7 +729,7 @@ namespace OpenCVDemo1
                     template.MatchingFactor = int.Parse(txtStandardMatchingFactor.Text);
                     template.NextMoveHighlightDuration = int.Parse(txtHighlightDuration.Text);
                     template.Paddding = int.Parse(txtPadding.Text);
-                    template.PreviousScreenCordinates = croprect;
+                    template.PreviousScreenCordinates = PreviousScreenBoardCoordinates;
                     template.UserPlayingWhite = rbtnWhite.Checked;
 
                     bin.Serialize(stream, template);

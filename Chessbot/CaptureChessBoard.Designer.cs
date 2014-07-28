@@ -70,6 +70,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnShowTextConfiguration = new System.Windows.Forms.Button();
             this.btnEngineConfiguration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
@@ -113,7 +114,6 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnShowTextConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -575,6 +575,16 @@
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnShowTextConfiguration
+            // 
+            this.btnShowTextConfiguration.Location = new System.Drawing.Point(984, 75);
+            this.btnShowTextConfiguration.Name = "btnShowTextConfiguration";
+            this.btnShowTextConfiguration.Size = new System.Drawing.Size(95, 43);
+            this.btnShowTextConfiguration.TabIndex = 65;
+            this.btnShowTextConfiguration.Text = "Chess Configuration";
+            this.btnShowTextConfiguration.UseVisualStyleBackColor = true;
+            this.btnShowTextConfiguration.Click += new System.EventHandler(this.btnShowTextConfiguration_Click);
+            // 
             // btnEngineConfiguration
             // 
             this.btnEngineConfiguration.Location = new System.Drawing.Point(984, 14);
@@ -996,16 +1006,6 @@
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
-            // 
-            // btnShowTextConfiguration
-            // 
-            this.btnShowTextConfiguration.Location = new System.Drawing.Point(984, 75);
-            this.btnShowTextConfiguration.Name = "btnShowTextConfiguration";
-            this.btnShowTextConfiguration.Size = new System.Drawing.Size(95, 43);
-            this.btnShowTextConfiguration.TabIndex = 65;
-            this.btnShowTextConfiguration.Text = "Chess Configuration";
-            this.btnShowTextConfiguration.UseVisualStyleBackColor = true;
-            this.btnShowTextConfiguration.Click += new System.EventHandler(this.btnShowTextConfiguration_Click);
             // 
             // CaptureChessBoard
             // 
