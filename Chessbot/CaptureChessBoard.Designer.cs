@@ -114,6 +114,7 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtBoardConfiguration = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -162,8 +163,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1130, 664);
-            this.splitContainer1.SplitterDistance = 434;
+            this.splitContainer1.Size = new System.Drawing.Size(1003, 664);
+            this.splitContainer1.SplitterDistance = 368;
             this.splitContainer1.TabIndex = 2;
             // 
             // pnlImageHolder
@@ -173,7 +174,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1128, 432);
+            this.pnlImageHolder.Size = new System.Drawing.Size(1001, 366);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -181,7 +182,7 @@
             this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
             this.pbScreen.Location = new System.Drawing.Point(0, 0);
             this.pbScreen.Name = "pbScreen";
-            this.pbScreen.Size = new System.Drawing.Size(1128, 270);
+            this.pbScreen.Size = new System.Drawing.Size(1001, 270);
             this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbScreen.TabIndex = 3;
             this.pbScreen.TabStop = false;
@@ -194,11 +195,12 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1128, 224);
+            this.tbctrController.Size = new System.Drawing.Size(1001, 290);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.txtBoardConfiguration);
             this.tbHome.Controls.Add(this.groupBox2);
             this.tbHome.Controls.Add(this.pbIntensityTest);
             this.tbHome.Controls.Add(this.groupBox1);
@@ -206,7 +208,7 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(1120, 198);
+            this.tbHome.Size = new System.Drawing.Size(993, 264);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
@@ -221,9 +223,9 @@
             this.groupBox2.Controls.Add(this.lblExecutionTime);
             this.groupBox2.Controls.Add(this.btnStartNewGame);
             this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Location = new System.Drawing.Point(417, 6);
+            this.groupBox2.Location = new System.Drawing.Point(275, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 141);
+            this.groupBox2.Size = new System.Drawing.Size(126, 215);
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Game";
@@ -231,16 +233,16 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(123, 28);
+            this.button1.Location = new System.Drawing.Point(6, 134);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 23);
+            this.button1.Size = new System.Drawing.Size(101, 23);
             this.button1.TabIndex = 36;
             this.button1.Text = "Stop Finding Move";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // txtBestMove
             // 
-            this.txtBestMove.Location = new System.Drawing.Point(191, 100);
+            this.txtBestMove.Location = new System.Drawing.Point(74, 187);
             this.txtBestMove.Name = "txtBestMove";
             this.txtBestMove.Size = new System.Drawing.Size(47, 20);
             this.txtBestMove.TabIndex = 19;
@@ -259,7 +261,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(120, 103);
+            this.label25.Location = new System.Drawing.Point(6, 190);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(65, 13);
             this.label25.TabIndex = 2;
@@ -278,7 +280,7 @@
             // lblExecutionTime
             // 
             this.lblExecutionTime.AutoSize = true;
-            this.lblExecutionTime.Location = new System.Drawing.Point(188, 81);
+            this.lblExecutionTime.Location = new System.Drawing.Point(47, 171);
             this.lblExecutionTime.Name = "lblExecutionTime";
             this.lblExecutionTime.Size = new System.Drawing.Size(36, 13);
             this.lblExecutionTime.TabIndex = 1;
@@ -297,7 +299,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(152, 81);
+            this.label23.Location = new System.Drawing.Point(8, 171);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(33, 13);
             this.label23.TabIndex = 0;
@@ -324,9 +326,9 @@
             this.groupBox1.Controls.Add(this.pbCurrentMarker);
             this.groupBox1.Controls.Add(this.txtRefreshMarkerInterval);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Location = new System.Drawing.Point(678, 6);
+            this.groupBox1.Location = new System.Drawing.Point(417, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 141);
+            this.groupBox1.Size = new System.Drawing.Size(149, 215);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Turn Marker";
@@ -334,7 +336,7 @@
             // lblWhosMove
             // 
             this.lblWhosMove.AutoSize = true;
-            this.lblWhosMove.Location = new System.Drawing.Point(169, 105);
+            this.lblWhosMove.Location = new System.Drawing.Point(71, 134);
             this.lblWhosMove.Name = "lblWhosMove";
             this.lblWhosMove.Size = new System.Drawing.Size(40, 13);
             this.lblWhosMove.TabIndex = 39;
@@ -342,7 +344,7 @@
             // 
             // btnMarkTrigger
             // 
-            this.btnMarkTrigger.Location = new System.Drawing.Point(172, 22);
+            this.btnMarkTrigger.Location = new System.Drawing.Point(56, 160);
             this.btnMarkTrigger.Name = "btnMarkTrigger";
             this.btnMarkTrigger.Size = new System.Drawing.Size(81, 47);
             this.btnMarkTrigger.TabIndex = 28;
@@ -353,7 +355,7 @@
             // cbTriggerMarker
             // 
             this.cbTriggerMarker.AutoSize = true;
-            this.cbTriggerMarker.Location = new System.Drawing.Point(22, 24);
+            this.cbTriggerMarker.Location = new System.Drawing.Point(61, 22);
             this.cbTriggerMarker.Name = "cbTriggerMarker";
             this.cbTriggerMarker.Size = new System.Drawing.Size(76, 17);
             this.cbTriggerMarker.TabIndex = 33;
@@ -401,7 +403,7 @@
             // 
             this.txtRefreshMarkerInterval.Location = new System.Drawing.Point(117, 45);
             this.txtRefreshMarkerInterval.Name = "txtRefreshMarkerInterval";
-            this.txtRefreshMarkerInterval.Size = new System.Drawing.Size(35, 20);
+            this.txtRefreshMarkerInterval.Size = new System.Drawing.Size(20, 20);
             this.txtRefreshMarkerInterval.TabIndex = 21;
             this.txtRefreshMarkerInterval.Text = "30";
             // 
@@ -430,7 +432,7 @@
             this.groupBox5.Controls.Add(this.btnLoadTemplate);
             this.groupBox5.Location = new System.Drawing.Point(7, 6);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(404, 141);
+            this.groupBox5.Size = new System.Drawing.Size(262, 215);
             this.groupBox5.TabIndex = 22;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Template";
@@ -447,7 +449,7 @@
             // 
             // txtPadding
             // 
-            this.txtPadding.Location = new System.Drawing.Point(334, 68);
+            this.txtPadding.Location = new System.Drawing.Point(220, 153);
             this.txtPadding.Name = "txtPadding";
             this.txtPadding.Size = new System.Drawing.Size(35, 20);
             this.txtPadding.TabIndex = 25;
@@ -456,7 +458,7 @@
             // rbtnBlack
             // 
             this.rbtnBlack.AutoSize = true;
-            this.rbtnBlack.Location = new System.Drawing.Point(341, 39);
+            this.rbtnBlack.Location = new System.Drawing.Point(176, 183);
             this.rbtnBlack.Name = "rbtnBlack";
             this.rbtnBlack.Size = new System.Drawing.Size(53, 17);
             this.rbtnBlack.TabIndex = 28;
@@ -475,9 +477,9 @@
             // 
             // btnTemplate
             // 
-            this.btnTemplate.Location = new System.Drawing.Point(232, 111);
+            this.btnTemplate.Location = new System.Drawing.Point(6, 150);
             this.btnTemplate.Name = "btnTemplate";
-            this.btnTemplate.Size = new System.Drawing.Size(137, 23);
+            this.btnTemplate.Size = new System.Drawing.Size(101, 23);
             this.btnTemplate.TabIndex = 21;
             this.btnTemplate.Text = "Preview Template";
             this.btnTemplate.UseVisualStyleBackColor = true;
@@ -486,7 +488,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(229, 71);
+            this.label11.Location = new System.Drawing.Point(115, 155);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(99, 13);
             this.label11.TabIndex = 24;
@@ -495,7 +497,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(229, 20);
+            this.label12.Location = new System.Drawing.Point(6, 187);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(106, 13);
             this.label12.TabIndex = 26;
@@ -515,7 +517,7 @@
             // 
             this.rbtnWhite.AutoSize = true;
             this.rbtnWhite.Checked = true;
-            this.rbtnWhite.Location = new System.Drawing.Point(341, 19);
+            this.rbtnWhite.Location = new System.Drawing.Point(118, 183);
             this.rbtnWhite.Name = "rbtnWhite";
             this.rbtnWhite.Size = new System.Drawing.Size(52, 17);
             this.rbtnWhite.TabIndex = 27;
@@ -570,7 +572,7 @@
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1120, 198);
+            this.tabPage1.Size = new System.Drawing.Size(993, 264);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -984,7 +986,7 @@
             this.txtMessage});
             this.statusStrip1.Location = new System.Drawing.Point(0, 642);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1130, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1003, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1007,12 +1009,20 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
+            // txtBoardConfiguration
+            // 
+            this.txtBoardConfiguration.Location = new System.Drawing.Point(572, 6);
+            this.txtBoardConfiguration.Name = "txtBoardConfiguration";
+            this.txtBoardConfiguration.Size = new System.Drawing.Size(414, 238);
+            this.txtBoardConfiguration.TabIndex = 42;
+            this.txtBoardConfiguration.Text = "";
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1130, 664);
+            this.ClientSize = new System.Drawing.Size(1003, 664);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;
@@ -1144,5 +1154,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtHighlightBoxSize;
         private System.Windows.Forms.Button btnShowTextConfiguration;
+        private System.Windows.Forms.RichTextBox txtBoardConfiguration;
     }
 }

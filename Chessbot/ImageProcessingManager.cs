@@ -825,10 +825,12 @@ namespace OpenCVDemo1
 
                 TextChessboardConfiguration.Append(rowHeader);
                 TextChessboardConfiguration.Append(Environment.NewLine);
+                TextChessboardConfiguration.Append("=========================================");
+                TextChessboardConfiguration.Append(Environment.NewLine);
                 //Console.WriteLine(rowHeader);
-                string rowSeparator = "  +----+----+----+----+----+----+----+----+";
+                string rowSeparator = "  =========================================";
                 //Console.WriteLine(rowSeparator);
-                string chessRowTemplate = "{0} | {1} | {2} | {3} | {4} | {5} | {6} | {7} | {8} |";
+                string chessRowTemplate = "{0} || {1} || {2} || {3} || {4} || {5} || {6} || {7} || {8} ||";
                 string emptyPiece = "  ";
                 string currentRow = string.Empty;
                 for (int rowIndex = 1; rowIndex <= Constants.GRID_SIZE; rowIndex++)

@@ -1357,12 +1357,14 @@ namespace OpenCVDemo1
                     ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                     //ImageProcessingManager.ReadChessBoardCurrentPosition(Image.FromFile("inprogress.PNG"), paddingPixel, rbtnWhite.Checked);
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
+                    txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
                 }
                 else
                 {
                     ImageProcessingManager.ReadChessBoardCurrentPosition(pbScreen.Image, paddingPixel, rbtnWhite.Checked, tbIntensity.Value);
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
+                    txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
                 }
                 lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
