@@ -825,10 +825,10 @@ namespace OpenCVDemo1
 
                 TextChessboardConfiguration.Append(rowHeader);
                 TextChessboardConfiguration.Append(Environment.NewLine);
-                TextChessboardConfiguration.Append("=========================================");
+                TextChessboardConfiguration.Append("=================================");
                 TextChessboardConfiguration.Append(Environment.NewLine);
                 //Console.WriteLine(rowHeader);
-                string rowSeparator = "  =========================================";
+                string rowSeparator = "  ==================================";
                 //Console.WriteLine(rowSeparator);
                 string chessRowTemplate = "{0} || {1} || {2} || {3} || {4} || {5} || {6} || {7} || {8} ||";
                 string emptyPiece = "  ";
@@ -912,6 +912,19 @@ namespace OpenCVDemo1
                     TextChessboardConfiguration.Append(Environment.NewLine);
 
                 }
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BR", "r");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BN", "n");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BB", "b");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BQ", "q");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BK", "k");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("BP", "p");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WP", "P");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WR", "R");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WN", "N");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WB", "B");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WQ", "Q");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WK", "K");
+                TextChessboardConfiguration = TextChessboardConfiguration.Replace("WK", "K");
                 //totalExecutionTime.Stop();
                 //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
             }
