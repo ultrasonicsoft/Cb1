@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -77,8 +78,16 @@ namespace OpenCVDemo1
         private void SetPictureBoxImage(Bitmap currentPiece, int rowIndex, int colIndex)
         {
             System.IO.Stream imageStream = new System.IO.MemoryStream();
-            currentPiece.Save(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-            //bitmap.Save("screen.jpg", ImageFormat.Jpeg);
+            //currentPiece.Save(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            ////bitmap.Save("screen.jpg", ImageFormat.Jpeg);
+            //Image imgPiece = Image.FromStream(imageStream); ;
+
+            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+            myEncoderParameters.Param[0] = myEncoderParameter;
+            ImageCodecInfo jgpEncoder = Helper.GetEncoder(ImageFormat.Png);
+            currentPiece.Save(imageStream, jgpEncoder, myEncoderParameters);
             Image imgPiece = Image.FromStream(imageStream); ;
 
             switch (rowIndex)

@@ -118,6 +118,7 @@
       <DependentUpon>EngineConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalHotKeys.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="ImageProcessingManager.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="PreviewTemplate.cs">

@@ -87,7 +87,7 @@ namespace OpenCVDemo1
                     System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
                     EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
                     myEncoderParameters.Param[0] = myEncoderParameter;
-                    ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Png);
+                    ImageCodecInfo jgpEncoder = Helper.GetEncoder(ImageFormat.Png);
                     bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
 
                     //bitmap.Save(imageStream, ImageFormat.Jpeg);
@@ -119,18 +119,7 @@ namespace OpenCVDemo1
             return capturedScreen;
         }
 
-        private static ImageCodecInfo GetEncoder(ImageFormat format)
-        {
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
-            foreach (ImageCodecInfo codec in codecs)
-            {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
-            }
-            return null;
-        }
+       
         public static void ConvertImageToGrayScale(Bitmap image)
         {
             try
