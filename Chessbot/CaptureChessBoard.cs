@@ -82,7 +82,7 @@ namespace OpenCVDemo1
 
             Engine = UCI.GetEngine();
             Engine.BestMovFound += engine_BestMovFound;
-            Engine.InitEngine("stockfishengine.exe", string.Empty, Engine.OutputDataReceivedProc);
+            Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
 
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
@@ -586,6 +586,9 @@ namespace OpenCVDemo1
                 //rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
                 //rbtnBlack.Checked = !rbtnWhite.Checked;
                 btnGetBestMove.Enabled = true;
+
+                ResetGame();
+
                 SetPieceSize(pbScreen.Image);
             }
             catch (Exception exception)
@@ -595,6 +598,40 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("btnStartNewGame_Click finished...");
+        }
+
+        private void ResetGame()
+        {
+            try
+            {
+                croprect = Rectangle.Empty;
+                mouseDown = false;
+                isGetXEnabled = false;
+                isGetYEnabled = false;
+                //selectedChessEntity = null;
+                desktop = IntPtr.Zero;
+                chessDrawingRowIndex = -1;
+                chessDrawingColumnIndex = -1;
+                chessDrawingNextRowIndex = -1;
+                chessDrawingNextColumnIndex = -1;
+                IsComputingNextMove = false;
+                nextMove = "-";
+                masterTemplate = null;
+                _engineDepth = "16";
+
+                CurrentEngineSettings = new EngineConfigurationSettings();
+
+                Engine = UCI.GetEngine();
+                Engine.BestMovFound += engine_BestMovFound;
+                Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("ResetGame: " + exception.Message);
+                LogHelper.logger.Error("ResetGame: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SetPieceSize(Image chessboardImage)
