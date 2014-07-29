@@ -635,6 +635,7 @@ namespace OpenCVDemo1
                     Engine = UCI.GetEngine();
                     Engine.BestMovFound += engine_BestMovFound;
                     Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+                    LoadEngineSettings();
                 }
             }
             catch (Exception exception)
