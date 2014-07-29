@@ -621,10 +621,11 @@ namespace OpenCVDemo1
 
                 CurrentEngineSettings = new EngineConfigurationSettings();
 
-                Engine = UCI.GetEngine();
-                Engine.BestMovFound += engine_BestMovFound;
-                Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
-
+                //Engine = UCI.GetEngine();
+                //Engine.BestMovFound += engine_BestMovFound;
+                //Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+                Engine.EngineCommand(UCI.kStopEngine);
+                Engine.EngineCommand(UCI.kResetEngine);
             }
             catch (Exception exception)
             {

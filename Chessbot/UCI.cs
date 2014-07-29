@@ -15,14 +15,14 @@ namespace OpenCVDemo1
         //////////////////////////////////////////////////////////////////////////
         // CONSTANTS
         //////////////////////////////////////////////////////////////////////////
-        static String kSetUCIMode = "uci";
-        static String kResetEngine = "ucinewgame";
-        static String kStopEngine = "stop";
-        static String kQuitEngine = "quit";
-        static String kSetPosition = "position ";
-        static String kStartPosition = "startpos ";
-        static String kStartMoves = "moves ";
-        static String kStartMovesFromStartPos = kSetPosition + kStartPosition + kStartMoves;
+       public static String kSetUCIMode = "uci";
+       public static String kResetEngine = "ucinewgame";
+       public static String kStopEngine = "stop";
+       public static String kQuitEngine = "quit";
+       public static String kSetPosition = "position ";
+       public static String kStartPosition = "startpos ";
+       public static String kStartMoves = "moves ";
+       public static String kStartMovesFromStartPos = kSetPosition + kStartPosition + kStartMoves;
 
         public event EventHandler BestMovFound;
         private string currentMoveScore = string.Empty;
