@@ -619,7 +619,7 @@ namespace OpenCVDemo1
                 masterTemplate = null;
                 _engineDepth = "16";
 
-                CurrentEngineSettings = new EngineConfigurationSettings();
+                //CurrentEngineSettings = new EngineConfigurationSettings();
 
                 //Engine = UCI.GetEngine();
                 //Engine.BestMovFound += engine_BestMovFound;
