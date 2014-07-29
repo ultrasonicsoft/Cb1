@@ -668,12 +668,13 @@ namespace OpenCVDemo1
                 //LogHelper.logger.Info("cbShowIntensityOnTop_CheckedChanged called...");
                 if (cbShowIntensityOnTop.Checked == false)
                 {
-                    pbScreen.Image = CurrentCapturedScreen;
+                    pbScreen.Image = CapturedScreen;
                 }
                 else
                 {
-                    pbScreen.Image = pbIntensityTest.Image;
                     RefreshGrayImage();
+
+                    pbScreen.Image = pbIntensityTest.Image;
 
                     //ProcessAndPrintBoard();
                 }
