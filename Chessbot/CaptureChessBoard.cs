@@ -619,13 +619,23 @@ namespace OpenCVDemo1
                 masterTemplate = null;
                 _engineDepth = "16";
 
-                //CurrentEngineSettings = new EngineConfigurationSettings();
 
-                //Engine = UCI.GetEngine();
-                //Engine.BestMovFound += engine_BestMovFound;
-                //Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
-                Engine.EngineCommand(UCI.kStopEngine);
-                Engine.EngineCommand(UCI.kResetEngine);
+                if (IsEngineRunning())
+                {
+                    //CurrentEngineSettings = new EngineConfigurationSettings();
+
+                    //Engine = UCI.GetEngine();
+                    //Engine.BestMovFound += engine_BestMovFound;
+                    //Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+                    Engine.EngineCommand(UCI.kStopEngine);
+                    Engine.EngineCommand(UCI.kResetEngine);
+                }
+                else
+                {
+                    Engine = UCI.GetEngine();
+                    Engine.BestMovFound += engine_BestMovFound;
+                    Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+                }
             }
             catch (Exception exception)
             {
@@ -633,6 +643,17 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("ResetGame: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool IsEngineRunning()
+        {
+            bool isRunning = false;
+            Process[] pname = Process.GetProcessesByName(Constants.STOCKFISHENGINE);
+            if (pname.Length == 0)
+                isRunning = false;
+            else
+                isRunning = true;
+            return isRunning;
         }
 
         private void SetPieceSize(Image chessboardImage)
