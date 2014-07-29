@@ -595,7 +595,7 @@ namespace OpenCVDemo1
             //LogHelper.logger.Info("ReadChessBoardCurrentPosition finished...");
         }
 
-        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount)
+        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount )
         {
             bool isWhitePlaying = false;
             try

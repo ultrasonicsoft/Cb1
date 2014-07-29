@@ -45,6 +45,7 @@ namespace OpenCVDemo1
         private bool enableHotKeyForGetNextMove = false;
         private int nextMoveHighlightDuration = 100;
         public UCI Engine { get; set; }
+        public int PieceSize { get; set; }
 
         public static EngineConfigurationSettings CurrentEngineSettings { get; set; }
 
@@ -585,6 +586,7 @@ namespace OpenCVDemo1
                 //rbtnWhite.Checked = ImageProcessingManager.CheckFirstWhosFirstMove(pbScreen.Image, padding);
                 //rbtnBlack.Checked = !rbtnWhite.Checked;
                 btnGetBestMove.Enabled = true;
+                SetPieceSize(pbScreen.Image);
             }
             catch (Exception exception)
             {
@@ -593,6 +595,17 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("btnStartNewGame_Click finished...");
+        }
+
+        private void SetPieceSize(Image chessboardImage)
+        {
+            int blockWidth = (chessboardImage.Width / Constants.GRID_SIZE);
+            int blockHeight = (chessboardImage.Height / Constants.GRID_SIZE);
+
+            if (blockHeight > blockWidth)
+                PieceSize = blockHeight;
+            else
+                PieceSize = blockWidth;
         }
 
         private void btnRefreshTemplate_Click(object sender, EventArgs e)
@@ -989,19 +1002,25 @@ namespace OpenCVDemo1
 
                     //int chessboardPieceSize = GetChessboardPieceSize();
                     // Draw current position
-                    int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * 64; // TODO: calculate each block height and width instead of 64
-                    int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * 64;
+                    int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
+                    int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * PieceSize;
+
+                    int size = int.Parse(txtHighlightBoxSize.Text);
+                    startX += (PieceSize / 2) - (size/2);
+                    startY += PieceSize / 2 - (size / 2);
 
                     // Draw next move position
-                    int startNewX = ScreenBoardCoordinates.X + chessDrawingNextColumnIndex * 64; // TODO: calculate each block height and width instead of 64
-                    int startNewY = ScreenBoardCoordinates.Y + chessDrawingNextRowIndex * 64;
+                    int startNewX = ScreenBoardCoordinates.X + chessDrawingNextColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
+                    int startNewY = ScreenBoardCoordinates.Y + chessDrawingNextRowIndex * PieceSize;
+
+                    startNewX += (PieceSize / 2) - (size / 2);
+                    startNewY += (PieceSize / 2) - (size / 2);
 
                     Pen oldPen = new Pen(Color.Red, 5);
                     Pen newPen = new Pen(Color.Blue, 5);
 
-                    int size = int.Parse(txtHighlightBoxSize.Text);
-                    Rectangle oldPosition = new Rectangle(startX + 5, startY + 5, size, size);
-                    Rectangle newPosition = new Rectangle(startNewX + 5, startNewY + 5, size, size);
+                    Rectangle oldPosition = new Rectangle(startX , startY , size, size);
+                    Rectangle newPosition = new Rectangle(startNewX , startNewY , size, size);
                     for (int i = 0; i < NextMoveHighlightDuration; i++)
                     {
                         //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
