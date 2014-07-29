@@ -1690,8 +1690,8 @@ namespace OpenCVDemo1
 
         private void btnEngineConfiguration_Click(object sender, EventArgs e)
         {
-            EngineConfiguration engine = new EngineConfiguration();
-            engine.Show();
+            EngineConfiguration engineConfigurationForm = new EngineConfiguration(Engine);
+            engineConfigurationForm.Show();
         }
 
         private void btnShowTextConfiguration_Click(object sender, EventArgs e)

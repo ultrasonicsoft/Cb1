@@ -15,7 +15,7 @@ namespace OpenCVDemo1
         //////////////////////////////////////////////////////////////////////////
         // CONSTANTS
         //////////////////////////////////////////////////////////////////////////
-       public static String kSetUCIMode = "uci";
+        public static String kSetUCIMode = "uci";
        public static String kResetEngine = "ucinewgame";
        public static String kStopEngine = "stop";
        public static String kQuitEngine = "quit";
@@ -49,6 +49,10 @@ namespace OpenCVDemo1
 
         #region Public methods
 
+        public void AddDataReceivedEventHandler(System.Diagnostics.DataReceivedEventHandler outputDataReceivedProc )
+        {
+            UCI_Engine.OutputDataReceived += outputDataReceivedProc;
+        }
         public bool InitEngine(String enginePath, String engineIniPath, System.Diagnostics.DataReceivedEventHandler outputDataReceivedProc)
         {
             LogHelper.logger.Info("InitEngine called with enginePath: " + enginePath + " and engineIniPath: " + engineIniPath);

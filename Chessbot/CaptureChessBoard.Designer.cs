@@ -163,7 +163,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tbctrController);
-            this.splitContainer1.Size = new System.Drawing.Size(1003, 664);
+            this.splitContainer1.Size = new System.Drawing.Size(1124, 664);
             this.splitContainer1.SplitterDistance = 368;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -174,7 +174,7 @@
             this.pnlImageHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlImageHolder.Location = new System.Drawing.Point(0, 0);
             this.pnlImageHolder.Name = "pnlImageHolder";
-            this.pnlImageHolder.Size = new System.Drawing.Size(1001, 366);
+            this.pnlImageHolder.Size = new System.Drawing.Size(1122, 366);
             this.pnlImageHolder.TabIndex = 2;
             // 
             // pbScreen
@@ -182,7 +182,7 @@
             this.pbScreen.Dock = System.Windows.Forms.DockStyle.Top;
             this.pbScreen.Location = new System.Drawing.Point(0, 0);
             this.pbScreen.Name = "pbScreen";
-            this.pbScreen.Size = new System.Drawing.Size(1001, 270);
+            this.pbScreen.Size = new System.Drawing.Size(1122, 270);
             this.pbScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbScreen.TabIndex = 3;
             this.pbScreen.TabStop = false;
@@ -195,7 +195,7 @@
             this.tbctrController.Location = new System.Drawing.Point(0, 0);
             this.tbctrController.Name = "tbctrController";
             this.tbctrController.SelectedIndex = 0;
-            this.tbctrController.Size = new System.Drawing.Size(1001, 290);
+            this.tbctrController.Size = new System.Drawing.Size(1122, 290);
             this.tbctrController.TabIndex = 1;
             // 
             // tbHome
@@ -572,7 +572,7 @@
             this.tabPage1.Controls.Add(this.cbEnableHotKey);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(993, 264);
+            this.tabPage1.Size = new System.Drawing.Size(1114, 264);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Advance Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -986,7 +986,7 @@
             this.txtMessage});
             this.statusStrip1.Location = new System.Drawing.Point(0, 642);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1003, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1124, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -1022,7 +1022,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1003, 664);
+            this.ClientSize = new System.Drawing.Size(1124, 664);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.KeyPreview = true;

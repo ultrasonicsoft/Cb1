@@ -68,12 +68,18 @@ namespace OpenCVDemo1
         private bool UC_960 = false;
 
 
-        public EngineConfiguration()
+        public EngineConfiguration(UCI currentEngine)
         {
             InitializeComponent();
 
-            Engine = UCI.GetEngine();
-            Engine.InitEngine("stockfishengine.exe", string.Empty, EngineDataReceived);
+            Engine = currentEngine;
+            Engine.AddDataReceivedEventHandler(EngineDataReceived);
+            Engine.EngineCommand(UCI.kSetUCIMode);
+            //if (Engine == null)
+            //{
+            //    Engine = UCI.GetEngine();
+            //    Engine.InitEngine("stockfishengine.exe", string.Empty, EngineDataReceived);
+            //}
         }
 
      private void btnBrowse_Click(object sender, EventArgs e)
