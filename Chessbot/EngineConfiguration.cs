@@ -167,12 +167,15 @@ namespace OpenCVDemo1
                 this.Invoke((MethodInvoker) delegate
                 {
                     txtEngineOutput.Text += outLine.Data + Environment.NewLine;
+                    
                 });
             }
             else
             {
                 txtEngineOutput.Text += outLine.Data + Environment.NewLine;
+               
             }
+           
         }
 
         private void LoadSavedEngineSettings(bool loadFromFile = true)
@@ -388,7 +391,7 @@ namespace OpenCVDemo1
                 }
                 else
                 {
-                    SetValue(txtMultiPV, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[11]),
+                    SetValue(txtMultiPV, int.Parse(allParts[6]), int.Parse(allParts[8]), int.Parse(allParts[10]),
                          ref MultiPVValue, ref MultiPVMin, ref MultiPVMax);
                 }
             }
@@ -600,7 +603,7 @@ namespace OpenCVDemo1
                 else
                 {
                     bool state = false;
-                    bool.TryParse(allParts[7], out state);
+                    bool.TryParse(allParts[6], out state);
                     cbUCChess960.Checked = state;
                     UC_960 = cbUCChess960.Checked;
                 }
