@@ -71,7 +71,6 @@
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnShowTextConfiguration = new System.Windows.Forms.Button();
-            this.btnEngineConfiguration = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
             this.txtRefreshInterval = new System.Windows.Forms.TextBox();
@@ -115,6 +114,7 @@
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtBoardConfiguration = new System.Windows.Forms.RichTextBox();
+            this.btnEngineConfiguration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -208,7 +208,7 @@
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
             this.tbHome.Padding = new System.Windows.Forms.Padding(3);
-            this.tbHome.Size = new System.Drawing.Size(993, 264);
+            this.tbHome.Size = new System.Drawing.Size(1114, 264);
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
@@ -317,6 +317,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEngineConfiguration);
             this.groupBox1.Controls.Add(this.lblWhosMove);
             this.groupBox1.Controls.Add(this.btnMarkTrigger);
             this.groupBox1.Controls.Add(this.cbTriggerMarker);
@@ -328,7 +329,7 @@
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Location = new System.Drawing.Point(417, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(149, 215);
+            this.groupBox1.Size = new System.Drawing.Size(149, 238);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "User Turn Marker";
@@ -344,9 +345,9 @@
             // 
             // btnMarkTrigger
             // 
-            this.btnMarkTrigger.Location = new System.Drawing.Point(56, 160);
+            this.btnMarkTrigger.Location = new System.Drawing.Point(9, 160);
             this.btnMarkTrigger.Name = "btnMarkTrigger";
-            this.btnMarkTrigger.Size = new System.Drawing.Size(81, 47);
+            this.btnMarkTrigger.Size = new System.Drawing.Size(128, 24);
             this.btnMarkTrigger.TabIndex = 28;
             this.btnMarkTrigger.Text = "Crop User Turn Marker";
             this.btnMarkTrigger.UseVisualStyleBackColor = true;
@@ -556,7 +557,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btnShowTextConfiguration);
-            this.tabPage1.Controls.Add(this.btnEngineConfiguration);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.label1);
@@ -586,16 +586,6 @@
             this.btnShowTextConfiguration.Text = "Chess Configuration";
             this.btnShowTextConfiguration.UseVisualStyleBackColor = true;
             this.btnShowTextConfiguration.Click += new System.EventHandler(this.btnShowTextConfiguration_Click);
-            // 
-            // btnEngineConfiguration
-            // 
-            this.btnEngineConfiguration.Location = new System.Drawing.Point(984, 14);
-            this.btnEngineConfiguration.Name = "btnEngineConfiguration";
-            this.btnEngineConfiguration.Size = new System.Drawing.Size(95, 40);
-            this.btnEngineConfiguration.TabIndex = 64;
-            this.btnEngineConfiguration.Text = "Engine Configuration";
-            this.btnEngineConfiguration.UseVisualStyleBackColor = true;
-            this.btnEngineConfiguration.Click += new System.EventHandler(this.btnEngineConfiguration_Click);
             // 
             // groupBox3
             // 
@@ -1017,6 +1007,16 @@
             this.txtBoardConfiguration.TabIndex = 42;
             this.txtBoardConfiguration.Text = "";
             // 
+            // btnEngineConfiguration
+            // 
+            this.btnEngineConfiguration.Location = new System.Drawing.Point(9, 190);
+            this.btnEngineConfiguration.Name = "btnEngineConfiguration";
+            this.btnEngineConfiguration.Size = new System.Drawing.Size(128, 25);
+            this.btnEngineConfiguration.TabIndex = 65;
+            this.btnEngineConfiguration.Text = "Engine Configuration";
+            this.btnEngineConfiguration.UseVisualStyleBackColor = true;
+            this.btnEngineConfiguration.Click += new System.EventHandler(this.btnEngineConfiguration_Click);
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1150,10 +1150,10 @@
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnEngineConfiguration;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtHighlightBoxSize;
         private System.Windows.Forms.Button btnShowTextConfiguration;
         private System.Windows.Forms.RichTextBox txtBoardConfiguration;
+        private System.Windows.Forms.Button btnEngineConfiguration;
     }
 }

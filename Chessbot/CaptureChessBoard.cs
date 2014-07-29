@@ -1701,6 +1701,7 @@ namespace OpenCVDemo1
             boardConfigurationTextVersion.Show();
         }
 
+        
 
     }
 }
