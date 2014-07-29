@@ -648,7 +648,7 @@ namespace OpenCVDemo1
         private bool IsEngineRunning()
         {
             bool isRunning = false;
-            Process[] pname = Process.GetProcessesByName(Constants.STOCKFISHENGINE);
+            Process[] pname = Process.GetProcessesByName(Constants.STOCKFISHENGINE_NAME);
             if (pname.Length == 0)
                 isRunning = false;
             else

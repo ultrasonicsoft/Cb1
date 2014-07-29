@@ -59,6 +59,7 @@ namespace OpenCVDemo1
         internal const double IMAGE_RESIZE_FACTOR = 0.50;
 
         internal const string STOCKFISHENGINE = "stockfishengine.exe";
+        internal const string STOCKFISHENGINE_NAME = "stockfishengine";
 
         internal const string INVALID_FEN_STRING = "8/8/8/8/8/8/8/8";
 
