@@ -149,8 +149,8 @@ namespace OpenCVDemo1
             try
             {
                 //LogHelper.logger.Info("CaptureChessBoard_Load started.");
-                CapturedScreen = ImageProcessingManager.TakeScreenShot();
-                pbScreen.Image = CapturedScreen;
+                //CapturedScreen = ImageProcessingManager.TakeScreenShot();
+                //pbScreen.Image = CapturedScreen;
 
                 pbScreen.MouseDown += new MouseEventHandler(Crop_MouseDown);
                 pbScreen.MouseUp += new MouseEventHandler(Crop_MouseUp);
