@@ -83,6 +83,8 @@ namespace OpenCVDemo1
             Engine = UCI.GetEngine();
             Engine.BestMovFound += engine_BestMovFound;
             Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+            LoadEngineSettings();
+            ApplyEngineSettings();
 
             //showNextMove = new FrmShowNextMove();
             //showNextMove.DrawNextMoveOnScreen += DrawOnDesktopNextMove;
@@ -634,8 +636,11 @@ namespace OpenCVDemo1
                 {
                     Engine = UCI.GetEngine();
                     Engine.BestMovFound += engine_BestMovFound;
-                    Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
                     LoadEngineSettings();
+                    Engine.InitEngine(Constants.STOCKFISHENGINE, string.Empty, Engine.OutputDataReceivedProc);
+                    ApplyEngineSettings();
+                    Engine.EngineCommand(UCI.kStopEngine);
+                    Engine.EngineCommand(UCI.kResetEngine);
                 }
             }
             catch (Exception exception)
@@ -644,6 +649,36 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("ResetGame: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ApplyEngineSettings()
+        {
+                string command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_CONTEMP_FACTOR_TYPE,CurrentEngineSettings.ContemptFactorValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MIN_SPLIT_DEPTH, CurrentEngineSettings.MinSplitDepthValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_THREADS, CurrentEngineSettings.ThreadValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_HASH, CurrentEngineSettings.HashValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MULTI_PV, CurrentEngineSettings.MultiPVValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_PONDER, CurrentEngineSettings.Ponder.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SKILL_LEVEL, CurrentEngineSettings.SkillLevelValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_HORIZON, CurrentEngineSettings.MoveHorizonValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_BASE_TIME, CurrentEngineSettings.BaseTimeValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_TIME, CurrentEngineSettings.MoveTimeValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_THINKING_TIME, CurrentEngineSettings.ThinkingTimeValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SLOW_MOVER, CurrentEngineSettings.SlowMoverValue.ToString());
+                Engine.EngineCommand(command);
+                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_UC_CHESS960, CurrentEngineSettings.UC_960.ToString());
+                Engine.EngineCommand(command);
         }
 
         private bool IsEngineRunning()

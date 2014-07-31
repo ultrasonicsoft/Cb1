@@ -696,6 +696,7 @@ namespace OpenCVDemo1
             //LogHelper.logger.Info("UpdateEngineParameter finished...");
         }
 
+
         private void btnResetEngine_Click(object sender, EventArgs e)
         {
             txtContempFactor.Text = contemptFactorValue.ToString();
