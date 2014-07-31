@@ -1557,11 +1557,11 @@ namespace OpenCVDemo1
             try
             {
                 //LogHelper.logger.Info("RefreshGrayImage called...");
-                if (pbScreen.Image == null || CurrentCapturedScreen == null)
+                if (pbScreen.Image == null)
                     return;
 
                 //Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(test as Bitmap);
-                Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(CurrentCapturedScreen as Bitmap);
+                Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte> cvImage = new Emgu.CV.Image<Emgu.CV.Structure.Gray, Byte>(pbScreen.Image as Bitmap);
                 //Emgu.CV.CvInvoke.cvShowImage("Current Image under use...", cvImage);
 
                 double intensity = tbIntensity.Value;
