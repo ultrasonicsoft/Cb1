@@ -28,6 +28,14 @@ namespace OpenCVDemo1
         public static List<ChessPiece> allChessBoardTemplate = null;
         static List<ChessEntity> currentChessBoardPosition = null;
         public static StringBuilder TextChessboardConfiguration = new StringBuilder();
+        private static string previousFenString = string.Empty;
+        private static bool kingCastleWhite;
+        private static bool queenCastleWhite;
+        private static bool kingCastleBlack;
+        private static bool queenCastleBlack;
+
+
+
         #endregion
 
         #region Properties
@@ -56,6 +64,30 @@ namespace OpenCVDemo1
                 string path = Uri.UnescapeDataString(uri.Path);
                 return Path.GetDirectoryName(path);
             }
+        }
+
+        public static bool KingCastleWhite
+        {
+            get { return kingCastleWhite; }
+            set { kingCastleWhite = value; }
+        }
+
+        public static bool QueenCastleWhite
+        {
+            get { return queenCastleWhite; }
+            set { queenCastleWhite = value; }
+        }
+
+        public static bool KingCastleBlack
+        {
+            get { return kingCastleBlack; }
+            set { kingCastleBlack = value; }
+        }
+
+        public static bool QueenCastleBlack
+        {
+            get { return queenCastleBlack; }
+            set { queenCastleBlack = value; }
         }
         #endregion
 
@@ -112,14 +144,14 @@ namespace OpenCVDemo1
             {
                 LogHelper.logger.Error("GetNextBestMove: " + exception.Message);
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot","Chessbot",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("TakeScreenShot finished...");
 
             return capturedScreen;
         }
 
-       
+
         public static void ConvertImageToGrayScale(Bitmap image)
         {
             try
@@ -595,7 +627,7 @@ namespace OpenCVDemo1
             //LogHelper.logger.Info("ReadChessBoardCurrentPosition finished...");
         }
 
-        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount )
+        public static bool CheckFirstWhosFirstMove(Image chessboardImage, int blockPaddingAmount)
         {
             bool isWhitePlaying = false;
             try
@@ -990,78 +1022,6 @@ namespace OpenCVDemo1
 
                 fenString.Append(" ");
 
-                //Append string part for "Castling"
-                //TO DO: Need to implement exact Castling rule
-                bool castlingPossible = false;
-                int blackPrimeRow = 0;
-                int whitePrimeRow = 0;
-                if (Constants.ActiveMove == "w")
-                {
-                    whitePrimeRow = 1;
-                    blackPrimeRow = Constants.GRID_SIZE;
-                }
-                else if (Constants.ActiveMove == "b")
-                {
-                    whitePrimeRow = Constants.GRID_SIZE;
-                    blackPrimeRow = 1;
-                }
-
-                //Check castling for white pieces
-                var whitePieces = currentChessBoardPosition.Where(c => c.RowPosition == whitePrimeRow);
-
-                if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
-                {
-                    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
-                        whitePieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null) == null)
-                    {
-                        fenString.Append("K");
-                        castlingPossible = true;
-                    }
-
-                    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
-                       whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
-                    {
-                        fenString.Append("Q");
-                        castlingPossible = true;
-                    }
-                }
-
-                var blackPieces = currentChessBoardPosition.Where(c => c.RowPosition == blackPrimeRow);
-
-                if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
-                {
-                    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
-                        blackPieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo != null).FirstOrDefault() == null)
-                    {
-                        fenString.Append("k");
-                        castlingPossible = true;
-                    }
-
-                    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
-                       blackPieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo != null) == null)
-                    {
-                        fenString.Append("q");
-                        castlingPossible = true;
-                    }
-                }
-                if (castlingPossible == false)
-                    fenString.Append("-");
-
-                fenString.Append(" ");
-
-                //En Passant rule is not applied yet.
-                //TO DO: Need to implement En Passant rule
-                fenString.Append("-");
-                fenString.Append(" ");
-
-                //Append Halfmove clock count
-                fenString.Append(Constants.HalfmoveClock.ToString());
-                fenString.Append(" ");
-
-                //Append Fullmove number
-                fenString.Append(Constants.FullmoveNumber.ToString());
-                fenString.Append(" ");
-
                 fenString = fenString.Replace("BR", "r");
 
                 if (isBlackMoveNext)
@@ -1078,12 +1038,108 @@ namespace OpenCVDemo1
                     fenString = fenString.Replace(firstPart, blackFenStringBuilder.ToString());
                 }
 
+                //Append string part for "Castling"
+                //TO DO: Need to implement exact Castling rule
+                bool castlingPossible = false;
+                #region Old castling logic
+
+                //int blackPrimeRow = 0;
+                //int whitePrimeRow = 0;
+                //if (Constants.ActiveMove == "w")
+                //{
+                //    whitePrimeRow = 8;
+                //    blackPrimeRow = Constants.GRID_SIZE;
+                //}
+                //else if (Constants.ActiveMove == "b")
+                //{
+                //    whitePrimeRow = Constants.GRID_SIZE;
+                //    blackPrimeRow = 1;
+                //}
+
+                ////Check castling for white pieces
+                //var whitePieces = currentChessBoardPosition.Where(c => c.RowPosition == whitePrimeRow);
+
+                //if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteKing) && c.ColumnPosition == 5).FirstOrDefault() != null)
+                //{
+                //    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                //        whitePieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive && c.PieceInfo == null) != null)
+                //    {
+                //        fenString.Append("K");
+                //        castlingPossible = true;
+                //    }
+
+                //    if (whitePieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                //       whitePieces.Where(c => 1 < c.ColumnPosition && c.ColumnPosition < 5 && c.IsAlive && c.PieceInfo == null) != null)
+                //    {
+                //        fenString.Append("Q");
+                //        castlingPossible = true;
+                //    }
+                //}
+
+                //var blackPieces = currentChessBoardPosition.Where(c => c.RowPosition == blackPrimeRow);
+
+                //if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackKing) && c.ColumnPosition == 4).FirstOrDefault() != null)
+                //{
+                //    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.BlackRook) && c.ColumnPosition == 8).FirstOrDefault() != null &&
+                //        blackPieces.Where(c => (6 == c.ColumnPosition || c.ColumnPosition == 7) && c.IsAlive == false).FirstOrDefault() != null)
+                //    {
+                //        fenString.Append("k");
+                //        castlingPossible = true;
+                //    }
+
+                //    if (blackPieces.Where(c => (c.PieceInfo != null && c.PieceInfo.Name == Constants.WhiteRook) && c.ColumnPosition == 1).FirstOrDefault() != null &&
+                //       blackPieces.Where(c => 4 < c.ColumnPosition && c.ColumnPosition < 8 && c.IsAlive == false && c.PieceInfo == null).FirstOrDefault() != null)
+                //    {
+                //        fenString.Append("q");
+                //        castlingPossible = true;
+                //    }
+                //}
+                #endregion
+
+                GetCastlingInformation(fenString, isBlackMoveNext);
+
+                if (!kingCastleWhite && !queenCastleWhite && !kingCastleBlack && !queenCastleBlack)
+                {
+                    fenString.Append("-");
+                }
+                else
+                {
+                    if (kingCastleWhite)
+                        fenString.Append("K");
+                    if (queenCastleWhite)
+                        fenString.Append("Q");
+                    if (kingCastleBlack)
+                        fenString.Append("k");
+                    if (queenCastleBlack)
+                        fenString.Append("q");
+                }
+                //if (castlingPossible == false)
+                //    fenString.Append("-");
+
+                fenString.Append(" ");
+
+                //En Passant rule is not applied yet.
+                //TO DO: Need to implement En Passant rule
+                fenString.Append("-");
+                fenString.Append(" ");
+
+                //Append Halfmove clock count
+                fenString.Append(Constants.HalfmoveClock.ToString());
+                fenString.Append(" ");
+
+                //Append Fullmove number
+                fenString.Append(Constants.FullmoveNumber.ToString());
+                fenString.Append(" ");
+
+
+
+
                 //Console.WriteLine();
                 //Console.WriteLine("FEN String is:");
                 //Console.WriteLine(fenString.ToString());
-
-                //LogHelper.logger.Info("PrepareFenString finished...");
-                return fenString.ToString();
+                previousFenString = fenString.ToString();
+                LogHelper.logger.Info("FEN string: " + previousFenString);
+                return previousFenString;
                 //totalExecutionTime.Stop();
                 //MessageBox.Show("Total time to read: " + totalExecutionTime.ElapsedMilliseconds.ToString());
             }
@@ -1093,6 +1149,62 @@ namespace OpenCVDemo1
                 LogHelper.logger.Error("GetNextBestMove: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return string.Empty;
+            }
+        }
+
+        private static void GetCastlingInformation(StringBuilder fenString, bool isBlackMoveNext)
+        {
+            if (string.IsNullOrEmpty(previousFenString))
+            {
+                return;
+            }
+            var currentFenString = fenString.ToString();
+
+            string[] currnetFenStringParts = currentFenString.Split(' ');
+            string[] previousFenStringParts = previousFenString.Split(' ');
+            string[] previousBoard = previousFenStringParts[0].Split('/');
+            string[] currentBoard = currnetFenStringParts[0].Split('/');
+
+            // fen string r1bqkbnr/pppppppp/2n5/8/8/7P/PPPPPPP1/RNBQKBNR
+
+            // check if WHITE King is moved
+            //if (previousBoard[previousBoard.Length - 1].Substring(4, 1) == "K" && currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
+            if (currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
+            {
+                kingCastleWhite = false;
+                queenCastleWhite = false;
+            }
+            else
+            {
+                // check if right rook moved -> white king castle
+                if (currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                    //if (previousFenStringParts[0].Substring(previousFenStringParts[0].Length - 1, 1) == "R" && currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                    kingCastleWhite = false;
+                 
+                // check if left rook is moved -> white queen castle
+                if (currentBoard[currentBoard.Length - 1].Substring(0, 1) != "R")
+                    //if (previousBoard[0].Substring(0, 1) == "R" && previousBoard[0].Substring(0, 1) != "R")
+                    queenCastleWhite = false;
+            }
+
+            // check if BLACK King is moved
+            if (currentBoard[0].Substring(4, 1) != "k")
+                //if (previousBoard[0].Substring(4, 1) == "k" && currentBoard[0].Substring(4, 1) != "k")
+            {
+                kingCastleBlack = false;
+                queenCastleBlack = false;
+            }
+            else
+            {
+                // check if right rook moved -> white king castle
+                if ( currentBoard[0].Substring(0, 1) != "r")
+                    //if (previousBoard[0].Substring(0, 1) == "r" && currentBoard[0].Substring(0, 1) != "r")
+                    kingCastleBlack = false;
+
+                // check if left rook is moved -> white queen castle
+                if (currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                    //if (previousBoard[0].Substring(previousBoard[0].Length - 1, 1) == "r" && currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                    queenCastleBlack = false;
             }
         }
         public static string ReverseString(string s)

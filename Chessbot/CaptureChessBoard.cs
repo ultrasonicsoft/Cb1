@@ -621,6 +621,12 @@ namespace OpenCVDemo1
                 masterTemplate = null;
                 _engineDepth = "16";
 
+                //castling reset
+                ImageProcessingManager.KingCastleWhite = true;
+                ImageProcessingManager.QueenCastleWhite = true;
+                ImageProcessingManager.KingCastleBlack = true;
+                ImageProcessingManager.QueenCastleBlack = true;
+
 
                 if (IsEngineRunning())
                 {
@@ -1474,6 +1480,7 @@ namespace OpenCVDemo1
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                     txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
+                    txtBoardConfiguration.Text += Environment.NewLine + fenString;
                 }
                 else
                 {
@@ -1481,6 +1488,7 @@ namespace OpenCVDemo1
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                     txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
+                    txtBoardConfiguration.Text += Environment.NewLine + fenString;
                 }
                 lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
 
@@ -1552,6 +1560,14 @@ namespace OpenCVDemo1
             //LogHelper.logger.Info("CheckWhosTurnToPlay finished...");
         }
 
+        private int myVar;
+
+        public int MyProperty
+        {
+            get { return myVar; }
+            set { myVar = value; }
+        }
+        
         private void RefreshGrayImage()
         {
             try
