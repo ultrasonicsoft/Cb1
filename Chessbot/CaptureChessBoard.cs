@@ -1487,7 +1487,8 @@ namespace OpenCVDemo1
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                     txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
-                    txtBoardConfiguration.Text += Environment.NewLine + fenString;
+                    //txtBoardConfiguration.Text += Environment.NewLine + fenString;
+
                 }
                 else
                 {
@@ -1495,9 +1496,12 @@ namespace OpenCVDemo1
                     ImageProcessingManager.PrintChessBoard(rbtnWhite.Checked);
                     txtBoardConfiguration.Text = ImageProcessingManager.TextChessboardConfiguration.ToString();
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
-                    txtBoardConfiguration.Text += Environment.NewLine + fenString;
+                    //txtBoardConfiguration.Text += Environment.NewLine + fenString;
                 }
-                
+
+                // Set FEN string
+                txtFENString.Text = fenString;
+
                 UpdateCastlingInformation(true);
 
                 lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;

@@ -124,6 +124,8 @@
             this.rbtnWhiteQueenCastling = new System.Windows.Forms.RadioButton();
             this.rbtnNoWhiteCastling = new System.Windows.Forms.RadioButton();
             this.rbtnNoBlackCastling = new System.Windows.Forms.RadioButton();
+            this.txtFENString = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -211,12 +213,14 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.txtFENString);
             this.tbHome.Controls.Add(this.groupBox7);
             this.tbHome.Controls.Add(this.groupBox4);
             this.tbHome.Controls.Add(this.txtBoardConfiguration);
             this.tbHome.Controls.Add(this.groupBox2);
             this.tbHome.Controls.Add(this.pbIntensityTest);
             this.tbHome.Controls.Add(this.groupBox1);
+            this.tbHome.Controls.Add(this.label2);
             this.tbHome.Controls.Add(this.groupBox5);
             this.tbHome.Location = new System.Drawing.Point(4, 22);
             this.tbHome.Name = "tbHome";
@@ -1129,6 +1133,23 @@
             this.rbtnNoBlackCastling.Text = "n";
             this.rbtnNoBlackCastling.UseVisualStyleBackColor = true;
             // 
+            // txtFENString
+            // 
+            this.txtFENString.Location = new System.Drawing.Point(582, 143);
+            this.txtFENString.Multiline = true;
+            this.txtFENString.Name = "txtFENString";
+            this.txtFENString.Size = new System.Drawing.Size(174, 36);
+            this.txtFENString.TabIndex = 67;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(579, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "FEN String:";
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1154,6 +1175,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).EndInit();
             this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
+            this.tbHome.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
@@ -1280,5 +1302,7 @@
         private System.Windows.Forms.RadioButton rbtnBothWhiteCastling;
         private System.Windows.Forms.RadioButton rbtnNoBlackCastling;
         private System.Windows.Forms.RadioButton rbtnNoWhiteCastling;
+        private System.Windows.Forms.TextBox txtFENString;
+        private System.Windows.Forms.Label label2;
     }
 }

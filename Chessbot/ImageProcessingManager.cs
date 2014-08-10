@@ -846,7 +846,7 @@ namespace OpenCVDemo1
                 //string blackRowHeader = "     A    B    C    D    E    F    G    H";
                 //string whiteRowHeader = "     H    G    F    E    D    C    B    A";
 
-                if (!isUserPlayingWhite)
+                if (isUserPlayingWhite)
                 {
                     rowHeader = "     H    G    F    E    D    C    B    A";
                 }
@@ -926,7 +926,7 @@ namespace OpenCVDemo1
                         }
 
                     }
-                    if (isUserPlayingWhite)
+                    if (!isUserPlayingWhite)
                     {
                         TextChessboardConfiguration.Append(string.Format(chessRowTemplate, 9 - rowIndex, one, two, three, four, five, six, seven, eight));
                         TextChessboardConfiguration.Append(Environment.NewLine);
