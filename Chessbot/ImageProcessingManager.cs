@@ -1154,10 +1154,6 @@ namespace OpenCVDemo1
 
         private static void GetCastlingInformation(StringBuilder fenString, bool isBlackMoveNext)
         {
-            if (string.IsNullOrEmpty(previousFenString))
-            {
-                return;
-            }
             var currentFenString = fenString.ToString();
 
             string[] currnetFenStringParts = currentFenString.Split(' ');

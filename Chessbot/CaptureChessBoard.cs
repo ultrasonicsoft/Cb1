@@ -627,7 +627,14 @@ namespace OpenCVDemo1
                 ImageProcessingManager.KingCastleBlack = true;
                 ImageProcessingManager.QueenCastleBlack = true;
 
+                rbtnBothWhiteCastling.Checked = true;
+                rbtnWhiteKingCastling.Checked = false;
+                rbtnWhiteQueenCastling.Checked = false;
 
+                rbtnBothBlackCastling.Checked = true;
+                rbtnBlackKingCastling.Checked = false;
+                rbtnBlackQueenCastling.Checked = false;
+                
                 if (IsEngineRunning())
                 {
                     //CurrentEngineSettings = new EngineConfigurationSettings();
@@ -1490,6 +1497,9 @@ namespace OpenCVDemo1
                     fenString = ImageProcessingManager.PrepareFenString(rbtnWhite.Checked);
                     txtBoardConfiguration.Text += Environment.NewLine + fenString;
                 }
+                
+                UpdateCastlingInformation(true);
+
                 lblExecutionTime.Text = ImageProcessingManager.TotalProcessingTime;
 
                 if (string.IsNullOrEmpty(fenString) == false && fenString.Contains(Constants.INVALID_FEN_STRING) == false)
@@ -1509,6 +1519,30 @@ namespace OpenCVDemo1
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("ProcessAndPrintBoard finished...");
+        }
+
+        private void UpdateCastlingInformation(bool setUIValues)
+        {
+            if(setUIValues)
+            {
+                if (ImageProcessingManager.KingCastleWhite && ImageProcessingManager.QueenCastleWhite)
+                    rbtnBothWhiteCastling.Checked = true;
+                else if (!ImageProcessingManager.KingCastleWhite && !ImageProcessingManager.QueenCastleWhite)
+                    rbtnNoWhiteCastling.Checked = true;
+                else if (ImageProcessingManager.KingCastleWhite)
+                    rbtnWhiteKingCastling.Checked = true;
+                else if (ImageProcessingManager.QueenCastleWhite)
+                    rbtnWhiteQueenCastling.Checked = true;
+
+                if (ImageProcessingManager.KingCastleBlack && ImageProcessingManager.QueenCastleBlack)
+                    rbtnBothBlackCastling.Checked = true;
+                else if (!ImageProcessingManager.KingCastleBlack && !ImageProcessingManager.QueenCastleBlack)
+                    rbtnNoBlackCastling.Checked = true;
+                else if (ImageProcessingManager.KingCastleBlack)
+                    rbtnBlackKingCastling.Checked = true;
+                else if (ImageProcessingManager.QueenCastleBlack)
+                    rbtnBlackQueenCastling.Checked = true;
+            }
         }
 
    
