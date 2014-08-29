@@ -1677,7 +1677,7 @@ namespace OpenCVDemo1
             try
             {
                 var parts = fenString.Split(' ');
-                fenString = parts[0] + " " + parts[1];
+                //fenString = parts[0] + " " + parts[1];
                 Engine.CalculateBestMove(fenString, EngineDepth);
             }
             catch (Exception exception)
