@@ -170,14 +170,14 @@ namespace OpenCVDemo1
             String t = outLine.Data;
             if (t.Contains("score"))
             {
-                LogHelper.logger.Info("Trying to parse engine output for searching score. Current line: " + t);
+                //LogHelper.logger.Info("Trying to parse engine output for searching score. Current line: " + t);
                 var allParts = t.Split(' ');
                 int score = 0;
                 if (int.TryParse(allParts[7], out score))
                 {
-                    LogHelper.logger.Info("score parsed as: " + score);
+                    //LogHelper.logger.Info("score parsed as: " + score);
                     currentMoveScore = (score / 100.0).ToString();
-                    LogHelper.logger.Info("score parsed as in percentage : " + currentMoveScore);
+                    //LogHelper.logger.Info("score parsed as in percentage : " + currentMoveScore);
                 }
             }
             if (t.Contains("bestmove"))

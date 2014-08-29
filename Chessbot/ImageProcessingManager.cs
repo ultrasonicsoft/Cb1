@@ -1154,54 +1154,91 @@ namespace OpenCVDemo1
 
         private static void GetCastlingInformation(StringBuilder fenString, bool isBlackMoveNext)
         {
+            if (IsCastlingDisabled())
+            {
+                return;
+            }
             var currentFenString = fenString.ToString();
-
             string[] currnetFenStringParts = currentFenString.Split(' ');
             string[] previousFenStringParts = previousFenString.Split(' ');
             string[] previousBoard = previousFenStringParts[0].Split('/');
             string[] currentBoard = currnetFenStringParts[0].Split('/');
 
-            // fen string r1bqkbnr/pppppppp/2n5/8/8/7P/PPPPPPP1/RNBQKBNR
+            try
+            {
+                if (string.IsNullOrEmpty(fenString.ToString()))
+                {
+                    MessageBox.Show("Invalid FEN string. Can't produce next move.");
+                    return;
+                }
 
-            // check if WHITE King is moved
-            //if (previousBoard[previousBoard.Length - 1].Substring(4, 1) == "K" && currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
-            if (currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
-            {
-                kingCastleWhite = false;
-                queenCastleWhite = false;
-            }
-            else
-            {
-                // check if right rook moved -> white king castle
-                if (currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
-                    //if (previousFenStringParts[0].Substring(previousFenStringParts[0].Length - 1, 1) == "R" && currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                // fen string r1bqkbnr/pppppppp/2n5/8/8/7P/PPPPPPP1/RNBQKBNR
+
+                // check if WHITE King is moved
+                //if (previousBoard[previousBoard.Length - 1].Substring(4, 1) == "K" && currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
+                if (currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
+                {
                     kingCastleWhite = false;
-                 
-                // check if left rook is moved -> white queen castle
-                if (currentBoard[currentBoard.Length - 1].Substring(0, 1) != "R")
-                    //if (previousBoard[0].Substring(0, 1) == "R" && previousBoard[0].Substring(0, 1) != "R")
                     queenCastleWhite = false;
-            }
+                }
+                else
+                {
+                    // check if right rook moved -> white king castle
+                    if (currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                        //if (previousFenStringParts[0].Substring(previousFenStringParts[0].Length - 1, 1) == "R" && currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                        kingCastleWhite = false;
 
-            // check if BLACK King is moved
-            if (currentBoard[0].Substring(4, 1) != "k")
+                    // check if left rook is moved -> white queen castle
+                    if (currentBoard[currentBoard.Length - 1].Substring(0, 1) != "R")
+                        //if (previousBoard[0].Substring(0, 1) == "R" && previousBoard[0].Substring(0, 1) != "R")
+                        queenCastleWhite = false;
+                }
+                if (IsCastlingDisabled())
+                {
+                    return;
+                }
+                // check if BLACK King is moved
+                if (currentBoard[0].Substring(4, 1) != "k")
                 //if (previousBoard[0].Substring(4, 1) == "k" && currentBoard[0].Substring(4, 1) != "k")
-            {
-                kingCastleBlack = false;
-                queenCastleBlack = false;
-            }
-            else
-            {
-                // check if right rook moved -> white king castle
-                if ( currentBoard[0].Substring(0, 1) != "r")
-                    //if (previousBoard[0].Substring(0, 1) == "r" && currentBoard[0].Substring(0, 1) != "r")
+                {
                     kingCastleBlack = false;
-
-                // check if left rook is moved -> white queen castle
-                if (currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
-                    //if (previousBoard[0].Substring(previousBoard[0].Length - 1, 1) == "r" && currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
                     queenCastleBlack = false;
+                }
+                else
+                {
+                    // check if right rook moved -> white king castle
+                    if (currentBoard[0].Substring(0, 1) != "r")
+                        //if (previousBoard[0].Substring(0, 1) == "r" && currentBoard[0].Substring(0, 1) != "r")
+                        kingCastleBlack = false;
+
+                    if (IsCastlingDisabled())
+                    {
+                        return;
+                    }
+                    // check if left rook is moved -> white queen castle
+                    if (currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                        //if (previousBoard[0].Substring(previousBoard[0].Length - 1, 1) == "r" && currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                        queenCastleBlack = false;
+                }
             }
+            catch (Exception ex)
+            {
+                LogHelper.logger.Error("GetCastliingInformation: " + fenString.ToString());
+                LogHelper.logger.Error("exception: " + ex.ToString());
+
+                LogHelper.logger.Error("currnetFenStringParts: " + currnetFenStringParts);
+                LogHelper.logger.Error("previousFenStringParts: " + previousFenStringParts);
+                LogHelper.logger.Error("previousBoard: " + previousBoard);
+                LogHelper.logger.Error("currentBoard: " + currentBoard);
+
+                throw ex;
+            }
+        }
+
+        private static bool IsCastlingDisabled()
+        {
+            return !kingCastleBlack && !queenCastleBlack && !kingCastleWhite && !queenCastleWhite;
+
         }
         public static string ReverseString(string s)
         {
