@@ -70,6 +70,7 @@ namespace OpenCVDemo1
         public static Image CapturedBoard { get; set; }
         public CompactView SmallView { get; set; }
 
+        public static string BestMove { get; set; }
         #endregion
 
         #region Constructor
@@ -1721,6 +1722,7 @@ namespace OpenCVDemo1
                         this.Invoke((MethodInvoker)delegate
                         {
                             txtBestMove.Text = args.BestMove; // runs on UI thread
+                            BestMove = args.BestMove;
                         });
                     }
                     char[] info = args.BestMove.ToUpper().ToCharArray();
