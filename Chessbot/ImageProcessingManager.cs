@@ -1319,7 +1319,7 @@ namespace OpenCVDemo1
             string queenSide = whitePartInFenString.Substring(0, indexOfKing + 1);
             string kingSide = whitePartInFenString.Substring(indexOfKing, whitePartInFenString.Length - indexOfKing);
 
-            kingCastleWhite = (kingSide == "KBNR" || kingSide == "K1NR" || kingSide == "K2R" || kingSide == "KN1R");
+            kingCastleWhite = (kingSide == "KBNR" || kingSide == "K1NR" || kingSide == "K2R" || kingSide == "KN1R" || kingSide == "KB1R");
 
             queenCastleWhite = queenSide == "RNBQK" || queenSide == "R1BQK" || queenSide == "RN1QK" || queenSide == "RNB1K"
                                 || queenSide == "R2QK" || queenSide == "R3K" || queenSide == "RQ2K" || queenSide == "R1Q1K"
