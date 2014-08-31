@@ -1172,57 +1172,53 @@ namespace OpenCVDemo1
                     return;
                 }
 
-                // fen string r1bqkbnr/pppppppp/2n5/8/8/7P/PPPPPPP1/RNBQKBNR
+                if (kingCastleWhite != false || queenCastleWhite != false)
+                {
+                    // check if WHITE King is moved
+                    //if (previousBoard[previousBoard.Length - 1].Substring(4, 1) == "K" && currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
+                    if (currentBoard[currentBoard.Length - 1].Contains("K"))
+                    {
+                        UpdateWhitKingMovedFlag(currentBoard[currentBoard.Length - 1]);
+                    }
+                    else
+                    {
+                        kingCastleWhite = false;
+                        queenCastleWhite = false;
+                    }
+                    // check if right rook moved -> white king castle
+                    if (currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                        //if (previousFenStringParts[0].Substring(previousFenStringParts[0].Length - 1, 1) == "R" && currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
+                        kingCastleWhite = false;
 
-                // check if WHITE King is moved
-                //if (previousBoard[previousBoard.Length - 1].Substring(4, 1) == "K" && currentBoard[currentBoard.Length - 1].Substring(4, 1) != "K")
-                if (currentBoard[currentBoard.Length - 1].Contains("K"))
-                {
-                    UpdateWhitKingMovedFlag(currentBoard[currentBoard.Length - 1]);
-                }
-                else
-                {
-                    kingCastleWhite = false;
-                    queenCastleWhite = false;
-                }
-                // check if right rook moved -> white king castle
-                if (currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
-                    //if (previousFenStringParts[0].Substring(previousFenStringParts[0].Length - 1, 1) == "R" && currnetFenStringParts[0].Substring(currnetFenStringParts[0].Length - 1, 1) != "R")
-                    kingCastleWhite = false;
-
-                // check if left rook is moved -> white queen castle
-                if (currentBoard[currentBoard.Length - 1].Substring(0, 1) != "R")
-                    //if (previousBoard[0].Substring(0, 1) == "R" && previousBoard[0].Substring(0, 1) != "R")
-                    queenCastleWhite = false;
-
-                if (IsCastlingDisabled())
-                {
-                    return;
-                }
-                // check if BLACK King is moved
-                if (currentBoard[0].Contains("k"))
-                {
-                    UpdateBlackKingMovedFlag(currentBoard[0]);
-                }
-                else
-                {
-                    kingCastleBlack = false;
-                    queenCastleBlack = false;
+                    // check if left rook is moved -> white queen castle
+                    if (currentBoard[currentBoard.Length - 1].Substring(0, 1) != "R")
+                        //if (previousBoard[0].Substring(0, 1) == "R" && previousBoard[0].Substring(0, 1) != "R")
+                        queenCastleWhite = false;
                 }
 
-                // check if right rook moved -> white king castle
-                if (currentBoard[0].Substring(0, 1) != "r")
-                    //if (previousBoard[0].Substring(0, 1) == "r" && currentBoard[0].Substring(0, 1) != "r")
-                    kingCastleBlack = false;
-
-                if (IsCastlingDisabled())
+                if (kingCastleBlack != false || queenCastleBlack != false)
                 {
-                    return;
+                    // check if BLACK King is moved
+                    if (currentBoard[0].Contains("k"))
+                    {
+                        UpdateBlackKingMovedFlag(currentBoard[0]);
+                    }
+                    else
+                    {
+                        kingCastleBlack = false;
+                        queenCastleBlack = false;
+                    }
+
+                    // check if right rook moved -> white king castle
+                    if (currentBoard[0].Substring(0, 1) != "r")
+                        //if (previousBoard[0].Substring(0, 1) == "r" && currentBoard[0].Substring(0, 1) != "r")
+                        kingCastleBlack = false;
+
+                    // check if left rook is moved -> white queen castle
+                    if (currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                        //if (previousBoard[0].Substring(previousBoard[0].Length - 1, 1) == "r" && currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
+                        queenCastleBlack = false;
                 }
-                // check if left rook is moved -> white queen castle
-                if (currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
-                    //if (previousBoard[0].Substring(previousBoard[0].Length - 1, 1) == "r" && currentBoard[0].Substring(currentBoard[0].Length - 1, 1) != "r")
-                    queenCastleBlack = false;
             }
             catch (Exception ex)
             {
