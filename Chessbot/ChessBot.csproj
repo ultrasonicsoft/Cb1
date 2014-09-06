@@ -38,6 +38,9 @@
     <ApplicationIcon>flying-robot.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BotSuite">
+      <HintPath>..\..\..\..\Downloads\BotSuite-master\BotSuite-master\BotSuite\bin\Debug\BotSuite.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV">
       <HintPath>C:\Emgu\emgucv-windows-universal-cuda 2.9.0.1922\bin\Emgu.CV.dll</HintPath>
     </Reference>

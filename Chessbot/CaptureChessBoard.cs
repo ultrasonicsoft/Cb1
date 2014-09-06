@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
+using BotSuite;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using System.Diagnostics;
@@ -1141,7 +1142,9 @@ namespace OpenCVDemo1
                         //g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 20, 20));
                         //g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
                     }
-
+                    Point startPoint = new Point(oldPosition.X , oldPosition.Y );
+                    Point endPoint = new Point(newPosition.X , newPosition.Y);
+                    Mouse.DragAndDrop(startPoint,endPoint,false);
                 }
                 //  ReleaseDC(desktop);
             }
