@@ -36,6 +36,17 @@
             this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.txtFENString = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.rbtnNoBlackCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnBlackQueenCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnBlackKingCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnBothBlackCastling = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rbtnNoWhiteCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnWhiteQueenCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnWhiteKingCastling = new System.Windows.Forms.RadioButton();
+            this.rbtnBothWhiteCastling = new System.Windows.Forms.RadioButton();
             this.txtBoardConfiguration = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -58,6 +69,7 @@
             this.pbCurrentMarker = new System.Windows.Forms.PictureBox();
             this.txtRefreshMarkerInterval = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveTemplate = new System.Windows.Forms.Button();
             this.txtPadding = new System.Windows.Forms.TextBox();
@@ -114,18 +126,8 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.rbtnBothWhiteCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnWhiteKingCastling = new System.Windows.Forms.RadioButton();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.rbtnBlackQueenCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnBlackKingCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnBothBlackCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnWhiteQueenCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnNoWhiteCastling = new System.Windows.Forms.RadioButton();
-            this.rbtnNoBlackCastling = new System.Windows.Forms.RadioButton();
-            this.txtFENString = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cbDrawNextMoveOnScreen = new System.Windows.Forms.CheckBox();
+            this.cbAutoMove = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -134,6 +136,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbScreen)).BeginInit();
             this.tbctrController.SuspendLayout();
             this.tbHome.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -146,8 +150,6 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -213,6 +215,8 @@
             // 
             // tbHome
             // 
+            this.tbHome.Controls.Add(this.cbAutoMove);
+            this.tbHome.Controls.Add(this.cbDrawNextMoveOnScreen);
             this.tbHome.Controls.Add(this.txtFENString);
             this.tbHome.Controls.Add(this.groupBox7);
             this.tbHome.Controls.Add(this.groupBox4);
@@ -229,6 +233,124 @@
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // txtFENString
+            // 
+            this.txtFENString.Location = new System.Drawing.Point(582, 143);
+            this.txtFENString.Multiline = true;
+            this.txtFENString.Name = "txtFENString";
+            this.txtFENString.Size = new System.Drawing.Size(174, 36);
+            this.txtFENString.TabIndex = 67;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.rbtnNoBlackCastling);
+            this.groupBox7.Controls.Add(this.rbtnBlackQueenCastling);
+            this.groupBox7.Controls.Add(this.rbtnBlackKingCastling);
+            this.groupBox7.Controls.Add(this.rbtnBothBlackCastling);
+            this.groupBox7.Location = new System.Drawing.Point(582, 67);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(174, 48);
+            this.groupBox7.TabIndex = 66;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Black Castling";
+            // 
+            // rbtnNoBlackCastling
+            // 
+            this.rbtnNoBlackCastling.AutoSize = true;
+            this.rbtnNoBlackCastling.Location = new System.Drawing.Point(135, 20);
+            this.rbtnNoBlackCastling.Name = "rbtnNoBlackCastling";
+            this.rbtnNoBlackCastling.Size = new System.Drawing.Size(31, 17);
+            this.rbtnNoBlackCastling.TabIndex = 72;
+            this.rbtnNoBlackCastling.Text = "n";
+            this.rbtnNoBlackCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnBlackQueenCastling
+            // 
+            this.rbtnBlackQueenCastling.AutoSize = true;
+            this.rbtnBlackQueenCastling.Location = new System.Drawing.Point(101, 21);
+            this.rbtnBlackQueenCastling.Name = "rbtnBlackQueenCastling";
+            this.rbtnBlackQueenCastling.Size = new System.Drawing.Size(31, 17);
+            this.rbtnBlackQueenCastling.TabIndex = 72;
+            this.rbtnBlackQueenCastling.Text = "q";
+            this.rbtnBlackQueenCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnBlackKingCastling
+            // 
+            this.rbtnBlackKingCastling.AutoSize = true;
+            this.rbtnBlackKingCastling.Location = new System.Drawing.Point(55, 22);
+            this.rbtnBlackKingCastling.Name = "rbtnBlackKingCastling";
+            this.rbtnBlackKingCastling.Size = new System.Drawing.Size(31, 17);
+            this.rbtnBlackKingCastling.TabIndex = 71;
+            this.rbtnBlackKingCastling.Text = "k";
+            this.rbtnBlackKingCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnBothBlackCastling
+            // 
+            this.rbtnBothBlackCastling.AutoSize = true;
+            this.rbtnBothBlackCastling.Checked = true;
+            this.rbtnBothBlackCastling.Location = new System.Drawing.Point(9, 22);
+            this.rbtnBothBlackCastling.Name = "rbtnBothBlackCastling";
+            this.rbtnBothBlackCastling.Size = new System.Drawing.Size(37, 17);
+            this.rbtnBothBlackCastling.TabIndex = 69;
+            this.rbtnBothBlackCastling.TabStop = true;
+            this.rbtnBothBlackCastling.Text = "kq";
+            this.rbtnBothBlackCastling.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.rbtnNoWhiteCastling);
+            this.groupBox4.Controls.Add(this.rbtnWhiteQueenCastling);
+            this.groupBox4.Controls.Add(this.rbtnWhiteKingCastling);
+            this.groupBox4.Controls.Add(this.rbtnBothWhiteCastling);
+            this.groupBox4.Location = new System.Drawing.Point(582, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(174, 51);
+            this.groupBox4.TabIndex = 66;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "White Castling";
+            // 
+            // rbtnNoWhiteCastling
+            // 
+            this.rbtnNoWhiteCastling.AutoSize = true;
+            this.rbtnNoWhiteCastling.Location = new System.Drawing.Point(135, 22);
+            this.rbtnNoWhiteCastling.Name = "rbtnNoWhiteCastling";
+            this.rbtnNoWhiteCastling.Size = new System.Drawing.Size(33, 17);
+            this.rbtnNoWhiteCastling.TabIndex = 68;
+            this.rbtnNoWhiteCastling.Text = "N";
+            this.rbtnNoWhiteCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnWhiteQueenCastling
+            // 
+            this.rbtnWhiteQueenCastling.AutoSize = true;
+            this.rbtnWhiteQueenCastling.Location = new System.Drawing.Point(101, 21);
+            this.rbtnWhiteQueenCastling.Name = "rbtnWhiteQueenCastling";
+            this.rbtnWhiteQueenCastling.Size = new System.Drawing.Size(33, 17);
+            this.rbtnWhiteQueenCastling.TabIndex = 68;
+            this.rbtnWhiteQueenCastling.Text = "Q";
+            this.rbtnWhiteQueenCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnWhiteKingCastling
+            // 
+            this.rbtnWhiteKingCastling.AutoSize = true;
+            this.rbtnWhiteKingCastling.Location = new System.Drawing.Point(55, 22);
+            this.rbtnWhiteKingCastling.Name = "rbtnWhiteKingCastling";
+            this.rbtnWhiteKingCastling.Size = new System.Drawing.Size(32, 17);
+            this.rbtnWhiteKingCastling.TabIndex = 67;
+            this.rbtnWhiteKingCastling.Text = "K";
+            this.rbtnWhiteKingCastling.UseVisualStyleBackColor = true;
+            // 
+            // rbtnBothWhiteCastling
+            // 
+            this.rbtnBothWhiteCastling.AutoSize = true;
+            this.rbtnBothWhiteCastling.Checked = true;
+            this.rbtnBothWhiteCastling.Location = new System.Drawing.Point(9, 22);
+            this.rbtnBothWhiteCastling.Name = "rbtnBothWhiteCastling";
+            this.rbtnBothWhiteCastling.Size = new System.Drawing.Size(40, 17);
+            this.rbtnBothWhiteCastling.TabIndex = 38;
+            this.rbtnBothWhiteCastling.TabStop = true;
+            this.rbtnBothWhiteCastling.Text = "KQ";
+            this.rbtnBothWhiteCastling.UseVisualStyleBackColor = true;
             // 
             // txtBoardConfiguration
             // 
@@ -451,6 +573,15 @@
             this.label18.Size = new System.Drawing.Size(92, 13);
             this.label18.TabIndex = 21;
             this.label18.Text = "Scan Interval (ms)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(579, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "FEN String:";
             // 
             // groupBox5
             // 
@@ -1023,132 +1154,29 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
-            // groupBox4
+            // cbDrawNextMoveOnScreen
             // 
-            this.groupBox4.Controls.Add(this.rbtnNoWhiteCastling);
-            this.groupBox4.Controls.Add(this.rbtnWhiteQueenCastling);
-            this.groupBox4.Controls.Add(this.rbtnWhiteKingCastling);
-            this.groupBox4.Controls.Add(this.rbtnBothWhiteCastling);
-            this.groupBox4.Location = new System.Drawing.Point(582, 6);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(174, 51);
-            this.groupBox4.TabIndex = 66;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "White Castling";
+            this.cbDrawNextMoveOnScreen.AutoSize = true;
+            this.cbDrawNextMoveOnScreen.Checked = true;
+            this.cbDrawNextMoveOnScreen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbDrawNextMoveOnScreen.Location = new System.Drawing.Point(582, 185);
+            this.cbDrawNextMoveOnScreen.Name = "cbDrawNextMoveOnScreen";
+            this.cbDrawNextMoveOnScreen.Size = new System.Drawing.Size(160, 17);
+            this.cbDrawNextMoveOnScreen.TabIndex = 38;
+            this.cbDrawNextMoveOnScreen.Text = "Draw Next Move On Screen";
+            this.cbDrawNextMoveOnScreen.UseVisualStyleBackColor = true;
             // 
-            // rbtnBothWhiteCastling
+            // cbAutoMove
             // 
-            this.rbtnBothWhiteCastling.AutoSize = true;
-            this.rbtnBothWhiteCastling.Checked = true;
-            this.rbtnBothWhiteCastling.Location = new System.Drawing.Point(9, 22);
-            this.rbtnBothWhiteCastling.Name = "rbtnBothWhiteCastling";
-            this.rbtnBothWhiteCastling.Size = new System.Drawing.Size(40, 17);
-            this.rbtnBothWhiteCastling.TabIndex = 38;
-            this.rbtnBothWhiteCastling.TabStop = true;
-            this.rbtnBothWhiteCastling.Text = "KQ";
-            this.rbtnBothWhiteCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnWhiteKingCastling
-            // 
-            this.rbtnWhiteKingCastling.AutoSize = true;
-            this.rbtnWhiteKingCastling.Location = new System.Drawing.Point(55, 22);
-            this.rbtnWhiteKingCastling.Name = "rbtnWhiteKingCastling";
-            this.rbtnWhiteKingCastling.Size = new System.Drawing.Size(32, 17);
-            this.rbtnWhiteKingCastling.TabIndex = 67;
-            this.rbtnWhiteKingCastling.Text = "K";
-            this.rbtnWhiteKingCastling.UseVisualStyleBackColor = true;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.rbtnNoBlackCastling);
-            this.groupBox7.Controls.Add(this.rbtnBlackQueenCastling);
-            this.groupBox7.Controls.Add(this.rbtnBlackKingCastling);
-            this.groupBox7.Controls.Add(this.rbtnBothBlackCastling);
-            this.groupBox7.Location = new System.Drawing.Point(582, 67);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(174, 48);
-            this.groupBox7.TabIndex = 66;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Black Castling";
-            // 
-            // rbtnBlackQueenCastling
-            // 
-            this.rbtnBlackQueenCastling.AutoSize = true;
-            this.rbtnBlackQueenCastling.Location = new System.Drawing.Point(101, 21);
-            this.rbtnBlackQueenCastling.Name = "rbtnBlackQueenCastling";
-            this.rbtnBlackQueenCastling.Size = new System.Drawing.Size(31, 17);
-            this.rbtnBlackQueenCastling.TabIndex = 72;
-            this.rbtnBlackQueenCastling.Text = "q";
-            this.rbtnBlackQueenCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnBlackKingCastling
-            // 
-            this.rbtnBlackKingCastling.AutoSize = true;
-            this.rbtnBlackKingCastling.Location = new System.Drawing.Point(55, 22);
-            this.rbtnBlackKingCastling.Name = "rbtnBlackKingCastling";
-            this.rbtnBlackKingCastling.Size = new System.Drawing.Size(31, 17);
-            this.rbtnBlackKingCastling.TabIndex = 71;
-            this.rbtnBlackKingCastling.Text = "k";
-            this.rbtnBlackKingCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnBothBlackCastling
-            // 
-            this.rbtnBothBlackCastling.AutoSize = true;
-            this.rbtnBothBlackCastling.Checked = true;
-            this.rbtnBothBlackCastling.Location = new System.Drawing.Point(9, 22);
-            this.rbtnBothBlackCastling.Name = "rbtnBothBlackCastling";
-            this.rbtnBothBlackCastling.Size = new System.Drawing.Size(37, 17);
-            this.rbtnBothBlackCastling.TabIndex = 69;
-            this.rbtnBothBlackCastling.TabStop = true;
-            this.rbtnBothBlackCastling.Text = "kq";
-            this.rbtnBothBlackCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnWhiteQueenCastling
-            // 
-            this.rbtnWhiteQueenCastling.AutoSize = true;
-            this.rbtnWhiteQueenCastling.Location = new System.Drawing.Point(101, 21);
-            this.rbtnWhiteQueenCastling.Name = "rbtnWhiteQueenCastling";
-            this.rbtnWhiteQueenCastling.Size = new System.Drawing.Size(33, 17);
-            this.rbtnWhiteQueenCastling.TabIndex = 68;
-            this.rbtnWhiteQueenCastling.Text = "Q";
-            this.rbtnWhiteQueenCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnNoWhiteCastling
-            // 
-            this.rbtnNoWhiteCastling.AutoSize = true;
-            this.rbtnNoWhiteCastling.Location = new System.Drawing.Point(135, 22);
-            this.rbtnNoWhiteCastling.Name = "rbtnNoWhiteCastling";
-            this.rbtnNoWhiteCastling.Size = new System.Drawing.Size(33, 17);
-            this.rbtnNoWhiteCastling.TabIndex = 68;
-            this.rbtnNoWhiteCastling.Text = "N";
-            this.rbtnNoWhiteCastling.UseVisualStyleBackColor = true;
-            // 
-            // rbtnNoBlackCastling
-            // 
-            this.rbtnNoBlackCastling.AutoSize = true;
-            this.rbtnNoBlackCastling.Location = new System.Drawing.Point(135, 20);
-            this.rbtnNoBlackCastling.Name = "rbtnNoBlackCastling";
-            this.rbtnNoBlackCastling.Size = new System.Drawing.Size(31, 17);
-            this.rbtnNoBlackCastling.TabIndex = 72;
-            this.rbtnNoBlackCastling.Text = "n";
-            this.rbtnNoBlackCastling.UseVisualStyleBackColor = true;
-            // 
-            // txtFENString
-            // 
-            this.txtFENString.Location = new System.Drawing.Point(582, 143);
-            this.txtFENString.Multiline = true;
-            this.txtFENString.Name = "txtFENString";
-            this.txtFENString.Size = new System.Drawing.Size(174, 36);
-            this.txtFENString.TabIndex = 67;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(579, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "FEN String:";
+            this.cbAutoMove.AutoSize = true;
+            this.cbAutoMove.Checked = true;
+            this.cbAutoMove.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAutoMove.Location = new System.Drawing.Point(582, 208);
+            this.cbAutoMove.Name = "cbAutoMove";
+            this.cbAutoMove.Size = new System.Drawing.Size(149, 17);
+            this.cbAutoMove.TabIndex = 68;
+            this.cbAutoMove.Text = "Do Auto Move On Screen";
+            this.cbAutoMove.UseVisualStyleBackColor = true;
             // 
             // CaptureChessBoard
             // 
@@ -1176,6 +1204,10 @@
             this.tbctrController.ResumeLayout(false);
             this.tbHome.ResumeLayout(false);
             this.tbHome.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbIntensityTest)).EndInit();
@@ -1196,10 +1228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1304,5 +1332,7 @@
         private System.Windows.Forms.RadioButton rbtnNoWhiteCastling;
         private System.Windows.Forms.TextBox txtFENString;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cbDrawNextMoveOnScreen;
+        private System.Windows.Forms.CheckBox cbAutoMove;
     }
 }

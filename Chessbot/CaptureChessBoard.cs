@@ -636,7 +636,7 @@ namespace OpenCVDemo1
                 rbtnBothBlackCastling.Checked = true;
                 rbtnBlackKingCastling.Checked = false;
                 rbtnBlackQueenCastling.Checked = false;
-                
+
                 if (IsEngineRunning())
                 {
                     //CurrentEngineSettings = new EngineConfigurationSettings();
@@ -668,32 +668,32 @@ namespace OpenCVDemo1
 
         private void ApplyEngineSettings()
         {
-                string command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_CONTEMP_FACTOR_TYPE,CurrentEngineSettings.ContemptFactorValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MIN_SPLIT_DEPTH, CurrentEngineSettings.MinSplitDepthValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_THREADS, CurrentEngineSettings.ThreadValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_HASH, CurrentEngineSettings.HashValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MULTI_PV, CurrentEngineSettings.MultiPVValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_PONDER, CurrentEngineSettings.Ponder.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SKILL_LEVEL, CurrentEngineSettings.SkillLevelValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_HORIZON, CurrentEngineSettings.MoveHorizonValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_BASE_TIME, CurrentEngineSettings.BaseTimeValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_TIME, CurrentEngineSettings.MoveTimeValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_THINKING_TIME, CurrentEngineSettings.ThinkingTimeValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SLOW_MOVER, CurrentEngineSettings.SlowMoverValue.ToString());
-                Engine.EngineCommand(command);
-                command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_UC_CHESS960, CurrentEngineSettings.UC_960.ToString());
-                Engine.EngineCommand(command);
+            string command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_CONTEMP_FACTOR_TYPE, CurrentEngineSettings.ContemptFactorValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MIN_SPLIT_DEPTH, CurrentEngineSettings.MinSplitDepthValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_THREADS, CurrentEngineSettings.ThreadValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_HASH, CurrentEngineSettings.HashValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_MULTI_PV, CurrentEngineSettings.MultiPVValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_PONDER, CurrentEngineSettings.Ponder.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SKILL_LEVEL, CurrentEngineSettings.SkillLevelValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_HORIZON, CurrentEngineSettings.MoveHorizonValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_BASE_TIME, CurrentEngineSettings.BaseTimeValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_MOVE_TIME, CurrentEngineSettings.MoveTimeValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_EMG_THINKING_TIME, CurrentEngineSettings.ThinkingTimeValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_SLOW_MOVER, CurrentEngineSettings.SlowMoverValue.ToString());
+            Engine.EngineCommand(command);
+            command = string.Format(Constants.UPDATE_COMMAND, Constants.UPDATE_UC_CHESS960, CurrentEngineSettings.UC_960.ToString());
+            Engine.EngineCommand(command);
         }
 
         private bool IsEngineRunning()
@@ -938,6 +938,75 @@ namespace OpenCVDemo1
             }
             //LogHelper.logger.Info("btnDeleteTemplate_Click finished...");
         }
+
+        private void cbEnableLogging_CheckedChanged(object sender, EventArgs e)
+        {
+            LogHelper.SetLoggingState(cbEnableLogging.Checked);
+        }
+
+        private void txtStandardMatchingFactor_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged called...");
+                ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
+            }
+            catch (Exception exception)
+            {
+                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.Message);
+                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.StackTrace);
+                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged finished...");
+        }
+
+        private void txtHighlightDuration_TextChanged(object sender, EventArgs e)
+        {
+            int duration = NextMoveHighlightDuration;
+            if (int.TryParse(txtHighlightDuration.Text, out duration))
+            {
+                NextMoveHighlightDuration = duration;
+            }
+        }
+
+        private void btnUpdatedSelection_Click(object sender, EventArgs e)
+        {
+            int left = 0;
+            int top = 0;
+            int width = 0;
+            int height = 0;
+
+
+            int.TryParse(txtSelectedLeft.Text, out left);
+            int.TryParse(txtSelectedTop.Text, out top);
+            int.TryParse(txtSelectedWidth.Text, out width);
+            int.TryParse(txtSelectedHeight.Text, out height);
+
+            int diffWidth = width - croprect.Width;
+            int diffHeigght = height - croprect.Height;
+
+            ep = new Point(ep.X + diffWidth, ep.Y + diffHeigght);
+            croprect = new Rectangle(left, top, width, height);
+            pbScreen.Invalidate();
+        }
+        private void tbIntensity_Scroll(object sender, EventArgs e)
+        {
+            txtIntensity.Text = tbIntensity.Value.ToString();
+            RefreshGrayImage();
+        }
+
+        private void btnEngineConfiguration_Click(object sender, EventArgs e)
+        {
+            EngineConfiguration engineConfigurationForm = new EngineConfiguration(Engine);
+            engineConfigurationForm.Show();
+        }
+
+        private void btnShowTextConfiguration_Click(object sender, EventArgs e)
+        {
+            BoardConfigurationTextVersion boardConfigurationTextVersion = new BoardConfigurationTextVersion();
+            boardConfigurationTextVersion.TextBoardConfiguration = ImageProcessingManager.TextChessboardConfiguration.ToString();
+            boardConfigurationTextVersion.Show();
+        }
         #endregion
 
         #region Drawing Methods
@@ -1097,54 +1166,63 @@ namespace OpenCVDemo1
         {
             try
             {
-                //LogHelper.logger.Info("DrawOnDesktopNextMove called...");
-                if (desktop == IntPtr.Zero)
+                int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
+                int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * PieceSize;
+
+                int size = int.Parse(txtHighlightBoxSize.Text);
+                startX += (PieceSize / 2) - (size / 2);
+                startY += PieceSize / 2 - (size / 2);
+
+                // Draw next move position
+                int startNewX = ScreenBoardCoordinates.X + chessDrawingNextColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
+                int startNewY = ScreenBoardCoordinates.Y + chessDrawingNextRowIndex * PieceSize;
+
+                startNewX += (PieceSize / 2) - (size / 2);
+                startNewY += (PieceSize / 2) - (size / 2);
+
+                Rectangle oldPosition = new Rectangle(startX, startY, size, size);
+                Rectangle newPosition = new Rectangle(startNewX, startNewY, size, size);
+
+                if (cbDrawNextMoveOnScreen.Checked)
                 {
-                    desktop = GetDC(IntPtr.Zero);
-                }
-                else
-                {
-                    desktop = IntPtr.Zero;
-                    desktop = GetDC(IntPtr.Zero);
-                }
-                using (Graphics g = Graphics.FromHdc(desktop))
-                {
-                    //g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
-
-                    //int chessboardPieceSize = GetChessboardPieceSize();
-                    // Draw current position
-                    int startX = ScreenBoardCoordinates.X + chessDrawingColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
-                    int startY = ScreenBoardCoordinates.Y + chessDrawingRowIndex * PieceSize;
-
-                    int size = int.Parse(txtHighlightBoxSize.Text);
-                    startX += (PieceSize / 2) - (size/2);
-                    startY += PieceSize / 2 - (size / 2);
-
-                    // Draw next move position
-                    int startNewX = ScreenBoardCoordinates.X + chessDrawingNextColumnIndex * PieceSize; // TODO: calculate each block height and width instead of 64
-                    int startNewY = ScreenBoardCoordinates.Y + chessDrawingNextRowIndex * PieceSize;
-
-                    startNewX += (PieceSize / 2) - (size / 2);
-                    startNewY += (PieceSize / 2) - (size / 2);
-
-                    Pen oldPen = new Pen(Color.Red, 5);
-                    Pen newPen = new Pen(Color.Blue, 5);
-
-                    Rectangle oldPosition = new Rectangle(startX , startY , size, size);
-                    Rectangle newPosition = new Rectangle(startNewX , startNewY , size, size);
-                    for (int i = 0; i < NextMoveHighlightDuration; i++)
+                    if (desktop == IntPtr.Zero)
                     {
-                        //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
-                        //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
-
-                        g.FillRectangle(Brushes.Red, oldPosition);
-                        g.FillRectangle(Brushes.Blue, newPosition);
-                        //g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 20, 20));
-                        //g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
+                        desktop = GetDC(IntPtr.Zero);
                     }
-                    Point startPoint = new Point(oldPosition.X , oldPosition.Y );
-                    Point endPoint = new Point(newPosition.X , newPosition.Y);
-                    Mouse.DragAndDrop(startPoint,endPoint,false);
+                    else
+                    {
+                        desktop = IntPtr.Zero;
+                        desktop = GetDC(IntPtr.Zero);
+                    }
+                    using (Graphics g = Graphics.FromHdc(desktop))
+                    {
+                        //g.DrawRectangle(Pens.Red, ScreenBoardCoordinates);
+
+                        //int chessboardPieceSize = GetChessboardPieceSize();
+                        // Draw current position
+
+
+                        Pen oldPen = new Pen(Color.Red, 5);
+                        Pen newPen = new Pen(Color.Blue, 5);
+
+
+                        for (int i = 0; i < NextMoveHighlightDuration; i++)
+                        {
+                            //g.DrawRectangle(Pens.Red, new Rectangle(startX + 5, startY + 5, 50, 50));
+                            //g.DrawRectangle(Pens.Blue, new Rectangle(startNewX + 5, startNewY + 5, 50, 50));
+
+                            g.FillRectangle(Brushes.Red, oldPosition);
+                            g.FillRectangle(Brushes.Blue, newPosition);
+                            //g.DrawRectangle(oldPen, new Rectangle(startX + 5, startY + 5, 20, 20));
+                            //g.DrawRectangle(newPen, new Rectangle(startNewX + 5, startNewY + 5, 20, 20));
+                        }
+                    }
+                }
+                if (cbAutoMove.Checked)
+                {
+                    Point startPoint = new Point(oldPosition.X, oldPosition.Y);
+                    Point endPoint = new Point(newPosition.X, newPosition.Y);
+                    Mouse.DragAndDrop(startPoint, endPoint, false);
                 }
                 //  ReleaseDC(desktop);
             }
@@ -1531,7 +1609,7 @@ namespace OpenCVDemo1
 
         private void UpdateCastlingInformation(bool setUIValues)
         {
-            if(setUIValues)
+            if (setUIValues)
             {
                 if (ImageProcessingManager.KingCastleWhite && ImageProcessingManager.QueenCastleWhite)
                     rbtnBothWhiteCastling.Checked = true;
@@ -1553,7 +1631,7 @@ namespace OpenCVDemo1
             }
         }
 
-   
+
         private void CheckWhosTurnToPlay()
         {
             try
@@ -1609,7 +1687,7 @@ namespace OpenCVDemo1
             get { return myVar; }
             set { myVar = value; }
         }
-        
+
         private void RefreshGrayImage()
         {
             try
@@ -1748,77 +1826,9 @@ namespace OpenCVDemo1
         }
         #endregion
 
-        private void cbEnableLogging_CheckedChanged(object sender, EventArgs e)
-        {
-            LogHelper.SetLoggingState(cbEnableLogging.Checked);
-        }
-
-        private void txtStandardMatchingFactor_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged called...");
-                ImageProcessingManager.StandardMatchingFactor = (double)(int.Parse(txtStandardMatchingFactor.Text) / 100.0);
-            }
-            catch (Exception exception)
-            {
-                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.Message);
-                LogHelper.logger.Error("txtStandardMatchingFactor_TextChanged: " + exception.StackTrace);
-                MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //LogHelper.logger.Info("txtStandardMatchingFactor_TextChanged finished...");
-        }
-
-        private void txtHighlightDuration_TextChanged(object sender, EventArgs e)
-        {
-            int duration = NextMoveHighlightDuration;
-            if (int.TryParse(txtHighlightDuration.Text, out duration))
-            {
-                NextMoveHighlightDuration = duration;
-            }
-        }
-
-        private void btnUpdatedSelection_Click(object sender, EventArgs e)
-        {
-            int left = 0;
-            int top = 0;
-            int width = 0;
-            int height = 0;
 
 
-            int.TryParse(txtSelectedLeft.Text, out left);
-            int.TryParse(txtSelectedTop.Text, out top);
-            int.TryParse(txtSelectedWidth.Text, out width);
-            int.TryParse(txtSelectedHeight.Text, out height);
 
-            int diffWidth = width - croprect.Width;
-            int diffHeigght = height - croprect.Height;
-
-            ep = new Point(ep.X + diffWidth, ep.Y + diffHeigght);
-            croprect = new Rectangle(left, top, width, height);
-            pbScreen.Invalidate();
-        }
-
-        private void tbIntensity_Scroll(object sender, EventArgs e)
-        {
-            txtIntensity.Text = tbIntensity.Value.ToString();
-            RefreshGrayImage();
-        }
-
-        private void btnEngineConfiguration_Click(object sender, EventArgs e)
-        {
-            EngineConfiguration engineConfigurationForm = new EngineConfiguration(Engine);
-            engineConfigurationForm.Show();
-        }
-
-        private void btnShowTextConfiguration_Click(object sender, EventArgs e)
-        {
-            BoardConfigurationTextVersion boardConfigurationTextVersion = new BoardConfigurationTextVersion();
-            boardConfigurationTextVersion.TextBoardConfiguration = ImageProcessingManager.TextChessboardConfiguration.ToString();
-            boardConfigurationTextVersion.Show();
-        }
-
-        
 
     }
 }
