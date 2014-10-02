@@ -456,18 +456,11 @@ namespace OpenCVDemo1
         {
             try
             {
-                //LogHelper.logger.Info("btnShowBoardConfiguration_Click called...");
-                if (ImageProcessingManager.allChessBoardTemplate == null)
-                {
-                    MessageBox.Show("Template not loaded.");
-                    return;
-                }
                 GetBestMove();
             }
             catch (Exception exception)
             {
                 LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.Message);
-                LogHelper.logger.Error("btnShowBoardConfiguration_Click: " + exception.StackTrace);
                 MessageBox.Show("An error occurred. Please restart bot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             //LogHelper.logger.Info("btnShowBoardConfiguration_Click finished...");
@@ -1654,12 +1647,16 @@ namespace OpenCVDemo1
                         {
 
                             lblWhosMove.Text = "User Move";
+
                             if (hasComputerPlayed)
                             //if (hasComputerPlayed && showNextMove.BestMove != null && string.Equals(showNextMove.BestMove, nextMove) == false)
                             {
                                 IsComputingNextMove = true;
                                 //TODO: Check what can be done here for next move
                                 //GetBestMove();
+                                LogHelper.logger.Info("Getting auto best move for current user...");
+                                GetBestMove();
+
                             }
                             hasComputerPlayed = false;
                         }
@@ -1729,6 +1726,13 @@ namespace OpenCVDemo1
         {
             try
             {
+                //LogHelper.logger.Info("btnShowBoardConfiguration_Click called...");
+                if (ImageProcessingManager.allChessBoardTemplate == null)
+                {
+                    MessageBox.Show("Template not loaded.");
+                    return;
+                }
+
                 //LogHelper.logger.Info("GetBestMove called...");
                 IsComputingNextMove = true;
                 if (ScanBoardAgain() == false)

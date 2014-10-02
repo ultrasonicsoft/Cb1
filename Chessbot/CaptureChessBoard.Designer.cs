@@ -36,6 +36,8 @@
             this.pbScreen = new System.Windows.Forms.PictureBox();
             this.tbctrController = new System.Windows.Forms.TabControl();
             this.tbHome = new System.Windows.Forms.TabPage();
+            this.cbAutoMove = new System.Windows.Forms.CheckBox();
+            this.cbDrawNextMoveOnScreen = new System.Windows.Forms.CheckBox();
             this.txtFENString = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.rbtnNoBlackCastling = new System.Windows.Forms.RadioButton();
@@ -126,8 +128,6 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbDrawNextMoveOnScreen = new System.Windows.Forms.CheckBox();
-            this.cbAutoMove = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -233,6 +233,28 @@
             this.tbHome.TabIndex = 0;
             this.tbHome.Text = "Control Panel";
             this.tbHome.UseVisualStyleBackColor = true;
+            // 
+            // cbAutoMove
+            // 
+            this.cbAutoMove.AutoSize = true;
+            this.cbAutoMove.Checked = true;
+            this.cbAutoMove.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAutoMove.Location = new System.Drawing.Point(582, 208);
+            this.cbAutoMove.Name = "cbAutoMove";
+            this.cbAutoMove.Size = new System.Drawing.Size(149, 17);
+            this.cbAutoMove.TabIndex = 68;
+            this.cbAutoMove.Text = "Do Auto Move On Screen";
+            this.cbAutoMove.UseVisualStyleBackColor = true;
+            // 
+            // cbDrawNextMoveOnScreen
+            // 
+            this.cbDrawNextMoveOnScreen.AutoSize = true;
+            this.cbDrawNextMoveOnScreen.Location = new System.Drawing.Point(582, 185);
+            this.cbDrawNextMoveOnScreen.Name = "cbDrawNextMoveOnScreen";
+            this.cbDrawNextMoveOnScreen.Size = new System.Drawing.Size(160, 17);
+            this.cbDrawNextMoveOnScreen.TabIndex = 38;
+            this.cbDrawNextMoveOnScreen.Text = "Draw Next Move On Screen";
+            this.cbDrawNextMoveOnScreen.UseVisualStyleBackColor = true;
             // 
             // txtFENString
             // 
@@ -1153,30 +1175,6 @@
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
-            // 
-            // cbDrawNextMoveOnScreen
-            // 
-            this.cbDrawNextMoveOnScreen.AutoSize = true;
-            this.cbDrawNextMoveOnScreen.Checked = true;
-            this.cbDrawNextMoveOnScreen.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbDrawNextMoveOnScreen.Location = new System.Drawing.Point(582, 185);
-            this.cbDrawNextMoveOnScreen.Name = "cbDrawNextMoveOnScreen";
-            this.cbDrawNextMoveOnScreen.Size = new System.Drawing.Size(160, 17);
-            this.cbDrawNextMoveOnScreen.TabIndex = 38;
-            this.cbDrawNextMoveOnScreen.Text = "Draw Next Move On Screen";
-            this.cbDrawNextMoveOnScreen.UseVisualStyleBackColor = true;
-            // 
-            // cbAutoMove
-            // 
-            this.cbAutoMove.AutoSize = true;
-            this.cbAutoMove.Checked = true;
-            this.cbAutoMove.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbAutoMove.Location = new System.Drawing.Point(582, 208);
-            this.cbAutoMove.Name = "cbAutoMove";
-            this.cbAutoMove.Size = new System.Drawing.Size(149, 17);
-            this.cbAutoMove.TabIndex = 68;
-            this.cbAutoMove.Text = "Do Auto Move On Screen";
-            this.cbAutoMove.UseVisualStyleBackColor = true;
             // 
             // CaptureChessBoard
             // 
