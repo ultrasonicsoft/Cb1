@@ -1635,12 +1635,13 @@ namespace OpenCVDemo1
                 {
                     if (cbTriggerMarker.Checked && pbTriggerImage.Image != null)
                     {
-                        Image currentScreen = ImageProcessingManager.TakeScreenShot();
-
+                        //Image currentScreen = ImageProcessingManager.TakeScreenShot();
+                        
                         if (TriggerCoordinates.IsEmpty)
                             return;
 
-                        pbCurrentMarker.Image = ((Bitmap)currentScreen).Clone(TriggerCoordinates, currentScreen.PixelFormat);
+                        pbCurrentMarker.Image = ImageProcessingManager.TakePartialScreenShot(TriggerCoordinates);
+                        //pbCurrentMarker.Image = ((Bitmap)currentScreen).Clone(TriggerCoordinates, currentScreen.PixelFormat);
 
                         Image<Gray, Byte> currentMarker = new Image<Gray, byte>(pbCurrentMarker.Image as Bitmap);
                         Image<Gray, Byte> triggerMarker = new Image<Gray, byte>(pbTriggerImage.Image as Bitmap);

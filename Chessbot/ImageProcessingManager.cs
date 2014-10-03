@@ -151,6 +151,62 @@ namespace OpenCVDemo1
             return capturedScreen;
         }
 
+        public static Image TakePartialScreenShot(Rectangle scanArea)
+        {
+            Image capturedScreen = null;
+
+            LogHelper.logger.Info("TakePartialScreenShot called...");
+            try
+            {
+                using (Bitmap bitmap = new Bitmap(scanArea.Width, scanArea.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(bitmap))
+                    {
+                        //g.CopyFromScreen(Point.Empty, Point.Empty, scanArea.Size);
+                        g.CopyFromScreen(new Point(scanArea.Left, scanArea.Top), Point.Empty, scanArea.Size);
+                    }
+                    System.IO.Stream imageStream = new MemoryStream();
+
+                    //EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    //System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                    //EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder,100L);
+                    //myEncoderParameters.Param[0] = myEncoderParameter;
+                    //ImageCodecInfo jgpEncoder = GetEncoder(ImageFormat.Jpeg);
+                    //bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
+
+                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                    EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+                    myEncoderParameters.Param[0] = myEncoderParameter;
+                    ImageCodecInfo jgpEncoder = Helper.GetEncoder(ImageFormat.Png);
+                    bitmap.Save(imageStream, jgpEncoder, myEncoderParameters);
+
+                    //bitmap.Save(imageStream, ImageFormat.Jpeg);
+                    //bitmap.Save("screen.jpg", ImageFormat.Jpeg);
+                    capturedScreen = Image.FromStream(imageStream); ;
+                    //capturedScreen = Image.FromFile("screen.jpg");
+                }
+
+                // Capture only Active Window ************
+
+                //Rectangle bounds = this.Bounds;
+                //using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+                //{
+                //    using (Graphics g = Graphics.FromImage(bitmap))
+                //    {
+                //        g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                //    }
+                //    bitmap.Save("C://test.jpg", ImageFormat.Jpeg);
+                //}
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show("An error occurred. Please restart bot in TakePartialScreenShot", "Chessbot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LogHelper.logger.Info("TakePartialScreenShot finished...");
+
+            return capturedScreen;
+        }
 
         public static void ConvertImageToGrayScale(Bitmap image)
         {
