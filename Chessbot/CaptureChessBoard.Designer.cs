@@ -1191,7 +1191,7 @@
             this.txtTriggerDelay.Name = "txtTriggerDelay";
             this.txtTriggerDelay.Size = new System.Drawing.Size(20, 20);
             this.txtTriggerDelay.TabIndex = 66;
-            this.txtTriggerDelay.Text = "50";
+            this.txtTriggerDelay.Text = "200";
             // 
             // label3
             // 
