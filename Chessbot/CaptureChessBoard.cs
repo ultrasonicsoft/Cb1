@@ -517,6 +517,7 @@ namespace OpenCVDemo1
                 ScreenBoardCoordinates = croprect;
                 TriggerCoordinates = croprect;
                 pbTriggerImage.Image = ((Bitmap)CapturedScreen).Clone(croprect, CapturedScreen.PixelFormat);
+                pbTriggerImageSetting.Image = pbTriggerImage.Image;
             }
             catch (Exception exception)
             {
@@ -1655,6 +1656,8 @@ namespace OpenCVDemo1
                                 //TODO: Check what can be done here for next move
                                 //GetBestMove();
                                 LogHelper.logger.Info("Getting auto best move for current user...");
+                                int delay = int.Parse(txtTriggerDelay.Text);
+                                Thread.Sleep(delay);
                                 GetBestMove();
 
                             }
@@ -1830,9 +1833,6 @@ namespace OpenCVDemo1
         }
         #endregion
 
-
-
-
-
+    
     }
 }

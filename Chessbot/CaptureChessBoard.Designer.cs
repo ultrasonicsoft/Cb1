@@ -63,7 +63,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnEngineConfiguration = new System.Windows.Forms.Button();
             this.lblWhosMove = new System.Windows.Forms.Label();
-            this.btnMarkTrigger = new System.Windows.Forms.Button();
             this.cbTriggerMarker = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.pbTriggerImage = new System.Windows.Forms.PictureBox();
@@ -87,6 +86,7 @@
             this.btnLoadTemplate = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnMarkTrigger = new System.Windows.Forms.Button();
             this.cbAutoRefresh = new System.Windows.Forms.CheckBox();
             this.txtRefreshInterval = new System.Windows.Forms.TextBox();
             this.btnScanAgain = new System.Windows.Forms.Button();
@@ -128,6 +128,10 @@
             this.txtStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtScore = new System.Windows.Forms.ToolStripStatusLabel();
             this.txtMessage = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txtTriggerDelay = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pbTriggerImageSetting = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,6 +154,7 @@
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImageSetting)).BeginInit();
             this.SuspendLayout();
             // 
             // timerAutoRefresh
@@ -486,9 +491,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTriggerDelay);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnEngineConfiguration);
             this.groupBox1.Controls.Add(this.lblWhosMove);
-            this.groupBox1.Controls.Add(this.btnMarkTrigger);
             this.groupBox1.Controls.Add(this.cbTriggerMarker);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.pbTriggerImage);
@@ -516,21 +522,11 @@
             // lblWhosMove
             // 
             this.lblWhosMove.AutoSize = true;
-            this.lblWhosMove.Location = new System.Drawing.Point(71, 134);
+            this.lblWhosMove.Location = new System.Drawing.Point(71, 157);
             this.lblWhosMove.Name = "lblWhosMove";
             this.lblWhosMove.Size = new System.Drawing.Size(40, 13);
             this.lblWhosMove.TabIndex = 39;
             this.lblWhosMove.Text = "[Move]";
-            // 
-            // btnMarkTrigger
-            // 
-            this.btnMarkTrigger.Location = new System.Drawing.Point(9, 160);
-            this.btnMarkTrigger.Name = "btnMarkTrigger";
-            this.btnMarkTrigger.Size = new System.Drawing.Size(128, 24);
-            this.btnMarkTrigger.TabIndex = 28;
-            this.btnMarkTrigger.Text = "Crop User Turn Marker";
-            this.btnMarkTrigger.UseVisualStyleBackColor = true;
-            this.btnMarkTrigger.Click += new System.EventHandler(this.btnMarkTrigger_Click);
             // 
             // cbTriggerMarker
             // 
@@ -546,7 +542,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 106);
+            this.label20.Location = new System.Drawing.Point(6, 129);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(105, 13);
             this.label20.TabIndex = 35;
@@ -554,7 +550,7 @@
             // 
             // pbTriggerImage
             // 
-            this.pbTriggerImage.Location = new System.Drawing.Point(117, 77);
+            this.pbTriggerImage.Location = new System.Drawing.Point(117, 100);
             this.pbTriggerImage.Name = "pbTriggerImage";
             this.pbTriggerImage.Size = new System.Drawing.Size(20, 20);
             this.pbTriggerImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -564,7 +560,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(18, 81);
+            this.label19.Location = new System.Drawing.Point(18, 104);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(93, 13);
             this.label19.TabIndex = 34;
@@ -572,7 +568,7 @@
             // 
             // pbCurrentMarker
             // 
-            this.pbCurrentMarker.Location = new System.Drawing.Point(117, 103);
+            this.pbCurrentMarker.Location = new System.Drawing.Point(117, 126);
             this.pbCurrentMarker.Name = "pbCurrentMarker";
             this.pbCurrentMarker.Size = new System.Drawing.Size(20, 20);
             this.pbCurrentMarker.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -585,7 +581,7 @@
             this.txtRefreshMarkerInterval.Name = "txtRefreshMarkerInterval";
             this.txtRefreshMarkerInterval.Size = new System.Drawing.Size(20, 20);
             this.txtRefreshMarkerInterval.TabIndex = 21;
-            this.txtRefreshMarkerInterval.Text = "30";
+            this.txtRefreshMarkerInterval.Text = "50";
             // 
             // label18
             // 
@@ -766,6 +762,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.pbTriggerImageSetting);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.btnMarkTrigger);
             this.groupBox3.Controls.Add(this.cbAutoRefresh);
             this.groupBox3.Controls.Add(this.txtRefreshInterval);
             this.groupBox3.Controls.Add(this.btnScanAgain);
@@ -775,15 +774,25 @@
             this.groupBox3.Controls.Add(this.btnClearAll);
             this.groupBox3.Location = new System.Drawing.Point(215, 11);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(239, 141);
+            this.groupBox3.Size = new System.Drawing.Size(249, 167);
             this.groupBox3.TabIndex = 63;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Capture Chess Board";
             // 
+            // btnMarkTrigger
+            // 
+            this.btnMarkTrigger.Location = new System.Drawing.Point(127, 85);
+            this.btnMarkTrigger.Name = "btnMarkTrigger";
+            this.btnMarkTrigger.Size = new System.Drawing.Size(122, 24);
+            this.btnMarkTrigger.TabIndex = 33;
+            this.btnMarkTrigger.Text = "Crop Trigger Marker";
+            this.btnMarkTrigger.UseVisualStyleBackColor = true;
+            this.btnMarkTrigger.Click += new System.EventHandler(this.btnMarkTrigger_Click);
+            // 
             // cbAutoRefresh
             // 
             this.cbAutoRefresh.AutoSize = true;
-            this.cbAutoRefresh.Location = new System.Drawing.Point(16, 117);
+            this.cbAutoRefresh.Location = new System.Drawing.Point(16, 144);
             this.cbAutoRefresh.Name = "cbAutoRefresh";
             this.cbAutoRefresh.Size = new System.Drawing.Size(110, 17);
             this.cbAutoRefresh.TabIndex = 32;
@@ -793,7 +802,7 @@
             // 
             // txtRefreshInterval
             // 
-            this.txtRefreshInterval.Location = new System.Drawing.Point(132, 115);
+            this.txtRefreshInterval.Location = new System.Drawing.Point(132, 142);
             this.txtRefreshInterval.Name = "txtRefreshInterval";
             this.txtRefreshInterval.Size = new System.Drawing.Size(26, 20);
             this.txtRefreshInterval.TabIndex = 30;
@@ -865,7 +874,7 @@
             this.groupBox8.Controls.Add(this.label27);
             this.groupBox8.Controls.Add(this.txtSelectedLeft);
             this.groupBox8.Controls.Add(this.label28);
-            this.groupBox8.Location = new System.Drawing.Point(460, 12);
+            this.groupBox8.Location = new System.Drawing.Point(470, 12);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(251, 140);
             this.groupBox8.TabIndex = 60;
@@ -1176,6 +1185,41 @@
             this.txtMessage.Size = new System.Drawing.Size(61, 17);
             this.txtMessage.Text = "[Message]";
             // 
+            // txtTriggerDelay
+            // 
+            this.txtTriggerDelay.Location = new System.Drawing.Point(116, 73);
+            this.txtTriggerDelay.Name = "txtTriggerDelay";
+            this.txtTriggerDelay.Size = new System.Drawing.Size(20, 20);
+            this.txtTriggerDelay.TabIndex = 66;
+            this.txtTriggerDelay.Text = "50";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 13);
+            this.label3.TabIndex = 67;
+            this.label3.Text = "Trigger Interval (ms)";
+            // 
+            // pbTriggerImageSetting
+            // 
+            this.pbTriggerImageSetting.Location = new System.Drawing.Point(209, 119);
+            this.pbTriggerImageSetting.Name = "pbTriggerImageSetting";
+            this.pbTriggerImageSetting.Size = new System.Drawing.Size(20, 20);
+            this.pbTriggerImageSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbTriggerImageSetting.TabIndex = 35;
+            this.pbTriggerImageSetting.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(110, 123);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 13);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "User Turn Marker:";
+            // 
             // CaptureChessBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1226,6 +1270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbIntensity)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTriggerImageSetting)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1242,7 +1287,6 @@
         private System.Windows.Forms.Button btnRefreshTemplate;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblWhosMove;
-        private System.Windows.Forms.Button btnMarkTrigger;
         private System.Windows.Forms.CheckBox cbTriggerMarker;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pbTriggerImage;
@@ -1332,5 +1376,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbDrawNextMoveOnScreen;
         private System.Windows.Forms.CheckBox cbAutoMove;
+        private System.Windows.Forms.Button btnMarkTrigger;
+        private System.Windows.Forms.TextBox txtTriggerDelay;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pbTriggerImageSetting;
+        private System.Windows.Forms.Label label4;
     }
 }
